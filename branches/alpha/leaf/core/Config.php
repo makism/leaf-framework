@@ -1,55 +1,40 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * Το πρώτο ελληνικό php framework ανοικτού κώδικα, γρήγορο, μικρό σε
- * μέγεθος και εύκολα επεκτάσιμο.<br>
- * The first greek php frame in open source, fast with a small footprint
- * and easily extensible.
- *
- *
- * @package		leaf
- * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright   -
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @copyright	Copyright (c) 2007 Avraam Marimpis
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Παρέχει πρόσβαση στις ρυθμίσεις των αρχείων παραμέτρων.<br>
+ * Provides access to the configuration files.
  *
- * Αυτή η κλάση ενθυλακώνει μέσα της όλα τα αρχεία παραμέτρων.<br>
- * Όλοι οι παράμετροι που έχουν δηλωθεί στα εξωτερικά αρχεία, είναι<br>
- * προσβάσιμοι σαν 'ονόματα δείκτες'.<br>
- * Η κλάση υλοποιεί το interface ArrayAccess. Ακολουθεί παράδειγμα πιο
- * κάτω που δείχνει την χρησιμότητα του interface ArrayAccess.<br>
- *
+ * This class encapsulates all the configuration files.<br>
+ * All declared parameters in the files, are accessible via methods.<br>
+ * The interface ArrayAccess is implemented which allows easy allows
+ * array-like access in one class` properties.<br>
+ * A simple example follows:
  * <code>
  *  $conf = new leaf_Config();
- *  echo $conf['base_uri'];
+ *  echo $conf['general']['base_uri'];
  * </code>
  *
  *
+ * @package     leaf
  * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @since		1.0-dev
+ * @version		SVN: $Id$
  * @link		http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html
  * @todo
  * <ol>
- *  <li>Προσθήκη μεθόδων/τρόπου αναφοράς στις σχεσιακές μεταβλητές.</li>
- *  <li>Η κατάργηση της global μεταβλητής $GLOBALS, ίσως πρέπει να γίνει
- *  σε άλλο σημείο του framework.</li>
- *  <li>Πιθανή υλοποίηση του interface <i>Iterator</i>.</li>
- *  <li><b>Πιθανή υλοποίηση υποκλάσης η οποία θα διαβάζει config αρχεία
- *  ξεχωριστά για κάθε τρέχων Controller, δηλώνοντας έτσι ξεχωριστές
- *  ρυθμίσεις και ίσως μοναδικές για κάθε Controller.</b></li>
+ *  <li>Maybe we should unset the global variable $GLOBALS somewhere else.</li>
+ *  <li>Possible implementation of the interface <i>Iterator</i>.</li>
+ *  <li>Possible implementation of a subclass that will read seperate configuration
+ *  files for each Controller, thus declaring different parameters and maybe unique
+ *  for each Controller.</li>
  * </ol>
  */
 final class leaf_Config extends leaf_Base implements ArrayAccess {
@@ -59,23 +44,23 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
     const LEAF_CLASS_ID = "LEAF_CONFIG-1_0_dev";
     
 	/**
-	 * Όλοι οι παράμετροι θα αποθηκευθούν σε αυτό το πίνακα.
+     * All configuration parameters will be stored in this array.
 	 *
 	 * @var array
 	 */
 	private $options = array();
-	
-	/**
-	 * Όλοι οι παράμετροι θα αποθηκευθούν σχεσιακά (με βάση το αρχείο
-     * από το οποίο διαβάζονται) σε αυτό το πίνακα.
+
+    /**
+     * All configuration parameters are stored in this array,
+     * using their parent configuration file as index.
      *
-	 * @var array
-	 */
-	private $assocOptions = array();
+     * @var array
+     */
+    private $optionsTable= array();
 
 	/**
-	 * Συμπεριλαμβάνει όλα τα config αρχεία και αποθηκεύει τις παραμέτρους
-	 * συγκεκρωτικά σε έναν πίνακα.<br>
+     * Encapsulates all the configuration files, and stores the
+     * paremeters in an array.
 	 *
 	 * @return void
 	 */
@@ -83,27 +68,43 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	{
         parent::__construct(self::LEAF_REG_KEY);
 
-		require_once LEAF_BASE . 'etc/config.php';
+		require_once LEAF_BASE . 'etc/general.php';
 		require_once LEAF_BASE . 'etc/routes.php';
 		require_once LEAF_BASE . 'etc/autoload.php';
 		require_once LEAF_BASE . 'etc/hooks.php';
         require_once LEAF_BASE . 'etc/endorsed.php';
-		
-		/*$this->assocOptions['general']	= $config;
-		$this->assocOptions['routes']	= $routes;
-		$this->assocOptions['autoload']	= $autoload;
-		$this->assocOptions['hooks']	= $hooks;*/
-		
-		$this->options = array_merge(
-            $config, $routes, $autoload, $hooks
+
+        $this->options['general'] = $general;
+        $this->options['routes']  = $routes;
+        $this->options['autoload']= $autoload;
+        $this->options['endorsed']= $endorsed;
+        $this->options['hooks']   = $hooks;
+
+        $this->options = array_merge(
+            $general, $routes, $autoload,
+            $endorsed, $hooks
         );
 		
     	unset($GLOBALS);
-	}
+    }
+
+    /**
+     * Returns all parameters related with the specified key.
+     *
+     * @param   string  $str
+     * @return  array|NULL
+     */
+    public function getByHashKey($key)
+    {
+        if (array_key_exists($key, $this->optionsTable))
+            return $this->optionsTable[$key];
+        else
+            return NULL;
+    }
 
 	/**
-	 * Ελέγχει εάν υπάρχει η παράμετρος που ζητήθηκε.
-	 *
+	 * Checks if the request parameter-name exists.
+     *
 	 * @param	string	$offset
 	 * @return	boolean
 	 */
@@ -116,8 +117,8 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	}
 	
 	/**
-	 * Επιστρέφει την τιμή της παραμέτρου που ζητήθηκε.<br>
-	 *
+	 * Returns the value of the specified parameter.
+     *
 	 * @param	string	$offset
 	 * @return	mixed
 	 */
@@ -127,25 +128,23 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	}
 
 	/**
-	 * Αποδίδει τιμή σε μία παράμετρο.
-     * 
-     * <i>ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΜΟΝΟ ΣΤΙΣ ΕΚΔΟΣΕΙΣ ΥΠΟ-ΑΝΑΠΤΥΞΗ</i>
-	 *
+     * Sets a value in the specific parameter.
+     *
 	 * @param	string	$offset
 	 * @param	mixed	$value
 	 * @return	void
 	 */
 	public function offsetSet($offset, $value)
 	{
-        if (LEAF_REL_STATUS=='DEV')
-            $this->options[$offset] = $value;
+        $this->options[$offset] = $value;
 	}
 
 	/**
-	 * Καταργεί μία παράμετρο.
+     * Unsets a parameter.
      *
-     * Καταργεί μία παράμετρο όσο τρέχει το script, δηλαδή,
-     * <b>δεν ανανεώνει</b> τα αρχεία παραμέτρων.
+     * Unsets a parameter while the script is executed, that
+     * is, it doesn`t mean it updates the configuration file
+     * itself.
 	 *
 	 * @param	string	$offset
 	 * @return	void
