@@ -20,13 +20,13 @@
  * A simple example follows:
  * <code>
  *  $conf = new leaf_Config();
- *  echo $conf['general']['base_uri'];
+ *  echo $conf['base_uri'];
  * </code>
  *
  *
  * @package     leaf
  * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @version		SVN: $Id$
+ * @version		$Id$
  * @link		http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html
  * @todo
  * <ol>
@@ -69,21 +69,16 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
         parent::__construct(self::LEAF_REG_KEY);
 
 		require_once LEAF_BASE . 'etc/general.php';
-		require_once LEAF_BASE . 'etc/routes.php';
 		require_once LEAF_BASE . 'etc/autoload.php';
 		require_once LEAF_BASE . 'etc/hooks.php';
         require_once LEAF_BASE . 'etc/endorsed.php';
 
-        $this->options['general'] = $general;
-        $this->options['routes']  = $routes;
-        $this->options['autoload']= $autoload;
-        $this->options['endorsed']= $endorsed;
-        $this->options['hooks']   = $hooks;
+        $this->optionsTable['general'] = $general;
+        $this->optionsTable['autoload']= $autoload;
+        $this->optionsTable['endorsed']= $endorsed;
+        $this->optionsTable['hooks']   = $hooks;
 
-        $this->options = array_merge(
-            $general, $routes, $autoload,
-            $endorsed, $hooks
-        );
+        $this->options = $general;
 		
     	unset($GLOBALS);
     }
@@ -153,16 +148,6 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	{
         unset($this->options[$offset]);
 	}
-
-    /**
-     *
-     *
-     * @return  array
-     */
-    public function toArray()
-    {
-        return $this->options;
-    }
 
     public function __toString()
     {

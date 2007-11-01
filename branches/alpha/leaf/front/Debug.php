@@ -19,7 +19,8 @@
  * @filesource
  * @todo
  * <ol>
- *   <li> Recheck the information displayed under the tab "Config Settings".</li>
+ *   <li>Document.</li>
+ *   <li>Recheck the information displayed under the tab "Config Settings".</li>
  * </ol>
  */
 
@@ -84,14 +85,6 @@ if ($reg->config['allow_endorsed']=="Yes") {
 	echo
 		 "<li><a href=\"#leaf_Debug_Endorsed\"><em>Endorsed Classes</em></a></li>";
 }
-
-/*
-    echo
-         "<li><a href=\"#\"><em>Output Information</em></a></li>" .
-         "<li><a href=\"#\"><em>Cache Statistics</em></a></li>" .
-         "<li><a href=\"#\"><em>SQL Statistics</em></a></li>";
-*/
-
     
     // tabs (end)
     echo "</ul>";
@@ -125,11 +118,35 @@ if ($reg->config['allow_endorsed']=="Yes") {
             "<div id=\"leaf_Debug_Global_Settings\" style=\"display: none;\">"
             . " <pre style=\"font-size: 12px; font-family: Verdana, Arial, helvetica, sans-serif;\">";
 
-        foreach($reg->config->toArray() as $Var => $Val) {
+        echo
+            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>General</b></small></legend>";
+        foreach($reg->config->getByHashKey("general") as $Var => $Val) {
             echo
                 "<span style=\"color: #4e9a06;\"><b>{$Var}</b></span>\n    "
               . "<span style=\"color: #ff0000;\"><small>{$Val}</small></span>\n";
         }
+        echo "</fieldset>";
+
+        echo "<br/>";
+
+        echo
+            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Autoload</b></small></legend>";
+        foreach($reg->config->getByHashKey("autoload") as $Var => $Val) {
+            echo
+                "<span style=\"color: #4e9a06;\"><b>{$Var}</b></span>\n    "
+              . "<span style=\"color: #ff0000;\"><small>{$Val}</small></span>\n";
+        }
+        echo "</fieldset>";
+
+        echo
+            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Endorsed</b></small></legend>";
+        echo "</fieldset>";
+
+        echo "<br/>";
+
+        echo
+            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Hooks</b></small></legend>";
+        echo "</fieldset>";
 
         echo
             " </pre>"

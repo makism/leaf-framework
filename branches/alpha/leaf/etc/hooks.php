@@ -1,65 +1,32 @@
 <?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small
- * footprint and easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο,
- * μικρό σε μέγεθος και εύκολα επεκτάσιμο.<br>
- *
- *
- * @package		leaf
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @copyright	Copyright (c) 2007 Avraam Marimpis
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 global $hooks;
-
 $hooks = array (
-    /*
-     * Response
-     */
-    "pre_response"  => array(),
-    "post_response" => array(),
 
 	/*
-     * Controller
+     * These will be executed before (pre) and
+     * after (post) dispatching the requested
+     * controller.
      */
     "pre_controller_dispatch"   => array(),
     "post_controller_dispatch"  => array(),
 
     /*
-     * Front_Controller
+     * These hooks will be run, after the
+     * Front Controller has cesead execution.
      */
-    "post_front_controller"  => array(
-        array (
-            "className1",
-            "methodName1",
-            "args2"
-        ),
-        array (
-            "className2",
-            "args2",
-            "methodName2",
-            "args2"
-        ),
-        array (
-            "className3",
-            "args3"
-        ),
-        array (
-            "className4",
-            "args4",
-            "methodName"
-        )
-    )
+    "post_front_controller"  => array()
+
 );
 
 ?>

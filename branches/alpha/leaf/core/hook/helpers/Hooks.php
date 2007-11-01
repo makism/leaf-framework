@@ -26,13 +26,6 @@
  *
  *
  */
-define('HOOK_PRE_RESPONSE',  'pre_response');
-
-/**
- *
- *
- *
- */
 define('HOOK_POST_RESPONSE', 'post_response');
 
 /**
