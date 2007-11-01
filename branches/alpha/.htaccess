@@ -1,7 +1,7 @@
-RewriteEngine	On
-RewriteBase		/leaf/
-RewriteCond		$1		!^(index\.php|.+\.(css|js|ico|jpeg|jpg|png|gif))
-RewriteRule		^(.*)$	index.php/$1 [L]
-
-IndexIgnore     *
+<IfModule mod_rewrite.c>
+    RewriteEngine	On
+    RewriteBase		/leaf/
+    RewriteCond		$1		!^(index\.php|.+\.(css|js|ico|jpeg|jpg|png|gif))
+    RewriteRule		^(.*)$	index.php/$1 [L]
+</IfModule>
 
