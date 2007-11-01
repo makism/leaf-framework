@@ -1,22 +1,12 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small
- * footprint and easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο,
- * μικρό σε μέγεθος και εύκολα επεκτάσιμο.<br>
- *
- *
- * @package		leaf
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @copyright	Copyright (c) 2007 Avraam Marimpis
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
@@ -25,16 +15,12 @@ $autoload = array();
 
 /*
  * Plugins that will be autoloaded automatically.
- *
- * Plugins που θα φορτώνονται αυτόματα.
  */
-$autoload['plugins'] = "dir";
+$autoload['plugins'] = "";
 
 /*
  * Extensions that will be autoloaded automatically.
- *
- * Extensions που θα φορτώνονται αυτόματα.
  */
-$autoload['extensions'] = "file, image";
+$autoload['extensions'] = "";
 
 ?>
