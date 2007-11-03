@@ -9,12 +9,12 @@
  * using PHP5`s new Object Oriented capabilities and well documented.
  *
  *
- * @package		leaf
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @package	leaf
+ * @author	Avraam Marimpis <makism@venus.cs.teicrete.gr>
  * @link        http://leaf-framework.sourceforge.net
  * @copyright	Copyright &copy; 2007 Avraam Marimpis
  * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
- * @version		$Id$
+ * @version	$Id$
  * @filesource
  */
 
