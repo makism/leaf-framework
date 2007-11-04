@@ -1,28 +1,30 @@
 <?php
 /**
- * leaf framework
+ * This source file is part of the leaf framework and
+ * is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * leaf is a Greek open source MVC framework in PHP.
- * Simple, fast, with a small footprint, easily extensible
- * using PHP5`s new Object Oriented capabilities and well documented.
- *
- *
- * @package		leaf
- * @subpackage  front.helpers
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @copyright   Copyright (c) 2007 Avraam Marimpis
+ * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
- * @copyright	Copyright &copy; 2007 Avraam Marimpis
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ *
+ * @package     leaf
+ * @subpackage  front.helpers
+ * @author      Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
  * @filesource
+ * @todo
+ * <ol>
+ *  <li>Implement a function that will handle dependancies as
+ *  optional.</li>
+ *  <li>Recheck <b>all</b> functions.</li>
+ * </ol>
  */
 
 
 /**
  * Presents a "Page Not Found" message.
- *
  * 
  * @param	string	$str
  * @return	void
@@ -38,7 +40,6 @@ function showErrorPage404($str=NULL)
 
 /**
  * Prints styled text. Used in printing debug messages and errors.
- *
  * 
  * @param	string	$title
  * @param	string	$str

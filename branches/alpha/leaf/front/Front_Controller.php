@@ -1,20 +1,17 @@
 ﻿<?php
 /**
- * leaf framework
+ * This source file is part of the leaf framework and
+ * is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * leaf is a Greek open source MVC framework in PHP.
- * Simple, fast, with a small footprint, easily extensible
- * using PHP5`s new Object Oriented capabilities and well documented.
- *
- *
- * @package		leaf
- * @subpackage  front
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @copyright   Copyright (c) 2007 Avraam Marimpis
+ * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
- * @copyright	Copyright &copy; 2007 Avraam Marimpis
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ *
+ * @package     leaf
+ * @subpackage  front
+ * @author      Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
  * @filesource
  * @todo
@@ -32,26 +29,31 @@
  */
 require_once LEAF_BASE  . 'front/helpers/Main.php';
 
+
 /**
  * Helper functions that are used to declare dependancies
  * on specific extensions, functions or leaf`s Classes.
  */
 require_once LEAF_BASE  . 'front/helpers/Dependancies.php';
 
+
 /**
  * Custom error and exception handling functions.
  */
 require_once LEAF_BASE  . 'front/helpers/Handlers.php';
+
 
 /**
  * Functions used to present errors.
  */
 require_once LEAF_BASE  . 'front/helpers/Error.php';
 
+
 /**
  * Custom debug functions.
  */
 require_once LEAF_BASE  . 'front/helpers/Debug.php';
+
 
 /**
  * Helper functions handling hooks.
@@ -96,15 +98,17 @@ date_default_timezone_set($timezoneSetting);
 
 
 /*
- * 
+ * Register the logger if it has been enabled.
  */
 #if ($reg->config['log_level']!="None" ||
 #    empty($reg->config['log_level'])) {
 #    $reg->register(new leaf_Logger());
 #}
 
+
 /*
- *
+ * Register the "base" classes that are needed
+ * for leaf to work properly.
  */
 $reg->register(new leaf_Router());
 $reg->register(new leaf_Request());
@@ -114,53 +118,54 @@ $reg->register(new leaf_Response());
 
 
 /*
- *
- *
+ * Begin output buffering.
  */
-# Hooks ########
-# Pre-Response #
-################
 $reg->response->ouputBufferingStart();
 
 
 /*
- * 
+ * Run all hooks for level: Pre-Controller-Dispatch
  */
-# Hooks ###################
-# Pre-Controller-Dispatch #
-###########################
+#runHooks(HOOK_PRE_CONTROLLER_DISPATCH);
 
+
+/*
+ * Dispatch controller.
+ */
 $reg->dispatcher->dispatchController();
 
-# Hooks ####################
-# Post-Controller-Dispatch #
-############################
+
+/*
+ * Run all hooks for level: Post-Controller-Dispatch
+ */
+#runHooks(HOOK_POST_CONTROLLER_DISPATCH);
 
 
 /*
- *
+ * Flush buffer, and turn off.
  */
 $reg->response->outputBufferingEnd();
-# Hooks #######
-# Post-Response
-###############
 
 
 /*
- *
+ * Close the logger if it has been
+ * requested and registered.
  */
 #if ($reg->isRegistered("logger"))
 #    $reg->logger->end_flush();
 
 
-#Hooks ##################
-# Post-Front-Controller #
-#########################
+/*
+ * Run all hooks for level: Post-Front-Controller
+ */
 #runHooks(HOOK_POST_FRONT_CONTROLLER);
 
-/**
+
+/*
  * General statistics like memory usage, parsing time and other.
  */
 if ($reg->config['enable_debug_stats']=="Yes")
     require_once LEAF_BASE . 'front/Debug.php';
+
+
 ?>

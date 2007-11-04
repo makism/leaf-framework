@@ -1,17 +1,22 @@
 ﻿<?php
 /**
- * This source file is licensed under the New BSD license.
+ * This source file is part of the leaf framework and
+ * is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @copyright	Copyright (c) 2007 Avraam Marimpis
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @copyright   Copyright (c) 2007 Avraam Marimpis
+ * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
+ *
+ * @author      Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  */
 
 
 global $general;
 $general = array();
+
 
 /*
  * Host name.
@@ -29,12 +34,11 @@ $general['base_dir']  = "/leaf/";
 /*
  * Default application controller.
  */
-$general['default_controller'] = "Blog";
+$general['default_controller'] = "TestApplication";
 
 
 /*
- *
- *
+ * Default locale settings.
  */
 $general['locale'] = "en";
 
@@ -42,11 +46,13 @@ $general['locale'] = "en";
 /*
  * The base url - created automatically.
  */
-$general['base_url']	 = $general['hostname'] . $general['base_dir'];
+$general['base_url'] = $general['hostname'] . $general['base_dir'];
 
 
 /*
- * Virtual file extension, shown in the address. (Optional).
+ * Virtual file extension, shown in the address. (not implemented)
+ *
+ * Default: "";
  */
 $general['url_suffix']= "";
 
@@ -58,23 +64,30 @@ $general['charset'] = "utf-8";
 
 
 /*
+ * Enable or disable the endorsement mechanism, so you may
+ * substitute internal core classes, with other implementations.
  *
- * "Yes", "No"
+ * Legal values: "Yes", "No"
  */
 $general['allow_endorsed'] = "No";
 
 
 /*
+ * Enable or disable the "hooking" mechanism.
+ * This enables you to interpose your code
+ * easily, in predefined places.
  *
- *
- * "Yes", "No"
+ * Legal values: "Yes", "No"
+ * Default: "No"
  */
 $general['allow_hooks'] = "No";
 
 
 /*
  * Enable/Disable query strings.
- * (legal values: Yes/No).
+ *
+ * Legal values: "Yes", "No"
+ * Default: "Yes"
  */
 $general['allow_query_strings'] = "Yes";
 
@@ -83,6 +96,8 @@ $general['allow_query_strings'] = "Yes";
  * Allowed characters in the query strings.
  * Do _NOT_ set to nothing, unless you are aware of the
  * consicouences.
+ *
+ * Default value: "a-z0-9-_"
  */
 $general['allow_query_string_chars'] = "a-z0-9-_";
 
@@ -92,31 +107,35 @@ $general['allow_query_string_chars'] = "a-z0-9-_";
  * the best out there.
  * Change only if sure and do _NOT_ set to nothing,
  * unless you are aware of the consicouences.
+ *
+ * Default value: "a-z0-9-/_:+~%*"
  */
 $general['allow_uri_chars'] = "a-z0-9-/_:+~%*";
 
 
 /*
- * Possible values inclue
+ * Register an output handler. (not implemented)
  *
- * "gz", "tidy", "normal"
+ * Legal values: "gz", "tidy", "normal"
+ * Default: "normal"
  */
-$general['output_handler'] = "Normal";
+$general['output_handler'] = "normal";
 
 
 /*
- * Which messages will be logged. Possible values are listed.
+ * Logging threshold. (not implemented)
  *
- * "All", "Debug", "Warning", "Info", "None"
+ * Legal values: "All", "Debug", "Warning", "Info", "None"
+ * Default: "None"
  */
 $general['log_level'] = "None";
 
 
 /*
- * Whether to show a summary of debug statistics.
- * Legal values follow.
+ * Whether to enable debug statistics.
  *
- * "Yes", "No"
+ * Legal values: "Yes", "No"
+ * Default: "Yes"
  */
 $general['enable_debug_stats'] = "Yes";
 
