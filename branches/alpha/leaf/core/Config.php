@@ -4,7 +4,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @copyright	Copyright (c) 2007 Avraam Marimpis
  * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
@@ -14,24 +13,37 @@
  * Provides access to the configuration files.
  *
  * This class encapsulates all the configuration files.<br>
- * All declared parameters in the files, are accessible via methods.<br>
- * The interface ArrayAccess is implemented which allows easy allows
- * array-like access in one class` properties.<br>
- * A simple example follows:
+ * The parameters that are read from the general.php file, are
+ * accessible as array offsets.<br>
+ * Example:<br>
  * <code>
  *  $conf = new leaf_Config();
  *  echo $conf['base_uri'];
  * </code>
  *
+ * This behaviour is succeeded by implementing the {@link http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html ArrayAccess}
+ * interface.<br>
+ *
+ * The other paremeters, are accessed by using the method
+ * getByHashKey(configFileName). This method returns an array with
+ * all the related configuration parameters.<br>
+ * Example:<br>
+ * <code>
+ * </code>
+ *
+ * This design was selected because the "general" properties are the
+ * most commonly used, thus it is wise to provide a fast-access
+ * method.<br>
+ * Also, we could have used the "magic" methods "__call" and "__set",
+ * but they are declared as "final" in the parent class.
  *
  * @package     leaf
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @subpackge   core
+ * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
- * @link		http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html
  * @todo
  * <ol>
  *  <li>Maybe we should unset the global variable $GLOBALS somewhere else.</li>
- *  <li>Possible implementation of the interface <i>Iterator</i>.</li>
  *  <li>Possible implementation of a subclass that will read seperate configuration
  *  files for each Controller, thus declaring different parameters and maybe unique
  *  for each Controller.</li>

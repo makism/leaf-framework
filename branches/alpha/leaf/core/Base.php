@@ -1,68 +1,62 @@
 <?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- *
- * @package     leaf
- * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Προσδίδει βασικά κοινά χαρακτηριστικά στις εσωτερικές κλάσεις
- * του leaf.
+ * Assigns common behavior and properties in the internal classes.
  *
- * Οι περισσότερες εσωτερικές κλάσεις του leaf, κληρονομούν από
- * αυτή την κλάση.<br>
- * Τους δίνεται η δυνατότητα να έχουν πρόσβαση σε όλα τα υπόλοιπα
- * αντικείμενα που υπάρχουν. Αναφέρονται σε αυτά, σαν να ήταν απλά
- * μέλη τους.
+ * Most of the leaf`s internal classes inhertic from this class.<br>
+ * This way, these classes, are provided with a unified base model,
+ * to communicate (by referencing) with the other objects, as if
+ * they were (private in this case) properties.<br>
+ * Example (<b>pure fictional, because the visibility is private</b>):<br>
+ * <code>
+ *   $router = new leaf_Router();
+ *   echo $router->config['base_url'];
+ * </code>
  *
+ * We assume, that the "config" property has already been instantiated and
+ * automatily registered.<br>
+ * Also, we assume that the access of the properties is public.
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0
- * @since		1.0-dev
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version     $Id$
  */
 abstract class leaf_Base {
 
     /**
-     * Όνομα ενός στιγμοιοτύπου αυτής τη κλάσης
-     * στο οποίο θα αναφερόμαστε μέσω του αντικειμένου
-     * {@link leaf_Registry}.
+     * The name of the instance that the current subclass
+     * will known as.<br>
+     * Think of it like a "key" and "value" relation.<br>
+     * "key" is a name, and "value" is the actual instance
+     * of a subclass.
      *
      * @var string
      */
     const LEAF_REG_KEY = "base";
     
     /**
-     * Ένα μοναδικό αναγνωριστικό για κάθε κλάση.
+     * A unique handle for each subclass.
      *
      * @var string
      */
     const LEAF_CLASS_ID = "LEAF_BASE-1_0_dev";
 
     /**
-     * Ένα και μοναδικό στιγμιότυπο της κλάσης leaf_Registry.
+     * The one and only unique instance of the class leaf_Registry.
      *
-     * Όλες οι υποκλάσεις "εγγράφονται" σε αυτό το αντικείμενο
-     * και έχουν την δυνατότητα να αναφέρονται η μία στην άλλη.
+     * All subclasses are registered in this object and have
+     * the ability to refer to other objetcts stored in the
+     * registry.
      *
      * @var object leaf_Registry
      */
@@ -70,8 +64,9 @@ abstract class leaf_Base {
 
 
     /**
-     * Κάθε φορά που καλείται ελέγχει άν η υποκλάση είναι ήδη
-     * καταχωρημένη στο αντικέμενο {@link leaf_Registry $Registry}.
+     * Each time a subclass calls the constructor, some checks are
+     * performed to find out if the subclass is already instantiated,
+     * and thus exists in the {@link leaf_Registry $Registry}.
      *
      * @param   NULL|string  $descendant
      * @return  void
@@ -81,13 +76,13 @@ abstract class leaf_Base {
         if (self::$Registry==NULL)
             self::$Registry = leaf_Registry::getInstance();
 
+        // In case the subclass is already registered, we die with a message.
         if (self::$Registry->isRegistered($descendant))
             showHtmlMessage("Object \"{$descendant}\" already registered!", TRUE);
     }
 
     /**
-     * Επιστρέφει το ζητούμενο αντικείμενο από την
-     * {@link leaf_Registry registry}.
+     * Returns the requested object from the {@link leaf_Registry $Registry}.
      *
      * @param   string  $obj
      * @return  object
@@ -98,29 +93,7 @@ abstract class leaf_Base {
     }
 
     /**
-     *
-     *
-     * @return  string
-     */
-    abstract public function __toString();
-
-    /**
-     *
-     *
-     * @return  string
-     */
-//    abstract public function getClassDescription();
-
-    /**
-     *
-     *
-     *
-     *
-     */
-//    abstract public function getClassVersion();
-
-    /**
-     *
+     * Prevent object cloning.
      *
      * @return  void
      */
@@ -128,6 +101,13 @@ abstract class leaf_Base {
     {
         return;
     }
+
+    /**
+     * Returns a descriptive string about this class.
+     *
+     * @return  string
+     */
+    abstract public function __toString();
 
 }
 
