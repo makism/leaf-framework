@@ -1,45 +1,31 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- * @package     leaf
- * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Επεξεργάζεται και φιλτράρει, το Uri για το τι πρέπει να γίνει.
+ * Processes and filters the current Uri.
  *
- * Ανακαλύπτει ποιον Controller θα πρέπει να εκτελέσουμε και
- * ποια μέθοδο (αν έχει οριστεί). Επιπλέον φιλτράρει το Uri
- * για χαρακτήρες που θα πρέπει να βρίσκονται εκεί και αποσπά
- * το Query String όταν χρειάζεται και εάν έχει ενεργοποιηθεί.
- *
+ * Filters the Uri for erroneous characters, splits the query string
+ * (if enabled), matches the virtual file extension (if enabled),
+ * discovers the requested Controller(class) and the Action(method).
  *
  * @package		leaf
  * @subpackage	core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @version		1.0-dev
- * @since		1.0-dev
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @todo
  * <ol>
- *  <li>Μήπως {@link leaf_Router αυτή η κλάση} να αναλάβει και τις λειτουργίες της κλάσης
- *  {@link leaf_Request};</li>
- *  <li>Παροχή μίας εναλλακτικής κλάσης (που πιθανόν, θα κληρονομεί από αυτήν)
- *      που θα χρησιμοποιεί στατικούς κανόνες δρομολόγησης.</li>
+ *  <li>Maybe this class should completely overtake the class {@link
+ *  leaf_Request}, thus removing the later class.</li>
+ *  <li>Provide an alternative class (which maybe will inherit from this
+ *  one) that will use static routing rules.</li>
  * </ol>
  */
 final class leaf_Router extends leaf_Base {
@@ -50,42 +36,54 @@ final class leaf_Router extends leaf_Base {
 
 
 	/**
-     *
+     * The current requested Uri string.
      *
      * @var string
      */
 	private $requestUri = NULL;
 	
 	/**
-     *
+     * The requested class name (Controller).
      *
      * @var string
      */
 	private $requestClass = NULL;
 	
 	/**
-     *
+     * The requested method name (Action).
      *
      * @var string
      */
 	private	$requestMethod= NULL;
 	
 	/**
+     * The extra segments found in the Uri.
      *
+     * Whatever follows after the method name,
+     * and is separated by "/", is considered
+     * to be a segment.<br>
+     * Example:<br>
+     * <i>http://localhost/Blog/view/2007/xx/xx/aTitle/</i><br>
+     * The array $segments, will be populated by the strings:<br>
+     * "2007", "xx", "xx", "aTitle"
      *
      * @var array
      */
 	private $segments = NULL;
 	
 	/**
+     * The query string found in the Uri.
      *
+     * If enabled in the general configuration file, and if
+     * found in the Uri, the query string is separated and
+     * processed so it produces the array $queryStringElements.
      *
      * @var string
      */
 	private $queryString = NULL;
 	
 	/**
-     *
+     * The query string found in the Uri, as an associative array.
      *
      * @var array
      */
@@ -100,9 +98,8 @@ final class leaf_Router extends leaf_Base {
 	 * @return	void
      * @todo
      * <ol>
-     *  <li>"Σπάσιμο" των εργασιών που επιτέλει ο constructor σε επιμέρους μεθόδους.</li>
-     *  <li>Επανέλεγχος της λειτουργίας σχετικά με το επέκταση που μπορεί να
-     *      υπάρξει στο Uri.</li>
+     *  <li>Possible break-down of the jobs that the constructor executes.</li>
+     *  <li>Recheck the "virtual file extension" function.</li>
      * </ol>
 	 */
 	public function __construct() {
@@ -112,7 +109,7 @@ final class leaf_Router extends leaf_Base {
 		$this->requestUri   = $_SERVER['REQUEST_URI'];
 
         /*
-         * Αντικατάσταση των πιθανών συνεχόμενων /, με ένα μόνο.
+         * Replace the possible multiple occurences of "/", with one "/"
          */
         $this->requestUri = preg_replace("@/+@i", "/", $this->requestUri);
         
@@ -122,14 +119,14 @@ final class leaf_Router extends leaf_Base {
 		 * Moreover, we take into consideration if the option
 		 * $this->config['url_suffix'] is used which defines the file
 		 * extensions that will be shown, so we ignore it.
-         *
-         *
 		 */
+        // match the virtual file extension.
 		/*$skipExt = (!empty($this->config['url_suffix']))
 					? "(\.[^?=&]+)?"
 					: "";*/
         $skipExt = "";
-			
+		
+        // match the query string
 		$skipQueryString = ($this->config['allow_query_strings']=="Yes")
 			? "(\?(["
 				. $this->config['allow_query_string_chars']
@@ -137,7 +134,8 @@ final class leaf_Router extends leaf_Base {
 				. $this->config['allow_query_string_chars']
 				. "]*)?\&?)+)?"
 			: "";
-			
+		
+        // match all
 		$checkUri = preg_match_all(
 			"|"
 				. "^[" . preg_quote($this->config['allow_uri_chars']) . "]+"
@@ -147,6 +145,10 @@ final class leaf_Router extends leaf_Base {
 			$hits
 		);
 		
+        /*
+         * We die in case we find erroneous characters in the Uri,
+         * and keep a log of the event.
+         */
 		if ($checkUri==0) {
 		    /*$this->logger->log(
 		        "Error",
@@ -163,13 +165,9 @@ final class leaf_Router extends leaf_Base {
 		
 		/*
 		 * We check if there is a query string in our uri.
-		 * If query strings are enable in file
-		 * (Etc/config.php - parameter $config['allow_query_strings']),
-		 * we process it in an associative array way.
+		 * We process it in an associative array way.
 		 * Either way, we remove the query string from the
 		 * request uri.
-         *
-         *
 		 */
 		if (preg_match("@\?(.+(=.+)?\&?$)+@iu", $this->requestUri, $matches)) {
             
@@ -209,8 +207,6 @@ final class leaf_Router extends leaf_Base {
 		
 		/*
 		 * Removal of leading base dir.
-         *
-         *
 		 */
 		$this->requestUri = preg_replace(
 			"@^{$this->config['base_dir']}@",
@@ -219,9 +215,8 @@ final class leaf_Router extends leaf_Base {
 		);
 		
 		/*
-		 * Removal of the url trailing if defined.
-         *
-         *
+		 * Removal of the virtual file extension
+         * if enabled, and if found in the Uri.
 		 */
 		if (!empty($this->config['url_suffix']))
 			$this->requestUri = preg_replace(
@@ -232,46 +227,37 @@ final class leaf_Router extends leaf_Base {
 		
 		/*
 		 * Removal of trailing '/' (if exists in Uri).
-         *
-         *
 		 */
 		if (preg_match("@/$@", $this->requestUri))
 			$this->requestUri = preg_replace("@/$@", "", $this->requestUri);
 
 		/*
 		 * If no class is defined instatiate the default Controller.
-         *
-         *
 		 */
 		if ($this->requestUri=="/"	||
 			$this->requestUri==NULL	||
-			($this->requestUri{0}=="?" && $this->config['allow_query_strings']=="Yes"))
+			($this->requestUri{0}=="?" && $this->config['allow_query_strings']=="Yes")) {
 			$this->requestClass = $this->config['default_controller'];
-			
+        }	
 		/*
-		 * We extract the Controller class (if defined).
-         *
-         *
+		 * We extract the Controller class.
 		 */
-		else
+		else {
 			$this->chopSegment($this->requestClass);
+        }
 		
 		/*
 		 * We extract the method (if defined).
-         *
-         *
 		 */
 		$this->chopSegment($this->requestMethod);
-		if ($this->requestMethod==NULL)
+		if ($this->requestMethod==NULL) {
 		    $this->requestMethod = "index";
+        }
 		
 		/*
 		 * If there are more segments in the Uri, except from the
 		 * class name and the method name, we store those segments
 		 * in an array and we provide them at the user`s disposal.
-         *
-         *
-         *
 		 */
 		$segments = explode("/", $this->requestUri);
 		foreach ($segments as $s) {
@@ -281,13 +267,9 @@ final class leaf_Router extends leaf_Base {
 		
 	}
 
-    public function __toString()
-    {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
-    }
-
     /**
-     * Επιστρέφει έναν πίνακα με τα στοιχεία του Query String.
+     * Returns an associative array filled with the
+     * elements that found in the query string.
      * 
      * @see     leaf_Request
      * @return  array|NULL
@@ -298,7 +280,8 @@ final class leaf_Router extends leaf_Base {
     }
 	
 	/**
-     * Επιστρέφει το συνολικό αριθμό των κομματιών.
+     * Returns the total number of segments that found
+     * in the current Uri.
 	 *
 	 * @return	integer
 	 */
@@ -308,8 +291,8 @@ final class leaf_Router extends leaf_Base {
 	}
 	
 	/**
-     * Επιστρέφει έναν πίνακα με τα επιπλέον στοιχεία στο Uri
-     * (εκτός της κλάσης, της μεθόδου και του query string).
+     * Returns an array with the extra segments
+     * that compose this Uri.
 	 *
      * @see     leaf_Request
 	 * @return	array|NULL
@@ -320,8 +303,8 @@ final class leaf_Router extends leaf_Base {
 	}
 
 	/**
-     * Αφαιρεί την πρώτη συμβολοσειρά που θα βρεθεί, μέχρι να τον
-     * εντοπισμό του πρώτου χαρακτήρα '/' στο μέλος $this->requestUri.
+     * Removes the first string occurence until the very first
+     * "/", from the property $this->requestUri.
 	 *
 	 * @param	string	$seg
 	 * @return	void
@@ -337,7 +320,7 @@ final class leaf_Router extends leaf_Base {
 	}
 	
 	/**
-     * Επιστρέφει το όνομα του Controller που θα εκτελέσουμε.
+     * Returns the class name (Controller) that is requested.
 	 *
      * @see     leaf_Request
 	 * @return  string
@@ -348,7 +331,7 @@ final class leaf_Router extends leaf_Base {
 	}
 	
 	/**
-     * Επιστρέφει την μέθοδο του Controller που θα πρέπει να εκτελέσουμε.
+     * Returns the method name (Action) that is requested.
      *
      * @see     leaf_Request
 	 * @return  string
@@ -357,6 +340,11 @@ final class leaf_Router extends leaf_Base {
 	{
 		return $this->requestMethod;
 	}
+
+    public function __toString()
+    {
+        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+    }
 
 }
 
