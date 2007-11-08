@@ -12,7 +12,7 @@
 /**
  * Registry class that lists most of the instantiated internal classes.
  *
- * This class implements the Registry design pattern.<br>
+ * This class implements the {@link http://www.phppatterns.com/docs/design/the_registry Registry design pattern}.<br>
  * When an internal class is instantiated, registers itself
  * in this class.<br>
  * This way, we provide a fast and easy way for the internal
@@ -41,7 +41,7 @@ final class leaf_Registry {
     /**
      * The unique instance of this class.
      *
-     * This class implements the Singleton design pattern.<br>
+     * This class implements the {@link http://www.phppatterns.com/docs/design/singleton_pattern Singleton design pattern}.<br>
      * That is, there can be only one instance of this class.
      *
      * @var object leaf_Registry
