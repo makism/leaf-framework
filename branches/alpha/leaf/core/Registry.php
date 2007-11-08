@@ -1,57 +1,48 @@
 <?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * leaf_Framework Registry Class
+ * Registry class that lists most of the instantiated internal classes.
  *
- * Αυτή η κλάση υλοποιεί το πρότυπο σχέδιο Registry.
- * Με αυτό το τρόπο, όλα τα αντικείμενα αποθηκεύονται
- * σχεσιασιακά μέσα στην κλάση αυτή, και αναφερόμαστε μέσω
- * αυτής.
- *
+ * This class implements the Registry design pattern.<br>
+ * When an internal class is instantiated, registers itself
+ * in this class.<br>
+ * This way, we provide a fast and easy way for the internal
+ * class to "communicate" each other.
  *
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @version		1.0-dev
- * @since		1.0-dev
+ * @version		$Id$
+ * @see         leaf_Base
  * @todo
  * <ol>
- *  <li>Ίσως υπάρξει και κάποια καταχώρηση με <b>όλα</b> τα πιθανά
- *  κλειδιά που μπορεί να υπάρξουν και κάποια σημείωση για τον τύπο
- *  της κλάσης που σχετίζονται.</li>
+ *  <li>Thinking about listing all possible entries with their
+ *  types - so there are some sanity checks...?</li>
  * </ol>
  */
 final class leaf_Registry {
 
 	/**
-     *
-     *
+     * All currently registered classes.
      *
      * @var array
      */
 	private $registered = array();
 	
     /**
+     * The unique instance of this class.
      *
-     *
+     * This class implements the Singleton design pattern.<br>
+     * That is, there can be only one instance of this class.
      *
      * @var object leaf_Registry
      */
@@ -59,10 +50,8 @@ final class leaf_Registry {
 	
 
 	/**
-	 * Class constructor
-	 *
-	 * en: Does nothing...
-	 *
+	 * Declared private in favor of the Singleton pattern.
+     *
 	 * @return void
 	 */
 	private function __construct()
@@ -71,10 +60,9 @@ final class leaf_Registry {
 	}
 	
 	/**
-	 * instance
-	 *
-	 *
-	 * @return object Register
+	 * If needed, instantiates an object of this class.
+     *
+	 * @return  void
 	 */
 	public static function instance()
 	{
@@ -83,7 +71,7 @@ final class leaf_Registry {
 	}
 
     /**
-     *
+     * Returns the instance of this class.
      *
      * @return  object leaf_Registry
      */
@@ -94,19 +82,11 @@ final class leaf_Registry {
     }
 	
 	/**
-	 * __get
-	 *
-	 * It is a magic method. Allows external acccess
-	 * to this object`s properties. We control the
-	 * properties` visibility.
-	 *
-	 * <code>
-	 *  $instance->exampleProperty
-	 * </code>
-	 *
+	 * Return the request object, by refering to it`s instance name.
+     *
 	 * @param	string	$key
 	 * @return	mixed
-	 */
+     */
 	public function __get($key)
 	{
 		if ($this->isRegistered($key))
@@ -116,11 +96,7 @@ final class leaf_Registry {
 	}
 	
 	/**
-	 * __set
-	 *
-	 * This "magic method" completes the actions that
-	 * performs the other "__get" method. It is used
-	 * to set a value to a property.
+	 * Registers the requested instance using the designated key.
 	 *
 	 * @param	string	$key
 	 * @param	object	$obj
@@ -133,17 +109,19 @@ final class leaf_Registry {
 	}
 	
 	/**
-	 * register
-	 *
-	 *
+	 * Registers an object.
+     *
+     * When an object is passed to register, we suppose
+     * the constant LEAF_REG_KEY, exists and we use it
+     * as a reference key.
+     *
 	 * @param	object	$obj
 	 * @return	void
      * @todo
      * <ol>
-     *  <li>Ίσως χρειαστεί να χρησιμοποιήσουμε Reflection (αλλά μάλλον
-     *  κάτι ποιο απλό) προκειμένου να ελέγχουμε για το άν έχουν
-     *  δηλωθεί κάποιες σταθερές τιμές που χρειάζονται (πιθανή
-     *  υλοποίηση νέας κλάσης).</li>
+     *  <li>Perform some checks to find out if the object passed,
+     *  has declared the constant LEAF_REG_KEY, and possible
+     *  examine further it`s behaviour.</li>
      * </ol>
 	 */	
 	public function register($obj)
@@ -155,20 +133,22 @@ final class leaf_Registry {
 	}
 
     /**
-     *
-     *
+     * Removes a key from the registry.
      *
      * @param   string  $class
      * @return  void
+     * @todo
+     * <ol>
+     *  <li>Implement.</li>
+     * </ol>
      */
     public function unregister($class)
     {
-        
+        return;
     }
 
 	/**
-	 * isRegistered
-	 *
+     * Checks for the existence of the requested key.
 	 *
 	 * @param	string	$key
 	 * @return	boolean
@@ -182,8 +162,8 @@ final class leaf_Registry {
 	}
 
     /**
-     *
-     *
+     * Returns an associative array with all the "general"
+     * configuration parameters.
      *
      * @return  array
      */
