@@ -105,7 +105,6 @@
 	<ul class="tags">
 				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@venus.cs.teicrete.gr">makism@venus.cs.teicrete.gr</a>&gt;</li>
 				<li><span class="field">version:</span> 1.0-dev</li>
-				<li><span class="field">copyright:</span> -</li>
 				<li><span class="field">todo:</span> <ol><li>Επανέλεγχος.</li><li>Πιθανή υλοποίηση μεθόδου &quot;Dependacies Injection (DI)&quot; ώστε
   να φορτώνονται <strong>μόνο</strong> οι κλάσεις που χρειάζεται ο κάθε
   Controller ξεχωριστά.</li></ol></li>
@@ -252,7 +251,7 @@
 		<div class="notes">Redefinition of:</div>
 		<dl>
 			<dt><a href="../../leaf/core/leaf_Base.html#method__construct">leaf_Base::__construct()</a></dt>
-						<dd>Κάθε φορά που καλείται ελέγχει άν η υποκλάση είναι ήδη  καταχωρημένη στο αντικέμενο <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</dd>
+						<dd>Each time a subclass calls the constructor, some checks are  performed to find out if the subclass is already instantiated,  and thus exists in the <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</dd>
 					</dl>
 			
 	</div>
@@ -281,6 +280,7 @@
 		<div class="notes">Redefinition of:</div>
 		<dl>
 			<dt><a href="../../leaf/core/leaf_Base.html#method__toString">leaf_Base::__toString()</a></dt>
+						<dd>Returns a descriptive string about this class.</dd>
 					</dl>
 			
 	</div>
@@ -362,7 +362,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 05 Nov 2007 22:37:47 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Thu, 08 Nov 2007 12:10:57 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

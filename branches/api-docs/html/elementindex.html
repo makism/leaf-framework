@@ -157,7 +157,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#methodchopSegment">leaf_Router::chopSegment()</a> in Router.php</div>
-							<div class="index-item-description">Αφαιρεί την πρώτη συμβολοσειρά που θα βρεθεί, μέχρι να τον  εντοπισμό του πρώτου χαρακτήρα '/' στο μέλος $this-&gt;requestUri.</div>
+							<div class="index-item-description">Removes the first string occurence until the very first  &quot;/&quot;, from the property $this-&gt;requestUri.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">clearHeaders</span>
@@ -403,7 +403,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#methodgetClassName">leaf_Router::getClassName()</a> in Router.php</div>
-							<div class="index-item-description">Επιστρέφει το όνομα του Controller που θα εκτελέσουμε.</div>
+							<div class="index-item-description">Returns the class name (Controller) that is requested.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getControllerFileName</span>
@@ -429,7 +429,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functiongetHooks">getHooks()</a> in Hooks.php</div>
-							<div class="index-item-description">Returns all registered hooks for one -or all- level. Also, the hooks  can be filtered using the parameters $controller and $method.<br />  Επιστρέφει όλους τους καταχωρημένους hooks για ένα ή όλα τα επίπεδα.</div>
+							<div class="index-item-description">Returns all registered hooks for one -or all- level. Also, the hooks  can be filtered using the parameters $controller and $method.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getInstance</span>
@@ -442,7 +442,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#methodgetMethodName">leaf_Router::getMethodName()</a> in Router.php</div>
-							<div class="index-item-description">Επιστρέφει την μέθοδο του Controller που θα πρέπει να εκτελέσουμε.</div>
+							<div class="index-item-description">Returns the method name (Action) that is requested.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getOutputBuffer</span>
@@ -654,7 +654,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html">leaf_Base</a> in Base.php</div>
-							<div class="index-item-description">Προσδίδει βασικά κοινά χαρακτηριστικά στις εσωτερικές κλάσεις  του leaf.</div>
+							<div class="index-item-description">Assigns common behavior and properties in the internal classes.</div>
 					</dd>
 			<dt class="field">
 						leaf_Benchmark
@@ -735,7 +735,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html#constLEAF_CLASS_ID">leaf_Base::LEAF_CLASS_ID</a> in Base.php</div>
-							<div class="index-item-description">Ένα μοναδικό αναγνωριστικό για κάθε κλάση.</div>
+							<div class="index-item-description">A unique handle for each subclass.</div>
 					</dd>
 			<dt class="field">
 						LEAF_CLASS_ID
@@ -899,7 +899,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html#constLEAF_REG_KEY">leaf_Base::LEAF_REG_KEY</a> in Base.php</div>
-							<div class="index-item-description">Όνομα ενός στιγμοιοτύπου αυτής τη κλάσης  στο οποίο θα αναφερόμαστε μέσω του αντικειμένου  <a href="leaf/core/leaf_Registry.html">leaf_Registry</a>.</div>
+							<div class="index-item-description">The name of the instance that the current subclass</div>
 					</dd>
 			<dt class="field">
 						LEAF_REG_KEY
@@ -980,7 +980,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html">leaf_Router</a> in Router.php</div>
-							<div class="index-item-description">Επεξεργάζεται και φιλτράρει, το Uri για το τι πρέπει να γίνει.</div>
+							<div class="index-item-description">Processes and filters the current Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="const-title">LEAF_VAR</span>
@@ -1163,19 +1163,21 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#var$queryString">leaf_Router::$queryString</a> in Router.php</div>
+							<div class="index-item-description">The query string found in the Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$queryStringElements</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#var$queryStringElements">leaf_Router::$queryStringElements</a> in Router.php</div>
+							<div class="index-item-description">The query string found in the Uri, as an associative array.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">queryStringElements</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#methodqueryStringElements">leaf_Router::queryStringElements()</a> in Router.php</div>
-							<div class="index-item-description">Επιστρέφει έναν πίνακα με τα στοιχεία του Query String.</div>
+							<div class="index-item-description">Returns an associative array filled with the  elements that found in the query string.</div>
 					</dd>
 		</dl>
 	<a name="r"></a>
@@ -1203,25 +1205,28 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html#var$Registry">leaf_Base::$Registry</a> in Base.php</div>
-							<div class="index-item-description">Ένα και μοναδικό στιγμιότυπο της κλάσης leaf_Registry.</div>
+							<div class="index-item-description">The one and only unique instance of the class leaf_Registry.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$requestClass</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#var$requestClass">leaf_Router::$requestClass</a> in Router.php</div>
+							<div class="index-item-description">The requested class name (Controller).</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$requestMethod</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#var$requestMethod">leaf_Router::$requestMethod</a> in Router.php</div>
+							<div class="index-item-description">The requested method name (Action).</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$requestUri</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#var$requestUri">leaf_Router::$requestUri</a> in Router.php</div>
+							<div class="index-item-description">The current requested Uri string.</div>
 					</dd>
 			<dt class="field">
 						<span class="include-title">Request.php</span>
@@ -1277,14 +1282,14 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionrunHook">runHook()</a> in Hooks.php</div>
-							<div class="index-item-description">Executes a specific hook.<br />  Εκτελεί έναν συγκεκριμένο hook.</div>
+							<div class="index-item-description">Executes a specific hook.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">runHooks</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionrunHooks">runHooks()</a> in Hooks.php</div>
-							<div class="index-item-description">Runs all registered hooks in one level.<br />  Εκτελεί όλους τους hooks σε ένα επίπεδο.</div>
+							<div class="index-item-description">Runs all registered hooks in one level.</div>
 					</dd>
 		</dl>
 	<a name="s"></a>
@@ -1299,6 +1304,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#var$segments">leaf_Router::$segments</a> in Router.php</div>
+							<div class="index-item-description">The extra segments found in the Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$segments</span>
@@ -1324,7 +1330,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#methodsegments">leaf_Router::segments()</a> in Router.php</div>
-							<div class="index-item-description">Επιστρέφει έναν πίνακα με τα επιπλέον στοιχεία στο Uri  (εκτός της κλάσης, της μεθόδου και του query string).</div>
+							<div class="index-item-description">Returns an array with the extra segments  that compose this Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">segmentsAsArray</span>
@@ -1337,7 +1343,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Router.html#methodsegmentsSize">leaf_Router::segmentsSize()</a> in Router.php</div>
-							<div class="index-item-description">Επιστρέφει το συνολικό αριθμό των κομματιών.</div>
+							<div class="index-item-description">Returns the total number of segments that found  in the current Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">sendResponse</span>
@@ -1546,6 +1552,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html#method__clone">leaf_Base::__clone()</a> in Base.php</div>
+							<div class="index-item-description">Prevent object cloning.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__construct</span>
@@ -1663,7 +1670,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html#method__construct">leaf_Base::__construct()</a> in Base.php</div>
-							<div class="index-item-description">Κάθε φορά που καλείται ελέγχει άν η υποκλάση είναι ήδη  καταχωρημένη στο αντικέμενο <a href="leaf/core/leaf_Registry.html">$Registry</a>.</div>
+							<div class="index-item-description">Each time a subclass calls the constructor, some checks are  performed to find out if the subclass is already instantiated,  and thus exists in the <a href="leaf/core/leaf_Registry.html">$Registry</a>.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__construct</span>
@@ -1677,7 +1684,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html#method__get">leaf_Base::__get()</a> in Base.php</div>
-							<div class="index-item-description">Επιστρέφει το ζητούμενο αντικείμενο από την  <a href="leaf/core/leaf_Registry.html">registry</a>.</div>
+							<div class="index-item-description">Returns the requested object from the <a href="leaf/core/leaf_Registry.html">$Registry</a>.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__get</span>
@@ -1704,6 +1711,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Base.html#method__toString">leaf_Base::__toString()</a> in Base.php</div>
+							<div class="index-item-description">Returns a descriptive string about this class.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__toString</span>

@@ -101,18 +101,17 @@
 			</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Προσδίδει βασικά κοινά χαρακτηριστικά στις εσωτερικές κλάσεις  του leaf.</p>
-<p class="description"><p>Οι περισσότερες εσωτερικές κλάσεις του leaf, κληρονομούν από  αυτή την κλάση.<br />  Τους δίνεται η δυνατότητα να έχουν πρόσβαση σε όλα τα υπόλοιπα  αντικείμενα που υπάρχουν. Αναφέρονται σε αυτά, σαν να ήταν απλά  μέλη τους.</p></p>
+<p class="short-description">Assigns common behavior and properties in the internal classes.</p>
+<p class="description"><p>Most of the leaf`s internal classes inhertic from this class.<br />  This way, these classes, are provided with a unified base model,  to communicate (by referencing) with the other objects, as if  they were (private in this case) properties.<br />  Example (<strong>pure fictional, because the visibility is private</strong>):<br />  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$router&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../../leaf/core/leaf_Router.html">leaf_Router</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-var">$router</span><span class="src-sym">-&gt;</span><span class="src-id">config</span><span class="src-sym">[</span><span class="src-str">'base_url'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>We assume, that the &quot;config&quot; property has already been instantiated and  automatily registered.<br />  Also, we assume that the access of the properties is public.</p></p>
 	<ul class="tags">
-				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@venus.cs.teicrete.gr">makism@venus.cs.teicrete.gr</a>&gt;</li>
-				<li><span class="field">version:</span> 1.0</li>
-				<li><span class="field">copyright:</span> -</li>
+				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: Base.php 30 2007-11-07 20:20:07Z makism $</li>
 				<li><span class="field">abstract:</span> </li>
-				<li><span class="field">since:</span> 1.0-dev</li>
-				<li><span class="field">license:</span> -</li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_leaf---core---Base.php.html">/leaf/core/Base.php</a> (line <span class="field"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a43">43</a></span>)
+			Located in <a class="field" href="_leaf---core---Base.php.html">/leaf/core/Base.php</a> (line <span class="field">34</span>)
 		</p>
 		
 				
@@ -184,7 +183,7 @@
 								<tr>
 					<td style="padding-right: 2em"><a href="../../leaf/core/leaf_Router.html">leaf_Router</a></td>
 					<td>
-											Επεξεργάζεται και φιλτράρει, το Uri για το τι πρέπει να γίνει.
+											Processes and filters the current Uri.
 										</td>
 				</tr>
 								<tr>
@@ -340,13 +339,13 @@
 		<span class="var-title">
 			static <span class="var-type"><a href="../../leaf/core/leaf_Registry.html">object leaf_Registry</a></span>
 			<span class="var-name">$Registry</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a69">69</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">63</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Ένα και μοναδικό στιγμιότυπο της κλάσης leaf_Registry.</p>
-<p class="description"><p>Όλες οι υποκλάσεις &quot;εγγράφονται&quot; σε αυτό το αντικείμενο  και έχουν την δυνατότητα να αναφέρονται η μία στην άλλη.</p></p>
+<p class="short-description">The one and only unique instance of the class leaf_Registry.</p>
+<p class="description"><p>All subclasses are registered in this object and have  the ability to refer to other objetcts stored in the  registry.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -379,11 +378,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a79">79</a></span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">74</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Κάθε φορά που καλείται ελέγχει άν η υποκλάση είναι ήδη  καταχωρημένη στο αντικέμενο <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</p>
+<p class="short-description">Each time a subclass calls the constructor, some checks are  performed to find out if the subclass is already instantiated,  and thus exists in the <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -465,10 +464,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__clone</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a127">127</a></span>)
+		<span class="method-title">__clone</span> (line <span class="line-number">100</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Prevent object cloning.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -488,11 +488,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__get</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a95">95</a></span>)
+		<span class="method-title">__get</span> (line <span class="line-number">90</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει το ζητούμενο αντικείμενο από την  <a href="../../leaf/core/leaf_Registry.html">registry</a>.</p>
+<p class="short-description">Returns the requested object from the <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -517,10 +517,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__toString</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a105">105</a></span>)
+		<span class="method-title">__toString</span> (line <span class="line-number">110</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a descriptive string about this class.</p>
 	<ul class="tags">
 				<li><span class="field">abstract:</span> </li>
 				<li><span class="field">access:</span> public</li>
@@ -595,12 +596,12 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_CLASS_ID</span>
 			 = <span class="const-default"> &quot;LEAF_BASE-1_0_dev&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a59">59</a></span>)
+			(line <span class="line-number">52</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Ένα μοναδικό αναγνωριστικό για κάθε κλάση.</p>
+<p class="short-description">A unique handle for each subclass.</p>
 	
 	
 </div>
@@ -612,12 +613,13 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_REG_KEY</span>
 			 = <span class="const-default"> &quot;base&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreBase.php.html#a52">52</a></span>)
+			(line <span class="line-number">45</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Όνομα ενός στιγμοιοτύπου αυτής τη κλάσης  στο οποίο θα αναφερόμαστε μέσω του αντικειμένου  <a href="../../leaf/core/leaf_Registry.html">leaf_Registry</a>.</p>
+<p class="short-description">The name of the instance that the current subclass</p>
+<p class="description"><p>will known as.<br />  Think of it like a &quot;key&quot; and &quot;value&quot; relation.<br />  &quot;key&quot; is a name, and &quot;value&quot; is the actual instance  of a subclass.</p></p>
 	
 	
 </div>
@@ -626,7 +628,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 05 Nov 2007 22:37:42 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Thu, 08 Nov 2007 12:10:50 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

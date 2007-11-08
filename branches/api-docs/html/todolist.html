@@ -60,7 +60,7 @@
 </ul>
 <h3><a href="leaf/core/leaf_Config.html">leaf_Config</a></h3>
 <ul>
-    <li><ol><li>Maybe we should unset the global variable $GLOBALS somewhere else.</li><li>Possible implementation of the interface <em>Iterator</em>.</li><li>Possible implementation of a subclass that will read seperate configuration
+    <li><ol><li>Maybe we should unset the global variable $GLOBALS somewhere else.</li><li>Possible implementation of a subclass that will read seperate configuration
   files for each Controller, thus declaring different parameters and maybe unique
   for each Controller.</li></ol></li>
 </ul>
@@ -123,9 +123,8 @@
 </ul>
 <h3><a href="leaf/core/leaf_Router.html">leaf_Router</a></h3>
 <ul>
-    <li><ol><li>Μήπως <a href="leaf/core/leaf_Router.html">αυτή η κλάση</a> να αναλάβει και τις λειτουργίες της κλάσης
-  <a href="leaf/core/leaf_Request.html">leaf_Request</a>;</li><li>Παροχή μίας εναλλακτικής κλάσης (που πιθανόν, θα κληρονομεί από αυτήν)
-      που θα χρησιμοποιεί στατικούς κανόνες δρομολόγησης.</li></ol></li>
+    <li><ol><li>Maybe this class should completely overtake the class <a href="leaf/core/leaf_Request.html">leaf_Request</a>, thus removing the later class.</li><li>Provide an alternative class (which maybe will inherit from this
+  one) that will use static routing rules.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_View.html">leaf_View</a></h3>
 <ul>
@@ -170,11 +169,10 @@
 </ul>
 <h3><a href="leaf/core/leaf_Router.html#method__construct">leaf_Router::__construct()</a></h3>
 <ul>
-    <li><ol><li>&quot;Σπάσιμο&quot; των εργασιών που επιτέλει ο constructor σε επιμέρους μεθόδους.</li><li>Επανέλεγχος της λειτουργίας σχετικά με το επέκταση που μπορεί να
-      υπάρξει στο Uri.</li></ol></li>
+    <li><ol><li>Possible break-down of the jobs that the constructor executes.</li><li>Recheck the &quot;virtual file extension&quot; function.</li></ol></li>
 </ul>
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 05 Nov 2007 22:38:44 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Thu, 08 Nov 2007 12:11:45 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</body>
 </html>

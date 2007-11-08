@@ -78,56 +78,49 @@
 <li><div class="src-line"><a name="a66"></a><span class="src-sym">}</span></div></li>
 <li><div class="src-line"><a name="a67"></a>&nbsp;</div></li>
 <li><div class="src-line"><a name="a68"></a><span class="src-doc">/**</span></div></li>
-<li><div class="src-line"><a name="a69"></a><span class="src-doc">&nbsp;*&nbsp;Runs&nbsp;all&nbsp;registered&nbsp;hooks&nbsp;in&nbsp;one&nbsp;level.&lt;br&gt;</span></div></li>
-<li><div class="src-line"><a name="a70"></a><span class="src-doc">&nbsp;*&nbsp;Εκτελεί&nbsp;όλους&nbsp;τους&nbsp;hooks&nbsp;σε&nbsp;ένα&nbsp;επίπεδο.</span></div></li>
-<li><div class="src-line"><a name="a71"></a><span class="src-doc">&nbsp;*</span></div></li>
-<li><div class="src-line"><a name="a72"></a><span class="src-doc">&nbsp;*</span></div></li>
-<li><div class="src-line"><a name="a73"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@access</span><span class="src-doc">&nbsp;&nbsp;private</span></div></li>
-<li><div class="src-line"><a name="a74"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-var">$level&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a75"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-type">void&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a76"></a><span class="src-doc">&nbsp;*/</span></div></li>
-<li><div class="src-line"><a name="a77"></a><span class="src-key">function&nbsp;</span><a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionrunHooks">runHooks</a><span class="src-sym">(</span><span class="src-var">$level</span><span class="src-sym">)</span></div></li>
-<li><div class="src-line"><a name="a78"></a><span class="src-sym">{</span></div></li>
-<li><div class="src-line"><a name="a79"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$hooks&nbsp;</span>=&nbsp;<a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionintrospectHooks">introspectHooks</a><span class="src-sym">(</span><span class="src-var">$level</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
-<li><div class="src-line"><a name="a80"></a><span class="src-sym">}</span></div></li>
-<li><div class="src-line"><a name="a81"></a>&nbsp;</div></li>
-<li><div class="src-line"><a name="a82"></a><span class="src-doc">/**</span></div></li>
-<li><div class="src-line"><a name="a83"></a><span class="src-doc">&nbsp;*&nbsp;Executes&nbsp;a&nbsp;specific&nbsp;hook.&lt;br&gt;</span></div></li>
-<li><div class="src-line"><a name="a84"></a><span class="src-doc">&nbsp;*&nbsp;Εκτελεί&nbsp;έναν&nbsp;συγκεκριμένο&nbsp;hook.</span></div></li>
-<li><div class="src-line"><a name="a85"></a><span class="src-doc">&nbsp;*</span></div></li>
-<li><div class="src-line"><a name="a86"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@access</span><span class="src-doc">&nbsp;&nbsp;private</span></div></li>
-<li><div class="src-line"><a name="a87"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-var">$controller&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a88"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-var">$method&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a89"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-type">void&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a90"></a><span class="src-doc">&nbsp;*/</span></div></li>
-<li><div class="src-line"><a name="a91"></a><span class="src-key">function&nbsp;</span><a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionrunHook">runHook</a><span class="src-sym">(</span><span class="src-var">$controller</span><span class="src-sym">,&nbsp;</span><span class="src-var">$method</span><span class="src-sym">)</span></div></li>
-<li><div class="src-line"><a name="a92"></a><span class="src-sym">{</span></div></li>
-<li><div class="src-line"><a name="a93"></a>&nbsp;</div></li>
-<li><div class="src-line"><a name="a94"></a><span class="src-sym">}</span></div></li>
-<li><div class="src-line"><a name="a95"></a>&nbsp;</div></li>
-<li><div class="src-line"><a name="a96"></a><span class="src-doc">/**</span></div></li>
-<li><div class="src-line"><a name="a97"></a><span class="src-doc">&nbsp;*&nbsp;Returns&nbsp;all&nbsp;registered&nbsp;hooks&nbsp;for&nbsp;one&nbsp;-or&nbsp;all-&nbsp;level.&nbsp;Also,&nbsp;the&nbsp;hooks</span></div></li>
-<li><div class="src-line"><a name="a98"></a><span class="src-doc">&nbsp;*&nbsp;can&nbsp;be&nbsp;filtered&nbsp;using&nbsp;the&nbsp;parameters&nbsp;$controller&nbsp;and&nbsp;$method.&lt;br&gt;</span></div></li>
-<li><div class="src-line"><a name="a99"></a><span class="src-doc">&nbsp;*&nbsp;Επιστρέφει&nbsp;όλους&nbsp;τους&nbsp;καταχωρημένους&nbsp;hooks&nbsp;για&nbsp;ένα&nbsp;ή&nbsp;όλα&nbsp;τα&nbsp;επίπεδα.</span></div></li>
-<li><div class="src-line"><a name="a100"></a><span class="src-doc">&nbsp;*&nbsp;Επιπλέον&nbsp;τα&nbsp;hooks&nbsp;μπορούνα&nbsp;διαχωριστούν,&nbsp;χρησιμοποιώντας&nbsp;τις&nbsp;παραμέτρους</span></div></li>
-<li><div class="src-line"><a name="a101"></a><span class="src-doc">&nbsp;*&nbsp;$controller&nbsp;και&nbsp;$method.</span></div></li>
-<li><div class="src-line"><a name="a102"></a><span class="src-doc">&nbsp;*</span></div></li>
-<li><div class="src-line"><a name="a103"></a><span class="src-doc">&nbsp;*</span></div></li>
-<li><div class="src-line"><a name="a104"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">string</span><span class="src-doc">|</span><span class="src-doc-type">NULL</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-var">$level&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a105"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">string</span><span class="src-doc">|</span><span class="src-doc-type">NULL</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-var">$controller&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a106"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">string</span><span class="src-doc">|</span><span class="src-doc-type">NULL</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-var">$method&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a107"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">array&nbsp;</span></div></li>
-<li><div class="src-line"><a name="a108"></a><span class="src-doc">&nbsp;*/</span></div></li>
-<li><div class="src-line"><a name="a109"></a><span class="src-key">function&nbsp;</span><a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functiongetHooks">getHooks</a><span class="src-sym">(</span><span class="src-var">$level</span>=<span class="src-id">NULL</span><span class="src-sym">,&nbsp;</span><span class="src-var">$controller</span>=<span class="src-id">NULL</span><span class="src-sym">,&nbsp;</span><span class="src-var">$method</span>=<span class="src-id">NULL</span><span class="src-sym">)</span></div></li>
-<li><div class="src-line"><a name="a110"></a><span class="src-sym">{</span></div></li>
-<li><div class="src-line"><a name="a111"></a>&nbsp;</div></li>
-<li><div class="src-line"><a name="a112"></a><span class="src-sym">}</span></div></li>
-<li><div class="src-line"><a name="a113"></a>&nbsp;</div></li>
-<li><div class="src-line"><a name="a114"></a><span class="src-php">?&gt;</span></div></li>
+<li><div class="src-line"><a name="a69"></a><span class="src-doc">&nbsp;*&nbsp;Runs&nbsp;all&nbsp;registered&nbsp;hooks&nbsp;in&nbsp;one&nbsp;level.</span></div></li>
+<li><div class="src-line"><a name="a70"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a71"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@access</span><span class="src-doc">&nbsp;&nbsp;private</span></div></li>
+<li><div class="src-line"><a name="a72"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-var">$level&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a73"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-type">void&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a74"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a75"></a><span class="src-key">function&nbsp;</span><a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionrunHooks">runHooks</a><span class="src-sym">(</span><span class="src-var">$level</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a76"></a><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a77"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$hooks&nbsp;</span>=&nbsp;<a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionintrospectHooks">introspectHooks</a><span class="src-sym">(</span><span class="src-var">$level</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a78"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a79"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a80"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a81"></a><span class="src-doc">&nbsp;*&nbsp;Executes&nbsp;a&nbsp;specific&nbsp;hook.</span></div></li>
+<li><div class="src-line"><a name="a82"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a83"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@access</span><span class="src-doc">&nbsp;&nbsp;private</span></div></li>
+<li><div class="src-line"><a name="a84"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-var">$controller&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a85"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-var">$method&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a86"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc">&nbsp;</span><span class="src-doc-type">void&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a88"></a><span class="src-key">function&nbsp;</span><a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functionrunHook">runHook</a><span class="src-sym">(</span><span class="src-var">$controller</span><span class="src-sym">,&nbsp;</span><span class="src-var">$method</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a89"></a><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a90"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a91"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a92"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a93"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a94"></a><span class="src-doc">&nbsp;*&nbsp;Returns&nbsp;all&nbsp;registered&nbsp;hooks&nbsp;for&nbsp;one&nbsp;-or&nbsp;all-&nbsp;level.&nbsp;Also,&nbsp;the&nbsp;hooks</span></div></li>
+<li><div class="src-line"><a name="a95"></a><span class="src-doc">&nbsp;*&nbsp;can&nbsp;be&nbsp;filtered&nbsp;using&nbsp;the&nbsp;parameters&nbsp;$controller&nbsp;and&nbsp;$method.</span></div></li>
+<li><div class="src-line"><a name="a96"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a97"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">string</span><span class="src-doc">|</span><span class="src-doc-type">NULL</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-var">$level&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a98"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">string</span><span class="src-doc">|</span><span class="src-doc-type">NULL</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-var">$controller&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a99"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">string</span><span class="src-doc">|</span><span class="src-doc-type">NULL</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-var">$method&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a100"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc">&nbsp;&nbsp;&nbsp;</span><span class="src-doc-type">array&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a101"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a102"></a><span class="src-key">function&nbsp;</span><a href="../leaf/core-hook-helpers/_leaf---core---hook---helpers---Hooks.php.html#functiongetHooks">getHooks</a><span class="src-sym">(</span><span class="src-var">$level</span>=<span class="src-id">NULL</span><span class="src-sym">,&nbsp;</span><span class="src-var">$controller</span>=<span class="src-id">NULL</span><span class="src-sym">,&nbsp;</span><span class="src-var">$method</span>=<span class="src-id">NULL</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a103"></a><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a104"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a105"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a106"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a107"></a><span class="src-php">?&gt;</span></div></li>
 </ol></div>
 </div>
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 05 Nov 2007 22:38:13 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Thu, 08 Nov 2007 12:11:20 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</body>
 </html>

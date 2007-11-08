@@ -106,20 +106,18 @@
         </p>
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Provides access to the configuration files.</p>
-<p class="description"><p>This class encapsulates all the configuration files.<br />  All declared parameters in the files, are accessible via methods.<br />  The interface ArrayAccess is implemented which allows easy allows  array-like access in one class` properties.<br />  A simple example follows:  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;<span class="src-var">$conf&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../../leaf/core/leaf_Config.html">leaf_Config</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<p class="description"><p>This class encapsulates all the configuration files.<br />  The parameters that are read from the general.php file, are  accessible as array offsets.<br />  Example:<br />  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;<span class="src-var">$conf&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../../leaf/core/leaf_Config.html">leaf_Config</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line">&nbsp;&nbsp;echo&nbsp;<span class="src-var">$conf</span><span class="src-sym">[</span><span class="src-str">'base_uri'</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
-</ol></div></p></p>
+</ol></div></p><p>This behaviour is succeeded by implementing the <a href="http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html">ArrayAccess</a>  interface.<br /></p><p>The other paremeters, are accessed by using the method  getByHashKey(configFileName). This method returns an array with  all the related configuration parameters.<br />  Example:<br />  <div class="src-code"><ol></ol></div></p><p>This design was selected because the &quot;general&quot; properties are the  most commonly used, thus it is wise to provide a fast-access  method.<br />  Also, we could have used the &quot;magic&quot; methods &quot;__call&quot; and &quot;__set&quot;,  but they are declared as &quot;final&quot; in the parent class.</p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
-				<li><span class="field">version:</span> $Id: Config.php 13 2007-11-01 11:10:37Z makism $</li>
-				<li><span class="field">copyright:</span> -</li>
-				<li><span class="field">link:</span> <a href="http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html">http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html</a></li>
-				<li><span class="field">todo:</span> <ol><li>Maybe we should unset the global variable $GLOBALS somewhere else.</li><li>Possible implementation of the interface <em>Iterator</em>.</li><li>Possible implementation of a subclass that will read seperate configuration
+				<li><span class="field">version:</span> $Id: Config.php 30 2007-11-07 20:20:07Z makism $</li>
+				<li><span class="field">todo:</span> <ol><li>Maybe we should unset the global variable $GLOBALS somewhere else.</li><li>Possible implementation of a subclass that will read seperate configuration
   files for each Controller, thus declaring different parameters and maybe unique
   for each Controller.</li></ol></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_leaf---core---Config.php.html">/leaf/core/Config.php</a> (line <span class="field">41</span>)
+			Located in <a class="field" href="_leaf---core---Config.php.html">/leaf/core/Config.php</a> (line <span class="field">52</span>)
 		</p>
 		
 				
@@ -269,7 +267,7 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$options</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number">52</span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">63</span>)
 		</span>
 	</div>
 
@@ -291,7 +289,7 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$optionsTable</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number">60</span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">71</span>)
 		</span>
 	</div>
 
@@ -335,7 +333,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">68</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">79</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -357,7 +355,7 @@
 		<div class="notes">Redefinition of:</div>
 		<dl>
 			<dt><a href="../../leaf/core/leaf_Base.html#method__construct">leaf_Base::__construct()</a></dt>
-						<dd>Κάθε φορά που καλείται ελέγχει άν η υποκλάση είναι ήδη  καταχωρημένη στο αντικέμενο <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</dd>
+						<dd>Each time a subclass calls the constructor, some checks are  performed to find out if the subclass is already instantiated,  and thus exists in the <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</dd>
 					</dl>
 			
 	</div>
@@ -365,7 +363,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getByHashKey</span> (line <span class="line-number">93</span>)
+		<span class="method-title">getByHashKey</span> (line <span class="line-number">104</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -397,7 +395,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetExists</span> (line <span class="line-number">107</span>)
+		<span class="method-title">offsetExists</span> (line <span class="line-number">118</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -431,7 +429,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetGet</span> (line <span class="line-number">121</span>)
+		<span class="method-title">offsetGet</span> (line <span class="line-number">132</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -465,7 +463,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetSet</span> (line <span class="line-number">133</span>)
+		<span class="method-title">offsetSet</span> (line <span class="line-number">144</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -502,7 +500,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">offsetUnset</span> (line <span class="line-number">148</span>)
+		<span class="method-title">offsetUnset</span> (line <span class="line-number">159</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -537,7 +535,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__toString</span> (line <span class="line-number">153</span>)
+		<span class="method-title">__toString</span> (line <span class="line-number">164</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -558,6 +556,7 @@
 		<div class="notes">Redefinition of:</div>
 		<dl>
 			<dt><a href="../../leaf/core/leaf_Base.html#method__toString">leaf_Base::__toString()</a></dt>
+						<dd>Returns a descriptive string about this class.</dd>
 					</dl>
 			
 	</div>
@@ -597,7 +596,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_CLASS_ID</span>
 			 = <span class="const-default"> &quot;LEAF_CONFIG-1_0_dev&quot;</span>
-			(line <span class="line-number">45</span>)
+			(line <span class="line-number">56</span>)
 		</span>
 	</div>
 
@@ -613,7 +612,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_REG_KEY</span>
 			 = <span class="const-default"> &quot;config&quot;</span>
-			(line <span class="line-number">43</span>)
+			(line <span class="line-number">54</span>)
 		</span>
 	</div>
 
@@ -639,7 +638,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 05 Nov 2007 22:37:45 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Thu, 08 Nov 2007 12:10:55 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

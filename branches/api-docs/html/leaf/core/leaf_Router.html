@@ -100,19 +100,16 @@
 			</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επεξεργάζεται και φιλτράρει, το Uri για το τι πρέπει να γίνει.</p>
-<p class="description"><p>Ανακαλύπτει ποιον Controller θα πρέπει να εκτελέσουμε και  ποια μέθοδο (αν έχει οριστεί). Επιπλέον φιλτράρει το Uri  για χαρακτήρες που θα πρέπει να βρίσκονται εκεί και αποσπά  το Query String όταν χρειάζεται και εάν έχει ενεργοποιηθεί.</p></p>
+<p class="short-description">Processes and filters the current Uri.</p>
+<p class="description"><p>Filters the Uri for erroneous characters, splits the query string  (if enabled), matches the virtual file extension (if enabled),  discovers the requested Controller(class) and the Action(method).</p></p>
 	<ul class="tags">
-				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@venus.cs.teicrete.gr">makism@venus.cs.teicrete.gr</a>&gt;</li>
-				<li><span class="field">version:</span> 1.0-dev</li>
-				<li><span class="field">copyright:</span> -</li>
-				<li><span class="field">todo:</span> <ol><li>Μήπως <a href="../../leaf/core/leaf_Router.html">αυτή η κλάση</a> να αναλάβει και τις λειτουργίες της κλάσης
-  <a href="../../leaf/core/leaf_Request.html">leaf_Request</a>;</li><li>Παροχή μίας εναλλακτικής κλάσης (που πιθανόν, θα κληρονομεί από αυτήν)
-      που θα χρησιμοποιεί στατικούς κανόνες δρομολόγησης.</li></ol></li>
-				<li><span class="field">since:</span> 1.0-dev</li>
+				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: Router.php 31 2007-11-08 08:36:55Z makism $</li>
+				<li><span class="field">todo:</span> <ol><li>Maybe this class should completely overtake the class <a href="../../leaf/core/leaf_Request.html">leaf_Request</a>, thus removing the later class.</li><li>Provide an alternative class (which maybe will inherit from this
+  one) that will use static routing rules.</li></ol></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_leaf---core---Router.php.html">/leaf/core/Router.php</a> (line <span class="field"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a45">45</a></span>)
+			Located in <a class="field" href="_leaf---core---Router.php.html">/leaf/core/Router.php</a> (line <span class="field">31</span>)
 		</p>
 		
 				
@@ -284,11 +281,13 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$queryString</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a85">85</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">83</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The query string found in the Uri.</p>
+<p class="description"><p>If enabled in the general configuration file, and if  found in the Uri, the query string is separated and  processed so it produces the array $queryStringElements.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -305,11 +304,12 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$queryStringElements</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a92">92</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">90</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The query string found in the Uri, as an associative array.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -326,11 +326,12 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$requestClass</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a64">64</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">50</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The requested class name (Controller).</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -347,11 +348,12 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$requestMethod</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a71">71</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">57</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The requested method name (Action).</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -368,11 +370,12 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$requestUri</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a57">57</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">43</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The current requested Uri string.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -389,11 +392,13 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$segments</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a78">78</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">72</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The extra segments found in the Uri.</p>
+<p class="description"><p>Whatever follows after the method name,  and is separated by &quot;/&quot;, is considered  to be a segment.<br />  Example:<br />  <em>http://localhost/Blog/view/2007/xx/xx/aTitle/</em><br />  The array $segments, will be populated by the strings:<br />  &quot;2007&quot;, &quot;xx&quot;, &quot;xx&quot;, &quot;aTitle&quot;</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -432,7 +437,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a108">108</a></span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">105</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -440,8 +445,7 @@
 	<ul class="tags">
 				<li><span class="field">see:</span> <a href="../../leaf/core/leaf_Config.html">leaf_Config</a></li>
 				<li><span class="field">see:</span> <a href="../../leaf/core/leaf_Request.html">leaf_Request</a></li>
-				<li><span class="field">todo:</span> <ol><li>&quot;Σπάσιμο&quot; των εργασιών που επιτέλει ο constructor σε επιμέρους μεθόδους.</li><li>Επανέλεγχος της λειτουργίας σχετικά με το επέκταση που μπορεί να
-      υπάρξει στο Uri.</li></ol></li>
+				<li><span class="field">todo:</span> <ol><li>Possible break-down of the jobs that the constructor executes.</li><li>Recheck the &quot;virtual file extension&quot; function.</li></ol></li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -458,7 +462,7 @@
 		<div class="notes">Redefinition of:</div>
 		<dl>
 			<dt><a href="../../leaf/core/leaf_Base.html#method__construct">leaf_Base::__construct()</a></dt>
-						<dd>Κάθε φορά που καλείται ελέγχει άν η υποκλάση είναι ήδη  καταχωρημένη στο αντικέμενο <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</dd>
+						<dd>Each time a subclass calls the constructor, some checks are  performed to find out if the subclass is already instantiated,  and thus exists in the <a href="../../leaf/core/leaf_Registry.html">$Registry</a>.</dd>
 					</dl>
 			
 	</div>
@@ -466,11 +470,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">chopSegment</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a329">329</a></span>)
+		<span class="method-title">chopSegment</span> (line <span class="line-number">312</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Αφαιρεί την πρώτη συμβολοσειρά που θα βρεθεί, μέχρι να τον  εντοπισμό του πρώτου χαρακτήρα '/' στο μέλος $this-&gt;requestUri.</p>
+<p class="short-description">Removes the first string occurence until the very first  &quot;/&quot;, from the property $this-&gt;requestUri.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -498,11 +502,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getClassName</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a345">345</a></span>)
+		<span class="method-title">getClassName</span> (line <span class="line-number">328</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει το όνομα του Controller που θα εκτελέσουμε.</p>
+<p class="short-description">Returns the class name (Controller) that is requested.</p>
 	<ul class="tags">
 				<li><span class="field">see:</span> <a href="../../leaf/core/leaf_Request.html">leaf_Request</a></li>
 				<li><span class="field">access:</span> public</li>
@@ -523,11 +527,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getMethodName</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a356">356</a></span>)
+		<span class="method-title">getMethodName</span> (line <span class="line-number">339</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει την μέθοδο του Controller που θα πρέπει να εκτελέσουμε.</p>
+<p class="short-description">Returns the method name (Action) that is requested.</p>
 	<ul class="tags">
 				<li><span class="field">see:</span> <a href="../../leaf/core/leaf_Request.html">leaf_Request</a></li>
 				<li><span class="field">access:</span> public</li>
@@ -548,11 +552,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">queryStringElements</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a295">295</a></span>)
+		<span class="method-title">queryStringElements</span> (line <span class="line-number">277</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει έναν πίνακα με τα στοιχεία του Query String.</p>
+<p class="short-description">Returns an associative array filled with the  elements that found in the query string.</p>
 	<ul class="tags">
 				<li><span class="field">see:</span> <a href="../../leaf/core/leaf_Request.html">leaf_Request</a></li>
 				<li><span class="field">access:</span> public</li>
@@ -573,11 +577,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">segments</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a317">317</a></span>)
+		<span class="method-title">segments</span> (line <span class="line-number">300</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει έναν πίνακα με τα επιπλέον στοιχεία στο Uri  (εκτός της κλάσης, της μεθόδου και του query string).</p>
+<p class="short-description">Returns an array with the extra segments  that compose this Uri.</p>
 	<ul class="tags">
 				<li><span class="field">see:</span> <a href="../../leaf/core/leaf_Request.html">leaf_Request</a></li>
 				<li><span class="field">access:</span> public</li>
@@ -598,11 +602,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">segmentsSize</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a305">305</a></span>)
+		<span class="method-title">segmentsSize</span> (line <span class="line-number">288</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει το συνολικό αριθμό των κομματιών.</p>
+<p class="short-description">Returns the total number of segments that found  in the current Uri.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -622,7 +626,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__toString</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a284">284</a></span>)
+		<span class="method-title">__toString</span> (line <span class="line-number">344</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -643,6 +647,7 @@
 		<div class="notes">Redefinition of:</div>
 		<dl>
 			<dt><a href="../../leaf/core/leaf_Base.html#method__toString">leaf_Base::__toString()</a></dt>
+						<dd>Returns a descriptive string about this class.</dd>
 					</dl>
 			
 	</div>
@@ -682,7 +687,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_CLASS_ID</span>
 			 = <span class="const-default"> &quot;LEAF_ROUTER-1_0_dev&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a49">49</a></span>)
+			(line <span class="line-number">35</span>)
 		</span>
 	</div>
 
@@ -698,7 +703,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_REG_KEY</span>
 			 = <span class="const-default"> &quot;router&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreRouter.php.html#a47">47</a></span>)
+			(line <span class="line-number">33</span>)
 		</span>
 	</div>
 
@@ -724,7 +729,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 05 Nov 2007 22:38:42 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Thu, 08 Nov 2007 12:11:43 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>
