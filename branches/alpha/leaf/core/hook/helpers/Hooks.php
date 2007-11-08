@@ -24,12 +24,16 @@
 /**
  *
  *
- *
  */
-define('HOOK_POST_RESPONSE', 'post_response');
+define('HOOK_PRE_CONTROLLER_DISPATCH', 'pre_controller_dispatch');
 
 /**
  *
+ *
+ */
+define('HOOK_POST_CONTROLLER_DISPATCH', 'post_controller_dispatch');
+
+/**
  *
  *
  */
@@ -62,9 +66,7 @@ function introspectHooks($level=NULL)
 }
 
 /**
- * Runs all registered hooks in one level.<br>
- * Εκτελεί όλους τους hooks σε ένα επίπεδο.
- *
+ * Runs all registered hooks in one level.
  *
  * @access  private
  * @param   string  $level
@@ -76,8 +78,7 @@ function runHooks($level)
 }
 
 /**
- * Executes a specific hook.<br>
- * Εκτελεί έναν συγκεκριμένο hook.
+ * Executes a specific hook.
  *
  * @access  private
  * @param   string  $controller
@@ -91,11 +92,7 @@ function runHook($controller, $method)
 
 /**
  * Returns all registered hooks for one -or all- level. Also, the hooks
- * can be filtered using the parameters $controller and $method.<br>
- * Επιστρέφει όλους τους καταχωρημένους hooks για ένα ή όλα τα επίπεδα.
- * Επιπλέον τα hooks μπορούνα διαχωριστούν, χρησιμοποιώντας τις παραμέτρους
- * $controller και $method.
- *
+ * can be filtered using the parameters $controller and $method.
  *
  * @param	string|NULL	$level
  * @param	string|NULL	$controller
