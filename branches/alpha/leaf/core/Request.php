@@ -1,45 +1,31 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- *
- * @package		leaf
- * @subpackage	core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Παρέχει πρόσβαση σε όλα τα διακριτά στοιχεία του Uri.
+ * Provides access to all elements that compose the Uri.
  *
- * Δηλαδή έχουμε την δυνατότητα να αναφερθούμε και να ζητήσουμε
- * το αρχείο από το οποίο θα φορτώσουμε τον Controller, το Action,
- * τα επιπλέον στοιχεία (segments), και τέλος το query string στη
- * κλασσική του μορφή όπως η super-global μεταβλητή $_GET.<br>
- * Τέλος, υλοποιεί γενικές μεθόδους σχετικές με την ανακατεύθυνση
- * σε μία διεύθυνση και αναδημιουργία ενός Uri.
+ * This means, that we have request and refer to the file that
+ * the requested Controller is located in, the Action, the extra
+ * segments and finally the query string.<br>
+ * Also, this class implements some basic methods related with the
+ * Uri handling, like redirecting and Uri-reconstruction.
  *
- *
+ * @package     leaf
+ * @subpackage  core
  * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @since		1.0-dev
+ * @see         leaf_Router
+ * @version     $Id$
  * @todo
  * <ol>
- *  <li>Υλοποίηση πιθανών facade συναρτήσεων.</li>
+ *  <li>Possible implementation of {@link http://en.wikipedia.org/wiki/Facade_pattern facade} functions.</li>
  * </ol>
  */
 final class leaf_Request extends leaf_Base {
@@ -50,33 +36,25 @@ final class leaf_Request extends leaf_Base {
 
 
     /**
-     * Τα επιπλέον κομμάτια του Uri που δεν ανήκουν ούτε
-     * στον Controller ούτε στο Action.
+     * The extra segments found in the Uri.
      *
-     * παράδειγμα:
-     *  <pre>http://localhost/Blog/view/200X-XX-XX/authorName/postTitle</pre>
-     * οτιδήποτε μετά το "view", θα θεωρηθεί επιπλέον
-     * στοιχείο.
-     *
+     * For more info take a look at the class leaf_Router.
      *
      * @var array
      */
     private $segments = NULL;
 
     /**
-     * Το κανονικό όνομα της κλάσης του Controller που 
-     * έχει ζητηθεί.
+     * The requested class name (Controller), suffixed with "_Controller".
      *
      * @var string
      */
     private $controller = NULL;
 
     /**
-     * Το όνομα του αρχείου από όπου θα πρέπει να φορτώσουμε τον
-     * ζητούμενο Controller.
+     * The file name in which the requested Controller is located.
      *
-     * Το περιεχόμενο θα μοιάζει (τουλάχιστον τα τελευταία στοιχεία)
-     * κάπως έτσι:
+     * The complete file name will look something like this:<br>
      * <pre>/var/www/http/applications/Blog/Blog_Controller.php</pre>
      *
      * @var string
@@ -84,15 +62,16 @@ final class leaf_Request extends leaf_Base {
     private $controllerFile = NULL;
     
     /**
-     * Το όνομα του συγκεκριμένου Action(μεθόδου).
+     * The requested method name (Action).
      *
      * @var string
      */
     private $action = NULL;
 
     /**
-     * Τα στοιχεία του Query String (άν υπάρχουν και έχουν έχουν
-     * ενεργοποιηθεί).
+     * The query string found in the Uri.
+     *
+     * For more info take a look at the class leaf_Router.
      *
      * @var array
      */
@@ -100,10 +79,9 @@ final class leaf_Request extends leaf_Base {
 
 
     /**
-     * Συνεργάζεται με την κλάση {@link leaf_Router} προκειμένου
-     * να δώσει πρόσβαση στον χρήστη πληροφορίες όπως, το όνομα
-     * της κλάσης του Controller που ζητήθηκε, όπως <i>θα πρέπει</i>
-     * να έχει ονομαστεί, το Action, κτλ κτλ κτλ.
+     * Internally uses the class {@link leaf_Router} in order to export
+     * information like, the Controller name, the Controller`s name as 
+     * is <i>must</i> be, the Action, etc.
      *
      * @return  void
      */
@@ -112,14 +90,15 @@ final class leaf_Request extends leaf_Base {
         parent::__construct(self::LEAF_REG_KEY);
 
         /*
-         * Τα ονόματα των κλάσεων τελειώνουν με το χαρακτηριστικό
-         * "_Controller", οπότε και το προσδίδουμε εμείς.
+         * All classes that contain Controllers, must have their name
+         " suffixed with the string "_Controller".
+         * So, we attach it to the requested Controller.
          */
         $this->controller   = $this->router->getClassName() . '_Controller';
 
         /*
-         * Συνθέτουμε το πλήρες όνομα του αρχείου (με τον κατάλογο) όπου
-         * θα φορτώσουμε την κλάση του Controller.
+         * Compose the complete file name where we suppose the Controller
+         * is located.
          */
         $this->controllerFile =
             LEAF_APPS
@@ -129,31 +108,25 @@ final class leaf_Request extends leaf_Base {
             . '.php';
 
         /*
-         * Ζητάμε το Action(Μέθοδο) από το αντικείμενο router.
+         * Fetch the Action from the {@link leaf_Router router} object.
          */
         $this->action       = $this->router->getMethodName();
 
         /*
-         * Ζητάμε τα επιπλέον στοιχεία του Uri από το αντικείμενο
-         * router.
+         * Fetch the extra Uri segments from the {@link leaf_Router router} object.
          */
         $this->segments     = $this->router->segments();
 
         /*
-         * Ζητάμε τα στοιχεία του Query String από το αντικείμενο
-         * router.
+         * Fetch the Query String from the {@link leaf_Router router} object.
          */
         $this->queryElems   = $this->router->queryStringElements();
 	}
 
-
-    public function __toString()
-    {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
-    }
-
 	/**
-	 *
+	 * ReturnstThe requested class name (Controller), suffixed with
+     * "_Controller".
+     *
 	 * @return	string
 	 */
     public function getControllerName()
@@ -162,7 +135,8 @@ final class leaf_Request extends leaf_Base {
     }
 
 	/**
-	 *
+	 * Returns the file name that contains the current Controller.
+     *
 	 * @return	string
 	 */
     public function getControllerFileName()
@@ -171,13 +145,14 @@ final class leaf_Request extends leaf_Base {
     }
 
 	/**
-	 *
+	 * Performs a redirect to the speficied Uri.
+     *
 	 * @param	string	$target
 	 * @param	boolean	$isExternal
 	 * @return	void
      * @todo
      * <ol>
-     *  <li>Υλοποίηση.</li>
+     *  <li>Implement.</li>
      * </ol>
 	 */
 	public function redirect($target, $isExternal=FALSE)
@@ -186,7 +161,7 @@ final class leaf_Request extends leaf_Base {
 	}
 	
 	/**
-	 *
+	 * Reconstructs a Uri, based on the data passed.
      *
 	 * @param	string	$className
 	 * @param	string	$methodName
@@ -195,7 +170,7 @@ final class leaf_Request extends leaf_Base {
 	 * @return	string
      * @todo
      * <ol>
-     *  <li>Υλοποίηση.</li>
+     *  <li>Implement.</li>
      * </ol>
 	 */
 	public function recostructUrl
@@ -208,13 +183,12 @@ final class leaf_Request extends leaf_Base {
 	}
 	
     /**
-     *
-     *
+     * Returns the total number of segments.
      *
      * @return  integer
      * @todo
      * <ol>
-     *  <li>Υλοποίηση.</li>
+     *  <li>Implement.</li>
      * </ol>
      */
 	public function totalSegments()
@@ -223,13 +197,13 @@ final class leaf_Request extends leaf_Base {
 	}
 	
     /**
-     *
+     * Retrieves the requested (numeric) offset from the segments.
      *
      * @param   integer $n
      * @return  string|NULL
      * @todo
      * <ol>
-     *  <li>Υλοποίηση.</li>
+     *  <li>Implement.</li>
      * </ol>
      */
 	public function segment($n)
@@ -238,13 +212,12 @@ final class leaf_Request extends leaf_Base {
 	}
 
     /**
-     *
-     *
+     * Returns the segments` array.
      *
      * @return  array
      * @todo
      * <ol>
-     *  <li>Υλοποίηση.</li>
+     *  <li>Implement.</li>
      * </ol>
      */
     public function segmentsAsArray()
@@ -253,13 +226,13 @@ final class leaf_Request extends leaf_Base {
     }
 
     /**
-     *
+     * Retrieves the value for the requested key.
      *
      * @param   string  $offset
      * @return  mixed
 	 * @todo
 	 * <ol>
-	 *  <li>Πιθανή αλλαγή ονόματος.</li>
+	 *  <li>Possible method refactor.</li>
 	 * </ol>
      */
     public function getQueryString($offset)
@@ -272,13 +245,12 @@ final class leaf_Request extends leaf_Base {
     }
 
     /**
-     *
+     * Return the current query string, as a string.
      *
      * @return  string
 	 * @todo
 	 * <ol>
-	 *  <li>Πιθανή αλλαγή ονόματος.</li>
-	 *  <li>Επανέλεγχος σύνθεσης της συμβολοσειράς.</li>
+	 *  <li>Possible method complete refactor.</li>
 	 * </ol>
      */
     public function getQueryStringAsString()
@@ -295,6 +267,11 @@ final class leaf_Request extends leaf_Base {
             return $str;
         } else 
             return NULL;
+    }
+
+    public function __toString()
+    {
+        return __CLASS__ . " " . self::LEAF_CLASS_ID;
     }
 
 }
