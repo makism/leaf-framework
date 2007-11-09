@@ -1,32 +1,30 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * Το πρώτο ελληνικό php framework ανοικτού κώδικα, γρήγορο, μικρό σε
- * μέγεθος και εύκολα επεκτάσιμο.
- *
- *
- * @package		leaf
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license     -
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Επιτελεί κάποιους ελέγχους στον Controller και στο Action
- * που ζητήται και επικαλείται το συγκεκριμένο Action (μέθοδο).
+ * Prepares to dispatch the speficief Controller/Action.
  *
+ * Includes the file that the requested Controller is declared, and
+ * performs some basic checks in the Controller`s implementation and
+ * naming scheme.<br>
  *
  * @package		leaf
  * @subpackage	core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @version		1.0
- * @since		1.0-dev
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
+ * @todo
+ * <ol>
+ *  <li>Remove member properties.</li>
+ *  <li>Replace the member properties with method calls to leaf_Request.</li>
+ * </ol>
  */
 final class leaf_Dispatcher extends leaf_Base {
 	
@@ -36,22 +34,25 @@ final class leaf_Dispatcher extends leaf_Base {
     
 
     /**
-     * Η πλήρης διαδρομή όπου <i>πρέπει</i> να βρίσκεται ο Controller
-     * που ζητήθηκε.
+     * The file name in which the requested Controller is located.
+     *
+     * For more info take a look at the class leaf_Request.
      *
      * @var string
      */
     private $target = NULL;
 
     /**
-     * Το όνομα της κλάσης του Controller που ζητήθηκε.
+     * The requested class name (Controller).
+     *
+     * For more info take a look at the class leaf_Request.
      *
      * @var string
      */
     private $controllerName = NULL;
 
     /**
-     * Ένα στιγμιότυπο του ζητούμενου Controller.
+     * An instance of the requested Controller.
      *
      * @var object leaf_Controller
      */
@@ -59,9 +60,8 @@ final class leaf_Dispatcher extends leaf_Base {
 
 
     /**
-     * Ανακαλύπτει τα ολοκληρωμένα ονόματα των Controllers που
-     * καλούνται και ελέγχει για την ύπαρξη τους καθώς επίσης
-     * και για την ορθότητά τους.
+     * Tests the requested Controller and prepares for dispaching it, along
+     * with the Action.
      *
      * @return  void
      */
@@ -70,52 +70,49 @@ final class leaf_Dispatcher extends leaf_Base {
         parent::__construct(self::LEAF_REG_KEY);
 
         /*
-         *
+         * Get Controller`s name :).
          */
         $this->controllerName = $this->request->getControllerName();
 
         /*
-         *
+         * Get Controller`s file name.
          */
         $this->target = $this->request->getControllerFileName();
 
         
         /*
-         *
+         * Check if the Controller`s file, exists.
          */
         if (!file_exists($this->target))
             showHtmlMessage("Dispatcher Failure", "Controller \"{$this->controllerName}\", not found!", TRUE);
         
         /*
-         *
+         * Include the file, in which the requested Controller
+         * is declared.
          */
         require_once $this->target;
 
 
         /*
-         *
+         * Create an instance of the requested Controller.
          */
         $this->controller = new $this->controllerName;
 
         /*
-         *
+         * Register and instance of leaf_View, for further usage.
          */
         leaf_Registry::getInstance()->register(new leaf_View());
 
         /*
-         *
+         * Check if the current Controller inherits from our
+         * class, leaf_Controller.
          */
         if (!($this->controller instanceof leaf_Controller))
             showHtmlMessage("Dispatcher Failure", "Not a controller", TRUE);
     }
-
-    public function __toString()
-    {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
-    }
     
     /**
-     * Ελέγχει για την ύπαρξη της μεθόδου που έχει ζητηθεί και την καλεί.
+     * Checks for the existence of the desired method and calls it.
      *
      * @return  void
      */
@@ -127,6 +124,11 @@ final class leaf_Dispatcher extends leaf_Base {
             showHtmlMessage("Dispatcher Failure", "Action \"{$this->router->getMethodName()}\" is not defined", TRUE);
         }
 	}
+
+    public function __toString()
+    {
+        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+    }
 
 }
 

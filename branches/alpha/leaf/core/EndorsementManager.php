@@ -1,36 +1,30 @@
 <?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- * @package     leaf
- * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
+ * Handles the requests, to overlap the internal implementations of specific
+ * classes, with external, in userspace-like fashion.
  *
+ * This way, the framework can easily be updated, and hacked - allowing
+ * the users to provide their own implementations of specific classes.
  *
  * @package		leaf
  * @subpackage	core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @version		1.0-dev
- * @since		1.0-dev
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @todo
  * <ol>
- *  <li>Υλοποίηση.</li>
+ *  <li>Implement.</li>
+ *  <li>Document.</li>
+ *  <li>Revamp.</li>
  * </ol>
  */
 final class leaf_EndorsementManager extends leaf_Base {
@@ -41,24 +35,22 @@ final class leaf_EndorsementManager extends leaf_Base {
     
  
     /**
-     * Λίστα με τις τρέχουσες κλάσεις που υπερκαλύπτουν
-     * αυτές του πυρήνα.
+     * Currently classes that are overlapped.
      *
      * @var array
      */
     private $endorsed = array();
 
     /**
-     * Πίνακας με τις κλάσεις που έχουν ζητηθεί να υπερκαλύψουν
-     * αυτές του πυρήνα.
+     * Array with the classes that have been requested to be
+     * overlapped.
      *
      * @var array
      */
     private $registeredEndorsed = array();
 
     /**
-     * Πίνακας με τις κλάσεις που επιτρέπουμε να
-     * υπερκαλύψουν τις αντίστοιχες του πυρήνα.
+     * Array with the classes that are allowed to be overlapped.
      *
      * @var array
      */
@@ -67,7 +59,7 @@ final class leaf_EndorsementManager extends leaf_Base {
     );
 
     /**
-     * Τρέχουσα κλάση που θα ενεργήσουμε πάνω σε αυτήν.
+     * Current class that we will work on.
      *
      * @var string
      */
@@ -75,8 +67,7 @@ final class leaf_EndorsementManager extends leaf_Base {
 
 
     /**
-     * Ανακαλύπτει τις καθορισμένες κλάσεις που θα υπερκαλυφθούν
-     *
+     * Discovers the classes that are declared for overlapping.
      *
      * @return  void
      */
@@ -90,8 +81,7 @@ final class leaf_EndorsementManager extends leaf_Base {
     }
 
     /**
-     * Έλεγχος για άν η κλάση που ζητήθηκε υποστηρίζεται.
-     *
+     * Find out if the requested class is endorsed for overlapping.
      *
      * @return  boolean
      */
@@ -106,14 +96,14 @@ final class leaf_EndorsementManager extends leaf_Base {
     }
 
     /**
-     * Φόρτωμα της ζητούμενης κλάσης.
+     * Load the requested class.
      *
      *
      * @return  void
      * @todo
      * <ol>
-     *  <li>Επανέλεγχος της λειτουργίας καταχώρησης των κλάσεων καθώς και
-     *  των "κλειδιών" τους που χρεισιμοποιούν στο αντικείμενο
+     *  <li>Check again the registration function that the classes are
+     *  using, as well as the "keys" that they use in the class
      *  {@link leaf_Registry}.</li>
      * </ol>
      */
@@ -135,14 +125,14 @@ final class leaf_EndorsementManager extends leaf_Base {
     }
 
     /**
-     * Εξετάζουμε τις δηλώσεις του αρχείου της κλάσης.
+     * Introspect the class` file.
      *
      * @return  void
      * @todo
      * <ol>
-     *  <li>Υλοποίηση.</li>
-     *  <li>Έλεγχος για το άν η κλάση που ελέγχουμε, έχει δηλωμένα τις
-     *  σταθερές LEAF_REG_KEY ή/και LEAF_CLASS_ID.</li>
+     *  <li>Implement.</li>
+     *  <li>Must check if the class, has declared the constants
+     *  LEAF_REG_KEY and/or LEAF_CLASS_ID.</li>
      * </ol>
      */
     private function introspectEndorsedClass($className, $fileName)
@@ -151,7 +141,8 @@ final class leaf_EndorsementManager extends leaf_Base {
     }
 
     /**
-     * Επιστρέφει τις κλάσεις που έχουν υπερκαλύψει τις αντίστοιχες του πυρήνα.
+     * Returns all the classes, that are currently overlapping the
+     * internal classes.
      *
      * @return  array
      */

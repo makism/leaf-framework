@@ -20,7 +20,7 @@
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @author		Avraam Marimpis <makism@users.sf.net>
  * @see         leaf_Router
  * @version     $Id$
  * @todo
