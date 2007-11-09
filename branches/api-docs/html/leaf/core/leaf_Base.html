@@ -153,7 +153,7 @@
 								<tr>
 					<td style="padding-right: 2em"><a href="../../leaf/core/leaf_EndorsementManager.html">leaf_EndorsementManager</a></td>
 					<td>
-											
+											Handles the requests, to overlap the internal implementations of specific  classes, with external, in userspace-like fashion.
 										</td>
 				</tr>
 								<tr>
@@ -165,7 +165,7 @@
 								<tr>
 					<td style="padding-right: 2em"><a href="../../leaf/core/leaf_Request.html">leaf_Request</a></td>
 					<td>
-											Παρέχει πρόσβαση σε όλα τα διακριτά στοιχεία του Uri.
+											Provides access to all elements that compose the Uri.
 										</td>
 				</tr>
 								<tr>
@@ -195,7 +195,7 @@
 								<tr>
 					<td style="padding-right: 2em"><a href="../../leaf/core/leaf_Dispatcher.html">leaf_Dispatcher</a></td>
 					<td>
-											Επιτελεί κάποιους ελέγχους στον Controller και στο Action  που ζητήται και επικαλείται το συγκεκριμένο Action (μέθοδο).
+											Prepares to dispatch the speficief Controller/Action.
 										</td>
 				</tr>
 								<tr>
@@ -414,14 +414,14 @@
 							</li>
 					<li>
 				<a href="../../leaf/core/leaf_EndorsementManager.html#method__construct">leaf_EndorsementManager::__construct()</a>
-								: Ανακαλύπτει τις καθορισμένες κλάσεις που θα υπερκαλυφθούν
+								: Discovers the classes that are declared for overlapping.
 							</li>
 					<li>
 				<a href="../../leaf/core/leaf_Input.html#method__construct">leaf_Input::__construct()</a>
 							</li>
 					<li>
 				<a href="../../leaf/core/leaf_Request.html#method__construct">leaf_Request::__construct()</a>
-								: Συνεργάζεται με την κλάση <a href="../../leaf/core/leaf_Router.html">leaf_Router</a> προκειμένου  να δώσει πρόσβαση στον χρήστη πληροφορίες όπως, το όνομα  της κλάσης του Controller που ζητήθηκε, όπως <em>θα πρέπει</em>  να έχει ονομαστεί, το Action, κτλ κτλ κτλ.
+								: Internally uses the class <a href="../../leaf/core/leaf_Router.html">leaf_Router</a> in order to export  information like, the Controller name, the Controller`s name as  is <em>must</em> be, the Action, etc.
 							</li>
 					<li>
 				<a href="../../leaf/core/leaf_Response.html#method__construct">leaf_Response::__construct()</a>
@@ -446,7 +446,7 @@
 							</li>
 					<li>
 				<a href="../../leaf/core/leaf_Dispatcher.html#method__construct">leaf_Dispatcher::__construct()</a>
-								: Ανακαλύπτει τα ολοκληρωμένα ονόματα των Controllers που  καλούνται και ελέγχει για την ύπαρξη τους καθώς επίσης  και για την ορθότητά τους.
+								: Tests the requested Controller and prepares for dispaching it, along  with the Action.
 							</li>
 					<li>
 				<a href="../../leaf/core/leaf_Controller.html#method__construct">leaf_Controller::__construct()</a>
@@ -628,7 +628,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 08 Nov 2007 12:10:50 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Sat, 10 Nov 2007 00:41:01 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

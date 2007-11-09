@@ -92,7 +92,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#method__construct">leaf_Request::__construct()</a> in Request.php</div>
-							<div class="index-item-description">Συνεργάζεται με την κλάση <a href="leaf/core/leaf_Router.html">leaf_Router</a> προκειμένου  να δώσει πρόσβαση στον χρήστη πληροφορίες όπως, το όνομα  της κλάσης του Controller που ζητήθηκε, όπως <em>θα πρέπει</em>  να έχει ονομαστεί, το Action, κτλ κτλ κτλ.</div>
+							<div class="index-item-description">Internally uses the class <a href="leaf/core/leaf_Router.html">leaf_Router</a> in order to export  information like, the Controller name, the Controller`s name as  is <em>must</em> be, the Action, etc.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__construct</span>
@@ -126,7 +126,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#method__construct">leaf_Registry::__construct()</a> in Registry.php</div>
-							<div class="index-item-description">Class constructor</div>
+							<div class="index-item-description">Declared private in favor of the Singleton pattern.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__construct</span>
@@ -153,7 +153,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Dispatcher.html#method__construct">leaf_Dispatcher::__construct()</a> in Dispatcher.php</div>
-							<div class="index-item-description">Ανακαλύπτει τα ολοκληρωμένα ονόματα των Controllers που  καλούνται και ελέγχει για την ύπαρξη τους καθώς επίσης  και για την ορθότητά τους.</div>
+							<div class="index-item-description">Tests the requested Controller and prepares for dispaching it, along  with the Action.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__construct</span>
@@ -166,7 +166,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#method__construct">leaf_EndorsementManager::__construct()</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Ανακαλύπτει τις καθορισμένες κλάσεις που θα υπερκαλυφθούν</div>
+							<div class="index-item-description">Discovers the classes that are declared for overlapping.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__construct</span>
@@ -179,7 +179,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#method__get">leaf_Registry::__get()</a> in Registry.php</div>
-							<div class="index-item-description">__get</div>
+							<div class="index-item-description">Return the request object, by refering to it`s instance name.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__get</span>
@@ -193,7 +193,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#method__set">leaf_Registry::__set()</a> in Registry.php</div>
-							<div class="index-item-description">__set</div>
+							<div class="index-item-description">Registers the requested instance using the designated key.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">__toString</span>
@@ -336,7 +336,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#var$action">leaf_Request::$action</a> in Request.php</div>
-							<div class="index-item-description">Το όνομα του συγκεκριμένου Action(μεθόδου).</div>
+							<div class="index-item-description">The requested method name (Action).</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$algorithms</span>
@@ -350,7 +350,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#var$allowEndorsement">leaf_EndorsementManager::$allowEndorsement</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Πίνακας με τις κλάσεις που επιτρέπουμε να  υπερκαλύψουν τις αντίστοιχες του πυρήνα.</div>
+							<div class="index-item-description">Array with the classes that are allowed to be overlapped.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">addIndex</span>
@@ -409,35 +409,35 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#var$controller">leaf_Request::$controller</a> in Request.php</div>
-							<div class="index-item-description">Το κανονικό όνομα της κλάσης του Controller που  έχει ζητηθεί.</div>
+							<div class="index-item-description">The requested class name (Controller), suffixed with &quot;_Controller&quot;.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$controller</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Dispatcher.html#var$controller">leaf_Dispatcher::$controller</a> in Dispatcher.php</div>
-							<div class="index-item-description">Ένα στιγμιότυπο του ζητούμενου Controller.</div>
+							<div class="index-item-description">An instance of the requested Controller.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$controllerFile</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#var$controllerFile">leaf_Request::$controllerFile</a> in Request.php</div>
-							<div class="index-item-description">Το όνομα του αρχείου από όπου θα πρέπει να φορτώσουμε τον  ζητούμενο Controller.</div>
+							<div class="index-item-description">The file name in which the requested Controller is located.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$controllerName</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Dispatcher.html#var$controllerName">leaf_Dispatcher::$controllerName</a> in Dispatcher.php</div>
-							<div class="index-item-description">Το όνομα της κλάσης του Controller που ζητήθηκε.</div>
+							<div class="index-item-description">The requested class name (Controller).</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$currentClass</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#var$currentClass">leaf_EndorsementManager::$currentClass</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Τρέχουσα κλάση που θα ενεργήσουμε πάνω σε αυτήν.</div>
+							<div class="index-item-description">Current class that we will work on.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">chopSegment</span>
@@ -504,7 +504,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Dispatcher.html#methoddispatchController">leaf_Dispatcher::dispatchController()</a> in Dispatcher.php</div>
-							<div class="index-item-description">Ελέγχει για την ύπαρξη της μεθόδου που έχει ζητηθεί και την καλεί.</div>
+							<div class="index-item-description">Checks for the existence of the desired method and calls it.</div>
 					</dd>
 			<dt class="field">
 						<span class="include-title">Dispatcher.php</span>
@@ -564,7 +564,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#var$endorsed">leaf_EndorsementManager::$endorsed</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Λίστα με τις τρέχουσες κλάσεις που υπερκαλύπτουν  αυτές του πυρήνα.</div>
+							<div class="index-item-description">Currently classes that are overlapped.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">endorsed</span>
@@ -697,25 +697,28 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodgetControllerFileName">leaf_Request::getControllerFileName()</a> in Request.php</div>
+							<div class="index-item-description">Returns the file name that contains the current Controller.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getControllerName</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodgetControllerName">leaf_Request::getControllerName()</a> in Request.php</div>
+							<div class="index-item-description">ReturnstThe requested class name (Controller), suffixed with  &quot;_Controller&quot;.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getEndorsedClasses</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#methodgetEndorsedClasses">leaf_EndorsementManager::getEndorsedClasses()</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Επιστρέφει τις κλάσεις που έχουν υπερκαλύψει τις αντίστοιχες του πυρήνα.</div>
+							<div class="index-item-description">Returns all the classes, that are currently overlapping the  internal classes.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getInstance</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#methodgetInstance">leaf_Registry::getInstance()</a> in Registry.php</div>
+							<div class="index-item-description">Returns the instance of this class.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getMethodName</span>
@@ -736,12 +739,14 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodgetQueryString">leaf_Request::getQueryString()</a> in Request.php</div>
+							<div class="index-item-description">Retrieves the value for the requested key.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getQueryStringAsString</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodgetQueryStringAsString">leaf_Request::getQueryStringAsString()</a> in Request.php</div>
+							<div class="index-item-description">Return the current query string, as a string.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">getHooks</span>
@@ -837,34 +842,35 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#var$instance">leaf_Registry::$instance</a> in Registry.php</div>
+							<div class="index-item-description">The unique instance of this class.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">instance</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#methodinstance">leaf_Registry::instance()</a> in Registry.php</div>
-							<div class="index-item-description">instance</div>
+							<div class="index-item-description">If needed, instantiates an object of this class.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">introspectEndorsedClass</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#methodintrospectEndorsedClass">leaf_EndorsementManager::introspectEndorsedClass()</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Εξετάζουμε τις δηλώσεις του αρχείου της κλάσης.</div>
+							<div class="index-item-description">Introspect the class` file.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">isEndorsed</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#methodisEndorsed">leaf_EndorsementManager::isEndorsed()</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Έλεγχος για άν η κλάση που ζητήθηκε υποστηρίζεται.</div>
+							<div class="index-item-description">Find out if the requested class is endorsed for overlapping.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">isRegistered</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#methodisRegistered">leaf_Registry::isRegistered()</a> in Registry.php</div>
-							<div class="index-item-description">isRegistered</div>
+							<div class="index-item-description">Checks for the existence of the requested key.</div>
 					</dd>
 			<dt class="field">
 						<span class="include-title">Input.php</span>
@@ -1076,13 +1082,14 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Dispatcher.html">leaf_Dispatcher</a> in Dispatcher.php</div>
-							<div class="index-item-description">Επιτελεί κάποιους ελέγχους στον Controller και στο Action  που ζητήται και επικαλείται το συγκεκριμένο Action (μέθοδο).</div>
+							<div class="index-item-description">Prepares to dispatch the speficief Controller/Action.</div>
 					</dd>
 			<dt class="field">
 						leaf_EndorsementManager
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html">leaf_EndorsementManager</a> in EndorsementManager.php</div>
+							<div class="index-item-description">Handles the requests, to overlap the internal implementations of specific  classes, with external, in userspace-like fashion.</div>
 					</dd>
 			<dt class="field">
 						leaf_Exception
@@ -1127,7 +1134,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html">leaf_Registry</a> in Registry.php</div>
-							<div class="index-item-description">leaf_Framework Registry Class</div>
+							<div class="index-item-description">Registry class that lists most of the instantiated internal classes.</div>
 					</dd>
 			<dt class="field">
 						LEAF_REG_KEY
@@ -1219,7 +1226,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html">leaf_Request</a> in Request.php</div>
-							<div class="index-item-description">Παρέχει πρόσβαση σε όλα τα διακριτά στοιχεία του Uri.</div>
+							<div class="index-item-description">Provides access to all elements that compose the Uri.</div>
 					</dd>
 			<dt class="field">
 						leaf_Response
@@ -1251,7 +1258,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#methodloadEndorsedClass">leaf_EndorsementManager::loadEndorsedClass()</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Φόρτωμα της ζητούμενης κλάσης.</div>
+							<div class="index-item-description">Load the requested class.</div>
 					</dd>
 			<dt class="field">
 						LEAF_CLASS_ID
@@ -1443,7 +1450,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#var$queryElems">leaf_Request::$queryElems</a> in Request.php</div>
-							<div class="index-item-description">Τα στοιχεία του Query String (άν υπάρχουν και έχουν έχουν  ενεργοποιηθεί).</div>
+							<div class="index-item-description">The query string found in the Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$queryString</span>
@@ -1479,13 +1486,14 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#var$registered">leaf_Registry::$registered</a> in Registry.php</div>
+							<div class="index-item-description">All currently registered classes.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$registeredEndorsed</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_EndorsementManager.html#var$registeredEndorsed">leaf_EndorsementManager::$registeredEndorsed</a> in EndorsementManager.php</div>
-							<div class="index-item-description">Πίνακας με τις κλάσεις που έχουν ζητηθεί να υπερκαλύψουν  αυτές του πυρήνα.</div>
+							<div class="index-item-description">Array with the classes that have been requested to be  overlapped.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$Registry</span>
@@ -1544,19 +1552,21 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodrecostructUrl">leaf_Request::recostructUrl()</a> in Request.php</div>
+							<div class="index-item-description">Reconstructs a Uri, based on the data passed.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">redirect</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodredirect">leaf_Request::redirect()</a> in Request.php</div>
+							<div class="index-item-description">Performs a redirect to the speficied Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">register</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#methodregister">leaf_Registry::register()</a> in Registry.php</div>
-							<div class="index-item-description">register</div>
+							<div class="index-item-description">Registers an object.</div>
 					</dd>
 			<dt class="field">
 						<span class="include-title">Request.php</span>
@@ -1591,7 +1601,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#var$segments">leaf_Request::$segments</a> in Request.php</div>
-							<div class="index-item-description">Τα επιπλέον κομμάτια του Uri που δεν ανήκουν ούτε  στον Controller ούτε στο Action.</div>
+							<div class="index-item-description">The extra segments found in the Uri.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$segments</span>
@@ -1611,6 +1621,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodsegment">leaf_Request::segment()</a> in Request.php</div>
+							<div class="index-item-description">Retrieves the requested (numeric) offset from the segments.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">segments</span>
@@ -1624,6 +1635,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodsegmentsAsArray">leaf_Request::segmentsAsArray()</a> in Request.php</div>
+							<div class="index-item-description">Returns the segments` array.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">segmentsSize</span>
@@ -1692,7 +1704,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Dispatcher.html#var$target">leaf_Dispatcher::$target</a> in Dispatcher.php</div>
-							<div class="index-item-description">Η πλήρης διαδρομή όπου <em>πρέπει</em> να βρίσκεται ο Controller  που ζητήθηκε.</div>
+							<div class="index-item-description">The file name in which the requested Controller is located.</div>
 					</dd>
 			<dt class="field">
 						<span class="var-title">$threshold</span>
@@ -1705,12 +1717,14 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#methodtoArray">leaf_Registry::toArray()</a> in Registry.php</div>
+							<div class="index-item-description">Returns an associative array with all the &quot;general&quot;  configuration parameters.</div>
 					</dd>
 			<dt class="field">
 						<span class="method-title">totalSegments</span>
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Request.html#methodtotalSegments">leaf_Request::totalSegments()</a> in Request.php</div>
+							<div class="index-item-description">Returns the total number of segments.</div>
 					</dd>
 		</dl>
 	<a name="u"></a>
@@ -1743,6 +1757,7 @@
 					</dt>
 		<dd class="index-item-body">
 			<div class="index-item-details"><a href="leaf/core/leaf_Registry.html#methodunregister">leaf_Registry::unregister()</a> in Registry.php</div>
+							<div class="index-item-description">Removes a key from the registry.</div>
 					</dd>
 		</dl>
 	<a name="v"></a>

@@ -100,14 +100,15 @@
 			</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Handles the requests, to overlap the internal implementations of specific  classes, with external, in userspace-like fashion.</p>
+<p class="description"><p>This way, the framework can easily be updated, and hacked - allowing  the users to provide their own implementations of specific classes.</p></p>
 	<ul class="tags">
-				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@venus.cs.teicrete.gr">makism@venus.cs.teicrete.gr</a>&gt;</li>
-				<li><span class="field">version:</span> 1.0-dev</li>
-				<li><span class="field">todo:</span> <ol><li>Υλοποίηση.</li></ol></li>
-				<li><span class="field">since:</span> 1.0-dev</li>
+				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: EndorsementManager.php 39 2007-11-09 21:30:37Z makism $</li>
+				<li><span class="field">todo:</span> <ol><li>Implement.</li><li>Document.</li><li>Revamp.</li></ol></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_leaf---core---EndorsementManager.php.html">/leaf/core/EndorsementManager.php</a> (line <span class="field"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a36">36</a></span>)
+			Located in <a class="field" href="_leaf---core---EndorsementManager.php.html">/leaf/core/EndorsementManager.php</a> (line <span class="field">30</span>)
 		</p>
 		
 				
@@ -253,12 +254,12 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$allowEndorsement</span>
-			 = <span class="var-default">array (<br />        &quot;leaf_Locale&quot;, &quot;leaf_Logger&quot;<br />    )</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a65">65</a></span>)
+			 = <span class="var-default">array (<br />        &quot;leaf_Locale&quot;, &quot;leaf_Logger&quot;<br />    )</span>			(line <span class="line-number">57</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Πίνακας με τις κλάσεις που επιτρέπουμε να  υπερκαλύψουν τις αντίστοιχες του πυρήνα.</p>
+<p class="short-description">Array with the classes that are allowed to be overlapped.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -275,12 +276,12 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$currentClass</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a74">74</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">66</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Τρέχουσα κλάση που θα ενεργήσουμε πάνω σε αυτήν.</p>
+<p class="short-description">Current class that we will work on.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -297,12 +298,12 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$endorsed</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a49">49</a></span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">42</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Λίστα με τις τρέχουσες κλάσεις που υπερκαλύπτουν  αυτές του πυρήνα.</p>
+<p class="short-description">Currently classes that are overlapped.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -319,12 +320,12 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$registeredEndorsed</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a57">57</a></span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">50</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Πίνακας με τις κλάσεις που έχουν ζητηθεί να υπερκαλύψουν  αυτές του πυρήνα.</p>
+<p class="short-description">Array with the classes that have been requested to be  overlapped.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -363,11 +364,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a83">83</a></span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">74</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Ανακαλύπτει τις καθορισμένες κλάσεις που θα υπερκαλυφθούν</p>
+<p class="short-description">Discovers the classes that are declared for overlapping.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -393,11 +394,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getEndorsedClasses</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a158">158</a></span>)
+		<span class="method-title">getEndorsedClasses</span> (line <span class="line-number">149</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει τις κλάσεις που έχουν υπερκαλύψει τις αντίστοιχες του πυρήνα.</p>
+<p class="short-description">Returns all the classes, that are currently overlapping the  internal classes.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -417,14 +418,14 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">introspectEndorsedClass</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a148">148</a></span>)
+		<span class="method-title">introspectEndorsedClass</span> (line <span class="line-number">138</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Εξετάζουμε τις δηλώσεις του αρχείου της κλάσης.</p>
+<p class="short-description">Introspect the class` file.</p>
 	<ul class="tags">
-				<li><span class="field">todo:</span> <ol><li>Υλοποίηση.</li><li>Έλεγχος για το άν η κλάση που ελέγχουμε, έχει δηλωμένα τις
-  σταθερές LEAF_REG_KEY ή/και LEAF_CLASS_ID.</li></ol></li>
+				<li><span class="field">todo:</span> <ol><li>Implement.</li><li>Must check if the class, has declared the constants
+  LEAF_REG_KEY and/or LEAF_CLASS_ID.</li></ol></li>
 				<li><span class="field">access:</span> private</li>
 			</ul>
 	
@@ -451,11 +452,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">isEndorsed</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a98">98</a></span>)
+		<span class="method-title">isEndorsed</span> (line <span class="line-number">88</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Έλεγχος για άν η κλάση που ζητήθηκε υποστηρίζεται.</p>
+<p class="short-description">Find out if the requested class is endorsed for overlapping.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -480,14 +481,14 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">loadEndorsedClass</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a120">120</a></span>)
+		<span class="method-title">loadEndorsedClass</span> (line <span class="line-number">110</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Φόρτωμα της ζητούμενης κλάσης.</p>
+<p class="short-description">Load the requested class.</p>
 	<ul class="tags">
-				<li><span class="field">todo:</span> <ol><li>Επανέλεγχος της λειτουργίας καταχώρησης των κλάσεων καθώς και
-  των &quot;κλειδιών&quot; τους που χρεισιμοποιούν στο αντικείμενο
+				<li><span class="field">todo:</span> <ol><li>Check again the registration function that the classes are
+  using, as well as the &quot;keys&quot; that they use in the class
   <a href="../../leaf/core/leaf_Registry.html">leaf_Registry</a>.</li></ol></li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -544,7 +545,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_CLASS_ID</span>
 			 = <span class="const-default"> &quot;LEAF_ENDORSEMENTMANAGER-1_0_dev&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a40">40</a></span>)
+			(line <span class="line-number">34</span>)
 		</span>
 	</div>
 
@@ -560,7 +561,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_REG_KEY</span>
 			 = <span class="const-default"> &quot;endorse_man&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreEndorsementManager.php.html#a38">38</a></span>)
+			(line <span class="line-number">32</span>)
 		</span>
 	</div>
 
@@ -586,7 +587,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 08 Nov 2007 12:11:11 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Sat, 10 Nov 2007 00:41:20 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

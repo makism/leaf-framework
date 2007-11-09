@@ -100,14 +100,15 @@
 			</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιτελεί κάποιους ελέγχους στον Controller και στο Action  που ζητήται και επικαλείται το συγκεκριμένο Action (μέθοδο).</p>
+<p class="short-description">Prepares to dispatch the speficief Controller/Action.</p>
+<p class="description"><p>Includes the file that the requested Controller is declared, and  performs some basic checks in the Controller`s implementation and  naming scheme.<br /></p></p>
 	<ul class="tags">
-				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@venus.cs.teicrete.gr">makism@venus.cs.teicrete.gr</a>&gt;</li>
-				<li><span class="field">version:</span> 1.0</li>
-				<li><span class="field">since:</span> 1.0-dev</li>
+				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: Dispatcher.php 39 2007-11-09 21:30:37Z makism $</li>
+				<li><span class="field">todo:</span> <ol><li>Remove member properties.</li><li>Replace the member properties with method calls to leaf_Request.</li></ol></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_leaf---core---Dispatcher.php.html">/leaf/core/Dispatcher.php</a> (line <span class="field"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a31">31</a></span>)
+			Located in <a class="field" href="_leaf---core---Dispatcher.php.html">/leaf/core/Dispatcher.php</a> (line <span class="field">29</span>)
 		</p>
 		
 				
@@ -237,12 +238,12 @@
 		<span class="var-title">
 			<span class="var-type"><a href="../../leaf/core/leaf_Controller.html">object leaf_Controller</a></span>
 			<span class="var-name">$controller</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a58">58</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">59</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Ένα στιγμιότυπο του ζητούμενου Controller.</p>
+<p class="short-description">An instance of the requested Controller.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -259,12 +260,13 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$controllerName</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a51">51</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">52</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Το όνομα της κλάσης του Controller που ζητήθηκε.</p>
+<p class="short-description">The requested class name (Controller).</p>
+<p class="description"><p>For more info take a look at the class leaf_Request.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -281,12 +283,13 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$target</span>
-			 = <span class="var-default"> NULL</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a44">44</a></span>)
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">43</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Η πλήρης διαδρομή όπου <em>πρέπει</em> να βρίσκεται ο Controller  που ζητήθηκε.</p>
+<p class="short-description">The file name in which the requested Controller is located.</p>
+<p class="description"><p>For more info take a look at the class leaf_Request.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -325,11 +328,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a68">68</a></span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">68</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Ανακαλύπτει τα ολοκληρωμένα ονόματα των Controllers που  καλούνται και ελέγχει για την ύπαρξη τους καθώς επίσης  και για την ορθότητά τους.</p>
+<p class="short-description">Tests the requested Controller and prepares for dispaching it, along  with the Action.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -355,11 +358,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">dispatchController</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a122">122</a></span>)
+		<span class="method-title">dispatchController</span> (line <span class="line-number">119</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Ελέγχει για την ύπαρξη της μεθόδου που έχει ζητηθεί και την καλεί.</p>
+<p class="short-description">Checks for the existence of the desired method and calls it.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -379,7 +382,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__toString</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a112">112</a></span>)
+		<span class="method-title">__toString</span> (line <span class="line-number">128</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -440,7 +443,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_CLASS_ID</span>
 			 = <span class="const-default"> &quot;LEAF_DISPATCHER-1_0_dev&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a35">35</a></span>)
+			(line <span class="line-number">33</span>)
 		</span>
 	</div>
 
@@ -456,7 +459,7 @@
 		<span class="const-title">
 			<span class="const-name">LEAF_REG_KEY</span>
 			 = <span class="const-default"> &quot;dispatcher&quot;</span>
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreDispatcher.php.html#a33">33</a></span>)
+			(line <span class="line-number">31</span>)
 		</span>
 	</div>
 
@@ -482,7 +485,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 08 Nov 2007 12:11:09 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Sat, 10 Nov 2007 00:41:19 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

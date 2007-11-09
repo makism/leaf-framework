@@ -38,11 +38,11 @@
 </ul>
 <h3><a href="leaf/core/leaf_Request.html#methodgetQueryString">leaf_Request::getQueryString()</a></h3>
 <ul>
-    <li><ol><li>Πιθανή αλλαγή ονόματος.</li></ol></li>
+    <li><ol><li>Possible method refactor.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Request.html#methodgetQueryStringAsString">leaf_Request::getQueryStringAsString()</a></h3>
 <ul>
-    <li><ol><li>Πιθανή αλλαγή ονόματος.</li><li>Επανέλεγχος σύνθεσης της συμβολοσειράς.</li></ol></li>
+    <li><ol><li>Possible method complete refactor.</li></ol></li>
 </ul>
 <h3><a href="leaf/front-helpers/_leaf---front---helpers---Handlers.php.html">Handlers.php</a></h3>
 <ul>
@@ -51,8 +51,8 @@
 </ul>
 <h3><a href="leaf/core/leaf_EndorsementManager.html#methodintrospectEndorsedClass">leaf_EndorsementManager::introspectEndorsedClass()</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση.</li><li>Έλεγχος για το άν η κλάση που ελέγχουμε, έχει δηλωμένα τις
-  σταθερές LEAF_REG_KEY ή/και LEAF_CLASS_ID.</li></ol></li>
+    <li><ol><li>Implement.</li><li>Must check if the class, has declared the constants
+  LEAF_REG_KEY and/or LEAF_CLASS_ID.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Benchmark.html">leaf_Benchmark</a></h3>
 <ul>
@@ -70,9 +70,13 @@
   να φορτώνονται <strong>μόνο</strong> οι κλάσεις που χρειάζεται ο κάθε
   Controller ξεχωριστά.</li></ol></li>
 </ul>
+<h3><a href="leaf/core/leaf_Dispatcher.html">leaf_Dispatcher</a></h3>
+<ul>
+    <li><ol><li>Remove member properties.</li><li>Replace the member properties with method calls to leaf_Request.</li></ol></li>
+</ul>
 <h3><a href="leaf/core/leaf_EndorsementManager.html">leaf_EndorsementManager</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση.</li></ol></li>
+    <li><ol><li>Implement.</li><li>Document.</li><li>Revamp.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Exception.html">leaf_Exception</a></h3>
 <ul>
@@ -109,13 +113,12 @@
 </ul>
 <h3><a href="leaf/core/leaf_Registry.html">leaf_Registry</a></h3>
 <ul>
-    <li><ol><li>Ίσως υπάρξει και κάποια καταχώρηση με <strong>όλα</strong> τα πιθανά
-  κλειδιά που μπορεί να υπάρξουν και κάποια σημείωση για τον τύπο
-  της κλάσης που σχετίζονται.</li></ol></li>
+    <li><ol><li>Thinking about listing all possible entries with their
+  types - so there are some sanity checks...?</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Request.html">leaf_Request</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση πιθανών facade συναρτήσεων.</li></ol></li>
+    <li><ol><li>Possible implementation of <a href="http://en.wikipedia.org/wiki/Facade_pattern">facade</a> functions.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Response.html">leaf_Response</a></h3>
 <ul>
@@ -132,32 +135,31 @@
 </ul>
 <h3><a href="leaf/core/leaf_EndorsementManager.html#methodloadEndorsedClass">leaf_EndorsementManager::loadEndorsedClass()</a></h3>
 <ul>
-    <li><ol><li>Επανέλεγχος της λειτουργίας καταχώρησης των κλάσεων καθώς και
-  των &quot;κλειδιών&quot; τους που χρεισιμοποιούν στο αντικείμενο
+    <li><ol><li>Check again the registration function that the classes are
+  using, as well as the &quot;keys&quot; that they use in the class
   <a href="leaf/core/leaf_Registry.html">leaf_Registry</a>.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Request.html#methodrecostructUrl">leaf_Request::recostructUrl()</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση.</li></ol></li>
+    <li><ol><li>Implement.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Request.html#methodredirect">leaf_Request::redirect()</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση.</li></ol></li>
+    <li><ol><li>Implement.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Registry.html#methodregister">leaf_Registry::register()</a></h3>
 <ul>
-    <li><ol><li>Ίσως χρειαστεί να χρησιμοποιήσουμε Reflection (αλλά μάλλον
-  κάτι ποιο απλό) προκειμένου να ελέγχουμε για το άν έχουν
-  δηλωθεί κάποιες σταθερές τιμές που χρειάζονται (πιθανή
-  υλοποίηση νέας κλάσης).</li></ol></li>
+    <li><ol><li>Perform some checks to find out if the object passed,
+  has declared the constant LEAF_REG_KEY, and possible
+  examine further it`s behaviour.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Request.html#methodsegment">leaf_Request::segment()</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση.</li></ol></li>
+    <li><ol><li>Implement.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Request.html#methodsegmentsAsArray">leaf_Request::segmentsAsArray()</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση.</li></ol></li>
+    <li><ol><li>Implement.</li></ol></li>
 </ul>
 <h3><a href="leaf/front-helpers/_leaf---front---helpers---Error.php.html#functionshowErrorPage404">showErrorPage404()</a></h3>
 <ul>
@@ -165,14 +167,18 @@
 </ul>
 <h3><a href="leaf/core/leaf_Request.html#methodtotalSegments">leaf_Request::totalSegments()</a></h3>
 <ul>
-    <li><ol><li>Υλοποίηση.</li></ol></li>
+    <li><ol><li>Implement.</li></ol></li>
+</ul>
+<h3><a href="leaf/core/leaf_Registry.html#methodunregister">leaf_Registry::unregister()</a></h3>
+<ul>
+    <li><ol><li>Implement.</li></ol></li>
 </ul>
 <h3><a href="leaf/core/leaf_Router.html#method__construct">leaf_Router::__construct()</a></h3>
 <ul>
     <li><ol><li>Possible break-down of the jobs that the constructor executes.</li><li>Recheck the &quot;virtual file extension&quot; function.</li></ol></li>
 </ul>
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 08 Nov 2007 12:11:45 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Sat, 10 Nov 2007 00:41:52 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</body>
 </html>
