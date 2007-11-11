@@ -1,20 +1,12 @@
 <?php
 /**
- * leaf Framework<br>
+ * This source file is part of the leaf framework and
+ * is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * PHP version 5<br>
- *
- * Ένα ανοικτού κώδικα framework, γρήγορο, με μικρό μέγεθος και<br>
- * εύκολα επεκτάσιμο.<br>
- * An open source framework, small, with small footprint and<br>
- * easily extensible.<br>
- *
- * @package		leaf
- * @subpackage	core.hook
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright		-
- * @license		-
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
@@ -22,12 +14,11 @@
  *
  * @package		leaf
  * @subpackage	core.hook
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @version		1.0-dev
- * @since		1.0-dev
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @todo
  * <ol>
- *  <li>Υλοποίηση.</li>
+ *  <li>Implement.</li>
  * </ol>
  */
 abstract class leaf_Hook_Conditional extends leaf_Hook {
