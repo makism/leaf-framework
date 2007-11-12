@@ -1,39 +1,25 @@
 <?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- *
- * @package		leaf
- * @subpackage	core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Exception Class
+ * Custom exception class.
  *
- *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @since		1.0-dev
+ * @package     leaf
+ * @subpackage  core
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @link		http://php.net/manual/en/language.exceptions.html
  * @todo
  * <ol>
- *  <li>Πιθανή εσωτερική υποστήριξη καταγραφής των εξαιρέσεων.</li>
+ *  <li>Possible, internal logging function.</li>
  * </ol>
  */
 final class leaf_Exception extends Exception {

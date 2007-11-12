@@ -1,26 +1,26 @@
 <?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @package		leaf
- * @subpackage	core.log
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
+/**
+ *
+ *
+ * @package     leaf
+ * @subpackage  core.log
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version	    $Id$
+ * @todo
+ * <ol>
+ *  <li>Implement.</li>
+ * </ol>
+ */
 public interface leaf_Log {
 
 }

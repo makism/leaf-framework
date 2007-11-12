@@ -1,40 +1,30 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * Το πρώτο ελληνικό php framework ανοικτού κώδικα, γρήγορο, μικρό σε
- * μέγεθος και εύκολα επεκτάσιμο.
- *
- *
- * @package		leaf
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Προσδίδει κάποια κοινά χαρακτηριστικά σε όλους του Controllers.
+ * Assigns some common characteristics to all user`s Controllers.
  *
- * Όλοι οι Controllers, <b>πρέπει</b> να κληρονομούν από αυτήν την
- * κλάση αλλιώς <b>θα αγνοούνται</b>.
- *
+ * All Controller, <b>must</b> inherit from this class, otherwise
+ * they will be <b>ignored</b>.
  *
  * @package		leaf
  * @subpackage	core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @version		1.0-dev
- * @since		1.0-dev
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @todo
  * <ol>
- *  <li>Επανέλεγχος.</li>
- *  <li>Πιθανή υλοποίηση μεθόδου "Dependacies Injection (DI)" ώστε
- *  να φορτώνονται <b>μόνο</b> οι κλάσεις που χρειάζεται ο κάθε
- *  Controller ξεχωριστά.</li>
+ *  <li>Refactor.</li>
+ *  <li>Possible implementation of "Dependacies Injection (DI)" method,
+ *  so that each Controller, will load <b>only</b> the classes it
+ *  depends on.</li>
  * </ol>
  */
 abstract class leaf_Controller extends leaf_Base {
@@ -45,7 +35,7 @@ abstract class leaf_Controller extends leaf_Base {
 
 
     /**
-     * Καλεί τον parent contructor.
+     * Calls the parent constructor.
      *
      * @return  void
      */

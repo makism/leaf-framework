@@ -1,39 +1,25 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @package		leaf
- * @subpackage	core
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
  *
  *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @since		1.0-dev
+ * @package     leaf
+ * @subpackage  core.log
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version	    $Id$
  * @method		void log() log(string message) log(string level, string message) log(string level, string message, string fileName) log(string level, string message, string fileName, string className) Handles to log a message. Αναλαμβάνει να γράψει ένα μήνυμα.
  * @todo
  * <ol>
- *  <li>Πιθανή υποστήριξη για καταχώρηση των σφαλμάτων του level "Error"
- *  σε βάση δεδομένων ή κάποια e-mail διεύθυνση.</li>
+ *  <li>Possible implementation for logging in a database.</li>
  * </ol>
  */
 final class leaf_Logger extends leaf_Base implements leaf_Log {
@@ -87,9 +73,8 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
 	
 	
 	/**
-	 * Class constructor
-	 *
-	 *
+	 * Begins the logging procedures, like file locking and filename scheming.
+     *
 	 * @param	boolean	$buffer
 	 * @return	void
 	 */
@@ -98,9 +83,6 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
 	    /*
 	     * In case this is a development release, capture all errors and
 	     * messages.
-         *
-	     * Σε περίπτωση που πρόκειται για έκδοση υπό-ανάπτυξη, θα καταγράψουμε
-	     * όλα τα σφάλματα και μηνύματα.
 	     */
 	    /*if (LEAF_REL_STATUS=='DEV')
             $this->threshold = "All";
@@ -110,8 +92,6 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
 
         /*
          * Output filename.
-         *
-         * Το αρχείο στο οποίο θα γράψουμε.
          */
         $this->filename = LEAF_VAR . 'logs/' . date("d_m_Y") . ".log";
         
@@ -128,10 +108,12 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
 	}
 	
 	/**
-	 * flush
-	 * 
-	 * 
-	 * 
+	 * Flushes (empties) the internal buffer.
+     *
+     * If the first parameter is given and is set the
+     * boolean "true", then the method will return the
+     * buffer`s contents.
+     *
 	 * @param	boolean	$return
 	 * @return	array|NULL
 	 */
@@ -150,8 +132,8 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
 	}
 	
 	/**
-	 * end_flush
-	 * 
+	 * Flushes the internal buffer, and releases all locks on the log files.
+     *
 	 * @return	void
 	 */
 	public function end_flush()
@@ -163,8 +145,8 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
 	}
 	
 	/**
-	 * setTimeStampPattern
-	 * 
+	 * Set a timestamp pattern.
+     *
 	 * @param	string	$pat
 	 * @return	void
 	 */
@@ -174,11 +156,7 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
 	}
 
 	/**
-	 * setLevel
-	 *
-	 * Set the level of errors to capture.<br>
-	 * Θέτει το επίπεδο των σφαλμάτων που θα καταχωρήσει.
-	 * 
+	 * Set the level of errors to capture.
 	 *
 	 * @param	string	$filterLevel
 	 * @return	boolean

@@ -1,37 +1,25 @@
 <?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small footprint and
- * easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος
- * και εύκολα επεκτάσιμο.<br>
- *
- *
- * @package     leaf
- * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
+ * Keeps statistics (execution time, memory usage) either for a 
+ * specific class, or a code block.
  *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @since		1.0-dev
- * @link		http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html
+ * @package     leaf
+ * @subpackage  core
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @todo
  * <ol>
- *  <li>Υλοποίηση.</li>
+ *  <li>Implement.</li>
  * </ol>
  */
 final class leaf_Benchmark extends leaf_Base {
@@ -41,8 +29,8 @@ final class leaf_Benchmark extends leaf_Base {
     const LEAF_CLASS_ID = "LEAF_BENCHMARK-1_0_dev";
 
     /**
-     *
-     *
+     * All requested benchmark points are stored in this array, in
+     * a hashtable-like way.
      *
      * @var array   $indexTable
      */
@@ -50,7 +38,7 @@ final class leaf_Benchmark extends leaf_Base {
 
 
     /**
-     *
+     * Declares dependacies.
      *
      * @return  void
      */
@@ -62,7 +50,7 @@ final class leaf_Benchmark extends leaf_Base {
     }
 
     /**
-     *
+     * Add a begin/end benchmark point.
      *
      * @param   string  $name
      * @param   integer $type

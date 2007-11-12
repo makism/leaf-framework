@@ -1,55 +1,49 @@
 ﻿<?php
 /**
- * leaf Framework<br>
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * PHP version 5<br>
- *
- * Ένα ανοικτού κώδικα framework, γρήγορο, με μικρό μέγεθος και<br>
- * εύκολα επεκτάσιμο.<br>
- * An open source framework, small, with small footprint and<br>
- * easily extensible.<br>
- *
- * @package		leaf
- * @subpackage	core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright		-
- * @license		-
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
- * Επιτελεί λειτουργίες δημιουργίας συνόψεων.
+ * Handles internal hashing procedures, based on already existing
+ * native hash methods.
  *
- *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @since		1.0-dev
+ * @package     leaf
+ * @subpackage  core
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @todo
  * <ol>
- *  <li>Πιθανή παροχή ενός interface.</li>
+ *  <li>Possible creation of an interface.</li>
  * </ol>
  */
 final class leaf_Hash {
 	
 	/**
-     * Ο προεπιλεγμένος αλγόριθμος.
+     * Default hash algorithm
      *
      * @var string
      */
 	private $defaultAlgorithm = "md5";
 	
 	/**
-     * Όλοι οι διαθέσιμοι αλγόριθμοι.
+     * All supported hash algorithms.
      *
      * @var array
      */
 	private $algorithms = array ("md5", "sha1");
 	
 	/**
-     * 
+     * Whether to use an alternative method or the classic hash functions.
+     *
+     * The alternative method, is based on the "hash" function that is
+     * documented to be faster than the classic hash functions like
+     * "sha1" and "md5".
      *
      * @var boolean
      */
@@ -57,8 +51,7 @@ final class leaf_Hash {
 	
 	
 	/**
-	 * Σηματοδοτεί την χρήση ή όχι της μεθόδου hash,
-     * έναντι των κλασσικών συναρτήσεων md5 και sha1.
+     * Flags the method of hashing the we will be using.
      *
 	 * @return void
 	 */
@@ -69,7 +62,7 @@ final class leaf_Hash {
 	}
 	
 	/**
-	 * Θέτει τον επιθυμητό αλγόριθμο προς χρήση.
+     * Sets the requested algorithm for usage.
      *
 	 * @param	string	$algorithm
 	 * @return	boolean
@@ -85,8 +78,8 @@ final class leaf_Hash {
 	}
 
 	/**
-	 * Επιστρέφει (είτε ώς κείμενο είτε ώς μία ακολουθία bytes)
-     * την σύνοψη για το κείμενο που δίνεται.
+     * Returns (as text or as a byte sequence) the hash for
+     * the specific give input.
      *
 	 * @param	string	$data
 	 * @param	boolean	$raw
@@ -102,8 +95,8 @@ final class leaf_Hash {
 	}
 	
 	/**
-	 * Επιστρέφει (είτε ώς κείμενο είτε ώς μίας ακολουθία bytes)
-     * την σύνοψη των περιεχομένων ενός αρχείου.
+     * Returns (as text or as a byte sequence) the hash for
+     * the specific file`s contents.
 	 *
 	 * @param	string	$filename
      * @param   boolean $raw

@@ -1,53 +1,30 @@
 ﻿<?php
 /**
- * leaf Framework
+ * This source file is licensed under the New BSD license.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * <i>PHP version 5</i>
- * 
- * 
- * The first greek open source PHP5 framework, fast, with small
- * footprint and easily extensible.<br>
- * Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο,
- * μικρό σε μέγεθος και εύκολα επεκτάσιμο.<br>
- *
- *
- * @package		leaf
- * @subpackage  core
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @filesource
+ * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @link        http://leaf-framework.sourceforge.net
  */
 
 
 /**
  *
  *
- * @author		Avraam Marimpis <makism@venus.cs.teicrete.gr>
- * @copyright	-
- * @license		-
- * @version		1.0-dev
- * @since		1.0-dev
+ * @package     leaf
+ * @subpackage  core
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		$Id$
  * @todo
  * <ol>
- *  <li>Υλοποίηση.</li>
+ *  <li>Implement.</li>
  * </ol>
  */
 final class leaf_Response extends leaf_Base {
 
-    /**
-     *
-     *
-     */
     const LEAF_REG_KEY = "response";
     
-    /**
-     * A unique id for each class.<br>
-     * Ένα μοναδικό αναγνωριστικό για κάθε κλάση.
-     *
-     * @var string
-     */
     const LEAF_CLASS_ID = "LEAF_RESPONSE-1_0_dev";
     
 
