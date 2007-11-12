@@ -98,17 +98,14 @@
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιτελεί λειτουργίες δημιουργίας συνόψεων.</p>
+<p class="short-description">Handles internal hashing procedures, based on already existing  native hash methods.</p>
 	<ul class="tags">
-				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@venus.cs.teicrete.gr">makism@venus.cs.teicrete.gr</a>&gt;</li>
-				<li><span class="field">version:</span> 1.0-dev</li>
-				<li><span class="field">copyright:</span> -</li>
-				<li><span class="field">todo:</span> <ol><li>Πιθανή παροχή ενός interface.</li></ol></li>
-				<li><span class="field">since:</span> 1.0-dev</li>
-				<li><span class="field">license:</span> -</li>
+				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: Hash.php 42 2007-11-12 07:12:38Z makism $</li>
+				<li><span class="field">todo:</span> <ol><li>Possible creation of an interface.</li></ol></li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_leaf---core---Hash.php.html">/leaf/core/Hash.php</a> (line <span class="field"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a35">35</a></span>)
+			Located in <a class="field" href="_leaf---core---Hash.php.html">/leaf/core/Hash.php</a> (line <span class="field">25</span>)
 		</p>
 		
 				
@@ -208,12 +205,12 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$algorithms</span>
-			 = <span class="var-default">array (&quot;md5&quot;, &quot;sha1&quot;)</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a49">49</a></span>)
+			 = <span class="var-default">array (&quot;md5&quot;, &quot;sha1&quot;)</span>			(line <span class="line-number">39</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Όλοι οι διαθέσιμοι αλγόριθμοι.</p>
+<p class="short-description">All supported hash algorithms.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -230,12 +227,12 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$defaultAlgorithm</span>
-			 = <span class="var-default"> &quot;md5&quot;</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a42">42</a></span>)
+			 = <span class="var-default"> &quot;md5&quot;</span>			(line <span class="line-number">32</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Ο προεπιλεγμένος αλγόριθμος.</p>
+<p class="short-description">Default hash algorithm</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -252,11 +249,13 @@
 		<span class="var-title">
 			<span class="var-type">boolean</span>
 			<span class="var-name">$useAltMethod</span>
-			 = <span class="var-default"> FALSE</span>			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a56">56</a></span>)
+			 = <span class="var-default"> FALSE</span>			(line <span class="line-number">50</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Whether to use an alternative method or the classic hash functions.</p>
+<p class="description"><p>The alternative method, is based on the &quot;hash&quot; function that is  documented to be faster than the classic hash functions like  &quot;sha1&quot; and &quot;md5&quot;.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> private</li>
 			</ul>
@@ -285,11 +284,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a65">65</a></span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">58</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Σηματοδοτεί την χρήση ή όχι της μεθόδου hash,  έναντι των κλασσικών συναρτήσεων md5 και sha1.</p>
+<p class="short-description">Flags the method of hashing the we will be using.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -309,11 +308,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">digestFile</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a112">112</a></span>)
+		<span class="method-title">digestFile</span> (line <span class="line-number">105</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει (είτε ώς κείμενο είτε ώς μίας ακολουθία bytes)  την σύνοψη των περιεχομένων ενός αρχείου.</p>
+<p class="short-description">Returns (as text or as a byte sequence) the hash for  the specific file`s contents.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -341,11 +340,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">digestMsg</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a95">95</a></span>)
+		<span class="method-title">digestMsg</span> (line <span class="line-number">88</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Επιστρέφει (είτε ώς κείμενο είτε ώς μία ακολουθία bytes)  την σύνοψη για το κείμενο που δίνεται.</p>
+<p class="short-description">Returns (as text or as a byte sequence) the hash for  the specific give input.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -373,11 +372,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setAlgorithm</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core_leafcoreHash.php.html#a77">77</a></span>)
+		<span class="method-title">setAlgorithm</span> (line <span class="line-number">70</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Θέτει τον επιθυμητό αλγόριθμο προς χρήση.</p>
+<p class="short-description">Sets the requested algorithm for usage.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -404,7 +403,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Sat, 10 Nov 2007 00:41:27 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Mon, 12 Nov 2007 10:23:22 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

@@ -118,7 +118,7 @@ if (document.getElementById) {
 			
 		    		    			var subpackagetree_classe = new WebFXTreeItem('Interface(s)', '');
     			
-    			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			
+    			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			    			        			
     			subpackagetree.add(subpackagetree_classe);
     				
 		    		    			var subpackagetree_classe = new WebFXTreeItem('Class(es)', '');
@@ -142,8 +142,6 @@ if (document.getElementById) {
         			    			    			            				var classe = new WebFXTreeItem('leaf_Input', 'leaf/core/leaf_Input.html');
         				subpackagetree_classe.add(classe);
         			    			    			            				var classe = new WebFXTreeItem('leaf_Loader', 'leaf/core/leaf_Loader.html');
-        				subpackagetree_classe.add(classe);
-        			    			    			            				var classe = new WebFXTreeItem('leaf_Logger', 'leaf/core/leaf_Logger.html');
         				subpackagetree_classe.add(classe);
         			    			    			            				var classe = new WebFXTreeItem('leaf_Model', 'leaf/core/leaf_Model.html');
         				subpackagetree_classe.add(classe);
@@ -182,8 +180,6 @@ if (document.getElementById) {
 							var file = new WebFXTreeItem('Input.php', 'leaf/core/_leaf---core---Input.php.html');
 				subpackagetree_file.add(file);
 							var file = new WebFXTreeItem('Loader.php', 'leaf/core/_leaf---core---Loader.php.html');
-				subpackagetree_file.add(file);
-							var file = new WebFXTreeItem('Logger.php', 'leaf/core/_leaf---core---log---Logger.php.html');
 				subpackagetree_file.add(file);
 							var file = new WebFXTreeItem('Model.php', 'leaf/core/_leaf---core---Model.php.html');
 				subpackagetree_file.add(file);
@@ -278,18 +274,22 @@ if (document.getElementById) {
     			
     			    			            				var classe = new WebFXTreeItem('leaf_Log', 'leaf/core-log/leaf_Log.html');
         				subpackagetree_classe.add(classe);
-        			    			
+        			    			    			        			
     			subpackagetree.add(subpackagetree_classe);
     				
 		    		    			var subpackagetree_classe = new WebFXTreeItem('Class(es)', '');
     			
-    			    			        			    	
+    			    			        			    			            				var classe = new WebFXTreeItem('leaf_Logger', 'leaf/core-log/leaf_Logger.html');
+        				subpackagetree_classe.add(classe);
+        			    			    	
     			subpackagetree.add(subpackagetree_classe);
     				
 				
 					var subpackagetree_file = new WebFXTreeItem('File(s)', '');
 			
 							var file = new WebFXTreeItem('Log.php', 'leaf/core-log/_leaf---core---log---Log.php.html');
+				subpackagetree_file.add(file);
+							var file = new WebFXTreeItem('Logger.php', 'leaf/core-log/_leaf---core---log---Logger.php.html');
 				subpackagetree_file.add(file);
 					
 			subpackagetree.add(subpackagetree_file);

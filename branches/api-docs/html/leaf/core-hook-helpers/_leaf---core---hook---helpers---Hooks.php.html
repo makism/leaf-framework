@@ -97,14 +97,14 @@
 			</div>
 	<div class="info-box-body">	
 		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">leaf Framework</p>
-<p class="description"><p><em>PHP version 5</em></p><p>The first greek open source PHP5 framework, fast, with small footprint and  easily extensible.<br />  Το πρώτο ελληνικό framework PHP5 ανοικτού κώδικα, γρήγορο, μικρό σε μέγεθος  και εύκολα επεκτάσιμο.<br /></p></p>
+<p class="short-description">This source file is part of the leaf framework and  is licensed under the New BSD license.</p>
+<p class="description"><p>For the full copyright and license information, please view the LICENSE  file that was distributed with this source code.</p></p>
 	<ul class="tags">
-				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@venus.cs.teicrete.gr">makism@venus.cs.teicrete.gr</a>&gt;</li>
-				<li><span class="field">version:</span> 1.0-dev</li>
-				<li><span class="field">copyright:</span> -</li>
+				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: Hooks.php 41 2007-11-11 09:25:13Z makism $</li>
+				<li><span class="field">link:</span> <a href="http://leaf-framework.sourceforge.net">http://leaf-framework.sourceforge.net</a></li>
 				<li><span class="field">filesource:</span> <a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html">Source Code for this file</a></li>
-				<li><span class="field">license:</span> -</li>
+				<li><span class="field">license:</span> <a href="http://leaf-framework.sourceforge.net/LICENSE/">New BSD License</a></li>
 			</ul>
 		
 			</div>
@@ -127,11 +127,13 @@
 	<div>
 		<span class="const-title">
 			<span class="const-name">HOOK_POST_CONTROLLER_DISPATCH</span> = 'post_controller_dispatch'
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a34">34</a></span>)
+			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a31">31</a></span>)
 		</span>
 	</div>
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Level, Post Controller Dispatch</p>
+<p class="description"><p>That is, after the controller has been executed and returned.</p></p>
 	
 		
 </div>
@@ -141,11 +143,13 @@
 	<div>
 		<span class="const-title">
 			<span class="const-name">HOOK_POST_FRONT_CONTROLLER</span> = 'post_front_controller'
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a40">40</a></span>)
+			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a38">38</a></span>)
 		</span>
 	</div>
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Level, Post Front Controller</p>
+<p class="description"><p>Almost, before the end of execution of the leaf framework.</p></p>
 	
 		
 </div>
@@ -155,11 +159,13 @@
 	<div>
 		<span class="const-title">
 			<span class="const-name">HOOK_PRE_CONTROLLER_DISPATCH</span> = 'pre_controller_dispatch'
-			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a28">28</a></span>)
+			(line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a24">24</a></span>)
 		</span>
 	</div>
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Level, Pre Controller Dispatch</p>
+<p class="description"><p>That is, before the controller is dispatched.</p></p>
 	
 		
 </div>
@@ -180,7 +186,7 @@
 <div class="oddrow">
 	
 	<div>
-		<span class="method-title">getHooks</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a102">102</a></span>)
+		<span class="method-title">getHooks</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a103">103</a></span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
@@ -212,11 +218,13 @@
 <div class="evenrow">
 	
 	<div>
-		<span class="method-title">introspectHooks</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a51">51</a></span>)
+		<span class="method-title">introspectHooks</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a52">52</a></span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the registered hooks for the requested level.</p>
 	<ul class="tags">
+				<li><span class="field">todo:</span> <ol><li>Refactor.</li></ol></li>
 				<li><span class="field">access:</span> private</li>
 			</ul>
 	
@@ -240,7 +248,7 @@
 <div class="oddrow">
 	
 	<div>
-		<span class="method-title">runHook</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a88">88</a></span>)
+		<span class="method-title">runHook</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a89">89</a></span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
@@ -272,7 +280,7 @@
 <div class="evenrow">
 	
 	<div>
-		<span class="method-title">runHooks</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a75">75</a></span>)
+		<span class="method-title">runHooks</span> (line <span class="line-number"><a href="../../__filesource/fsource_leaf_core-hook-helpers_leafcorehookhelpersHooks.php.html#a76">76</a></span>)
 	</div> 
 
 	<!-- ========== Info from phpDoc block ========= -->
@@ -301,7 +309,7 @@
 	</div>
 	
 	<p class="notes" id="credit">
-		Documentation generated on Sat, 10 Nov 2007 00:41:29 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Mon, 12 Nov 2007 10:23:23 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>
