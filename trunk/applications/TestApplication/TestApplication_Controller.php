@@ -18,27 +18,30 @@ class TestApplication_Controller extends leaf_Controller {
         // Call the parent`s contructor.
 		parent::__construct();
 
-        // Load SampleModel and bind it under
-        // the name 'sample'.
-        $this->loader->model('SampleModel', array('Bind'=>'sample'));
-	}
-	
-	public function index()
-	{
-        // Print a message.
-        echo "Success! This is a test controller.<br/>\n";
-
+        // Load SampleModel and bind it under the name 'sample'.
+        //$this->loader->model('SampleModel', array('Bind'=>'sample'));
+        
         // Change on the fly, the configuration, so 
         // no debug statistics are created.
         $this->config['enable_debug_stats'] = "No";
+	}
+
+	public function index()
+	{
+		// Create the data
+		$data['title'] = "&#8220;leaf framework, Sample Application&#8221";
+		
+        // Print a welcome message.
+        $this->view->render("main", $data);
 
         // Retrieve from the query string the variable 'name'.
         // Then, print the contents (if any).
-        $testQString = $this->request->getQueryString('name');
+        //$testQString = $this->request->getQueryString('name');
 
-        if (!empty($testQString))
-            echo $testQString;
+        //if (!empty($testQString))
+        //    echo $testQString;
 	}
+
 }
 
 ?>

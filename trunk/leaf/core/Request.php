@@ -144,6 +144,16 @@ final class leaf_Request extends leaf_Base {
         return $this->controllerFile;
     }
 
+    /**
+     * Returns the current Application`s name.
+     *
+     * @return  string
+     */
+    public function getApplicationName()
+    {
+    	return $this->router->getClassName();
+    }
+    
 	/**
 	 * Performs a redirect to the speficied Uri.
      *
@@ -222,7 +232,7 @@ final class leaf_Request extends leaf_Base {
      */
     public function segmentsAsArray()
     {
-
+    	
     }
 
     /**
