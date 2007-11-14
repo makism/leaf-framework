@@ -111,7 +111,7 @@
 </ol></div></p><p>This behaviour is succeeded by implementing the <a href="http://www.php.net/~helly/php/ext/spl/interfaceArrayAccess.html">ArrayAccess</a>  interface.<br /></p><p>The other paremeters, are accessed by using the method  getByHashKey(configFileName). This method returns an array with  all the related configuration parameters.<br />  Example:<br />  <div class="src-code"><ol></ol></div></p><p>This design was selected because the &quot;general&quot; properties are the  most commonly used, thus it is wise to provide a fast-access  method.<br />  Also, we could have used the &quot;magic&quot; methods &quot;__call&quot; and &quot;__set&quot;,  but they are declared as &quot;final&quot; in the parent class.</p></p>
 	<ul class="tags">
 				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
-				<li><span class="field">version:</span> $Id: Config.php 30 2007-11-07 20:20:07Z makism $</li>
+				<li><span class="field">version:</span> $Id: Config.php 46 2007-11-12 07:41:49Z makism $</li>
 				<li><span class="field">todo:</span> <ol><li>Maybe we should unset the global variable $GLOBALS somewhere else.</li><li>Possible implementation of a subclass that will read seperate configuration
   files for each Controller, thus declaring different parameters and maybe unique
   for each Controller.</li></ol></li>
@@ -638,7 +638,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Nov 2007 10:23:04 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Wed, 14 Nov 2007 01:06:03 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

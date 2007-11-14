@@ -102,7 +102,7 @@
         		<!-- ========== Info from phpDoc block ========= -->
 	<ul class="tags">
 				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
-				<li><span class="field">version:</span> $Id: View.php 42 2007-11-12 07:12:38Z makism $</li>
+				<li><span class="field">version:</span> $Id: View.php 49 2007-11-13 21:15:18Z makism $</li>
 				<li><span class="field">todo:</span> <ol><li>Implement.</li></ol></li>
 			</ul>
 		<p class="notes">
@@ -171,8 +171,8 @@
 														
 				<div class="method-definition">
 											<span class="method-result">void</span>
-										<a href="#__call" title="details" class="method-name">__call</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$method</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$args</span>)
+										<a href="#render" title="details" class="method-name">render</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$view</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>])
 									</div>
 														
 				<div class="method-definition">
@@ -226,7 +226,7 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">Constructor __construct</span> (line <span class="line-number">35</span>)
@@ -254,42 +254,51 @@
 					</dl>
 			
 	</div>
-<a name="method__call" id="__call"><!-- --></a>
-<div class="oddrow">
+<a name="methodrender" id="render"><!-- --></a>
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__call</span> (line <span class="line-number">51</span>)
+		<span class="method-title">render</span> (line <span class="line-number">62</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Includes and renders a view file.</p>
+<p class="description"><p>View files, are common php script files.</p></p>
 	<ul class="tags">
+				<li><span class="field">todo:</span> <ol><li>When this method is called, the Output Buffer, will be also
+  flushed and terminating. This will spawn the &quot;include&quot; method
+  which will be similar except the Ob thingie.</li><li>Maybe this method and &quot;include&quot;, will be implemeneted inside
+  the overload method &quot;__call&quot;.</li><li>Create some &quot;sanity&quot; checks to run against the view name
+  that is requested.</li><li>It is an obvious bug that is the user declares a variable
+  with the &quot;viewFile&quot;, this will result in overlapping the local
+  variable that holds the file in which the view is located.&lt;/i&gt;</li></ol></li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
 		<span class="method-result">void</span>
 		<span class="method-name">
-			__call
+			render
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$method</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$args</span>)
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$view</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$method</span>			</li>
+				<span class="var-type">string</span>
+				<span class="var-name">$view</span>			</li>
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$args</span>			</li>
+				<span class="var-type">array</span>
+				<span class="var-name">$data</span>			</li>
 				</ul>
 		
 			
 	</div>
 <a name="method__toString" id="__toString"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__toString</span> (line <span class="line-number">41</span>)
+		<span class="method-title">__toString</span> (line <span class="line-number">107</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -343,7 +352,7 @@
 					</div>
 		<div class="info-box-body">
 			<a name="constLEAF_CLASS_ID" id="LEAF_CLASS_ID"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -359,7 +368,7 @@
 	
 </div>
 <a name="constLEAF_REG_KEY" id="LEAF_REG_KEY"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -392,7 +401,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Nov 2007 10:23:39 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Wed, 14 Nov 2007 01:06:32 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</div></body>
 </html>

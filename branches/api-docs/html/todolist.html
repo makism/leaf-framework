@@ -160,6 +160,16 @@
   has declared the constant LEAF_REG_KEY, and possible
   examine further it`s behaviour.</li></ol></li>
 </ul>
+<h3><a href="leaf/core/leaf_View.html#methodrender">leaf_View::render()</a></h3>
+<ul>
+    <li><ol><li>When this method is called, the Output Buffer, will be also
+  flushed and terminating. This will spawn the &quot;include&quot; method
+  which will be similar except the Ob thingie.</li><li>Maybe this method and &quot;include&quot;, will be implemeneted inside
+  the overload method &quot;__call&quot;.</li><li>Create some &quot;sanity&quot; checks to run against the view name
+  that is requested.</li><li>It is an obvious bug that is the user declares a variable
+  with the &quot;viewFile&quot;, this will result in overlapping the local
+  variable that holds the file in which the view is located.&lt;/i&gt;</li></ol></li>
+</ul>
 <h3><a href="leaf/core/leaf_Request.html#methodsegment">leaf_Request::segment()</a></h3>
 <ul>
     <li><ol><li>Implement.</li></ol></li>
@@ -185,7 +195,7 @@
     <li><ol><li>Possible break-down of the jobs that the constructor executes.</li><li>Recheck the &quot;virtual file extension&quot; function.</li></ol></li>
 </ul>
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Nov 2007 10:23:39 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+		Documentation generated on Wed, 14 Nov 2007 01:06:32 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
 	</p>
 	</body>
 </html>
