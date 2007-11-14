@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>Docs for page index.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+						<script src="../media/lib/classTree.js"></script>
+												<script language="javascript" type="text/javascript">
+				var imgPlus = new Image();
+				var imgMinus = new Image();
+				imgPlus.src = "../media/images/plus.png";
+				imgMinus.src = "../media/images/minus.png";
+				
+				function showNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgMinus.src;
+					oTable.style.display = "block";
+				}
+				
+				function hideNode(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+							var oImg = document.layers["img" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+							var oImg = document.all["img" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+							var oImg = document.getElementById("img" + Node);
+									break;
+							}
+					oImg.src = imgPlus.src;
+					oTable.style.display = "none";
+				}
+				
+				function nodeIsVisible(Node){
+							switch(navigator.family){
+								case 'nn4':
+									// Nav 4.x code fork...
+							var oTable = document.layers["span" + Node];
+									break;
+								case 'ie4':
+									// IE 4/5 code fork...
+							var oTable = document.all["span" + Node];
+									break;
+								case 'gecko':
+									// Standards Compliant code fork...
+							var oTable = document.getElementById("span" + Node);
+									break;
+							}
+					return (oTable && oTable.style.display == "block");
+				}
+				
+				function toggleNodeVisibility(Node){
+					if (nodeIsVisible(Node)){
+						hideNode(Node);
+					}else{
+						showNode(Node);
+					}
+				}
+			</script>
+					</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/index.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+									<a href="#sec-includes">Includes</a>
+			|							<a href="#sec-constants">Constants</a>
+										</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This source file is part of the leaf framework and  is licensed under the New BSD license.</p>
+<p class="description"><p>For the full copyright and license information, please view the LICENSE  file that was distributed with this source code.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Avraam Marimpis &lt;<a href="mailto:makism@users.sf.net">makism@users.sf.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Id: index.php 48 2007-11-13 21:11:14Z makism $</li>
+				<li><span class="field">link:</span> <a href="http://leaf-framework.sourceforge.net">http://leaf-framework.sourceforge.net</a></li>
+				<li><span class="field">license:</span> <a href="http://leaf-framework.sourceforge.net/LICENSE/">New BSD License</a></li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	<a name="sec-includes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Includes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Includes</span>
+			|							<a href="#sec-constants">Constants</a>
+															</div>
+		<div class="info-box-body">	
+			<a name="_LEAF_BASE_front/Front_Controller_php"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="include-title">
+			<span class="include-type">require_once</span>
+			(<span class="include-name">LEAF_BASE.'front/Front_Controller.php'</span>)
+			(line <span class="line-number">64</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The <a href="../leaf/front/_leaf---front---Front_Controller.php.html">Front Controller</a> handles the  startup sequence.</p>
+	
+</div>
+		</div>
+	</div>
+	
+	<a name="sec-constants"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-includes">Includes</a>
+				|						<span class="disabled">Constants</span>
+											</div>
+		<div class="info-box-body">	
+			<a name="defineLEAF_APPS"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LEAF_APPS</span> = LEAF_WORKING_DIR.'applications/'
+			(line <span class="line-number">53</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subdirectory in which user`s applications are located.</p>
+	
+		
+</div>
+<a name="defineLEAF_BASE"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LEAF_BASE</span> = LEAF_WORKING_DIR.'leaf/'
+			(line <span class="line-number">48</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subdirectory in which leaf`s files are located.</p>
+	
+		
+</div>
+<a name="defineLEAF_REL_STATUS"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LEAF_REL_STATUS</span> = 'DEV'
+			(line <span class="line-number">37</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">leaf`s Status and Version information.</p>
+	
+		
+</div>
+<a name="defineLEAF_REL_VERSION"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LEAF_REL_VERSION</span> = '1.0'
+			(line <span class="line-number">38</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+		
+</div>
+<a name="defineLEAF_VAR"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LEAF_VAR</span> = LEAF_WORKING_DIR.'var/'
+			(line <span class="line-number">58</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subdirectory in which cache and temporary files are stored.</p>
+	
+		
+</div>
+<a name="defineLEAF_WORKING_DIR"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LEAF_WORKING_DIR</span> = dirname(realpath(__FILE__)).'/'
+			(line <span class="line-number">43</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Current directory where *this* file is located.</p>
+	
+		
+</div>
+		</div>
+	</div>
+	
+	
+	
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 14 Nov 2007 01:06:21 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+	</p>
+	</div></body>
+</html>
