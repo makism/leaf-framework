@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -10,6 +10,10 @@
 
 
 /**
+ * Assigns some common characteristics to all user`s Controllers.
+ *
+ * All Controller, <b>must</b> inherit from this class, otherwise
+ * they will be <b>ignored</b>.
  *
  * @package		leaf
  * @subpackage	core
@@ -17,18 +21,21 @@
  * @version		$Id$
  * @todo
  * <ol>
- *  <li>Implement.</li>
+ *  <li>Refactor.</li>
+ *  <li>Possible implementation of "Dependacies Injection (DI)" method,
+ *  so that each Controller, will load <b>only</b> the classes it
+ *  depends on.</li>
  * </ol>
  */
-final class leaf_View extends leaf_Base {
+abstract class leaf_Controller extends leaf_Base {
 
-    const LEAF_REG_KEY = "view";
+    const LEAF_REG_KEY = "controller";
     
-    const LEAF_CLASS_ID = "LEAF_VIEW-1_0_dev";
+    const LEAF_CLASS_ID = "LEAF_CONTROLLER-1_0_dev";
 
 
     /**
-     *
+     * Calls the parent constructor.
      *
      * @return  void
      */
@@ -37,26 +44,11 @@ final class leaf_View extends leaf_Base {
         parent::__construct(self::LEAF_REG_KEY);
 	}
 
-
     public function __toString()
     {
         return __CLASS__ . " " . self::LEAF_CLASS_ID;
     }
 
-    /**
-     *
-     *
-     * @return  void
-     */
-    public function __call($method, $args)
-    {
-        if ($method=="render")
-            ;
-        else if ($method=="view")
-            ;
-    }
-
 }
 
 ?>
-

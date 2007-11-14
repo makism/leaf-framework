@@ -11,6 +11,7 @@
 
 /**
  *
+ *
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
@@ -20,43 +21,50 @@
  *  <li>Implement.</li>
  * </ol>
  */
-final class leaf_View extends leaf_Base {
+final class leaf_Input extends leaf_Base implements ArrayAccess {
 
-    const LEAF_REG_KEY = "view";
+    const LEAF_REG_KEY = "input";
     
-    const LEAF_CLASS_ID = "LEAF_VIEW-1_0_dev";
-
+    const LEAF_CLASS_ID = "LEAF_INPUT-1_0_dev";
+    
 
     /**
+     * Array with references to the super global
+     * variables "post" and "get".
      *
-     *
-     * @return  void
+     * @var array
      */
-	public function __construct()
-	{
+    private $input = array (
+        "get"   => array(),
+        "post"  => array()
+    );
+
+    public function __construct()
+    {
         parent::__construct(self::LEAF_REG_KEY);
-	}
-
-
-    public function __toString()
-    {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
     }
 
-    /**
-     *
-     *
-     * @return  void
-     */
-    public function __call($method, $args)
+    public function offsetExists($offset)
     {
-        if ($method=="render")
-            ;
-        else if ($method=="view")
-            ;
+
     }
 
+    public function offsetGet($offset)
+    {
+        
+    }
+
+    public function offsetSet($offset, $value)
+    {
+
+    }
+
+    public function offsetUnset($offset)
+    {
+
+    }
+
+    
 }
 
 ?>
-

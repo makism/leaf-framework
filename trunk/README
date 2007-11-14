@@ -1,0 +1,11 @@
+
+leaf framework
+**************
+     * Supported PHP versions, 5.1 - or newer.
+
+     * This is a testing release, which means that.
+        1) The API is not final, and maybe change.
+                            &
+        2) Since this is a test release, it is not wise
+           to be used in production.
+        

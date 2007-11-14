@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -20,11 +20,11 @@
  *  <li>Implement.</li>
  * </ol>
  */
-final class leaf_View extends leaf_Base {
-
-    const LEAF_REG_KEY = "view";
+abstract class leaf_Model extends leaf_Base {
     
-    const LEAF_CLASS_ID = "LEAF_VIEW-1_0_dev";
+    const LEAF_REG_KEY = "model";
+
+    const LEAF_CLASS_ID = "LEAF_MODEL-1_0_dev";
 
 
     /**
@@ -32,31 +32,11 @@ final class leaf_View extends leaf_Base {
      *
      * @return  void
      */
-	public function __construct()
-	{
-        parent::__construct(self::LEAF_REG_KEY);
-	}
-
-
-    public function __toString()
+    public function __construct()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
-    }
 
-    /**
-     *
-     *
-     * @return  void
-     */
-    public function __call($method, $args)
-    {
-        if ($method=="render")
-            ;
-        else if ($method=="view")
-            ;
     }
-
+    
 }
 
 ?>
-
