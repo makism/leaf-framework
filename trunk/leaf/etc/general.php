@@ -33,7 +33,7 @@ $general['base_dir']  = "/leaf/";
 /*
  * Default application controller.
  */
-$general['default_controller'] = "TestApplication";
+$general['default_controller'] = "SampleApplication";
 
 
 /*
@@ -136,7 +136,7 @@ $general['log_level'] = "None";
  * Legal values: "Yes", "No"
  * Default: "Yes"
  */
-$general['enable_debug_stats'] = "Yes";
+$general['enable_debug_stats'] = "No";
 
 
 ?>
