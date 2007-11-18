@@ -10,6 +10,7 @@
 
 
 /**
+ * Handles the "View" files.
  *
  * @package		leaf
  * @subpackage	core
@@ -28,7 +29,21 @@ final class leaf_View extends leaf_Base {
 
 
     /**
+     * Current View filename.
      *
+     * @var string
+     */
+    private $currViewFile = NULL;
+
+    /**
+     * List of all the View files.
+     *
+     * @var array
+     */
+    private $viewFileList = array();
+
+    /**
+     * Instantiates the super class.
      *
      * @return  void
      */
@@ -38,9 +53,21 @@ final class leaf_View extends leaf_Base {
 	}
 
     /**
-     * Includes and renders a view file.
+     * Includes a view file.
      * 
-     * View files, are common php script files.
+     * View files, are common php script files. You may
+     * pass an associative array with the variables you want to
+     * expose to the view files.<br>
+     * Example:<br>
+     * In your controller you write something like this
+     * <code>
+     *  $data = array ("title" => "Homepage");
+     *  $this->view->render("somefile", $data);
+     * </code>
+     * While, in your view file you have:
+     * <code>
+     *  echo $title;
+     * </code>
      * 
      * @param   string  $view
      * @param   array   $data
@@ -54,9 +81,6 @@ final class leaf_View extends leaf_Base {
      *  the overload method "__call".</li>
      *  <li>Create some "sanity" checks to run against the view name
      *  that is requested.</li>
-     *  <li>It is an obvious bug that is the user declares a variable
-     *  with the "viewFile", this will result in overlapping the local
-     *  variable that holds the file in which the view is located.</i>
      * </ol>
      */
     public function render($view, array $data=NULL)
@@ -90,18 +114,22 @@ final class leaf_View extends leaf_Base {
         }
         
         // Create the file final name...
-        $viewFile = "applications/" . $app . "/View/" . $name . ".php";
+        $this->currViewFile = "applications/" . $app . "/View/" . $name . ".php";
                 
-        if (file_exists($viewFile) && is_readable($viewFile)) {
+        if (file_exists($this->currViewFile) &&
+            is_readable($this->currViewFile))
+        {
+            $this->viewFileList[] = $this->currViewFile;
+
         	// Make the passed variables visible to the included
             // View file.
         	if (!empty($data))
         	   foreach ($data as $Idx => $Val)
         	       ${$Idx} = $Val;
 
-            require_once $viewFile;
+            require_once $this->currViewFile;
         }
-        
+
     }
 
     public function __toString()
