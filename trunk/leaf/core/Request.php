@@ -122,9 +122,9 @@ final class leaf_Request extends leaf_Base {
          */
         $this->queryElems   = $this->router->queryStringElements();
 	}
-
+	
 	/**
-	 * ReturnstThe requested class name (Controller), suffixed with
+	 * Returnst the requested class name (Controller), suffixed with
      * "_Controller".
      *
 	 * @return	string
@@ -152,6 +152,16 @@ final class leaf_Request extends leaf_Base {
     public function getApplicationName()
     {
     	return $this->router->getClassName();
+    }
+    
+    /**
+     * 
+     *
+     * @var string 
+     */
+    public function getActionName()
+    {
+    	return $this->action;
     }
     
 	/**
@@ -236,6 +246,16 @@ final class leaf_Request extends leaf_Base {
     }
 
     /**
+     * Returns the complete query string.
+     * 
+     * @var array
+     */
+    public function getQueryString()
+    {
+    	return $this->router->queryString();
+    }
+    
+    /**
      * Retrieves the value for the requested key.
      *
      * @param   string  $offset
@@ -245,11 +265,26 @@ final class leaf_Request extends leaf_Base {
 	 *  <li>Possible method refactor.</li>
 	 * </ol>
      */
-    public function getQueryString($offset)
+    public function queryStringValue($offset)
     {
         if ($this->queryElems!=NULL)
             if (array_key_exists($offset, $this->queryElems))
                 return $this->queryElems[$offset];
+            else
+                return NULL;
+    }
+
+    /**
+     * Checks if the specific key exists in the Query String.
+     *
+     * @param   string  $key
+     * @return  boolean
+     */
+    public function queryStringKeyExists($key)
+    {
+        if ($this->queryElems!=NULL)
+            if (array_key_exists($key, $this->queryElems))
+                return true;
             else
                 return NULL;
     }
