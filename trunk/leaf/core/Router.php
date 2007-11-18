@@ -91,8 +91,10 @@ final class leaf_Router extends leaf_Base {
 
 	
 	/**
-     * Ελληνική μετάφραση πάει εδώ...
-	 *
+	 * Monolithic method, that is the core of the Router class.
+     *
+     * <i>(See class description)</i>
+     *
 	 * @see		leaf_Config
 	 * @see		leaf_Request
 	 * @return	void
@@ -183,7 +185,7 @@ final class leaf_Router extends leaf_Base {
             			list($Key, $Value) = explode("=", $Elem);                
             			$this->queryStringElements[$Key] = $Value;
                     } else {
-                        $this->queryStringElements[$Elem] = NULL;
+                        $this->queryStringElements[$Elem] = "";
                     }
 				}
                 
@@ -267,6 +269,16 @@ final class leaf_Router extends leaf_Base {
 		
 	}
 
+    /**
+     * Returns the query string as is.
+     *
+     * @return  string
+     */
+	public function queryString()
+	{
+		return $this->queryString;
+	}
+	
     /**
      * Returns an associative array filled with the
      * elements that found in the query string.
