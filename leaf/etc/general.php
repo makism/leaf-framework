@@ -19,15 +19,18 @@ $general = array();
 
 /*
  * Host name.
+ * "hideo", for example.
  */
-$general['hostname']  = "http://hideo";
+$general['hostname']  = "http://hostname";
 
 
 /*
  * The subdirectory in your htdocs (usually), where leaf Framework`s
  * index.php is located.
+ * "/leaf", for example.
+ *
  */
-$general['base_dir']  = "/leaf/";
+$general['base_dir']  = "/";
 
 
 /*
