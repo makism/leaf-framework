@@ -17,6 +17,9 @@ class SampleApplication_Controller extends leaf_Controller {
 	{
         // Call the parent`s contructor.
 		parent::__construct();
+
+        // Load the Sample Model
+        $this->load->model("SampleModel", array("bindName"=>"sample"));
 		
 		// Include some required plugins.
 		$this->load->plugin("url");
@@ -29,8 +32,8 @@ class SampleApplication_Controller extends leaf_Controller {
 
 	public function index()
 	{
-		// Create the data
-		$data['title'] = "&#8220;leaf framework, Sample Application&#8221";
+		// Populate the data array.
+		$data['title'] = $this->sample->getPageTitle();
 		
         // Print a welcome message.
         $this->view->render("main", $data);
