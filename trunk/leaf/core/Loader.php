@@ -11,7 +11,7 @@
 
 /**
  * Handles the loading requests for resources like the Models,
- * Extensions, Plugins, Libraries etc.
+ * Extensions and Plugins.
  * 
  * @package		leaf
  * @subpackage	core
@@ -21,6 +21,8 @@
  * <ol>
  *  <li>Implement.</li>
  *  <li>Document.</li>
+ *  <li>Possible splitting into a second "Repository" class that will
+ *  hold all the instancies.</li>
  * </ol>
  */
 class leaf_Loader extends leaf_Base {
@@ -30,21 +32,24 @@ class leaf_Loader extends leaf_Base {
     const LEAF_CLASS_ID = "LEAF_LOADER-1_0_dev";
 
     /**
-     * List of all the loaded plugins
+     * List of all the loaded plugins.
      * 
      * @var array 
      */
     private $plugins = array();
     
-    /*
-     * List of "black-listed" plugins.
+    /**
+     * List of Models` instances.
      * 
-     * These plugins are found to have some problems
-     * and cannot be loaded.
-     *  
      * @var array
      */
-    private $pluginsBlacklist = array();
+    private $models = array();
+    
+    /**
+     * 
+     * @var array
+     */
+    private $extensions = array();
     
 
     /**
@@ -56,31 +61,90 @@ class leaf_Loader extends leaf_Base {
     {
         parent::__construct(self::LEAF_REG_KEY);
     }
-
+    
     /**
+     * Loads a "Model" using the specified settings.
      *
+     * Method usage
+     * <ul>
+     *  <li>
+     *   <i>Model loading</i><br>
+     *   This means, that you pass to the method, the Model`s name you
+     *   desire to load, and you specify any settings if you would like.<br>
+     *   The available settings are:
+     *    <ol>
+     *     <li><b>bindName</b> <i>(string)</i>: the instance name (REQUIRED)</li>
+     *     <li><b>application</b> <i>(string)</i>: source application</li>
+     *     <li><b>global</b> <i>(boolean)</i>: restrict access to the model</li>
+     *     <li><b>args</b> <i>(array)</i>: arguments passed to the contructor</li>
+     *    </ol>
+     *  </li>
+     *  <li>
+     *   <i>Model referencing</i><br>
+     *   This means, that you retrieve the instance of the Model you
+     *   requested. The settings passed, are ignored.
+     *  </li>
+     * </ul>
      *
      * @param   string  $modelName
-     * @param   array   $opts
-     * @return  void
+     * @param   array   $settings
+     * @return  object|NULL
+     * @todo
+     * <ol>
+     *  <li>Extend support for settings.</li>
+     *  <li>Make "bindName" setting optional, and use the class` name as the
+     *  instance name.</li>
+     * </ol>
      */
-    public function model($modelName, array $opts=NULL)
+    public function model($modelName, array $settings=NULL)
     {
+    	// Assume usage method #2
+    	// That is, retrieving a Model instance.
+    	if (!isset($settings)) {
+    		if (array_key_exists($modelName, $this->models))
+    		  return $this->models[$modelName];
+    		else
+    		  return NULL;
+    		  
+        // Fallback to usage method #1
+        // That is, loading a new Model.
+        // >> We demand that the property "bindName" is set,
+        //    otherwise we ignore the loading. 
+    	} else {
+    		if (!empty($settings['bindName'])) {
+    			// application base name
+	    		$baseDir =
+	    		  "applications/" .
+	    		  $this->request->getApplicationName() .
+	    		  "/Model/";
+	    		  
+	    		// instance name
+	    		$instanceName = $settings['bindName'];
+	    		
+	    		// model`s filename
+	    		$modelFile = $baseDir . $modelName . ".php";
+	    		
+	    		// class name
+	    		$modelClass = $modelName . "_Model";
+	    		
+	    		if (file_exists($modelFile) && is_readable($modelFile)) {
+	    			// include model class
+	    			require_once $modelFile;
+	    			
+	    			// instantiate and register model
+	    			$instance = new $modelClass;
+	    			if ($instance instanceof leaf_Model)
+	    			    $this->models[$instanceName] = $instance;	
+	    		}
+	    		
+    		} else {
+    			return NULL;
+    		}
+    	}
     }
-
-    /**
-     *
-     *
-     * @param   string  $name
-     * @return  void
-     */
-	public function library($name)
-	{
-		
-	}
 	
     /**
-     *
+     * Loads an "Extension" class.
      *
      * @param   string  $ext
      * @param   string  $namespace
@@ -90,25 +154,16 @@ class leaf_Loader extends leaf_Base {
 	{
 	
 	}
-
-    /**
-     *
-     *
-     * @param   string  $class
-     * @return  void
-     */
-    public function endorsed($class)
-    {
-
-    }
 	
     /**
-     * Loads a "plugin".
+     * Loads a "Plugin" file.
      * 
      * "Plugin", is a common php script file that contains
      * a number of functions.<br>
      * It is most likely, that each plugin, will have a specific
-     * "topic".
+     * "topic", Url-manipulating for example.<br>
+     * Possible candidates as Plugins, are the todo-facade methods
+     * for class {@link leaf_Request}.
      * 
      * @param   string  $plugin
      * @return  void
@@ -122,9 +177,6 @@ class leaf_Loader extends leaf_Base {
 				require_once $fileName;
 				
 				$this->plugins[] = $plugin;
-			} else {
-				// add to "blacklist"
-				$this->pluginsBlacklist[] = $plugin;
 			}
 		}
 	}
@@ -133,6 +185,7 @@ class leaf_Loader extends leaf_Base {
     {
         return __CLASS__ . " " . self::LEAF_CLASS_ID;
     }
+
 }
 
 ?>
