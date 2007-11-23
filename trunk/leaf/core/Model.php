@@ -11,6 +11,7 @@
 
 /**
  *
+ *
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
@@ -18,6 +19,7 @@
  * @todo
  * <ol>
  *  <li>Implement.</li>
+ *  <li>Possible removal.</li>
  * </ol>
  */
 abstract class leaf_Model extends leaf_Base {
@@ -29,12 +31,20 @@ abstract class leaf_Model extends leaf_Base {
 
     /**
      *
-     *
      * @return  void
      */
     public function __construct()
     {
 
+    }
+    
+    /**
+     * 
+     * @return  string
+     */
+    public function __toString()
+    {
+    	
     }
     
 }
