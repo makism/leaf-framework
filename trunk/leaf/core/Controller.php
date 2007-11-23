@@ -43,6 +43,26 @@ abstract class leaf_Controller extends leaf_Base {
 	{
         parent::__construct(self::LEAF_REG_KEY);
 	}
+	
+	/**
+     * Returns the requested object from the {@link leaf_Registry $Registry},
+     * <b>or</b> the requested Model.
+     * 
+	 * @param  string  $key
+	 * @return object|NULL
+	 */
+	protected function __get($key)
+	{
+        // Search the requested key in the Registry and
+        // return it if found.
+        if (leaf_Registry::getInstance()->isRegistered($key)!=FALSE)
+            return parent::__get($key);
+            
+        // Otherwise, asume that a Model is requested
+        // and thus return it -if found-.
+        else
+            return $this->load->model($key);
+	}
 
     public function __toString()
     {
