@@ -12,8 +12,7 @@
         $opts = array (
             "qstring" => array (
                 "append" => array(
-                    "debug" => NULL,
-                    "rel"   => "alpha"
+                    "debug" => NULL
                 )
             )
         );
