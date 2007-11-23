@@ -87,7 +87,7 @@ abstract class leaf_Base {
      * @param   string  $obj
      * @return  object
      */
-    protected final function __get($obj)
+    protected function __get($obj)
     {
         return self::$Registry->{$obj};
     }
