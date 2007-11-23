@@ -7,8 +7,11 @@
  * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
+ * @package     leaf
+ * @subpackage  plugins
  * @author      Marimpis Avraam <makism@users.sf.net>
  * @version     $Id$
+ * @filesource
  */
 
 
@@ -32,20 +35,23 @@ function make_link_curr() {
 	if ($req==NULL)
 	$req = leaf_Registry::getInstance()->request;
 
+    // Get the base url.
+    $url = leaf_Registry::getInstance()->config['base_url'];
 
-	$url = $req->getApplicationName();
+    // Controller name.
+	$url .= $req->getApplicationName();
 
-	// Attach the Action
+	// Attach the Action.
 	if ($req->getActionName()!=NULL)
 	$url .= "/" . $req->getActionName() . "/";
 
-	// Attach the extra segments
+	// Attach the extra segments.
 	if (0)
 	;
 
-	// Attach the Query String
+	// Attach the Query String.
 	if ($req->getQueryString()!=NULL)
-	$url .= $req->getQueryString();
+	    $url .= $req->getQueryString();
 
 	return $url;
 }
