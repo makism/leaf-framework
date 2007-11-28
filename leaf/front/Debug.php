@@ -73,20 +73,20 @@ DEBUG_STYLES;
          "<li><a href=\"#leaf_Degug_Registry\"><em>Registry</em></a></li>" . 
          "<li><a href=\"#leaf_Debug_Request\"><em>Request Information</em></a></li>";
 
-if ($reg->config['allow_hooks']=="Yes") {
-    echo
+    if ($reg->config['allow_hooks']=="Yes") {
+        echo
         "<li><a href=\"#leaf_Debug_Hooks\"><em>Hooks</em></a></li>";
-}
+    }
 
-if ($reg->config['log_level']!="None") {
-    echo
+    if ($reg->config['log_level']!="None") {
+        echo
         "<li><a href=\"#leaf_Debug_Log_Buffer\"><em>Log Buffer</em></a></li>";
-}
+    }
 		 
-if ($reg->config['allow_endorsed']=="Yes") {
-	echo
+    if ($reg->config['allow_endorsed']=="Yes") {
+    	echo
 		 "<li><a href=\"#leaf_Debug_Endorsed\"><em>Endorsed Classes</em></a></li>";
-}
+    }
     
     // tabs (end)
     echo "</ul>";
@@ -104,7 +104,7 @@ if ($reg->config['allow_endorsed']=="Yes") {
         echo
             "<div id=\"leaf_Debug_leaf_Statistics\" style=\"display: block;\">"
             . " <pre style=\"font-size: 12px; font-family: Verdana, Arial, helvetica, sans-serif;\">"
-            . "  <span style=\"color: #4e9a06;\"><b>leaf Version</b></span>\n"
+            . "  <span style=\"color: #4e9a06;\"><b>leaf framework Release</b></span>\n"
             . "  <span style=\"color: #ff0000;\">  " . LEAF_REL_VERSION . " " . LEAF_REL_STATUS . "\n"
             . "  <span style=\"color: #4e9a06;\"><b>Script memory usage</b></span>\n"
             . "  <span style=\"color: #ff0000;\">  {$memoryUsageKbs} <small><i>({$memoryUsage} bytes)</i></small></span>\n"
@@ -127,9 +127,7 @@ if ($reg->config['allow_endorsed']=="Yes") {
                 "<span style=\"color: #4e9a06;\"><b>{$Var}</b></span>\n    "
               . "<span style=\"color: #ff0000;\"><small>{$Val}</small></span>\n";
         }
-        echo "</fieldset>";
-
-        echo "<br/>";
+        echo "</fieldset><br/>";
 
         echo
             "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Autoload</b></small></legend>";
@@ -141,17 +139,14 @@ if ($reg->config['allow_endorsed']=="Yes") {
         echo "</fieldset>";
 
         echo
-            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Endorsed</b></small></legend>";
-        echo "</fieldset>";
-
-        echo "<br/>";
-
-        echo
-            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Hooks</b></small></legend>";
-        echo "</fieldset>";
-
-        echo
-            " </pre>"
+            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Endorsed</b></small></legend>"
+            . "</fieldset>"
+            . "<br/>";
+        
+         echo
+            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Hooks</b></small></legend>"
+            . "</fieldset>"
+            . "</pre>"
             . "</div>";
 
         //
