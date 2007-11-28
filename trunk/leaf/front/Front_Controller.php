@@ -60,7 +60,7 @@ require_once LEAF_BASE  . 'front/helpers/Debug.php';
  * @see leaf_Hook
  * @see leaf_Hook_Conditional
  */
-require_once LEAF_BASE  . 'core/hook/helpers/Hooks.php';
+require_once LEAF_BASE  . 'core/helpers/Hooks.php';
 
 
 /*
