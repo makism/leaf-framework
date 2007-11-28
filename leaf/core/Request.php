@@ -303,11 +303,16 @@ final class leaf_Request extends leaf_Base {
         if ($this->queryElems!=NULL) {
             $str = NULL;
         
-            foreach($this->queryElems as $Var => $Val)
-                $str .= $Var . " = " . $Val . ",";
-
-			if ($str{strlen($str)-1}==",")
-				$str{strlen($str)-1} = " ";
+            foreach($this->queryElems as $Var => $Val) {
+                if ($Val=="" || empty($Val))
+                    $Val = "<i>NULL</i>";
+                    
+                $str .= $Var . " = " . $Val . ", ";
+            }
+            
+            if (preg_match("@, $@", $str)) {
+                $str = preg_replace("@, $@", "", $str);
+            } 
 
             return $str;
         } else 
