@@ -30,7 +30,7 @@
  */
 final class leaf_Router extends leaf_Base {
 
-    const LEAF_REG_KEY = "router";
+    const LEAF_REG_KEY = "Router";
     
     const LEAF_CLASS_ID = "LEAF_ROUTER-1_0_dev";
 
@@ -129,18 +129,18 @@ final class leaf_Router extends leaf_Base {
         $skipExt = "";
 		
         // match the query string
-		$skipQueryString = ($this->config['allow_query_strings']=="Yes")
+		$skipQueryString = ($this->Config['allow_query_strings']=="Yes")
 			? "(\?(["
-				. $this->config['allow_query_string_chars']
+				. $this->Config['allow_query_string_chars']
 				. "]+(=["
-				. $this->config['allow_query_string_chars']
+				. $this->Config['allow_query_string_chars']
 				. "]*)?\&?)+)?"
 			: "";
 		
         // match all
 		$checkUri = preg_match_all(
 			"|"
-				. "^[" . preg_quote($this->config['allow_uri_chars']) . "]+"
+				. "^[" . preg_quote($this->Config['allow_uri_chars']) . "]+"
 				. "{$skipExt}{$skipQueryString}$" .
 			"|iu",
 			$this->requestUri,
@@ -173,7 +173,7 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if (preg_match("@\?(.+(=.+)?\&?$)+@iu", $this->requestUri, $matches)) {
             
-			if ($this->config['allow_query_strings']=="Yes") {
+			if ($this->Config['allow_query_strings']=="Yes") {
                 
 				$this->queryString = $matches[0];
 
@@ -211,7 +211,7 @@ final class leaf_Router extends leaf_Base {
 		 * Removal of leading base dir.
 		 */
 		$this->requestUri = preg_replace(
-			"@^{$this->config['base_dir']}@",
+			"@^{$this->Config['base_dir']}@",
 			"",
 			$this->requestUri
 		);
@@ -222,7 +222,7 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if (!empty($this->config['url_suffix']))
 			$this->requestUri = preg_replace(
-				"@\.{$this->config['url_suffix']}/?$@",
+				"@\.{$this->Config['url_suffix']}/?$@",
 				"",
 				$this->requestUri
 			);
@@ -238,8 +238,8 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if ($this->requestUri=="/"	||
 			$this->requestUri==NULL	||
-			($this->requestUri{0}=="?" && $this->config['allow_query_strings']=="Yes")) {
-			$this->requestClass = $this->config['default_controller'];
+			($this->requestUri{0}=="?" && $this->Config['allow_query_strings']=="Yes")) {
+			$this->requestClass = $this->Config['default_controller'];
         }	
 		/*
 		 * We extract the Controller class.

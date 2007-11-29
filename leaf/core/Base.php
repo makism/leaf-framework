@@ -42,7 +42,7 @@ abstract class leaf_Base {
      *
      * @var string
      */
-    const LEAF_REG_KEY = "base";
+    const LEAF_REG_KEY = "Base";
     
     /**
      * A unique handle for each subclass.

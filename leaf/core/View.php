@@ -23,7 +23,7 @@
  */
 final class leaf_View extends leaf_Base {
 
-    const LEAF_REG_KEY = "view";
+    const LEAF_REG_KEY = "View";
     
     const LEAF_CLASS_ID = "LEAF_VIEW-1_0_dev";
 
@@ -110,7 +110,7 @@ final class leaf_View extends leaf_Base {
         // string, assign the current application`s
         // name.
         if ($app=="/" || $app==NULL) {
-        	$app = $this->request->getApplicationName();
+        	$app = $this->Request->getApplicationName();
         }
         
         // Create the file final name...
