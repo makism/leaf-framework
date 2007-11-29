@@ -34,7 +34,7 @@ if (LEAF_REL_STATUS=='DEV') {
     $parseTime      = xdebug_time_index();
     $memoryUsage    = memory_get_usage();
     $memoryUsageKbs = sprintf("%1.2fkbs", $memoryUsage/1024);
-	$baseUrl		= $reg->config['base_url'];
+	$baseUrl		= $reg->Config['base_url'];
  
     echo "<br /><br /><br /><br /><br />";
     
@@ -73,17 +73,17 @@ DEBUG_STYLES;
          "<li><a href=\"#leaf_Degug_Registry\"><em>Registry</em></a></li>" . 
          "<li><a href=\"#leaf_Debug_Request\"><em>Request Information</em></a></li>";
 
-    if ($reg->config['allow_hooks']=="Yes") {
+    if ($reg->Config['allow_hooks']=="Yes") {
         echo
         "<li><a href=\"#leaf_Debug_Hooks\"><em>Hooks</em></a></li>";
     }
 
-    if ($reg->config['log_level']!="None") {
+    if ($reg->Config['log_level']!="None") {
         echo
         "<li><a href=\"#leaf_Debug_Log_Buffer\"><em>Log Buffer</em></a></li>";
     }
 		 
-    if ($reg->config['allow_endorsed']=="Yes") {
+    if ($reg->Config['allow_endorsed']=="Yes") {
     	echo
 		 "<li><a href=\"#leaf_Debug_Endorsed\"><em>Endorsed Classes</em></a></li>";
     }
@@ -122,7 +122,7 @@ DEBUG_STYLES;
 
         echo
             "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>General</b></small></legend>";
-        foreach($reg->config->getByHashKey("general") as $Var => $Val) {
+        foreach($reg->Config->getByHashKey("general") as $Var => $Val) {
             echo
                 "<span style=\"color: #4e9a06;\"><b>{$Var}</b></span>\n    "
               . "<span style=\"color: #ff0000;\"><small>{$Val}</small></span>\n";
@@ -131,7 +131,7 @@ DEBUG_STYLES;
 
         echo
             "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Autoload</b></small></legend>";
-        foreach($reg->config->getByHashKey("autoload") as $Var => $Val) {
+        foreach($reg->Config->getByHashKey("autoload") as $Var => $Val) {
             echo
                 "<span style=\"color: #4e9a06;\"><b>{$Var}</b></span>\n    "
               . "<span style=\"color: #ff0000;\"><small>{$Val}</small></span>\n";
@@ -168,10 +168,10 @@ DEBUG_STYLES;
 		//
         // Request
 		//
-        $className  = $reg->router->getClassName();
-        $methodName = $reg->router->getMethodName();
-        $segments   = implode(" ", (array)$reg->router->segments());
-        $queryString= $reg->request->getQueryStringAsString();
+        $className  = $reg->Router->getClassName();
+        $methodName = $reg->Router->getMethodName();
+        $segments   = implode(" ", (array)$reg->Router->segments());
+        $queryString= $reg->Request->getQueryStringAsString();
         
         echo
             "<div id=\"leaf_Debug_Request\" style=\"display: none;\">"
@@ -190,7 +190,7 @@ DEBUG_STYLES;
         //
         // Hooks
         //
-        if ($reg->config['allow_hooks']=="Yes") {
+        if ($reg->Config['allow_hooks']=="Yes") {
             echo
                 "<div id=\"leaf_Debug_Hooks\" style=\"display: none;\">"
                 . "</div>";
@@ -200,7 +200,7 @@ DEBUG_STYLES;
         //
         // Log Buffer
         //
-        if ($reg->config['log_level']!="None") {
+        if ($reg->Config['log_level']!="None") {
             echo
                 "<div id=\"leaf_Debug_Log_Buffer\" style=\"display: none;\">"
                 . "</div>";
@@ -209,12 +209,12 @@ DEBUG_STYLES;
 		//
         // Endorsed
 		//
-		if ($reg->config['allow_endorsed']=="Yes") {
+		if ($reg->Config['allow_endorsed']=="Yes") {
 			echo
 				"<div id=\"leaf_Debug_Endorsed\" style=\"display: block;\">"
 				. " <pre style=\"font-size: 14px; font-family: Verdana, Arial, helvetica, sans-serif;\">";
 				
-				foreach($reg->endorse_man->getEndorsedClasses() as $Key => $Value)
+				foreach($reg->EndorsementMan->getEndorsedClasses() as $Key => $Value)
 				{
                     $endorsedClass  = key($Value);
                     $classObject    = $Value[$endorsedClass]['reg_key'];
