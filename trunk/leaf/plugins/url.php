@@ -33,10 +33,10 @@ function make_link_curr() {
 	$res = NULL;
 
 	if ($req==NULL)
-	$req = leaf_Registry::getInstance()->request;
+	$req = leaf_Registry::getInstance()->Request;
 
     // Get the base url.
-    $url = leaf_Registry::getInstance()->config['base_url'];
+    $url = leaf_Registry::getInstance()->Config['base_url'];
 
     // Controller name.
 	$url .= $req->getApplicationName();
