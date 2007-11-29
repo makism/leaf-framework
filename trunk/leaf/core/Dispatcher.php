@@ -28,7 +28,7 @@
  */
 final class leaf_Dispatcher extends leaf_Base {
 	
-    const LEAF_REG_KEY = "dispatcher";
+    const LEAF_REG_KEY = "Dispatcher";
     
     const LEAF_CLASS_ID = "LEAF_DISPATCHER-1_0_dev";
     
@@ -72,14 +72,13 @@ final class leaf_Dispatcher extends leaf_Base {
         /*
          * Get Controller`s name :).
          */
-        $this->controllerName = $this->request->getControllerName();
+        $this->controllerName = $this->Request->getControllerName();
 
         /*
          * Get Controller`s file name.
          */
-        $this->target = $this->request->getControllerFileName();
+        $this->target = $this->Request->getControllerFileName();
 
-        
         /*
          * Check if the Controller`s file, exists.
          */
@@ -118,8 +117,8 @@ final class leaf_Dispatcher extends leaf_Base {
      */
 	public function dispatchController()
 	{
-        if (method_exists($this->controller, $this->router->getMethodName())) {
-            call_user_func(array($this->controller, $this->router->getMethodName()));
+        if (method_exists($this->controller, $this->Router->getMethodName())) {
+            call_user_func(array($this->controller, $this->Router->getMethodName()));
         } else {
             showHtmlMessage("Dispatcher Failure", "Action \"{$this->router->getMethodName()}\" is not defined", TRUE);
         }
