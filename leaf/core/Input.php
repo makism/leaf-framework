@@ -23,7 +23,7 @@
  */
 final class leaf_Input extends leaf_Base implements ArrayAccess {
 
-    const LEAF_REG_KEY = "input";
+    const LEAF_REG_KEY = "Input";
     
     const LEAF_CLASS_ID = "LEAF_INPUT-1_0_dev";
     

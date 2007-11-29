@@ -23,7 +23,7 @@
  */
 final class leaf_Locale extends leaf_Base implements ArrayAccess {
 
-    const LEAF_REG_KEY = "locale";
+    const LEAF_REG_KEY = "Locale";
     
     const LEAF_CLASS_ID = "LEAF_LOCALE-1_0_dev";
 
