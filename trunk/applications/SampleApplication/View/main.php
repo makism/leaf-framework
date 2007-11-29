@@ -4,7 +4,7 @@
  </head>
  <body>
   <?php
-    $this->view->render("intro");
+    $this->View->render("intro");
   ?>
  </body>
 </html>	

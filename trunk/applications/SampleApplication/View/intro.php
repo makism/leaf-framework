@@ -6,6 +6,7 @@
 
 <br />
 
+<!--
 <div style="font-size: 10px;">
      &middot
      <?php
@@ -19,3 +20,4 @@
         echo make_link(make_link_curr(), "Show debug statistics", $opts);
      ?>
 </div>
+-->
