@@ -82,9 +82,9 @@ $reg->register(new leaf_Locale());
 /*
  * Configure timezone.
  */
-$timezoneSetting = (empty($reg->config['timezone']))
+$timezoneSetting = (empty($reg->Config['timezone']))
                     ? @date_default_timezone_get()
-                    : $reg->config['timezone'];
+                    : $reg->Config['timezone'];
 
 date_default_timezone_set($timezoneSetting);
 
@@ -99,8 +99,8 @@ date_default_timezone_set($timezoneSetting);
 /*
  * Register the logger if it has been enabled.
  */
-#if ($reg->config['log_level']!="None" ||
-#    empty($reg->config['log_level'])) {
+#if ($reg->Config['log_level']!="None" ||
+#    empty($reg->Config['log_level'])) {
 #    $reg->register(new leaf_Logger());
 #}
 
@@ -119,7 +119,7 @@ $reg->register(new leaf_Response());
 /*
  * Begin output buffering.
  */
-$reg->response->ouputBufferingStart();
+$reg->Response->ouputBufferingStart();
 
 
 /*
@@ -131,7 +131,7 @@ $reg->response->ouputBufferingStart();
 /*
  * Dispatch controller.
  */
-$reg->dispatcher->dispatchController();
+$reg->Dispatcher->dispatchController();
 
 
 /*
@@ -143,7 +143,7 @@ $reg->dispatcher->dispatchController();
 /*
  * Flush buffer, and turn off.
  */
-$reg->response->outputBufferingEnd();
+$reg->Response->outputBufferingEnd();
 
 
 /*
@@ -151,7 +151,7 @@ $reg->response->outputBufferingEnd();
  * requested and registered.
  */
 #if ($reg->isRegistered("logger"))
-#    $reg->logger->end_flush();
+#    $reg->Logger->end_flush();
 
 
 /*
@@ -163,7 +163,7 @@ $reg->response->outputBufferingEnd();
 /*
  * General statistics like memory usage, parsing time and other.
  */
-if ($reg->config['enable_debug_stats']=="Yes")
+if ($reg->Config['enable_debug_stats']=="Yes")
     require_once LEAF_BASE . 'front/Debug.php';
 
 
