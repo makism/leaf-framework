@@ -52,7 +52,7 @@ function __autoload($className)
     if ($endorsementManager==NULL && $enableEndorsementManager==TRUE) {
         require_once LEAF_BASE . "core/EndorsementManager.php";
         leaf_Registry::getInstance()->register(new leaf_EndorsementManager());
-        $endorsementManager = leaf_Registry::getInstance()->endorse_man;
+        $endorsementManager = leaf_Registry::getInstance()->EndorsementMan;
     }
 	
     /*
