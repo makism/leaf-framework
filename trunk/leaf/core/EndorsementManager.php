@@ -29,7 +29,7 @@
  */
 final class leaf_EndorsementManager extends leaf_Base {
 
-    const LEAF_REG_KEY = "endorse_man";
+    const LEAF_REG_KEY = "EndorsementMan";
     
     const LEAF_CLASS_ID = "LEAF_ENDORSEMENTMANAGER-1_0_dev";
     

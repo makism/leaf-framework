@@ -29,7 +29,7 @@
  */
 abstract class leaf_Controller extends leaf_Base {
 
-    const LEAF_REG_KEY = "controller";
+    const LEAF_REG_KEY = "Controller";
     
     const LEAF_CLASS_ID = "LEAF_CONTROLLER-1_0_dev";
 
@@ -61,7 +61,7 @@ abstract class leaf_Controller extends leaf_Base {
         // Otherwise, asume that a Model is requested
         // and thus return it -if found-.
         else
-            return $this->load->model($key);
+            return $this->Load->model($key);
 	}
 
     public function __toString()
