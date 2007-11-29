@@ -38,7 +38,7 @@
  * but they are declared as "final" in the parent class.
  *
  * @package     leaf
- * @subpackge   core
+ * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
  * @todo
@@ -51,7 +51,7 @@
  */
 final class leaf_Config extends leaf_Base implements ArrayAccess {
 
-    const LEAF_REG_KEY = "config";
+    const LEAF_REG_KEY = "Config";
 
     const LEAF_CLASS_ID = "LEAF_CONFIG-1_0_dev";
     
@@ -84,11 +84,13 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 		require_once LEAF_BASE . 'etc/autoload.php';
 		require_once LEAF_BASE . 'etc/hooks.php';
         require_once LEAF_BASE . 'etc/endorsed.php';
+        require_once LEAF_BASE . 'etc/database.php';
 
         $this->optionsTable['general'] = $general;
         $this->optionsTable['autoload']= $autoload;
         $this->optionsTable['endorsed']= $endorsed;
         $this->optionsTable['hooks']   = $hooks;
+        $this->optionsTable['database']= $database;
 
         $this->options = $general;
 		
