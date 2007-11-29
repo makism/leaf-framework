@@ -40,15 +40,15 @@ $database["profiles"][]["default"] = array (
     // Backend
     "backend" => "mysqli",
     // Hostname
-    "hostname"=> "hideo",
+    "hostname"=> "localhost",
     // Userbane
-    "username"=> "makism",
+    "username"=> "username",
     // Password
-    "password"=> "6f5b66",
+    "password"=> "password",
     // Port
     "port" => 3306,
     // Database name
-    "dbName" => "makism",
+    "dbName" => "dbName",
     // Charset
     "charSet" => ""
 );
