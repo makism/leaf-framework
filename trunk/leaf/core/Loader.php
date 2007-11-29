@@ -27,7 +27,7 @@
  */
 class leaf_Loader extends leaf_Base {
 
-    const LEAF_REG_KEY = "load";
+    const LEAF_REG_KEY = "Load";
     
     const LEAF_CLASS_ID = "LEAF_LOADER-1_0_dev";
 
@@ -115,7 +115,7 @@ class leaf_Loader extends leaf_Base {
     			// application base name
 	    		$baseDir =
 	    		  "applications/" .
-	    		  $this->request->getApplicationName() .
+	    		  $this->Request->getApplicationName() .
 	    		  "/Model/";
 	    		  
 	    		// instance name
@@ -143,6 +143,22 @@ class leaf_Loader extends leaf_Base {
     	}
     }
 	
+    /**
+     * Loads a Core Library class.
+     * 
+     * Core libraries, are these libraries that although are not
+     * really needed to run the framework properly, they are bundle
+     * with it, since they very useful...
+     * 
+     * @param   string  $libName
+     * @param   array   $libName
+     * @return  void
+     */
+    public function library($libName, array $settings=NULL)
+    {
+    	
+    }
+    
     /**
      * Loads an "Extension" class.
      *
