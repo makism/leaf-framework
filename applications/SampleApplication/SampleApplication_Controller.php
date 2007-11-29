@@ -17,17 +17,21 @@ class SampleApplication_Controller extends leaf_Controller {
 	{
         // Call the parent`s contructor.
 		parent::__construct();
+		
+		// Request for database support
+		//$this->load->library("db", array("profile"=>"sample") );
 
         // Load the Sample Model
-        $this->load->model("SampleModel", array("bindName"=>"sample"));
+        $this->Load->model("SampleModel", array("bindName"=>"sample") );
 		
 		// Include some required plugins.
-		$this->load->plugin("url");
-        
+		$this->Load->plugin("url");
+
         // Change on the fly, the configuration, so 
         // debug statistics are created only if requested.
-        if ($this->request->queryStringKeyExists("debug"))
-            $this->config['enable_debug_stats'] = "Yes";
+        if ($this->Request->queryStringKeyExists("debug"))
+            $this->Config['enable_debug_stats'] = "Yes";
+
 	}
 
 	public function index()
@@ -36,7 +40,7 @@ class SampleApplication_Controller extends leaf_Controller {
 		$data['title'] = $this->sample->getPageTitle();
 		
         // Print a welcome message.
-        $this->view->render("main", $data);
+        $this->View->render("main", $data);
 	}
 
 }
