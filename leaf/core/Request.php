@@ -30,7 +30,7 @@
  */
 final class leaf_Request extends leaf_Base {
 
-    const LEAF_REG_KEY = "request";
+    const LEAF_REG_KEY = "Request";
     
     const LEAF_CLASS_ID = "LEAF_REQUEST-1_0_dev";
 
@@ -94,7 +94,7 @@ final class leaf_Request extends leaf_Base {
          " suffixed with the string "_Controller".
          * So, we attach it to the requested Controller.
          */
-        $this->controller   = $this->router->getClassName() . '_Controller';
+        $this->controller   = $this->Router->getClassName() . '_Controller';
 
         /*
          * Compose the complete file name where we suppose the Controller
@@ -102,7 +102,7 @@ final class leaf_Request extends leaf_Base {
          */
         $this->controllerFile =
             LEAF_APPS
-            . $this->router->getClassName()
+            . $this->Router->getClassName()
             . '/'
             . $this->controller
             . '.php';
@@ -110,17 +110,17 @@ final class leaf_Request extends leaf_Base {
         /*
          * Fetch the Action from the {@link leaf_Router router} object.
          */
-        $this->action       = $this->router->getMethodName();
+        $this->action       = $this->Router->getMethodName();
 
         /*
          * Fetch the extra Uri segments from the {@link leaf_Router router} object.
          */
-        $this->segments     = $this->router->segments();
+        $this->segments     = $this->Router->segments();
 
         /*
          * Fetch the Query String from the {@link leaf_Router router} object.
          */
-        $this->queryElems   = $this->router->queryStringElements();
+        $this->queryElems   = $this->Router->queryStringElements();
 	}
 	
 	/**
@@ -151,7 +151,7 @@ final class leaf_Request extends leaf_Base {
      */
     public function getApplicationName()
     {
-    	return $this->router->getClassName();
+    	return $this->Router->getClassName();
     }
     
     /**
@@ -206,14 +206,10 @@ final class leaf_Request extends leaf_Base {
      * Returns the total number of segments.
      *
      * @return  integer
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
      */
 	public function totalSegments()
 	{
-	
+	    return sizeof($this->segments);
 	}
 	
     /**
@@ -221,28 +217,23 @@ final class leaf_Request extends leaf_Base {
      *
      * @param   integer $n
      * @return  string|NULL
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
      */
 	public function segment($n)
 	{
-	
+	    if (array_key_exists($n+1, $this->segments))
+	       return $this->segments[$n+1];
+	    else
+	       return NULL;
 	}
 
     /**
      * Returns the segments` array.
      *
      * @return  array
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
      */
     public function segmentsAsArray()
     {
-    	
+        return $this->segments;
     }
 
     /**
@@ -252,7 +243,7 @@ final class leaf_Request extends leaf_Base {
      */
     public function getQueryString()
     {
-    	return $this->router->queryString();
+    	return $this->Router->queryString();
     }
     
     /**
@@ -295,7 +286,7 @@ final class leaf_Request extends leaf_Base {
      * @return  string
 	 * @todo
 	 * <ol>
-	 *  <li>Possible method complete refactor.</li>
+	 *  <li>Possible complete method refactor.</li>
 	 * </ol>
      */
     public function getQueryStringAsString()
@@ -305,7 +296,7 @@ final class leaf_Request extends leaf_Base {
         
             foreach($this->queryElems as $Var => $Val) {
                 if ($Val=="" || empty($Val))
-                    $Val = "<i>NULL</i>";
+                    $Val = "NULL";
                     
                 $str .= $Var . " = " . $Val . ", ";
             }
