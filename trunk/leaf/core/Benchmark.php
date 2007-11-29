@@ -24,7 +24,7 @@
  */
 final class leaf_Benchmark extends leaf_Base {
     
-    const LEAF_REG_KEY = "benchmark";
+    const LEAF_REG_KEY = "Benchmark";
     
     const LEAF_CLASS_ID = "LEAF_BENCHMARK-1_0_dev";
 

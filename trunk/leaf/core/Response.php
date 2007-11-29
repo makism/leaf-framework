@@ -23,7 +23,7 @@
  */
 final class leaf_Response extends leaf_Base {
 
-    const LEAF_REG_KEY = "response";
+    const LEAF_REG_KEY = "Response";
     
     const LEAF_CLASS_ID = "LEAF_RESPONSE-1_0_dev";
     
@@ -60,7 +60,7 @@ final class leaf_Response extends leaf_Base {
 	{
         parent::__construct(self::LEAF_REG_KEY);
         
-        $outputHandler = $this->config['output_handler'];
+        $outputHandler = $this->Config['output_handler'];
         
         /*
          *
