@@ -10,7 +10,7 @@
 
 
 /**
- * Specifies the methods that all the Backends drivers must
+ * Specifies the methods that all the backend drivers must
  * implement.
  * 
  * @package     leaf
@@ -21,42 +21,49 @@
  * <ol>
  *  <li>Implement.</li>
  *  <li>Document.</li>
+ *  <li>Test.</li>
  * </ol>
  */
-abstract class leaf_Db_Backend extends leaf_Base {
-    
-	const LEAF_REG_KEY = "db_backend";
-    
-    const LEAF_CLASS_ID = "LEAF_DB_BACKEND-1_0_dev";
+abstract class leaf_Db_Backend {
+	
+    /**
+     * 
+     * 
+     * @var array
+     */
+    protected $dbProfile = array();
     
     /**
      * 
      * 
-     * @var object leaf_Db_ActiveRecord
+     * @var resource
      */
-    private $activeRecord = NULL;
+    protected $link = NULL;
+    
 	
+    /**
+     *
+     * 
+     * @param   array   $profile
+     * @return  void
+     */
+    public function __construct()
+    {
+
+    }
 	
 	/**
 	 * 
 	 * @return void
 	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
-	
-	/**
-	 * 
-	 *
-	 */
 	public function __destruct()
 	{
-	    
+	    $this->disconnect();
 	}
 	
 	/**
-	 * 
+	 * Creates a link to the database server using
+	 * the profile options.
 	 * 
 	 * @return boolean
 	 */
@@ -73,20 +80,33 @@ abstract class leaf_Db_Backend extends leaf_Base {
 	 * 
 	 *
 	 * @param  string  $dbName
+	 * @return boolean
 	 */
 	abstract public function selectDb($dbName);
 	
 	/**
 	 * 
-	 * 
+	 * @return mixed 
 	 */
-	abstract public function enableActiveRecord();
+	abstract public function connectionStatus();
+
+	/**
+	 * 
+     * 
+	 */
+	abstract public function select($selectQuery);
+	
+	/**
+	 * 
+     * 
+	 */
+	abstract public function insert($insertQuery);
 	
 	/**
 	 * 
 	 * 
 	 */
-	abstract public function disableActiveRecord();
+	abstract public function query($rawQuery);
 	
 }
 
