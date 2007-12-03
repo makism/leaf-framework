@@ -78,7 +78,7 @@ abstract class leaf_Base {
 
         // In case the subclass is already registered, we die with a message.
         if (self::$Registry->isRegistered($descendant))
-            showHtmlMessage("Object \"{$descendant}\" already registered!", TRUE);
+            showHtmlMessage("Internal Error!", "Object \"{$descendant}\" already registered!", TRUE);
     }
 
     /**
