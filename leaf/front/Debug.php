@@ -88,6 +88,11 @@ DEBUG_STYLES;
 		 "<li><a href=\"#leaf_Debug_Endorsed\"><em>Endorsed Classes</em></a></li>";
     }
     
+    if (leaf_Registry::getInstance()->Load->libraryLoaded("Db")) {
+        echo
+         "<li><a href=\"#leaf_Debug_Database\"><em>Database</em></a></li>";
+    }
+    
     // tabs (end)
     echo "</ul>";
 
@@ -120,6 +125,7 @@ DEBUG_STYLES;
             "<div id=\"leaf_Debug_Global_Settings\" style=\"display: none;\">"
             . " <pre style=\"font-size: 12px; font-family: Verdana, Arial, helvetica, sans-serif;\">";
 
+        // general
         echo
             "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>General</b></small></legend>";
         foreach($reg->Config->getByHashKey("general") as $Var => $Val) {
@@ -129,6 +135,7 @@ DEBUG_STYLES;
         }
         echo "</fieldset><br/>";
 
+        // autoload
         echo
             "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Autoload</b></small></legend>";
         foreach($reg->Config->getByHashKey("autoload") as $Var => $Val) {
@@ -138,11 +145,18 @@ DEBUG_STYLES;
         }
         echo "</fieldset>";
 
+        // endorsed
         echo
-            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Endorsed</b></small></legend>"
-            . "</fieldset>"
-            . "<br/>";
+            "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Endorsed</b></small></legend>";
+        foreach($reg->Config->getByHashKey("endorsed") as $Var => $Val) {
+            echo
+              "<span style=\"color: #ff0000;\"><small>{$Val}</small></span><br />\n";
+        }
+        echo
+        "</fieldset>"
+        . "<br/>";
         
+        // hooks
          echo
             "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Hooks</b></small></legend>"
             . "</fieldset>"
@@ -229,6 +243,20 @@ DEBUG_STYLES;
 				" </pre>"
 				. "</div>";
 		}
+		
+        //
+        // Database
+        //
+        if (leaf_Registry::getInstance()->Load->libraryLoaded("Db")) {
+            echo
+                "<div id=\"leaf_Debug_Database\" style=\"display: block;\">"
+                . " <pre style=\"font-size: 14px; font-family: Verdana, Arial, helvetica, sans-serif;\">";
+                
+                
+            echo
+                " </pre>"
+                . "</div>";
+        }
     
 /*
  * End Main Div
