@@ -10,20 +10,16 @@
 
 
 /**
- * Handles the loading requests for resources like the Models,
+ * Handles the loading requests for resources like Libraries,Models,
  * Extensions and Plugins.
+ * 
+ * (This class is far from being labeled as completed in many ways. This means
+ * that many changes will occur, possibly <b>breaking</b> internal compatibility.)
  * 
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
- * @todo
- * <ol>
- *  <li>Implement.</li>
- *  <li>Document.</li>
- *  <li>Possible splitting into a second "Repository" class that will
- *  hold all the instancies.</li>
- * </ol>
  */
 class leaf_Loader extends leaf_Base {
 
@@ -46,6 +42,23 @@ class leaf_Loader extends leaf_Base {
     private $models = array();
     
     /**
+     * List of all loaded libraries.
+     * 
+     * @var array
+     */
+    private $libraries = array();
+    
+    /**
+     * List of all currently supported libraries.
+     * 
+     * @var array 
+     */
+    private $allLibraries = array(
+        "Db", "Hash", "Log", "Benchmark", "Cache"
+    );
+    
+    /**
+     * List of all loaded extensions.
      * 
      * @var array
      */
@@ -101,13 +114,14 @@ class leaf_Loader extends leaf_Base {
     	// Assume usage method #2
     	// That is, retrieving a Model instance.
     	if (!isset($settings)) {
-    		if (array_key_exists($modelName, $this->models))
+    		if ($this->modelLoaded($modelName))
     		  return $this->models[$modelName];
     		else
     		  return NULL;
     		  
         // Fallback to usage method #1
         // That is, loading a new Model.
+        //
         // >> We demand that the property "bindName" is set,
         //    otherwise we ignore the loading. 
     	} else {
@@ -142,21 +156,67 @@ class leaf_Loader extends leaf_Base {
     		}
     	}
     }
+    
+    /**
+     * Checks if the specified model is loaded.
+     * 
+     * @param   string  $modelName
+     * @return  boolean
+     */
+    public function modelLoaded($modelName)
+    {
+        return array_key_exists($modelName, $this->models);
+    }
 	
     /**
-     * Loads a Core Library class.
+     * Loads a "Core Library" class.
      * 
      * Core libraries, are these libraries that although are not
-     * really needed to run the framework properly, they are bundle
-     * with it, since they very useful...
+     * really needed to run the framework properly, they are bundled
+     * with it, since they very useful...<br>
+     * List of the libraries:
+     * <ul>
+     *  <li>Db (<i>Communicate with a database.</i>)</li>
+     *  <li>Cache (<i>Cache data for faster access.</i>)</li>
+     *  <li>Hash (<i>Create hashes for the specific input.</i>)</li>
+     *  <li>Log (<i>Log errors that the framework may produce, or your own messages.</i>)</li>
+     *  <li>Benchmark (<i>Benchmark specific parts of the internals, or your code.</i>)</li>
+     *  <li>Unit (<i>Perform simple Unit Tests on your classes.</i>)</li> 
+     * </ul>
      * 
      * @param   string  $libName
-     * @param   array   $libName
+     * @param   array   $settings
      * @return  void
+     * @todo
+     * <ol>
+     *  <li>It is given a second thought the possibility that <b>all</b> these
+     *  libraries are moved outside the core package.</li>
+     * </ol>
      */
     public function library($libName, array $settings=NULL)
+    {        
+        // Check if the the requested library is either
+        // supported or already registered.
+        if (in_array($libName, $this->allLibraries) &&
+            $this->libraryLoaded($libName)==false) {
+        	$leafName= "leaf_" . $libName;
+        	$libFile = $libName . ".php";
+    
+            leaf_Registry::getInstance()->register(new $leafName($settings));
+            
+            $this->libraries[] = $libName;
+        }
+    }
+    
+    /**
+     * Checks if the specified library is loaded.
+     *
+     * @param   string  $libName
+     * @return  boolean
+     */
+    public function libraryLoaded($libName)
     {
-    	
+        return in_array($libName, $this->libraries);
     }
     
     /**
@@ -187,7 +247,6 @@ class leaf_Loader extends leaf_Base {
 	public function plugin($plugin)
 	{
 		if (!in_array($plugin, $this->plugins)) {
-			//"applications/" . $app . "/View/" . $name . ".php";
 			$fileName = "leaf/plugins/" . $plugin . ".php";
 			if (file_exists($fileName) && is_readable($fileName)) {
 				require_once $fileName;
@@ -196,10 +255,20 @@ class leaf_Loader extends leaf_Base {
 			}
 		}
 	}
+	
+	/**
+	 * Checks if the specified plugin is loaded.
+	 *
+	 * @return boolean
+	 */
+	public function pluginLoaded($plugin)
+	{
+	    return in_array($plugin, $this->plugins);
+	}
 
     public function __toString()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+        return __CLASS__ . " (Enables you to load Models/Libraries etc...)";
     }
 
 }
