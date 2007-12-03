@@ -55,7 +55,7 @@ final class leaf_Db extends leaf_Base {
 
     const LEAF_REG_KEY = "Db";
     
-    const LEAF_CLASS_ID = "LEAF_DB-\$Revision\$";
+    const LEAF_CLASS_ID = "LEAF_DB-1_0_dev";
 
     
     /**
