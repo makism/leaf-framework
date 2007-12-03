@@ -60,26 +60,31 @@ function __autoload($className)
      */
     if ($baseClasses==NULL)
     	$baseClasses = array (
+    	/** Base libraries             **/
             'leaf_Base'      => 'Base.php',
-            'leaf_Benchmark' => 'Benchmark.php',
     		'leaf_Config'    => 'Config.php',
-            'leaf_Controller'=> 'Controller.php',
-            'leaf_Debug'     => 'Debug.php',
             'leaf_Dispatcher'=> 'Dispatcher.php',
             'leaf_Exception' => 'Exception.php',
-            'leaf_Hash'      => 'Hash.php',
-            'leaf_Hook'      => 'hook/Hook.php',
-            'leaf_Hook_Conditional'=> 'hook/Hook_Conditional.php',
             'leaf_Loader'    => 'Loader.php',
             'leaf_Locale'    => 'Locale.php',
-            'leaf_Log'       => 'log/Log.php',
-            'leaf_Logger'    => 'log/Logger.php',
-            'leaf_Model'     => 'Model.php',
             'leaf_Registry'  => 'Registry.php',
             'leaf_Request'   => 'Request.php',
             'leaf_Response'  => 'Response.php',
             'leaf_Router'    => 'Router.php',
-            'leaf_View'      => 'View.php'
+    	/** MVC core libraries         **/
+            'leaf_Controller'=> 'Controller.php',
+            'leaf_Model'     => 'Model.php',
+            'leaf_View'      => 'View.php',
+        /** Database-related libraries  **/
+            'leaf_Db'        => 'db/Db.php',
+    	/** Other core libraries        **/
+            'leaf_Benchmark' => 'Benchmark.php',
+            'leaf_Input'     => 'Input.php',
+            'leaf_Hash'      => 'Hash.php',
+            'leaf_Hook'      => 'hook/Hook.php',
+            'leaf_Hook_Conditional'=> 'hook/Hook_Conditional.php',
+            'leaf_Log'       => 'log/Log.php',
+            'leaf_Logger'    => 'log/Logger.php'
     	);
 
     /*
@@ -115,6 +120,7 @@ function __autoload($className)
         $hasInited = TRUE;
 }
 
+
 /**
  * Terminates the execution of the framework.
  *
@@ -124,6 +130,7 @@ function frameworkForceTerminate()
 {
     showHtmlMessage("Forced Termination", NULL, TRUE);
 }
+
 
 /**
  * Performs some basic tests to check whether
@@ -137,7 +144,7 @@ function frameworkSanityCheck($checkAll=false)
     $msg = array();
 
     if (extension_loaded('spl')==FALSE) {
-        $msg[] = "SPL functions are disabled.";
+        $msg[] = "SPL extension is disabled.";
     }
     
     /*
@@ -288,5 +295,6 @@ function frameworkSanityCheck($checkAll=false)
     if (sizeof($msg)>0)
         showHtmlMessage("Sanity Check Failure", $msg, true);
 }
+
 
 ?>
