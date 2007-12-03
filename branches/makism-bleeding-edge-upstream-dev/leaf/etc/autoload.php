@@ -35,4 +35,13 @@ $autoload['plugins'] = "";
  */
 $autoload['extensions'] = "";
 
+
+/*
+ * Libraries that will be autoloaded automatically.
+ * All values are separeted by a comma (,).
+ *
+ * Default: ""
+ */
+$autoload['libraries'] = "";
+
 ?>
