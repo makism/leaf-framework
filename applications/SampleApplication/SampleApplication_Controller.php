@@ -12,16 +12,29 @@
 // in order to have your Controller working properly.
 class SampleApplication_Controller extends leaf_Controller {
 
-
 	public function __construct()
 	{
         // Call the parent`s contructor.
 		parent::__construct();
 		
-		// Request for database support
-		//$this->load->library("db", array("profile"=>"sample") );
+		// Parameters passed to the Db library
+		// (a) define a db profile, and
+		// (b) we demand to connect as soon as the profile has been binded.
+		$opts = array (
+		  "profile"       => "sample",
+		  "auto_connect"  => true
+		);
+		
+        // Request for database support based on these parameters.
+		$this->Load->library("Db", $opts);
+		
+		// The above lines are exactly the same as calling consequently:
+		// 1. $this->Load->library("Db");
+		// 2. $this->Db->bind("sample");
+		// 3. $this->Db->sample->connect();
+		
 
-        // Load the Sample Model
+        // Load the Sample Model.
         $this->Load->model("SampleModel", array("bindName"=>"sample") );
 		
 		// Include some required plugins.
@@ -31,7 +44,6 @@ class SampleApplication_Controller extends leaf_Controller {
         // debug statistics are created only if requested.
         if ($this->Request->queryStringKeyExists("debug"))
             $this->Config['enable_debug_stats'] = "Yes";
-
 	}
 
 	public function index()
@@ -41,6 +53,7 @@ class SampleApplication_Controller extends leaf_Controller {
 		
         // Print a welcome message.
         $this->View->render("main", $data);
+
 	}
 
 }
