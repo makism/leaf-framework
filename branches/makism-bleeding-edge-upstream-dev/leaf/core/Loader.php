@@ -105,55 +105,56 @@ class leaf_Loader extends leaf_Base {
      * @todo
      * <ol>
      *  <li>Extend support for settings.</li>
-     *  <li>Make "bindName" setting optional, and use the class` name as the
-     *  instance name.</li>
      * </ol>
      */
     public function model($modelName, array $settings=NULL)
     {
     	// Assume usage method #2
     	// That is, retrieving a Model instance.
-    	if (!isset($settings)) {
-    		if ($this->modelLoaded($modelName))
+    	if ($this->modelLoaded($modelName)) {
     		  return $this->models[$modelName];
-    		else
-    		  return NULL;
     		  
         // Fallback to usage method #1
         // That is, loading a new Model.
-        //
-        // >> We demand that the property "bindName" is set,
-        //    otherwise we ignore the loading. 
     	} else {
-    		if (!empty($settings['bindName'])) {
-    			// application base name
-	    		$baseDir =
-	    		  "applications/" .
-	    		  $this->Request->getApplicationName() .
-	    		  "/Model/";
-	    		  
-	    		// instance name
-	    		$instanceName = $settings['bindName'];
-	    		
-	    		// model`s filename
-	    		$modelFile = $baseDir . $modelName . ".php";
-	    		
-	    		// class name
-	    		$modelClass = $modelName . "_Model";
-	    		
-	    		if (file_exists($modelFile) && is_readable($modelFile)) {
-	    			// include model class
-	    			require_once $modelFile;
-	    			
-	    			// instantiate and register model
-	    			$instance = new $modelClass;
-	    			if ($instance instanceof leaf_Model)
-	    			    $this->models[$instanceName] = $instance;	
-	    		}
-	    		
-    		} else {
-    			return NULL;
+			// application base name
+    		$baseDir =
+    		  "applications/" .
+    		  $this->Request->getApplicationName() .
+    		  "/Model/";
+    		  
+            // model`s filename
+            $modelFile = $baseDir . $modelName . ".php";
+            
+            // class name
+            $modelClass = $modelName . "_Model";
+    		  
+    		
+    		if (file_exists($modelFile) && is_readable($modelFile)) {
+    			// include model class
+    			require_once $modelFile;
+    			    			
+    			// instantiate and register model
+    			$instance = new $modelClass;
+    			
+    			// bind name
+    			$bindName = @constant("{$modelClass}::MODEL_ALIAS");
+    			
+    			// Give the "bindName" parameter given in the
+    			// "settings" array higher priority, thus
+    			// overlapping the default bind name.
+    			if (!empty($settings['bindName'])) {
+    			    $bindName = $settings['bindName'];
+    			}
+
+    			if ($bindName==NULL) {
+    			    return NULL;
+    			}
+    			
+    			if ($instance instanceof leaf_Model)
+    			    $this->models[$bindName] = $instance;	
     		}
+
     	}
     }
     
