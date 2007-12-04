@@ -114,19 +114,13 @@ final class leaf_Db extends leaf_Base {
         $this->options = $confOpts['general'];
         
         // Support for settings
-        if ($opts!=NULL) {
+        if (!empty($opts)) {
 
             // Auto-bind the requested db profile
             if (isset($opts['profile'])) {
-                $this->bind($opts['profile']);
+                $this->bind($opts['profile'], $opts);
             }
 
-            // Auto-connect
-            if (isset($opts['auto_connect']) &&
-                $opts['auto_connect']==TRUE)
-            {
-                $this->{$opts['profile']}->connect();            
-            }
         }
     }
     
@@ -171,9 +165,21 @@ final class leaf_Db extends leaf_Base {
             
             if (in_array($curr['backend'], $this->supportedBackends)) {
                 $driver = "leaf_Db_Backend_" . $curr['backend'];
-                $this->connectionPool[$profileName] = new $driver($curr);
+                $link = new $driver($curr);
+                
+                $this->connectionPool[$profileName] = $link; 
+                
+                if (isset($options['auto_connect']) &&
+                    $options['auto_connect']==true)
+                {
+                    $link->connect(); 
+                }
+                
+                return $link;
             }
         }
+        
+        return NULL;
     }
     
     /**
@@ -182,13 +188,6 @@ final class leaf_Db extends leaf_Base {
      * 
      * @param  string  $key
      * @return object|NULL
-     * @todo
-     * <ol>
-     *  <li>Support for accessing the Models using a member property named "Models".
-     *  <br>For example (<i>in Controller scope</i>):
-     *  <code>$this->Models->modelName</code> <b>or</b>
-     *  <code>$this->Models['modelName']</code><br>
-     *  This denotes changes in the {@link leaf_Loader} class as well.</li>
      * </ol>
      */
     protected function __get($key)
