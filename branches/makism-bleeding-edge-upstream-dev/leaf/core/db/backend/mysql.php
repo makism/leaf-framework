@@ -10,7 +10,7 @@
 
 
 /**
- *
+ * MySQL database driver.
  * 
  * @package     leaf
  * @subpackage  core.db.backend
@@ -23,7 +23,6 @@
  * </ol>
  */
 final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
-   
 
     /**
      *
@@ -39,9 +38,10 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
     }
     
     /**
+     * Creates a link to the database server using
+     * the profile options.
      * 
-     * 
-     * @return  boolean
+     * @return boolean
      */
     public function connect()
     {
@@ -68,17 +68,20 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
     }
     
     /**
-     * 
+     * Closes the link.
      *
      * @return  boolean
      */
     public function disconnect()
     {
-        return;
+        if ($this->isConnected())
+            return mysql_close($this->link);
+        else
+            return true;
     }
     
     /**
-     * 
+     * Selects a database.
      *
      * @param   string  $dbName
      * @return  boolean
@@ -86,16 +89,6 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
     public function selectDb($dbName)
     {
         return mysql_select_db($dbName, $this->link);
-    }
-    
-    /**
-     * 
-     * 
-     * @return  integer
-     */
-    public function connectionStatus()
-    {
-        
     }
     
     /**
@@ -116,11 +109,34 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
     }
     
     /**
-     * 
+     * Executes a generic sql query.
+     *
+     * @param   string  $rawQuery
+     * @return  mixed
      */
     public function query($rawQuery)
     {
+
+    }
+    
+    /**
+     * 
+     */
+    public function freeResultSet($resultSet)
+    {
         
+    }
+    
+    /**
+     * 
+     * @return boolean
+     */
+    public function isConnected()
+    {
+        if ($this->link!=NULL)
+            return true;
+        else
+            return false;
     }
 
 }
