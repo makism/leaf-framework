@@ -312,7 +312,7 @@ final class leaf_Request extends leaf_Base {
 
     public function __toString()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+        return __CLASS__ . " (Allows you to access the discoveries made by the Router)";
     }
 
 }
