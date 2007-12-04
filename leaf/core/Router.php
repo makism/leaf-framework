@@ -355,7 +355,7 @@ final class leaf_Router extends leaf_Base {
 
     public function __toString()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+        return __CLASS__ . " (Extracts information about the request, from the Uri)";
     }
 
 }
