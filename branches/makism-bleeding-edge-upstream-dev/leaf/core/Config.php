@@ -52,8 +52,9 @@
 final class leaf_Config extends leaf_Base implements ArrayAccess {
 
     const LEAF_REG_KEY = "Config";
+    
+    const LEAF_CLASS_ID = "LEAF_CONFIG-1_0_dev"; 
 
-    const LEAF_CLASS_ID = "LEAF_CONFIG-1_0_dev";
     
 	/**
      * All configuration parameters will be stored in this array.
@@ -165,7 +166,7 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 
     public function __toString()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+        return __CLASS__ . " (Provides read access the configuration files)";
     }
 
 

@@ -55,11 +55,6 @@ final class leaf_Locale extends leaf_Base implements ArrayAccess {
         
     }
 
-    public function __toString()
-    {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
-    }
-
     /**
      *
      *
@@ -103,6 +98,11 @@ final class leaf_Locale extends leaf_Base implements ArrayAccess {
     public function offsetSet($offset, $value)
     {
 
+    }
+
+    public function __toString()
+    {
+        return __CLASS__ . " (Supports your localization needs)";
     }
 
 }
