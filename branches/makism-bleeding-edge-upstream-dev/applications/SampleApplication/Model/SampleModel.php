@@ -11,6 +11,9 @@
 // Also, you *must*, call the parent`s contructor,
 // in order to have your Model working properly.
 class SampleModel_Model extends leaf_Model {
+    
+    const MODEL_ALIAS = "sample";
+    
 
     /*
      * Init our model.
