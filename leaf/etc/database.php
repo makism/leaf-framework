@@ -27,8 +27,10 @@ $database = array();
  * General configuration settings
  */
 $database["general"] = array (
-    // Default profile
-    "defaultProfile" => "default",
+    // Autoconnect
+    "auto_connect" => false,
+    // Charset
+    "charset" => ""
 );
 
 
@@ -36,27 +38,31 @@ $database["general"] = array (
  * A sample configuration.
  * Notice the indexes... 
  */
-$database["profiles"][]["default"] = array (
+$database["profiles"]["sample"] = array (
     // Backend
-    "backend" => "mysqli",
+    "backend" => "mysql",
     // Hostname
-    "hostname"=> "localhost",
+    "hostname"=> "hideo",
     // Userbane
-    "username"=> "username",
+    "username"=> "makism",
     // Password
-    "password"=> "password",
+    "password"=> "12345",
     // Port
     "port" => 3306,
     // Database name
-    "dbName" => "dbName",
+    "db_name" => "makism",
     // Charset
-    "charSet" => ""
+    // (it is best to leave blank)
+    "charset" => "",
+    // Autoconnect
+    // Create the link upon calling bind.
+    "auto_connect" => true
 );
 
 /*
  * Another sample configuration
  */
-$database["profiles"][]["sample"] = array (
+$database["profiles"]["otherSample"] = array (
 
 );
 
