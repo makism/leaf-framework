@@ -69,26 +69,20 @@ abstract class leaf_Db_Backend {
 	 */
 	abstract public function connect();
 	
-	/**
-	 * 
-	 *
-	 * @return boolean
-	 */
+    /**
+     * Closes the link.
+     *
+     * @return  boolean
+     */
 	abstract public function disconnect();
 	
-	/**
-	 * 
-	 *
-	 * @param  string  $dbName
-	 * @return boolean
-	 */
+    /**
+     * Selects a database.
+     *
+     * @param   string  $dbName
+     * @return  boolean
+     */
 	abstract public function selectDb($dbName);
-	
-	/**
-	 * 
-	 * @return mixed 
-	 */
-	abstract public function connectionStatus();
 
 	/**
 	 * 
@@ -107,6 +101,18 @@ abstract class leaf_Db_Backend {
 	 * 
 	 */
 	abstract public function query($rawQuery);
+	
+	/**
+	 * 
+	 * 
+	 */
+	abstract public function freeResultSet($resultSet);
+	
+	/**
+	 * 
+	 * @return boolean
+	 */
+	abstract public function isConnected();
 	
 }
 
