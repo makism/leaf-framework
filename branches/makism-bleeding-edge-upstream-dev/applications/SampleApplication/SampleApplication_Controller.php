@@ -32,10 +32,18 @@ class SampleApplication_Controller extends leaf_Controller {
 		// 1. $this->Load->library("Db");
 		// 2. $this->Db->bind("sample");
 		// 3. $this->Db->sample->connect();
+		//
+		// The lines 2 & 3 could also be written as:
+		// 2. $db = $this->Db->bind("sample");
+		// 3. $db->connect();
 		
 
         // Load the Sample Model.
-        $this->Load->model("SampleModel", array("bindName"=>"sample") );
+        $this->Load->model("SampleModel");
+        
+        // This could be achieved also:
+        // 1. $this->Load->model("SampleModel", array("bindName"=>"sample"));
+        
 		
 		// Include some required plugins.
 		$this->Load->plugin("url");
@@ -44,6 +52,7 @@ class SampleApplication_Controller extends leaf_Controller {
         // debug statistics are created only if requested.
         if ($this->Request->queryStringKeyExists("debug"))
             $this->Config['enable_debug_stats'] = "Yes";
+
 	}
 
 	public function index()
