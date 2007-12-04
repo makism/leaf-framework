@@ -102,12 +102,6 @@ final class leaf_Response extends leaf_Base {
             }
         }
 	}
-
-
-    public function __toString()
-    {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
-    }
     
     /**
      *
@@ -184,6 +178,11 @@ final class leaf_Response extends leaf_Base {
     public function flushOutputBuffer()
     {
         ob_end_flush();
+    }
+    
+    public function __toString()
+    {
+        return __CLASS__ . " (Manipulates and manages the finalized output)";
     }
 
 }
