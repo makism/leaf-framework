@@ -106,8 +106,9 @@ final class leaf_Dispatcher extends leaf_Base {
          * Check if the current Controller inherits from our
          * class, leaf_Controller.
          */
-        if (!($this->controller instanceof leaf_Controller))
+        if (!($this->controller instanceof leaf_Controller)) {
             showHtmlMessage("Dispatcher Failure", "Not a controller", TRUE);
+        }
     }
     
     /**
@@ -120,13 +121,13 @@ final class leaf_Dispatcher extends leaf_Base {
         if (method_exists($this->controller, $this->Router->getMethodName())) {
             call_user_func(array($this->controller, $this->Router->getMethodName()));
         } else {
-            showHtmlMessage("Dispatcher Failure", "Action \"{$this->router->getMethodName()}\" is not defined", TRUE);
+            showHtmlMessage("Dispatcher Failure", "Action \"{$this->Router->getMethodName()}\" is not defined", TRUE);
         }
 	}
 
     public function __toString()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+        return __CLASS__ . " (Dispatches the requested Action)";
     }
 
 }
