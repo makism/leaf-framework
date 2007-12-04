@@ -134,7 +134,7 @@ final class leaf_View extends leaf_Base {
 
     public function __toString()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+        return __CLASS__ . " (Handles the Views of your application)";
     }
 
 }
