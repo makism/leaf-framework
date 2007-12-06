@@ -27,7 +27,7 @@ $general['hostname']  = "http://hostname";
 /*
  * The subdirectory in your htdocs (usually), where leaf Framework`s
  * index.php is located.
- * "/leaf", for example.
+ * "/leaf/", for example.
  *
  */
 $general['base_dir']  = "/";
@@ -64,14 +64,28 @@ $general['url_suffix']= "";
  */
 $general['charset'] = "utf-8";
 
+/*
+ * Sandbox
+ * 
+ * When enabled, any access beyond the directory in which
+ * leaf is installed will be denied. Also, Reflection will
+ * be used to determine the Actions` declared visibility
+ * and others.
+ * 
+ * Legal values: TRUE, FALSE
+ * Default: FALSE
+ */
+$general['enable_sandbox'] = FALSE;
+
 
 /*
  * Enable or disable the endorsement mechanism, so you may
  * substitute internal core classes, with other implementations.
  *
- * Legal values: "Yes", "No"
+ * Legal values: TRUE, FALSE
+ * Default: FALSE
  */
-$general['allow_endorsed'] = "No";
+$general['allow_endorsed'] = FALSE;
 
 
 /*
@@ -79,19 +93,19 @@ $general['allow_endorsed'] = "No";
  * This enables you to interpose your code
  * easily, in predefined places.
  *
- * Legal values: "Yes", "No"
- * Default: "No"
+ * Legal values: TRUE, FALSE
+ * Default: FALSE
  */
-$general['allow_hooks'] = "No";
+$general['allow_hooks'] = FALSE;
 
 
 /*
  * Enable/Disable query strings.
  *
- * Legal values: "Yes", "No"
- * Default: "Yes"
+ * Legal values: TRUE, FALSE
+ * Default: TRUE
  */
-$general['allow_query_strings'] = "Yes";
+$general['allow_query_strings'] = TRUE;
 
 
 /*
@@ -136,10 +150,10 @@ $general['log_level'] = "None";
 /*
  * Whether to enable debug statistics.
  *
- * Legal values: "Yes", "No"
- * Default: "Yes"
+ * Legal values: TRUE, FALSE
+ * Default: FALSE
  */
-$general['enable_debug_stats'] = "No";
+$general['enable_debug_stats'] = FALSE;
 
 
 ?>
