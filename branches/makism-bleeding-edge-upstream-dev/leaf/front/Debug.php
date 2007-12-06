@@ -73,7 +73,7 @@ DEBUG_STYLES;
          "<li><a href=\"#leaf_Degug_Registry\"><em>Registry</em></a></li>" . 
          "<li><a href=\"#leaf_Debug_Request\"><em>Request Information</em></a></li>";
 
-    if ($reg->Config['allow_hooks']=="Yes") {
+    if ($reg->Config['allow_hooks']) {
         echo
         "<li><a href=\"#leaf_Debug_Hooks\"><em>Hooks</em></a></li>";
     }
@@ -83,7 +83,7 @@ DEBUG_STYLES;
         "<li><a href=\"#leaf_Debug_Log_Buffer\"><em>Log Buffer</em></a></li>";
     }
 		 
-    if ($reg->Config['allow_endorsed']=="Yes") {
+    if ($reg->Config['allow_endorsed']) {
     	echo
 		 "<li><a href=\"#leaf_Debug_Endorsed\"><em>Endorsed Classes</em></a></li>";
     }
@@ -172,8 +172,8 @@ DEBUG_STYLES;
             
             foreach($reg->toArray() as $InstanceName => $ClassType)
                 echo
-                    " key: <span style=\"color: #4e9a06\"><b>{$InstanceName}</b></span>\n"
-                  . "type: <span style=\"color: #ff0000\"><i>{$ClassType}</i></span>\n\n";
+                    "<small> key: </small><span style=\"color: #4e9a06\"><b><u>{$InstanceName}</u></b></span>\n"
+                  . "<small>type: </small><span style=\"color: #ff0000\"><i>{$ClassType}</i></span>\n\n";
             
         echo
             " </pre>"
@@ -204,7 +204,7 @@ DEBUG_STYLES;
         //
         // Hooks
         //
-        if ($reg->Config['allow_hooks']=="Yes") {
+        if ($reg->Config['allow_hooks']) {
             echo
                 "<div id=\"leaf_Debug_Hooks\" style=\"display: none;\">"
                 . "</div>";
@@ -223,7 +223,7 @@ DEBUG_STYLES;
 		//
         // Endorsed
 		//
-		if ($reg->Config['allow_endorsed']=="Yes") {
+		if ($reg->Config['allow_endorsed']) {
 			echo
 				"<div id=\"leaf_Debug_Endorsed\" style=\"display: block;\">"
 				. " <pre style=\"font-size: 14px; font-family: Verdana, Arial, helvetica, sans-serif;\">";
