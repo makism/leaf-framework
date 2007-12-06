@@ -75,7 +75,7 @@ require_once LEAF_BASE  . 'core/helpers/Hooks.php';
  */
 $reg = leaf_Registry::getInstance();
 $reg->register(new leaf_Config());
-$reg->register(new leaf_Locale());
+#$reg->register(new leaf_Locale());
 #$reg->register(new leaf_Benchmark());
 
 
@@ -163,7 +163,7 @@ $reg->Response->outputBufferingEnd();
 /*
  * General statistics like memory usage, parsing time and other.
  */
-if ($reg->Config['enable_debug_stats']=="Yes")
+if ($reg->Config['enable_debug_stats'])
     require_once LEAF_BASE . 'front/Debug.php';
 
 

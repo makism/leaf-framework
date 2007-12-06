@@ -40,7 +40,7 @@ function __autoload($className)
      * Determine if EndorsedManager is enabled.
      */
     if ($hasInited) {
-        if (leaf_Registry::getInstance()->config['allow_endorsed']=="Yes") 
+        if (leaf_Registry::getInstance()->config['allow_endorsed']) 
             $enableEndorsementManager = TRUE;
         $hasInited=NULL;
     }
