@@ -19,7 +19,7 @@
  * Example (<b>pure fictional, because the visibility is private</b>):<br>
  * <code>
  *   $router = new leaf_Router();
- *   echo $router->config['base_url'];
+ *   echo $router->Config['base_url'];
  * </code>
  *
  * We assume, that the "config" property has already been instantiated and

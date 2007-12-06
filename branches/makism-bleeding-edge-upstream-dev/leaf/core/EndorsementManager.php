@@ -77,7 +77,7 @@ final class leaf_EndorsementManager extends leaf_Base {
 
         dependsOn('reflection');
 
-        $this->registeredEndorsed = explode(",", $this->config['endorsed']);
+        $this->registeredEndorsed = explode(",", $this->Config['endorsed']);
     }
 
     /**
