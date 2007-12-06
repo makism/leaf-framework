@@ -2,7 +2,7 @@
 
 // *Always*, your Controller must:
 // 1) extend "leaf_Controller", and
-// 2) have a name ending the string "_Controller".
+// 2) have a name ending with the string "_Controller".
 //
 // If those two requirements, are not met,
 // your Controller will be ignored, and an error
@@ -36,7 +36,7 @@ class SampleApplication_Controller extends leaf_Controller {
 		// The lines 2 & 3 could also be written as:
 		// 2. $db = $this->Db->bind("sample");
 		// 3. $db->connect();
-		
+        
 
         // Load the Sample Model.
         $this->Load->model("SampleModel");
@@ -51,7 +51,7 @@ class SampleApplication_Controller extends leaf_Controller {
         // Change on the fly, the configuration, so 
         // debug statistics are created only if requested.
         if ($this->Request->queryStringKeyExists("debug"))
-            $this->Config['enable_debug_stats'] = "Yes";
+            $this->Config['enable_debug_stats'] = TRUE;
 
 	}
 
@@ -62,7 +62,6 @@ class SampleApplication_Controller extends leaf_Controller {
 		
         // Print a welcome message.
         $this->View->render("main", $data);
-
 	}
 
 }
