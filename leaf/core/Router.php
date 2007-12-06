@@ -129,7 +129,7 @@ final class leaf_Router extends leaf_Base {
         $skipExt = "";
 		
         // match the query string
-		$skipQueryString = ($this->Config['allow_query_strings']=="Yes")
+		$skipQueryString = ($this->Config['allow_query_strings'])
 			? "(\?(["
 				. $this->Config['allow_query_string_chars']
 				. "]+(=["
@@ -173,7 +173,7 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if (preg_match("@\?(.+(=.+)?\&?$)+@iu", $this->requestUri, $matches)) {
             
-			if ($this->Config['allow_query_strings']=="Yes") {
+			if ($this->Config['allow_query_strings']) {
                 
 				$this->queryString = $matches[0];
 
@@ -220,7 +220,7 @@ final class leaf_Router extends leaf_Base {
 		 * Removal of the virtual file extension
          * if enabled, and if found in the Uri.
 		 */
-		if (!empty($this->config['url_suffix']))
+		if (!empty($this->Config['url_suffix']))
 			$this->requestUri = preg_replace(
 				"@\.{$this->Config['url_suffix']}/?$@",
 				"",
@@ -238,7 +238,7 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if ($this->requestUri=="/"	||
 			$this->requestUri==NULL	||
-			($this->requestUri{0}=="?" && $this->Config['allow_query_strings']=="Yes")) {
+			($this->requestUri{0}=="?" && $this->Config['allow_query_strings'])) {
 			$this->requestClass = $this->Config['default_controller'];
         }	
 		/*
