@@ -19,11 +19,15 @@ require_once LEAF_BASE . "core/db/Db_Backend.php";
  */
 require_once LEAF_BASE . "core/db/Db_ActiveRecord.php";
 
-
 /**
  * 
  */
 require_once LEAF_BASE . "core/db/backend/mysql.php";
+
+/**
+ * 
+ */
+require_once LEAF_BASE . "core/db/Db_ResultSet.php";
 
 /**
  * 
