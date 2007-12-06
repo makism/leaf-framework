@@ -44,7 +44,6 @@ abstract class leaf_Db_Backend {
     /**
      *
      * 
-     * @param   array   $profile
      * @return  void
      */
     public function __construct()
@@ -53,6 +52,7 @@ abstract class leaf_Db_Backend {
     }
 	
 	/**
+	 * 
 	 * 
 	 * @return void
 	 */
@@ -83,32 +83,34 @@ abstract class leaf_Db_Backend {
      * @return  boolean
      */
 	abstract public function selectDb($dbName);
-
-	/**
-	 * 
-     * 
-	 */
-	abstract public function select($selectQuery);
 	
 	/**
 	 * 
-     * 
+	 *
+	 * @param  string  $select
+	 * @return object leaf_Db_ResultSet
 	 */
-	abstract public function insert($insertQuery);
+	abstract public function fetch($select);
 	
 	/**
+	 * 
+	 *
+	 * @param  string  $tbl
+	 * @param  string  $order
+	 * @param  string  $limit
+	 * @return object leaf_Db_ResultSet
+	 */
+	abstract public function fetchAll($tbl, $order, $limit);
+	
+	/**
+	 * 
 	 * 
 	 * 
 	 */
 	abstract public function query($rawQuery);
-	
+		
 	/**
 	 * 
-	 * 
-	 */
-	abstract public function freeResultSet($resultSet);
-	
-	/**
 	 * 
 	 * @return boolean
 	 */
