@@ -23,7 +23,8 @@
  * </ol>
  */
 final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
-
+    
+    
     /**
      *
      * 
@@ -35,6 +36,15 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
         parent::__construct();
         
         $this->dbProfile = $profile;
+    }
+    
+    /**
+     * 
+     * 
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
     
     /**
@@ -75,7 +85,7 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
     public function disconnect()
     {
         if ($this->isConnected())
-            return mysql_close($this->link);
+            return (boolean)mysql_close($this->link);
         else
             return true;
     }
@@ -88,26 +98,61 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
      */
     public function selectDb($dbName)
     {
-        return mysql_select_db($dbName, $this->link);
+        return (boolean)mysql_select_db($dbName, $this->link);
+    }
+    
+    /**
+     *
+     *  
+     * @param   string  $selectQuery
+     * @return  object leaf_Db_ResultSet
+     * @todo
+     * <ol>
+     *  <li>Store all Result Sets into an internal array.</li>
+     *  <li>Add support for "freeing" the Result Sets via a helper method
+     *  (this denotes changes in the leaf_Db_ResultSet).
+     * </li>
+     * </ol>
+     */
+    public function fetch($selectQuery)
+    {        
+        $query = mysql_query($selectQuery, $this->link);
+        $result= array();
+        
+        // If a problem occured with the query, return to the user
+        // an empty result set.
+        if ($query==false)
+            return new leaf_Db_ResultSet($selectQuery, $result);        
+        
+        // Fetch all the rows.
+        if (@mysql_numrows($query)>0)
+            while ( $result[] = ($row = mysql_fetch_assoc($query)) );
+        
+        // Create the result set.
+        $resultSet = new leaf_Db_ResultSet($selectQuery, $result);
+        
+        // Fetch result set`s hash id.
+        #$hash = $resultSet->getResultSetId();
+        
+        // Store the result set, using it`s hash.
+        #$this->activeResultSets[$hash] = $resultSet;
+        
+        return $resultSet;
     }
     
     /**
      * 
      * 
+     * @param   string  $tblName
+     * @param   string  $order
+     * @param   string  $limit
+     * @return  object leaf_Db_ResultSet
      */
-    public function select($selectQuery)
-    {
-
-    }
-    
-    /**
-     * 
-     */
-    public function insert($insertQuery)
+    public function fetchAll($tblName, $order, $limit)
     {
         
     }
-    
+        
     /**
      * Executes a generic sql query.
      *
@@ -120,14 +165,7 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
     }
     
     /**
-     * 
-     */
-    public function freeResultSet($resultSet)
-    {
-        
-    }
-    
-    /**
+     * Returns the connection`s status.
      * 
      * @return boolean
      */
