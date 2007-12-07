@@ -220,8 +220,8 @@ final class leaf_Request extends leaf_Base {
      */
 	public function segment($n)
 	{
-	    if (array_key_exists($n+1, $this->segments))
-	       return $this->segments[$n+1];
+	    if (array_key_exists($n-1, $this->segments))
+	       return $this->segments[$n-1];
 	    else
 	       return NULL;
 	}
