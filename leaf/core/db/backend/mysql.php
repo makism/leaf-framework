@@ -65,11 +65,17 @@ final class leaf_Db_Backend_mysql extends leaf_Db_Backend {
         
         $server = $host . ":" . $port;
 
+        // Connect
         $this->link = mysql_connect($server, $user, $pass);
         
+        // Select database
         if ($db!="") {
             $this->selectDb($db);
         }
+        
+        // Set collation
+        $collation = $this->dbProfile['charset'];
+        mysql_query("SET NAMES '{$collation}'");
         
         if ($this->link!=NULL)
             return true;
