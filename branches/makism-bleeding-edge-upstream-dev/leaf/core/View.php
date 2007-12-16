@@ -24,7 +24,7 @@
 final class leaf_View extends leaf_Base {
 
     const LEAF_REG_KEY = "View";
-    
+
     const LEAF_CLASS_ID = "LEAF_VIEW-1_0_dev";
 
 
@@ -43,18 +43,26 @@ final class leaf_View extends leaf_Base {
     private $viewFileList = array();
 
     /**
+     * List of all variables that will be become visible
+     * to the Views.
+     *
+     * @var array
+     */
+    private $allVariables = array();
+
+    /**
      * Instantiates the super class.
      *
      * @return  void
      */
-	public function __construct()
-	{
+    public function __construct()
+    {
         parent::__construct(self::LEAF_REG_KEY);
-	}
+    }
 
     /**
      * Includes a view file.
-     * 
+     *
      * View files, are common php script files. You may
      * pass an associative array with the variables you want to
      * expose to the view files.<br>
@@ -68,9 +76,10 @@ final class leaf_View extends leaf_Base {
      * <code>
      *  echo $title;
      * </code>
-     * 
+     *
      * @param   string  $view
      * @param   array   $data
+     * @param   array   $opts
      * @return  void
      * @todo
      * <ol>
@@ -83,18 +92,17 @@ final class leaf_View extends leaf_Base {
      *  that is requested.</li>
      * </ol>
      */
-    public function render($view, array $data=NULL)
+    public function render($view, array $data=NULL, array $opts=NULL)
     {
         // Number of the passed arguments.
         $s = sizeof($data);
-        
+
         // View`s filename
         $name = NULL;
-                
+
         // Application name.
         $app = NULL;
 
-        
         // Check to determine whether the requested View file
         // is stored in external Application.
         $idx = strpos($view, "/");
@@ -102,30 +110,37 @@ final class leaf_View extends leaf_Base {
             $app = substr($view, 0, $idx);
             $name= substr($view, $idx+1);
         } else {
-        	$name= $view;
+            $name= $view;
         }
-        
+
         // If no application name is given, or
         // "/" is found at the beginning of the
         // string, assign the current application`s
         // name.
         if ($app=="/" || $app==NULL) {
-        	$app = $this->Request->getApplicationName();
+            $app = $this->Request->getApplicationName();
         }
-        
+
         // Create the file final name...
         $this->currViewFile = "applications/" . $app . "/View/" . $name . ".php";
-                
+
         if (file_exists($this->currViewFile) &&
             is_readable($this->currViewFile))
         {
             $this->viewFileList[] = $this->currViewFile;
 
-        	// Make the passed variables visible to the included
-            // View file.
-        	if (!empty($data))
-        	   foreach ($data as $Idx => $Val)
-        	       ${$Idx} = $Val;
+            // Merge the currently passed variables with those already stacked.
+            if (!empty($data)) {
+                $this->allVariables = array_merge($this->allVariables, $data);
+            }
+
+            // Make all variables visible to the included View file.
+            if (!empty($this->allVariables)) {
+                foreach ($this->allVariables as $Idx => $Val) {
+                    echo "<!-- exporting var \"{$Idx}\", contains \"{$Val}\" -->\n";
+                    ${$Idx} = $Val;
+                }
+            }
 
             require_once $this->currViewFile;
         }
