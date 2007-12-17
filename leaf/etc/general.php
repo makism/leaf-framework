@@ -19,16 +19,17 @@ $general = array();
 
 /*
  * Host name.
- * "hideo", for example.
+ * 
+ * "http://hideo", for example.
  */
 $general['hostname']  = "http://hostname";
 
 
 /*
- * The subdirectory in your htdocs (usually), where leaf Framework`s
+ * The subdirectory in your htdocs (usually), where leaf framework`s
  * index.php is located.
+ * 
  * "/leaf/", for example.
- *
  */
 $general['base_dir']  = "/";
 
@@ -52,17 +53,18 @@ $general['base_url'] = $general['hostname'] . $general['base_dir'];
 
 
 /*
- * Virtual file extension, shown in the address. (not implemented)
+ * Virtual file extension, shown in the Uri.
  *
- * Default: "";
+ * Default: "xml";
  */
-$general['url_suffix']= "";
+$general['url_suffix']= "xml";
 
 
 /*
  * Default encoding used when necesery.
  */
 $general['charset'] = "utf-8";
+
 
 /*
  * Sandbox
