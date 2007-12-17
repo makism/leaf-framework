@@ -39,6 +39,8 @@ $database["general"] = array (
  * Notice the indexes... 
  */
 $database["profiles"]["sample"] = array (
+    // Alias
+    "alias" => "Db1",
     // Backend
     "backend" => "mysql",
     // Hostname
@@ -52,18 +54,13 @@ $database["profiles"]["sample"] = array (
     // Database name
     "db_name" => "makism",
     // Charset
-    // (it is best to leave blank)
     "charset" => "",
     // Autoconnect
     // Create the link upon calling bind.
-    "auto_connect" => true
+    "auto_connect" => true,
+    // Active Record
+    "active_record_enabled" => false
 );
 
-/*
- * Another sample configuration
- */
-$database["profiles"]["otherSample"] = array (
-
-);
 
 ?>
