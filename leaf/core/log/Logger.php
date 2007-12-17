@@ -88,7 +88,7 @@ final class leaf_Logger extends leaf_Base implements leaf_Log {
             $this->threshold = "All";
         else
             $this->threshold = Registry::instance()->config['log_level'];*/
-        $this->threshold = $this->config['log_level'];
+        $this->threshold = $this->Config['log_level'];
 
         /*
          * Output filename.
