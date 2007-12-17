@@ -50,6 +50,14 @@ abstract class leaf_Controller extends leaf_Base {
      * 
 	 * @param  string  $key
 	 * @return object|NULL
+	 * @todo
+	 * <ol>
+	 *  <li>Support for accessing the Models using a member property named "Models".
+	 *  <br>For example (<i>in Controller scope</i>):
+	 *  <code>$this->Models->modelName</code> <b>or</b>
+	 *  <code>$this->Models['modelName']</code><br>
+	 *  This denotes changes in the {@link leaf_Loader} class as well.</li>
+	 * </ol>
 	 */
 	protected function __get($key)
 	{
