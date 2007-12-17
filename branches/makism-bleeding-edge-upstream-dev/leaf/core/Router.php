@@ -108,12 +108,7 @@ final class leaf_Router extends leaf_Base {
         
         parent::__construct(self::LEAF_REG_KEY);
 	    
-		$this->requestUri   = $_SERVER['REQUEST_URI'];
-
-        /*
-         * Replace the possible multiple occurences of "/", with one "/"
-         */
-        $this->requestUri = preg_replace("@/+@i", "/", $this->requestUri);
+		$this->requestUri = $_SERVER['REQUEST_URI'];
         
 		/*
 		 * We check if there are any illegal characters in
@@ -123,10 +118,9 @@ final class leaf_Router extends leaf_Base {
 		 * extensions that will be shown, so we ignore it.
 		 */
         // match the virtual file extension.
-		/*$skipExt = (!empty($this->config['url_suffix']))
+		$skipExt = (!empty($this->Config['url_suffix']))
 					? "(\.[^?=&]+)?"
-					: "";*/
-        $skipExt = "";
+					: "";
 		
         // match the query string
 		$skipQueryString = ($this->Config['allow_query_strings'])
@@ -134,7 +128,7 @@ final class leaf_Router extends leaf_Base {
 				. $this->Config['allow_query_string_chars']
 				. "]+(=["
 				. $this->Config['allow_query_string_chars']
-				. "]*)?\&?)+)?"
+				. "]*)?\&?)*)?"
 			: "";
 		
         // match all
@@ -148,16 +142,9 @@ final class leaf_Router extends leaf_Base {
 		);
 		
         /*
-         * We die in case we find erroneous characters in the Uri,
-         * and keep a log of the event.
+         * We die in case we find erroneous characters in the Uri.
          */
 		if ($checkUri==0) {
-		    /*$this->logger->log(
-		        "Error",
-		        "Routing Error, Malicious characters found in Uri ("
-		        . "{$this->requestUri})"
-		    );*/
-		    
 			showHtmlMessage(
 			    "Routing Error",
 			    "Malicious characters found in Uri!",
@@ -222,7 +209,7 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if (!empty($this->Config['url_suffix']))
 			$this->requestUri = preg_replace(
-				"@\.{$this->Config['url_suffix']}/?$@",
+				"@\.{$this->Config['url_suffix']}@",
 				"",
 				$this->requestUri
 			);
@@ -238,7 +225,8 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if ($this->requestUri=="/"	||
 			$this->requestUri==NULL	||
-			($this->requestUri{0}=="?" && $this->Config['allow_query_strings'])) {
+			($this->requestUri{0}=="?" && $this->Config['allow_query_strings'])
+			) {
 			$this->requestClass = $this->Config['default_controller'];
         }	
 		/*
@@ -326,7 +314,12 @@ final class leaf_Router extends leaf_Base {
 		if ($this->requestUri!="") {
 			if (preg_match("@([^/\?]*)@", $this->requestUri, $hits)) {
 				$seg = $hits[0];
-				$this->requestUri = preg_replace("@([^/\?]*/?)@", "", $this->requestUri, 1);
+				$this->requestUri = preg_replace(
+				    "@([^/\?]*/?)@",
+				    "",
+				    $this->requestUri,
+				    1
+				);
 			}
 		}
 	}
