@@ -96,7 +96,6 @@ function array2qstring(array $query, $convert=true)
 
 }
 
-
 /**
  * Converts a query string in an array.
  *
