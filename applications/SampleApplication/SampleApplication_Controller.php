@@ -59,6 +59,7 @@ class SampleApplication_Controller extends leaf_Controller {
 	{
 		// Populate the data array.
 		$data['title'] = $this->sample->getPageTitle();
+		$data['desc'] = "This is a test View, displayed by the Sample Application`s Controller.";
 		
         // Print a welcome message.
         $this->View->render("main", $data);
