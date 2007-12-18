@@ -10,6 +10,17 @@
 
 
 /**
+ * Represents the request for variable merging.
+ */
+define('VIEW_MERGE', 1);
+
+/**
+ * Represents the request for variable exposure.
+ */
+define('VIEW_EXPOSE', 2);
+
+
+/**
  * Handles the "View" files.
  *
  * @package		leaf
@@ -18,7 +29,7 @@
  * @version		$Id$
  * @todo
  * <ol>
- *  <li>Implement.</li>
+ *  <li>Add support for Output Buffer.</li>
  * </ol>
  */
 final class leaf_View extends leaf_Base {
@@ -76,6 +87,16 @@ final class leaf_View extends leaf_Base {
      * <code>
      *  echo $title;
      * </code>
+     * <br>
+     * Supported options are:
+     * <ol>
+     *  <li><b>merge</b> <i>(boolean)</i>: Whether or not merge the currently
+     *  passed variables with those that have been previously passed.<br>
+     *  Defaults in <i>true</i>.</li>
+     *  <li><b>expose</b> <i>(boolean)</i>: Request to make all the variables
+     *  available in the View object visible to the current view file.<br>
+     *  Defaults in <i>true</i>.</li>
+     * </ol>
      *
      * @param   string  $view
      * @param   array   $data
@@ -83,9 +104,7 @@ final class leaf_View extends leaf_Base {
      * @return  void
      * @todo
      * <ol>
-     *  <li>When this method is called, the Output Buffer, will be also
-     *  flushed and terminating. This will spawn the "include" method
-     *  which will be similar except the Ob thingie.</li>
+     *  <li>Flush and terminate the Output Buffer after this method returns.</li>
      *  <li>Maybe this method and "include", will be implemeneted inside
      *  the overload method "__call".</li>
      *  <li>Create some "sanity" checks to run against the view name
@@ -129,19 +148,38 @@ final class leaf_View extends leaf_Base {
         {
             $this->viewFileList[] = $this->currViewFile;
 
-            // Merge the currently passed variables with those already stacked.
-            if (!empty($data)) {
-                $this->allVariables = array_merge($this->allVariables, $data);
-            }
+            // By default, the currently passed variables will be merge
+            // with those already stacked.
+            // This can be changed by passing:
+            // "merge" => false
+            // to the option array.
+            if (!empty($data))
+                if (!isset($opts['merge']) || $opts['merge']!=false)
+                    $this->allVariables = array_merge($this->allVariables, $data);
 
             // Make all variables visible to the included View file.
-            if (!empty($this->allVariables)) {
-                foreach ($this->allVariables as $Idx => $Val) {
+            // It is possible to export only the current vars, ignoring
+            // those at the View`s stack.
+            if (!isset($opts['expose']) || $opts['expose']!=false) {
+                if (!empty($this->allVariables)) {
+                    foreach ($this->allVariables as $Idx => $Val) {
+                        echo "<!-- exposing var \"{$Idx}\", contains \"{$Val}\" -->\n";
+                        ${$Idx} = $Val;
+                    }            
+                }
+            }
+                      
+            if (!empty($data)) {
+                foreach ($data as $Idx => $Val) {
                     echo "<!-- exporting var \"{$Idx}\", contains \"{$Val}\" -->\n";
                     ${$Idx} = $Val;
                 }
             }
+            
+            // Clear the local variables.
+            unset($data, $app, $idx, $name, $s);
 
+            
             require_once $this->currViewFile;
         }
 
