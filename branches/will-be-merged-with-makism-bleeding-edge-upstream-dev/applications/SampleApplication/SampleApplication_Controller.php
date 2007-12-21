@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 // *Always*, your Controller must:
 // 1) extend "leaf_Controller", and
@@ -20,13 +20,13 @@ class SampleApplication_Controller extends leaf_Controller {
 		// Parameters passed to the Db library
 		// (a) define a db profile, and
 		// (b) we demand to connect as soon as the profile has been binded.
-		$opts = array (
+		/*$opts = array (
 		  "profile"       => "sample",
 		  "auto_connect"  => true
-		);
+		);*/
 		
         // Request for database support based on these parameters.
-		$this->Load->library("Db", $opts);
+		//$this->Load->library("Db", $opts);
 		
 		// The above lines are exactly the same as calling consequently:
 		// 1. $this->Load->library("Db");
@@ -44,15 +44,8 @@ class SampleApplication_Controller extends leaf_Controller {
         // This could be achieved also:
         // 1. $this->Load->model("SampleModel", array("bindName"=>"sample"));
         
-		
 		// Include some required plugins.
 		$this->Load->plugin("url");
-
-        // Change on the fly, the configuration, so 
-        // debug statistics are created only if requested.
-        if ($this->Request->queryStringKeyExists("debug"))
-            $this->Config['enable_debug_stats'] = TRUE;
-
 	}
 
 	public function index()
@@ -63,6 +56,11 @@ class SampleApplication_Controller extends leaf_Controller {
 		
         // Print a welcome message.
         $this->View->render("main", $data);
+	}
+	
+	public function stats()
+	{
+		$this->Config['enable_debug_stats'] = TRUE;
 	}
 
 }
