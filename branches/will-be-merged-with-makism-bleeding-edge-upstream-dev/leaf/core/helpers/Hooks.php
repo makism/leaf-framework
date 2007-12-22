@@ -58,7 +58,7 @@ function introspectHooks($level=NULL)
     static $allHooks;
 
     if ($allHooks==NULL)
-        $allHooks = leaf_Registry::getInstance()->config->hooks;
+        $allHooks = leaf_Registry::getInstance()->Config->getByHashKey("hooks");
 
     if ($level!=NULL)
         return $allHooks[$level];
@@ -76,33 +76,41 @@ function introspectHooks($level=NULL)
 function runHooks($level)
 {
     $hooks = introspectHooks($level);
+	
+	if (!empty($hooks)) {
+		
+		foreach ($hooks as $Hook) {
+			runHook($Hook);
+		}
+		
+	}
+	
 }
 
 /**
- * Executes a specific hook.
+ * Executes the specific hook.
  *
- * @access  private
- * @param   string  $controller
- * @param   string  $method
- * @return  void
+ * @param	string	$hook
+ * @return	void
  */
-function runHook($controller, $method)
+function runHook($hook)
 {
-
-}
-
-/**
- * Returns all registered hooks for one -or all- level. Also, the hooks
- * can be filtered using the parameters $controller and $method.
- *
- * @param	string|NULL	$level
- * @param	string|NULL	$controller
- * @param	string|NULL	$method
- * @return	array
- */
-function getHooks($level=NULL, $controller=NULL, $method=NULL)
-{
-
+	$file = LEAF_BASE . "hooks/" . $hook . ".php";
+	
+	if (file_exists($file) && is_readable($file)) {
+		require_once $file;
+		
+		if (class_exists($hook, FALSE)) {
+			$inst = new $hook();
+			if ($inst instanceof leaf_Hook_Conditional) {
+				if (call_user_func(array($inst, "condition"))===TRUE)
+					call_user_func(array($inst, "run"));
+			} else {
+				call_user_func(array($inst, "run"));
+			}
+		}
+		
+	}
 }
 
 ?>
