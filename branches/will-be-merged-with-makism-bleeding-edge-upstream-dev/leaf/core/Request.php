@@ -34,6 +34,12 @@ final class leaf_Request extends leaf_Base {
     
     const LEAF_CLASS_ID = "LEAF_REQUEST-1_0_dev";
 
+	/**
+	 * The query string.
+	 *
+	 * @var	string
+	 */
+	private $queryString = NULL;
 
     /**
      * The extra segments found in the Uri.
@@ -121,6 +127,11 @@ final class leaf_Request extends leaf_Base {
          * Fetch the Query String from the {@link leaf_Router router} object.
          */
         $this->queryElems   = $this->Router->queryStringElements();
+		
+		/*
+		 * Assign the Query String
+		 */
+		$this->queryString = $this->Router->queryString();
 	}
 	
 	/**
@@ -235,6 +246,25 @@ final class leaf_Request extends leaf_Base {
     {
         return $this->segments;
     }
+	
+	/**
+	 * Returns all the extra segments, separated with slashes.
+	 *
+	 * @return	string
+	 */
+	public function getSegments()
+	{
+		$returnStr = NULL;
+		$total = $this->totalSegments();
+		
+		if ($total==0)
+			return NULL;
+		
+		for ($i=0; $i<$total; $i++)
+			$returnStr .= $this->segments[$i] . "/";
+		
+		return $returnStr;
+	}
 
     /**
      * Returns the complete query string.
@@ -243,7 +273,7 @@ final class leaf_Request extends leaf_Base {
      */
     public function getQueryString()
     {
-    	return $this->Router->queryString();
+    	return $this->queryString;
     }
     
     /**
@@ -279,7 +309,48 @@ final class leaf_Request extends leaf_Base {
             else
                 return NULL;
     }
-
+	
+	/**
+	 * Recreates the query string based on the elements' array.
+	 *
+	 * @return	void
+	 */
+	private function updateQueryString()
+	{
+		$this->queryString = "?";
+		
+		$total = sizeof($this->queryElems);
+		
+		for ($i=0; $i<$total; $i++) {
+			list($Key, $Value) = each($this->queryElems);
+			
+			$this->queryString .= $Key;
+			
+			if ($Value!=NULL)
+				$this->queryString .= "=" . $Value;
+			
+			if ($i<$total-1)
+				$this->queryString .= "&";
+		}
+		
+		reset($this->queryElems);
+	}
+	
+	/**
+	 *
+	 *
+	 * @param	string	$key
+	 * @param	string	$value
+	 * @return	void
+	 */
+	public function appendQueryString($key, $value=NULL)
+	{
+		$value = (isset($value)) ? $value : NULL;
+		$this->queryElems[$key] = $value;
+		
+		$this->updateQueryString();
+	}
+	
     /**
      * Return the current query string, as a string.
      *
@@ -289,7 +360,7 @@ final class leaf_Request extends leaf_Base {
 	 *  <li>Possible complete method refactor.</li>
 	 * </ol>
      */
-    public function getQueryStringAsString()
+    public function getFormattedQueryString()
     {
         if ($this->queryElems!=NULL) {
             $str = NULL;
