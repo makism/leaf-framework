@@ -34,7 +34,7 @@ error_reporting(E_ALL | E_NOTICE | E_STRICT);
 /**
  * leaf`s Status and Version information.
  */
-define('LEAF_REL_STATUS', 'DEV');
+define('LEAF_REL_STATUS', 'SVN');
 define('LEAF_REL_VERSION', '1.0');
 
 /**
