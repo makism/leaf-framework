@@ -25,7 +25,7 @@
  * @version     $Id$
  * @todo
  * <ol>
- *  <li>Possible implementation of {@link http://en.wikipedia.org/wiki/Facade_pattern facade} functions.</li>
+ *  <li>Refactor most methods to act as wrapper methods for leaf_Router's methods.</li>
  * </ol>
  */
 final class leaf_Request extends leaf_Base {
@@ -35,11 +35,22 @@ final class leaf_Request extends leaf_Base {
     const LEAF_CLASS_ID = "LEAF_REQUEST-1_0_dev";
 
 	/**
-	 * The query string.
+	 * The current query string that found in the Uri.
+	 *
+	 * It is immutable, that means that it can not be modified.
 	 *
 	 * @var	string
 	 */
-	private $queryString = NULL;
+	private $immutablequeryString = NULL;
+	
+	/**
+	 * Will hold the new query string that we will build.
+	 *
+	 * This string mutable.
+	 *
+	 * @var	string
+	 */
+	private $mutableQueryString = NULL;
 
     /**
      * The extra segments found in the Uri.
@@ -82,6 +93,13 @@ final class leaf_Request extends leaf_Base {
      * @var array
      */
     private $queryElems = NULL;
+	
+	/**
+	 * Will hold the elements that will make up the new mutable query string.
+	 *
+	 * @var	array
+	 */
+	private $mutableQueryElems = NULL;
 
 
     /**
@@ -131,7 +149,7 @@ final class leaf_Request extends leaf_Base {
 		/*
 		 * Assign the Query String
 		 */
-		$this->queryString = $this->Router->queryString();
+		$this->immutablequeryString = $this->Router->queryString();
 	}
 	
 	/**
@@ -174,44 +192,6 @@ final class leaf_Request extends leaf_Base {
     {
     	return $this->action;
     }
-    
-	/**
-	 * Performs a redirect to the speficied Uri.
-     *
-	 * @param	string	$target
-	 * @param	boolean	$isExternal
-	 * @return	void
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
-	 */
-	public function redirect($target, $isExternal=FALSE)
-	{
-	
-	}
-	
-	/**
-	 * Reconstructs a Uri, based on the data passed.
-     *
-	 * @param	string	$className
-	 * @param	string	$methodName
-	 * @param	array	$segments
-     * @param   array   $queryString
-	 * @return	string
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
-	 */
-	public function recostructUrl
-		($className = NULL,
-         $methodName = NULL,
-         array $segments = NULL,
-         array $queryString = NULL)
-	{
-	
-	}
 	
     /**
      * Returns the total number of segments.
@@ -273,7 +253,7 @@ final class leaf_Request extends leaf_Base {
      */
     public function getQueryString()
     {
-    	return $this->queryString;
+    	return $this->mutableQueryString;
     }
     
     /**
@@ -306,8 +286,8 @@ final class leaf_Request extends leaf_Base {
         if ($this->queryElems!=NULL)
             if (array_key_exists($key, $this->queryElems))
                 return true;
-            else
-                return NULL;
+		
+		return false;
     }
 	
 	/**
@@ -317,23 +297,34 @@ final class leaf_Request extends leaf_Base {
 	 */
 	private function updateQueryString()
 	{
-		$this->queryString = "?";
+		$this->mutableQueryString = "?";
 		
-		$total = sizeof($this->queryElems);
+		$total = sizeof($this->mutableQueryElems);
 		
 		for ($i=0; $i<$total; $i++) {
-			list($Key, $Value) = each($this->queryElems);
+			list($Key, $Value) = each($this->mutableQueryElems);
 			
-			$this->queryString .= $Key;
+			$this->mutableQueryString .= $Key;
 			
 			if ($Value!=NULL)
-				$this->queryString .= "=" . $Value;
+				$this->mutableQueryString .= "=" . $Value;
 			
 			if ($i<$total-1)
-				$this->queryString .= "&";
+				$this->mutableQueryString .= "&";
 		}
 		
-		reset($this->queryElems);
+		reset($this->mutableQueryElems);
+	}
+	
+	/**
+	 * Merges the immutableQueryString with the mutableQueryString.
+	 * The result will be stored in the mutableQueryString.
+	 *
+	 * @return	void
+	 */
+	public function mergeQueryStrings()
+	{
+	
 	}
 	
 	/**
@@ -346,7 +337,7 @@ final class leaf_Request extends leaf_Base {
 	public function appendQueryString($key, $value=NULL)
 	{
 		$value = (isset($value)) ? $value : NULL;
-		$this->queryElems[$key] = $value;
+		$this->mutableQueryElems[$key] = $value;
 		
 		$this->updateQueryString();
 	}
@@ -364,7 +355,7 @@ final class leaf_Request extends leaf_Base {
     {
         if ($this->queryElems!=NULL) {
             $str = NULL;
-        
+			
             foreach($this->queryElems as $Var => $Val) {
                 if ($Val=="" || empty($Val))
                     $Val = "NULL";
@@ -375,7 +366,7 @@ final class leaf_Request extends leaf_Base {
             if (preg_match("@, $@", $str)) {
                 $str = preg_replace("@, $@", "", $str);
             } 
-
+			
             return $str;
         } else 
             return NULL;
