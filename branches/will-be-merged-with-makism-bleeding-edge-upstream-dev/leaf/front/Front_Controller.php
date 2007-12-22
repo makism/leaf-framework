@@ -125,7 +125,8 @@ $reg->Response->ouputBufferingStart();
 /*
  * Run all hooks for level: Pre-Controller-Dispatch
  */
-#runHooks(HOOK_PRE_CONTROLLER_DISPATCH);
+if ($reg->Config['allow_hooks'])
+	runHooks(HOOK_PRE_CONTROLLER_DISPATCH);
 
 
 /*
@@ -137,7 +138,8 @@ $reg->Dispatcher->dispatchController();
 /*
  * Run all hooks for level: Post-Controller-Dispatch
  */
-#runHooks(HOOK_POST_CONTROLLER_DISPATCH);
+if ($reg->Config['allow_hooks'])
+	runHooks(HOOK_POST_CONTROLLER_DISPATCH);
 
 
 /*
@@ -157,7 +159,8 @@ $reg->Response->outputBufferingEnd();
 /*
  * Run all hooks for level: Post-Front-Controller
  */
-#runHooks(HOOK_POST_FRONT_CONTROLLER);
+if ($reg->Config['allow_hooks'])
+	runHooks(HOOK_POST_FRONT_CONTROLLER);
 
 
 /*
@@ -165,6 +168,5 @@ $reg->Response->outputBufferingEnd();
  */
 if ($reg->Config['enable_debug_stats'])
     require_once LEAF_BASE . 'front/Debug.php';
-
 
 ?>
