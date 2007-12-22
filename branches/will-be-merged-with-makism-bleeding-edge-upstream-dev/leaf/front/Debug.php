@@ -30,6 +30,8 @@
 if (LEAF_REL_STATUS=='DEV') {
     dependsOn('xdebug');
     dependsOnFunc('memory_get_usage');
+	
+	leaf_Registry::getInstance()->Load->plugin("misc");
 
     $parseTime      = xdebug_time_index();
     $memoryUsage    = memory_get_usage();
@@ -131,7 +133,7 @@ DEBUG_STYLES;
         foreach($reg->Config->getByHashKey("general") as $Var => $Val) {
             echo
                 "<span style=\"color: #4e9a06;\"><b>{$Var}</b></span>\n    "
-              . "<span style=\"color: #ff0000;\"><small>{$Val}</small></span>\n";
+              . "<span style=\"color: #ff0000;\"><small>" . boolean2text($Val) . "</small></span>\n";
         }
         echo "</fieldset><br/>";
 
@@ -185,7 +187,7 @@ DEBUG_STYLES;
         $className  = $reg->Router->getClassName();
         $methodName = $reg->Router->getMethodName();
         $segments   = implode(" ", (array)$reg->Router->segments());
-        $queryString= $reg->Request->getQueryStringAsString();
+        $queryString= $reg->Request->getFormattedQueryString();
         
         echo
             "<div id=\"leaf_Debug_Request\" style=\"display: none;\">"
