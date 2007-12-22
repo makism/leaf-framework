@@ -11,15 +11,12 @@
 
 
 /**
+ * Base class for Hook objects, based on a conditional event.
  *
  * @package		leaf
  * @subpackage	core.hook
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
- * @todo
- * <ol>
- *  <li>Implement.</li>
- * </ol>
  */
 abstract class leaf_Hook_Conditional extends leaf_Hook {
 
@@ -44,6 +41,15 @@ abstract class leaf_Hook_Conditional extends leaf_Hook {
      * @return  boolean
      */
     abstract public function condition();
+	
+	/**
+	 *
+	 *
+	 */
+    public function __toString()
+	{
+		return __CLASS__ . " (Executes a Hook if the specified condition is met.)";
+	}
 	
 }
 

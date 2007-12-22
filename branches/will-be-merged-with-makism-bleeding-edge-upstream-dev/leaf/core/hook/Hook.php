@@ -11,17 +11,14 @@
 
 
 /**
+ * Base class for Hook objects.
  *
  * @package		leaf
  * @subpackage	core.hook
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
- * @todo
- * <ol>
- *  <li>Implement.</li>
- * </ol>
  */
-abstract class leaf_Hook extends leaf_Loader {
+abstract class leaf_Hook extends leaf_Base {
 
     const LEAF_REG_KEY = "hook";
     
@@ -37,13 +34,22 @@ abstract class leaf_Hook extends leaf_Loader {
 	{
         parent::__construct();
 	}
+	
+	/**
+	 *
+	 *
+	 */
+	abstract public function run();
 
     /**
      *
      *
      * @return  string
      */
-    abstract public function __toString();
+    public function __toString()
+	{
+		return __CLASS__ . " (Executes a Hook.)";
+	}
 
 }
 
