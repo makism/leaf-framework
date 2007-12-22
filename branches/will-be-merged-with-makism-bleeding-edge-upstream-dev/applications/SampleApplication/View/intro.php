@@ -8,6 +8,12 @@
 			echo make_link("stats", "Produce debug statistics");
 		?>
 	</span>
+	<br />
+	<span style="font-size: 10px;">
+		<?php
+			echo make_link("hooks", "Run sample hooks");
+		?>
+	</span>
 </div>
 
 <br />
