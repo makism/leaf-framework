@@ -3,6 +3,12 @@
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ VERSION 1.0 +
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+comments:
+Remove custom exception class "leaf_Exception" and all references to it, unless
+logging functionality is attatched to it.
+
+================================================================================
+
 package : leaf.core
 file    : Loader.php
 comments:
