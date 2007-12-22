@@ -163,7 +163,7 @@ final class leaf_View extends leaf_Base {
             if (!isset($opts['expose']) || $opts['expose']!=false) {
                 if (!empty($this->allVariables)) {
                     foreach ($this->allVariables as $Idx => $Val) {
-                        echo "<!-- exposing var \"{$Idx}\", contains \"{$Val}\" -->\n";
+                        echo "<!-- exposing var \"{$Idx}\", contains \"{$Val}\" to \"{$this->currViewFile}\" -->\n";
                         ${$Idx} = $Val;
                     }            
                 }
@@ -171,7 +171,7 @@ final class leaf_View extends leaf_Base {
                       
             if (!empty($data)) {
                 foreach ($data as $Idx => $Val) {
-                    echo "<!-- exporting var \"{$Idx}\", contains \"{$Val}\" -->\n";
+                    echo "<!-- exporting var \"{$Idx}\", contains \"{$Val}\" to \"{$this->currViewFile}\" -->\n";
                     ${$Idx} = $Val;
                 }
             }
