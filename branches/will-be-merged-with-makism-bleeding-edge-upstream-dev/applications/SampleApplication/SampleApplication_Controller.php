@@ -46,6 +46,9 @@ class SampleApplication_Controller extends leaf_Controller {
         
 		// Include some required plugins.
 		$this->Load->plugin("url");
+		
+		// Disable Hooks
+		$this->Config['allow_hooks'] = FALSE;
 	}
 
 	public function index()
@@ -61,6 +64,14 @@ class SampleApplication_Controller extends leaf_Controller {
 	public function stats()
 	{
 		$this->Config['enable_debug_stats'] = TRUE;
+	}
+	
+	public function hooks()
+	{
+		appendQueryString("runConditional");
+		echo make_link("", "Run conditional hook (based on query string)", APPEND_QUERYSTRING);
+		echo "<br/>";
+		$this->Config['allow_hooks'] = TRUE;
 	}
 
 }
