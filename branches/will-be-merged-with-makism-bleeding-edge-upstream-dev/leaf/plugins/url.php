@@ -40,6 +40,7 @@ define("APPEND_ALL", 3);
 /**
  * Appends a key with the associated value to the current query string.
  *
+* @see	leaf_Request
  * @param	string	$Key
  * @param	string	$Value
  * @return	void
@@ -47,6 +48,17 @@ define("APPEND_ALL", 3);
 function appendQueryString($Key, $Value=NULl)
 {
 	leaf_Registry::getInstance()->Request->appendQueryString($Key, $Value);
+}
+
+/**
+ * Merges the Query Strings. The result will be stored in the mutableQueryString.
+ *
+ * @see	leaf_Request
+ * @return	void
+ */
+function mergeQueryStrings()
+{
+	leaf_Registry::getInstance()->Request->mergeQueryStrings();
 }
 
 /**
