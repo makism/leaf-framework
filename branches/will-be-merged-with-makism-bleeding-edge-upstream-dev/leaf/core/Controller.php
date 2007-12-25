@@ -42,6 +42,7 @@ abstract class leaf_Controller extends leaf_Base {
 	public function __construct()
 	{
         parent::__construct(self::LEAF_REG_KEY);
+		$this->Load->library("GlobalHashTable");
 	}
 	
 	/**
