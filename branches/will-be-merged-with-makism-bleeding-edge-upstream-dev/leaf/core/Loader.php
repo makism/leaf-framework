@@ -54,7 +54,8 @@ class leaf_Loader extends leaf_Base {
      * @var array 
      */
     private $allLibraries = array(
-        "Db", "Hash", "Log", "Benchmark", "Cache"
+        "Db", "Hash", "Log", "Benchmark", "Cache",
+		"GlobalHashTable"
     );
     
     /**
