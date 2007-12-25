@@ -15,9 +15,7 @@
  * @filesource
  * @todo
  * <ol>
- *  <li>Add functionality for the 'hooks' subsystem.</li>
  *  <li>Add functionality for the benchmarking subsystem.</li>
- *  <li>Completetion of the documentation.</li>
  * </ol>
  */
 
@@ -99,10 +97,7 @@ date_default_timezone_set($timezoneSetting);
 /*
  * Register the logger if it has been enabled.
  */
-#if ($reg->Config['log_level']!="None" ||
-#    empty($reg->Config['log_level'])) {
-#    $reg->register(new leaf_Logger());
-#}
+$reg->register(new leaf_Logger());
 
 
 /*
@@ -152,8 +147,7 @@ $reg->Response->outputBufferingEnd();
  * Close the logger if it has been
  * requested and registered.
  */
-#if ($reg->isRegistered("logger"))
-#    $reg->Logger->end_flush();
+$reg->Log->end_flush();
 
 
 /*
