@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -13,19 +13,29 @@
  *
  *
  * @package     leaf
- * @subpackage  core.log
+ * @subpackage  core.log.backend
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version	    $Id$
- * @method		void log()
- *					 log(string message)
- *					 log(Exception e)
- *					 log(int level, string message)
- *					 log(int level, string message, string fileName)
- *					 log(int level, string message, string fileName, string className)
- *					 log(int level, Exception e)
- *				Handles to log a message.
  */
-abstract class leaf_Log {
+class leaf_Logger_Heap extends leaf_Log {
+
+	/**
+	 *
+	 *
+	 * @var	array
+	 */
+	private $stack = array();
+
+	
+	/**
+	 *
+	 *
+	 *
+	 */
+	public function __construct()
+	{
+	
+	}
 
 }
 
