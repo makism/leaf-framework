@@ -65,6 +65,7 @@ function __autoload($className)
     		'leaf_Config'    => 'Config.php',
             'leaf_Dispatcher'=> 'Dispatcher.php',
             'leaf_Exception' => 'Exception.php',
+			'leaf_GlobalHashTable' => "GlobalHashTable.php",
             'leaf_Loader'    => 'Loader.php',
             'leaf_Locale'    => 'Locale.php',
             'leaf_Registry'  => 'Registry.php',
