@@ -22,7 +22,8 @@
  * @param   array   $arr
  * @return  object stClass
  */
-function array2object() {
+function array2object()
+{
 
 }
 
