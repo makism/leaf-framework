@@ -101,7 +101,6 @@ final class leaf_Router extends leaf_Base {
      * @todo
      * <ol>
      *  <li>Possible break-down of the jobs that the constructor executes.</li>
-     *  <li>Recheck the "virtual file extension" function.</li>
      * </ol>
 	 */
 	public function __construct() {
@@ -145,6 +144,7 @@ final class leaf_Router extends leaf_Base {
          * We die in case we find erroneous characters in the Uri.
          */
 		if ($checkUri==0) {
+			$this->Log->log(LEVEL_ERROR, "Malicious characters found in the Uri");
 			showHtmlMessage(
 			    "Routing Error",
 			    "Malicious characters found in Uri!",
