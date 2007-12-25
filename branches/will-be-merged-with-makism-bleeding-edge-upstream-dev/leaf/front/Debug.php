@@ -79,17 +79,16 @@ if ($reg->Config['allow_hooks']) {
 	"<li><a href=\"#leaf_Debug_Hooks\"><em>Hooks</em></a></li>";
 }
 
-if ($reg->Config['log_level']!="None") {
 	echo
 	"<li><a href=\"#leaf_Debug_Log_Buffer\"><em>Log Buffer</em></a></li>";
-}
+
 	 
 if ($reg->Config['allow_endorsed']) {
 	echo
 	 "<li><a href=\"#leaf_Debug_Endorsed\"><em>Endorsed Classes</em></a></li>";
 }
 
-if (leaf_Registry::getInstance()->Load->libraryLoaded("Db")) {
+if ($reg->Load->libraryLoaded("Db")) {
 	echo
 	 "<li><a href=\"#leaf_Debug_Database\"><em>Database</em></a></li>";
 }
@@ -161,7 +160,16 @@ echo
 	 echo
 		"<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Hooks</b></small></legend>"
 		. "</fieldset>"
-		. "</pre>"
+		. "<br/>";
+		
+	// db settings
+	 echo
+		"<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Database Settings</b></small></legend>"
+		. "</fieldset>"
+		. "<br/>";
+		
+	echo
+		"</pre>"
 		. "</div>";
 	
 	//
@@ -244,11 +252,20 @@ echo
 	//
 	// Log Buffer
 	//
-	if ($reg->Config['log_level']!="None") {
-		echo
-			"<div id=\"leaf_Debug_Log_Buffer\" style=\"display: none;\">"
-			. "</div>";
-	}
+	echo
+		"<div id=\"leaf_Debug_Log_Buffer\" style=\"display: none;\">"
+		. " <pre style=\"font-size: 14px; font-family: Verdana, Arial, helvetica, sans-serif;\">"
+		. "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Log buffer</b></small></legend>";
+		
+		if ($reg->Log->getBackend()->supportsBuffering())
+			echo leaf_Registry::getInstance()->Log->getBuffer();
+		else
+			echo "<i>Current backend, does not support buffering.</i>";
+		
+	echo
+		"</fieldset>"
+		. "</pre>"
+		. "</div>";
 
 	//
 	// Endorsed
@@ -277,7 +294,7 @@ echo
 	//
 	// Database
 	//
-	if (leaf_Registry::getInstance()->Load->libraryLoaded("Db")) {
+	if ($reg->Load->libraryLoaded("Db")) {
 		echo
 			"<div id=\"leaf_Debug_Database\" style=\"display: block;\">"
 			. " <pre style=\"font-size: 14px; font-family: Verdana, Arial, helvetica, sans-serif;\">";
