@@ -23,7 +23,6 @@
  * @todo
  * <ol>
  *  <li>Remove member properties.</li>
- *  <li>Replace the member properties with method calls to leaf_Request.</li>
  * </ol>
  */
 final class leaf_Dispatcher extends leaf_Base {
@@ -91,16 +90,15 @@ final class leaf_Dispatcher extends leaf_Base {
          */
         require_once $this->target;
 
+        /*
+         * Register and instance of leaf_View, for future usage.
+         */
+        leaf_Registry::getInstance()->register(new leaf_View());
 
         /*
          * Create an instance of the requested Controller.
          */
         $this->controller = new $this->controllerName;
-
-        /*
-         * Register and instance of leaf_View, for further usage.
-         */
-        leaf_Registry::getInstance()->register(new leaf_View());
 
         /*
          * Check if the current Controller inherits from our
