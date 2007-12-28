@@ -10,7 +10,11 @@
 
 
 /**
+ * Handles the output buffering.
  *
+ * That is, sents http headers, flushes the internal buffer.
+ * Also, specifies an output handler like "gzip" or "tidy",
+ * applying advanced functionality.
  *
  * @package     leaf
  * @subpackage  core
@@ -27,7 +31,7 @@ final class leaf_Response extends leaf_Base {
     
     const LEAF_CLASS_ID = "LEAF_RESPONSE-1_0_dev";
     
-
+	
 	/**
      *
      *

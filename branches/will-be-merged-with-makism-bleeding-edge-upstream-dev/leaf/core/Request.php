@@ -34,6 +34,7 @@ final class leaf_Request extends leaf_Base {
     
     const LEAF_CLASS_ID = "LEAF_REQUEST-1_0_dev";
 
+	
 	/**
 	 * The current query string that found in the Uri.
 	 *
@@ -184,7 +185,7 @@ final class leaf_Request extends leaf_Base {
     }
     
     /**
-     * 
+     * Returns the current Action's name.
      *
      * @var string 
      */
@@ -321,6 +322,10 @@ final class leaf_Request extends leaf_Base {
 	 * The result will be stored in the mutableQueryString.
 	 *
 	 * @return	void
+	 * @todo
+	 * <ol>
+	 *  <li>Implement.</li>
+	 * </ol>
 	 */
 	public function mergeQueryStrings()
 	{
@@ -328,7 +333,7 @@ final class leaf_Request extends leaf_Base {
 	}
 	
 	/**
-	 *
+	 * Append's a key with an optional value at the query string.
 	 *
 	 * @param	string	$key
 	 * @param	string	$value

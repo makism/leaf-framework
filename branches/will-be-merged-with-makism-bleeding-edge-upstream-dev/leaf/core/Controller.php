@@ -21,7 +21,6 @@
  * @version		$Id$
  * @todo
  * <ol>
- *  <li>Refactor.</li>
  *  <li>Possible implementation of "Dependacies Injection (DI)" method,
  *  so that each Controller, will load <b>only</b> the classes it
  *  depends on.</li>
@@ -71,6 +70,16 @@ abstract class leaf_Controller extends leaf_Base {
         // and thus return it -if found-.
         else
             return $this->Load->model($key);
+	}
+	
+	/**
+	 * Enables the "Forest" widget".
+	 *
+	 * @return	void
+	 */
+	public function enableForest()
+	{
+		$this->View->render("Forest/Forest");
 	}
 
     public function __toString()

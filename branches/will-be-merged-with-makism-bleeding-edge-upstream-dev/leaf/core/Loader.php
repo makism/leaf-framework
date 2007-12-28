@@ -87,10 +87,10 @@ class leaf_Loader extends leaf_Base {
      *   desire to load, and you specify any settings if you would like.<br>
      *   The available settings are:
      *    <ol>
-     *     <li><b>bindName</b> <i>(string)</i>: the instance name (REQUIRED)</li>
-     *     <li><b>application</b> <i>(string)</i>: source application</li>
-     *     <li><b>global</b> <i>(boolean)</i>: restrict access to the model</li>
-     *     <li><b>args</b> <i>(array)</i>: arguments passed to the contructor</li>
+     *     <li><b>bindName</b> <i>(string)</i>: the instance name/</li>
+     *     <li><b>application</b> <i>(string)</i>: source application.</li>
+     *     <li><b>global</b> <i>(boolean)</i>: restrict access to the model.</li>
+     *     <li><b>args</b> <i>(array)</i>: arguments passed to the contructor.</li>
      *    </ol>
      *  </li>
      *  <li>

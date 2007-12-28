@@ -137,14 +137,11 @@ final class leaf_Registry {
      *
      * @param   string  $class
      * @return  void
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
      */
-    public function unregister($class)
+    public function remove($key)
     {
-        return;
+        if ($this->isRegistered($key))
+			unset($this->registered[$key]);
     }
 
 	/**

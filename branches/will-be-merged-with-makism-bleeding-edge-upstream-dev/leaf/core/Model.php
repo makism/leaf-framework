@@ -10,7 +10,7 @@
 
 
 /**
- *
+ * Provides a common base layout for all Models.
  *
  * @package		leaf
  * @subpackage	core
@@ -18,7 +18,7 @@
  * @version		$Id$
  * @todo
  * <ol>
- *  <li>Implement.</li>
+ *  <li>For security issues, restrict it's access to specific resources.</li>
  *  <li>Possible removal.</li>
  * </ol>
  */

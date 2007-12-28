@@ -13,12 +13,6 @@
  * @author      Avraam Marimpis <makism@users.sf.net>
  * @version		$Id$
  * @filesource
- * @todo
- * <ol>
- *   <li>Document.</li>
- *   <li>Recheck the information displayed under the tab
- *   "Config Settings".</li>
- * </ol>
  */
 
 
@@ -32,7 +26,7 @@ dependsOnFunc('memory_get_usage');
 
 leaf_Registry::getInstance()->Load->plugin("misc");
 
-$parseTime      = xdebug_time_index();
+$parseTime      = sprintf("%1.2f", xdebug_time_index());
 $memoryUsage    = memory_get_usage();
 $memoryUsageKbs = sprintf("%1.2fkbs", $memoryUsage/1024);
 $baseUrl		= $reg->Config['base_url'];
@@ -60,8 +54,8 @@ YAHOO.example.init();
 DEBUG_STYLES;
 
 /*
-* Start Main Div
-*/
+ * Start Main Div
+ */
 echo
 	"<div style=\"width: 600px;\">" .
 	"<div id=\"leaf_debugDiv\" class=\"yui-navset yui-navset-left\">" .
