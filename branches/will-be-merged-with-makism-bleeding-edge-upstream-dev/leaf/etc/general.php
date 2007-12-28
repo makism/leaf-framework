@@ -22,7 +22,7 @@ $general = array();
  * 
  * "http://hideo", for example.
  */
-$general['hostname']  = "http://hostname";
+$general['hostname']  = "http://localhost:8080";
 
 
 /*
@@ -31,7 +31,7 @@ $general['hostname']  = "http://hostname";
  * 
  * "/leaf/", for example.
  */
-$general['base_dir']  = "/";
+$general['base_dir']  = "/leaf/";
 
 
 /*
