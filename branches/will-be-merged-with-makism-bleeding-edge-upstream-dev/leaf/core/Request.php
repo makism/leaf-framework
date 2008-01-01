@@ -22,7 +22,7 @@
  * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @see         leaf_Router
- * @version     $Id$
+ * @version     SVN: $Id$
  * @todo
  * <ol>
  *  <li>Refactor most methods to act as wrapper methods for leaf_Router's methods.</li>
@@ -383,5 +383,3 @@ final class leaf_Request extends leaf_Base {
     }
 
 }
-
-?>

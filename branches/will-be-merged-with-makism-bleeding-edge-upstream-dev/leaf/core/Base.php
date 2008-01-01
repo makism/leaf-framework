@@ -29,7 +29,7 @@
  * @package     leaf
  * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version     $Id$
+ * @version     SVN: $Id$
  */
 abstract class leaf_Base {
 
@@ -110,5 +110,3 @@ abstract class leaf_Base {
     abstract public function __toString();
 
 }
-
-?>

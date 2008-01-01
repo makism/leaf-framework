@@ -16,7 +16,7 @@
  * @package		leaf
  * @subpackage	core.hook
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  */
 abstract class leaf_Hook_Conditional extends leaf_Hook {
 

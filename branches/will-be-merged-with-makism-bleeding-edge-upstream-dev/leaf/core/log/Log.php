@@ -15,7 +15,7 @@
  * @package     leaf
  * @subpackage  core.log
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    $Id$
+ * @version	    SVN: $Id$
  */
 abstract class leaf_Log  {
 

@@ -8,12 +8,10 @@
  * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
- * @package     leaf
- * @subpackage  core.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version     $Id$
- * @filesource
+ * @version     SVN: $Id$
  */
 
 
-?>
+global $routes;
+$routes = array();

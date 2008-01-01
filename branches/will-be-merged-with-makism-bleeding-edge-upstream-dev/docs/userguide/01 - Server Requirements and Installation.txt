@@ -1,6 +1,12 @@
 ﻿Server Requirements.
 
-	* PHP 5.1 (at least).
+    * A running Apache webserver.
+
+	* PHP 5.1 (at least), compliled optionaly with:
+        + "Reflection support":
+            For advanced and more sophisticated object handling.
+        + "--enable-memory-limit" (for PHP versions < 5.2.1):  
+            For debug purposes.
 	
 	* Mod-rewrite enabled.
 	

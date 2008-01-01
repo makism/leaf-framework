@@ -13,5 +13,3 @@ class SampleHook extends leaf_Hook {
 	}
 
 }
-
-?>

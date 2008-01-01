@@ -11,7 +11,7 @@
  * @package     leaf
  * @subpackage  front.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @filesource
  * @todo
  * <ol>
@@ -76,5 +76,3 @@ function exceptionHandler(Exception $ex)
 
 
 }
-
-?>

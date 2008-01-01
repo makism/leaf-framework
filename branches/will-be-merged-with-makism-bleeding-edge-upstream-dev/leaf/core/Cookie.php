@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -8,27 +8,21 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-
+ 
 /**
- * 
- * 
- * @package     leaf
- * @subpackage  core.db
- * @author      Avraam Marimpis <makism@users.sf.net>
- * @version     $Id$
+ *
+ *
+ * @package		leaf
+ * @subpackage	core
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		SVN: $Id$
  */
-class leaf_Db_Field {
-    
-    /**
-     *
-     *
-     */
+final class leaf_Cookie {
+
     public function __construct()
     {
-        
+    
     }
 
-    
 }
-
-?>
+ 

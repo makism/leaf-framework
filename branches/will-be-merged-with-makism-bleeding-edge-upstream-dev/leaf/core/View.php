@@ -26,7 +26,7 @@ define('VIEW_EXPOSE', 2);
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
  *  <li>Add support for Output Buffer.</li>
@@ -191,5 +191,3 @@ final class leaf_View extends leaf_Base {
     }
 
 }
-
-?>

@@ -18,7 +18,7 @@
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
  *  <li>Possible implementation of "Dependacies Injection (DI)" method,
@@ -41,7 +41,6 @@ abstract class leaf_Controller extends leaf_Base {
 	public function __construct()
 	{
         parent::__construct(self::LEAF_REG_KEY);
-		$this->Load->library("GlobalHashTable");
 	}
 	
 	/**
@@ -71,16 +70,6 @@ abstract class leaf_Controller extends leaf_Base {
         else
             return $this->Load->model($key);
 	}
-	
-	/**
-	 * Enables the "Forest" widget".
-	 *
-	 * @return	void
-	 */
-	public function enableForest()
-	{
-		$this->View->render("Forest/Forest");
-	}
 
     public function __toString()
     {
@@ -88,5 +77,3 @@ abstract class leaf_Controller extends leaf_Base {
     }
 
 }
-
-?>

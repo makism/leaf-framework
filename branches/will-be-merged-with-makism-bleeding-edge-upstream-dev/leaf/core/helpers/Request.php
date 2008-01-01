@@ -11,9 +11,6 @@
  * @package     leaf
  * @subpackage  core.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version     $Id$
+ * @version     SVN: $Id$
  * @filesource
  */
-
-
-?>

@@ -16,7 +16,7 @@
  * @package     leaf
  * @subpackage  core.log.backend
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    $Id$
+ * @version	    SVN: $Id$
  */
 class leaf_Logger_Heap extends leaf_Log {
 

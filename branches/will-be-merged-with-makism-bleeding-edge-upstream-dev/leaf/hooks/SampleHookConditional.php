@@ -19,5 +19,3 @@ class SampleHookConditional extends leaf_Hook_Conditional {
 	}
 
 }
-
-?>

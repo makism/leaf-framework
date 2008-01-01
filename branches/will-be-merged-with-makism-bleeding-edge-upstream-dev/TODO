@@ -4,6 +4,12 @@
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 comments:
+Major internal api rewrite.
+Convert most of the internal classes to static.
+
+================================================================================
+
+comments:
 Remove custom exception class "leaf_Exception" and all references to it, unless
 logging functionality is attatched to it.
 
@@ -44,13 +50,3 @@ Provide support for:
 
 Such behavior maybe achieved using the Static Router, and an "Map"
 with all the possible Actions and Controllers...
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ VERSION 2.0 & beyond +
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    Major (to complete) API rewrite. The framework will break down into several
-compoments. The target is to make leaf framework more than a "library" than a
-big and monolithic php script.
-    This will enable the developer to use *only* the compoments he needs, giving
-him more freedom and flexibility.

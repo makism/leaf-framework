@@ -21,7 +21,7 @@
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @see         leaf_Base
  * @todo
  * <ol>
@@ -170,5 +170,3 @@ final class leaf_Registry {
     }
 
 }
-
-?>

@@ -11,12 +11,8 @@
  * @package     leaf
  * @subpackage  front
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @filesource
- * @todo
- * <ol>
- *  <li>Add functionality for the benchmarking subsystem.</li>
- * </ol>
  */
 
 
@@ -49,7 +45,7 @@ require_once LEAF_BASE  . 'front/helpers/Error.php';
 /**
  * Custom debug functions.
  */
-require_once LEAF_BASE  . 'front/helpers/Debug.php';
+#require_once LEAF_BASE  . 'front/helpers/Debug.php';
 
 
 /**
@@ -62,19 +58,11 @@ require_once LEAF_BASE  . 'core/helpers/Hooks.php';
 
 
 /*
- * Perform some basic checks to determine whether or not
- * the system`s sanity (and thus, all will be run normal).
- */
-#frameworkSanityCheck();
-
-
-/*
  * Startup leaf`s Registry and register some basic objects.
  */
 $reg = leaf_Registry::getInstance();
 $reg->register(new leaf_Config());
 #$reg->register(new leaf_Locale());
-#$reg->register(new leaf_Benchmark());
 
 
 /*
@@ -97,7 +85,7 @@ date_default_timezone_set($timezoneSetting);
 /*
  * Register the logger if it has been enabled.
  */
-$reg->register(new leaf_Logger());
+#$reg->register(new leaf_Logger());
 
 
 /*
@@ -147,7 +135,7 @@ $reg->Response->outputBufferingEnd();
  * Close the logger if it has been
  * requested and registered.
  */
-$reg->Log->end_flush();
+#$reg->Log->end_flush();
 
 
 /*
@@ -162,5 +150,3 @@ if ($reg->Config['allow_hooks'])
  */
 if ($reg->Config['enable_debug_stats'])
     require_once LEAF_BASE . 'front/Debug.php';
-
-?>

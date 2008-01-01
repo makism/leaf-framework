@@ -40,7 +40,7 @@
  * @package     leaf
  * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
  *  <li>Maybe we should unset the global variable $GLOBALS somewhere else.</li>
@@ -171,5 +171,3 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 
 
 }
-
-?>

@@ -11,7 +11,7 @@
  * @package     leaf
  * @subpackage  core.hook.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version     $Id$
+ * @version     SVN: $Id$
  * @filesource
  */
 
@@ -112,5 +112,3 @@ function runHook($hook)
 		
 	}
 }
-
-?>

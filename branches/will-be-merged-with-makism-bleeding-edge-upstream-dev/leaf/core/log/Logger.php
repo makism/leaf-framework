@@ -41,7 +41,7 @@ define('LEVEL_ERROR', 16);
  * @package     leaf
  * @subpackage  core.log
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    $Id$
+ * @version	    SVN: $Id$
  * @method		void log()
  *					 log(string message)
  *					 log(Exception e)

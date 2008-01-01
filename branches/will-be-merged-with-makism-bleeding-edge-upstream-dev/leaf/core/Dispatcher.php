@@ -19,7 +19,7 @@
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
  *  <li>Remove member properties.</li>
@@ -67,17 +67,17 @@ final class leaf_Dispatcher extends leaf_Base {
     public function __construct()
     {
         parent::__construct(self::LEAF_REG_KEY);
-
+        
         /*
          * Get Controller`s name :).
          */
         $this->controllerName = $this->Request->getControllerName();
-
+        
         /*
          * Get Controller`s file name.
          */
         $this->target = $this->Request->getControllerFileName();
-
+        
         /*
          * Check if the Controller`s file, exists.
          */
@@ -89,17 +89,17 @@ final class leaf_Dispatcher extends leaf_Base {
          * is declared.
          */
         require_once $this->target;
-
+        
         /*
          * Register and instance of leaf_View, for future usage.
          */
         leaf_Registry::getInstance()->register(new leaf_View());
-
+        
         /*
          * Create an instance of the requested Controller.
          */
         $this->controller = new $this->controllerName;
-
+        
         /*
          * Check if the current Controller inherits from our
          * class, leaf_Controller.
@@ -117,6 +117,16 @@ final class leaf_Dispatcher extends leaf_Base {
 	public function dispatchController()
 	{
         if (method_exists($this->controller, $this->Router->getMethodName())) {
+            
+            if (extension_loaded('reflection')) {
+                $refl = new ReflectionMethod ($this->controller, $this->Router->getMethodName());
+                
+                if ($refl->getNumberOfParameters()==2) {
+                    call_user_func(array($this->controller, $this->Router->getMethodName()), $this->Request, $this->Response);
+                    return;
+                }
+            }
+            
             call_user_func(array($this->controller, $this->Router->getMethodName()));
         } else {
             showHtmlMessage("Dispatcher Failure", "Action \"{$this->Router->getMethodName()}\" is not defined", TRUE);
@@ -129,5 +139,3 @@ final class leaf_Dispatcher extends leaf_Base {
     }
 
 }
-
-?>

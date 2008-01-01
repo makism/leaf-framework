@@ -19,7 +19,7 @@
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  */
 class leaf_Loader extends leaf_Base {
 
@@ -54,8 +54,7 @@ class leaf_Loader extends leaf_Base {
      * @var array 
      */
     private $allLibraries = array(
-        "Db", "Hash", "Log", "Benchmark", "Cache",
-		"GlobalHashTable"
+        "Log"
     );
     
     /**
@@ -74,6 +73,8 @@ class leaf_Loader extends leaf_Base {
     public function __construct()
     {
         parent::__construct(self::LEAF_REG_KEY);
+        
+        require_once LEAF_BASE . "core/helpers/Loader.php";      
     }
     
     /**
@@ -274,5 +275,3 @@ class leaf_Loader extends leaf_Base {
     }
 
 }
-
-?>

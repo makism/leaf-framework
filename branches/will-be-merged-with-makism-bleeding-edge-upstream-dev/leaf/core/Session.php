@@ -8,4 +8,21 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-?>
+ 
+/**
+ *
+ *
+ * @package		leaf
+ * @subpackage	core
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version		SVN: $Id$
+ */
+final class leaf_Session {
+
+    public function __construct()
+    {
+    
+    }
+
+}
+ 

@@ -156,6 +156,3 @@ $general['log_level'] = "None";
  * Default: FALSE
  */
 $general['enable_debug_stats'] = FALSE;
-
-
-?>

@@ -19,7 +19,7 @@
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
  *  <li>Maybe this class should completely overtake the class {@link
@@ -163,11 +163,11 @@ final class leaf_Router extends leaf_Base {
 			if ($this->Config['allow_query_strings']) {
                 
 				$this->queryString = $matches[0];
-
+                
 				$keysWithValues = explode("&", $matches[1]);
-
+               
 				foreach ($keysWithValues as $Elem) {
-
+                    
                     if (strpos($Elem, "=")) {
             			list($Key, $Value) = explode("=", $Elem);                
             			$this->queryStringElements[$Key] = $Value;
@@ -192,7 +192,7 @@ final class leaf_Router extends leaf_Base {
 				);
 			}
 		}
-
+        
 		
 		/*
 		 * Removal of leading base dir.
@@ -352,5 +352,3 @@ final class leaf_Router extends leaf_Base {
     }
 
 }
-
-?>

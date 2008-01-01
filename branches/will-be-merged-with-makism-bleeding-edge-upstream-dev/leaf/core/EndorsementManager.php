@@ -19,7 +19,7 @@
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
  *  <li>Implement.</li>
@@ -152,5 +152,3 @@ final class leaf_EndorsementManager extends leaf_Base {
     }
     
 }
-
-?>

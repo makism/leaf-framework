@@ -15,7 +15,7 @@
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
  *  <li>For security issues, restrict it's access to specific resources.</li>
@@ -48,5 +48,3 @@ abstract class leaf_Model extends leaf_Base {
     }
     
 }
-
-?>

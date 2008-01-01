@@ -15,7 +15,7 @@
  * @package     leaf
  * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @link		http://php.net/manual/en/language.exceptions.html
  * @todo
  * <ol>
@@ -30,5 +30,3 @@ final class leaf_Exception extends Exception {
     }
 
 }
-
-?>

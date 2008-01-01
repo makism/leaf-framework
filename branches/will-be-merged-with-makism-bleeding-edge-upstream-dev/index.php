@@ -9,7 +9,7 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version     $Id$
+ * @version     SVN: $Id$
  */
 
 
@@ -58,9 +58,12 @@ define('LEAF_APPS',	LEAF_WORKING_DIR . 'applications/');
 define('LEAF_VAR',	LEAF_WORKING_DIR . 'var/');
 
 /**
+ * Subdirectory in which users` css/js/images etc, files are stored.
+ */
+define('LEAF_CONTENT', LEAF_WORKING_DIR . 'content/');
+
+/**
  * The {@link Front_Controller.php Front Controller} handles the
  * startup sequence.
  */
 require_once LEAF_BASE . 'front/Front_Controller.php';
-
-?>

@@ -11,7 +11,7 @@
  * @package     leaf
  * @subpackage  front
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @filesource
  */
 
@@ -305,5 +305,3 @@ echo
 echo
 	"</div>" .
 	"</div>";
-
-?>
