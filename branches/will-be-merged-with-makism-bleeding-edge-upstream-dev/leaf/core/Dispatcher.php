@@ -10,7 +10,7 @@
 
 
 /**
- * Prepares to dispatch the speficief Controller/Action.
+ * Prepares to dispatch the specific Controller/Action.
  *
  * Includes the file that the requested Controller is declared, and
  * performs some basic checks in the Controller`s implementation and
@@ -20,10 +20,6 @@
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
- * @todo
- * <ol>
- *  <li>Remove member properties.</li>
- * </ol>
  */
 final class leaf_Dispatcher extends leaf_Base {
 	
@@ -31,33 +27,15 @@ final class leaf_Dispatcher extends leaf_Base {
     
     const LEAF_CLASS_ID = "LEAF_DISPATCHER-1_0_dev";
     
-
+    
     /**
-     * The file name in which the requested Controller is located.
+     * Object containing the dispatching information.
      *
-     * For more info take a look at the class leaf_Request.
-     *
-     * @var string
+     * @var object StdClass
      */
-    private $target = NULL;
-
-    /**
-     * The requested class name (Controller).
-     *
-     * For more info take a look at the class leaf_Request.
-     *
-     * @var string
-     */
-    private $controllerName = NULL;
-
-    /**
-     * An instance of the requested Controller.
-     *
-     * @var object leaf_Controller
-     */
-    private $controller = NULL;
-
-
+    private $dispatchObject = NULL;
+    
+    
     /**
      * Tests the requested Controller and prepares for dispaching it, along
      * with the Action.
@@ -69,69 +47,152 @@ final class leaf_Dispatcher extends leaf_Base {
         parent::__construct(self::LEAF_REG_KEY);
         
         /*
-         * Get Controller`s name :).
-         */
-        $this->controllerName = $this->Request->getControllerName();
-        
-        /*
-         * Get Controller`s file name.
-         */
-        $this->target = $this->Request->getControllerFileName();
-        
-        /*
-         * Check if the Controller`s file, exists.
-         */
-        if (!file_exists($this->target))
-            showHtmlMessage("Dispatcher Failure", "Controller \"{$this->controllerName}\", not found!", TRUE);
-        
-        /*
-         * Include the file, in which the requested Controller
-         * is declared.
-         */
-        require_once $this->target;
-        
-        /*
          * Register and instance of leaf_View, for future usage.
          */
         leaf_Registry::getInstance()->register(new leaf_View());
         
         /*
-         * Create an instance of the requested Controller.
+         * Prepare the main dispatch controller.
          */
-        $this->controller = new $this->controllerName;
-        
-        /*
-         * Check if the current Controller inherits from our
-         * class, leaf_Controller.
-         */
-        if (!($this->controller instanceof leaf_Controller)) {
-            showHtmlMessage("Dispatcher Failure", "Not a controller", TRUE);
-        }
+        //$this->prepare($this->Request->getControllerName(), $this->Request->getActionName());
     }
     
     /**
      * Checks for the existence of the desired method and calls it.
      *
+     * @param   string  $Controller
+     * @param   string  $Action
      * @return  void
      */
-	public function dispatchController()
+	public function invoke($Controller, $Action=NULL)
 	{
-        if (method_exists($this->controller, $this->Router->getMethodName())) {
+        $this->prepare($Controller, $Action);
+        
+        if (method_exists($this->dispatchObject->instance, $this->dispatchObject->action)) {
             
             if (extension_loaded('reflection')) {
-                $refl = new ReflectionMethod ($this->controller, $this->Router->getMethodName());
+                $refl = new ReflectionMethod (
+                    $this->dispatchObject->controller,
+                    $this->dispatchObject->action
+                );
                 
                 if ($refl->getNumberOfParameters()==2) {
-                    call_user_func(array($this->controller, $this->Router->getMethodName()), $this->Request, $this->Response);
+                    call_user_func(
+                        array(
+                            $this->dispatchObject->instance,
+                            $this->dispatchObject->action
+                        ),
+                        $this->Request,
+                        $this->Response
+                    );
+                    
                     return;
                 }
             }
             
-            call_user_func(array($this->controller, $this->Router->getMethodName()));
+            call_user_func(
+                array(
+                    $this->dispatchObject->instance,
+                    $this->dispatchObject->action
+                )
+            );
+            
         } else {
-            showHtmlMessage("Dispatcher Failure", "Action \"{$this->Router->getMethodName()}\" is not defined", TRUE);
+            showHtmlMessage(
+                "Dispatcher Failure",
+                "Action \"{$this->dispatchObject->action}\" is not defined",
+                TRUE
+            );
         }
 	}
+    
+    /**
+     * Dispatcher the defined Controller/Action.
+     *
+     * @param   string  $Controller
+     * @param   string  $Action
+     * @param   boolean $fetch
+     * @return  NULL|object StdClass
+     */
+	public function prepare($Controller, $Action=NULL, $fetch=FALSE)
+	{
+        if (strrpos($Controller, "_Controller")==FALSE)
+            $Controller .= "_Controller";
+        
+        $dispatchObj = new StdClass();
+        
+        $dispatchObj->controller = $Controller;
+        
+        $dispatchObj->action = (isset($Action) ? $Action : "index");
+        
+        list($canonicalName, $suffix) = explode("_Controller", $dispatchObj->controller);
+        
+        $dispatchObj->target = LEAF_APPS
+                            . $canonicalName
+                            . '/'
+                            . $Controller
+                            . '.php';
+        
+        /*
+         * Check if the Controller`s file, exists.
+         */
+        if (!file_exists($dispatchObj->target)) {
+            if ($fetch==TRUE)
+                return NULL;
+            
+            showHtmlMessage(
+                "Dispatcher Failure",
+                "Controller \"{$dispatchObj->controller}\", not found!",
+                TRUE
+            );
+        }
+        
+        /*
+         * Include the file, in which the requested Controller
+         * is declared.
+         */
+        require_once $dispatchObj->target;
+        
+        /*
+         * Create an instance.
+         */
+        $dispatchObj->instance = new $dispatchObj->controller;
+        
+        /*
+         * Check if the current Controller inherits from our
+         * class, leaf_Controller.
+         */
+        if (!($dispatchObj->instance instanceof leaf_Controller)) {
+            if ($fetch==TRUE)
+                return NULL;
+            
+            showHtmlMessage("Dispatcher Failure", "Not a controller", TRUE);
+        }
+        
+        if ($fetch==TRUE)
+            return $dispatchObj;
+        else
+            $this->dispatchObject = $dispatchObj;
+	}
+    
+    /**
+     * Pretends an invoke call. Returns TRUE if all goes smooth
+     * and FALSE in any other case.
+     *
+     * @param   string  $Controller
+     * @param   string  $Action
+     * @return  boolean
+     */
+    public function pretend($Controller, $Action=NULL)
+    {
+        $obj = $this->prepare($Controller, $Action, TRUE);
+        
+        if ($obj!=NULL) 
+            if (method_exists($obj->instance, $obj->action))
+                return TRUE;
+            
+        return FALSE;
+    }
 
     public function __toString()
     {

@@ -16,13 +16,13 @@
  * This way, these classes, are provided with a unified base model,
  * to communicate (by referencing) with the other objects, as if
  * they were (private in this case) properties.<br>
- * Example (<b>pure fictional, because the visibility is private</b>):<br>
+ * Example
  * <code>
  *   $router = new leaf_Router();
  *   echo $router->Config['base_url'];
  * </code>
  *
- * We assume, that the "config" property has already been instantiated and
+ * We assume, that the "Config" property has already been instantiated and
  * automatily registered.<br>
  * Also, we assume that the access of the properties is public.
  *

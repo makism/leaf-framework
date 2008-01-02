@@ -88,7 +88,7 @@ class leaf_Loader extends leaf_Base {
      *   desire to load, and you specify any settings if you would like.<br>
      *   The available settings are:
      *    <ol>
-     *     <li><b>bindName</b> <i>(string)</i>: the instance name/</li>
+     *     <li><b>bindName</b> <i>(string)</i>: the instance name.</li>
      *     <li><b>application</b> <i>(string)</i>: source application.</li>
      *     <li><b>global</b> <i>(boolean)</i>: restrict access to the model.</li>
      *     <li><b>args</b> <i>(array)</i>: arguments passed to the contructor.</li>
@@ -120,9 +120,13 @@ class leaf_Loader extends leaf_Base {
         // That is, loading a new Model.
     	} else {
 			// application base name
+            $appName = (!empty($settings) && isset($settings['application']))
+                        ? $settings['application']
+                        : $this->Request->getApplicationName();
+            
     		$baseDir =
     		  "applications/" .
-    		  $this->Request->getApplicationName() .
+    		  $appName .
     		  "/Model/";
     		  
             // model`s filename
@@ -130,7 +134,6 @@ class leaf_Loader extends leaf_Base {
             
             // class name
             $modelClass = $modelName . "_Model";
-    		  
     		
     		if (file_exists($modelFile) && is_readable($modelFile)) {
     			// include model class
@@ -148,7 +151,7 @@ class leaf_Loader extends leaf_Base {
     			if (!empty($settings['bindName'])) {
     			    $bindName = $settings['bindName'];
     			}
-
+                
     			if ($bindName==NULL) {
     			    return NULL;
     			}

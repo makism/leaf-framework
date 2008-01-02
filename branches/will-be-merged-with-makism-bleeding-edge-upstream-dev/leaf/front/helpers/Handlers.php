@@ -69,10 +69,9 @@ function errorHandler($errno, $errstr, $errfile, $errline)
 function exceptionHandler(Exception $ex)
 {
 	showHtmlMessage(
-    	"Uncaught Exception",
+    	"Exception",
         $ex->getMessage(),
     	true
 	);
-
 
 }

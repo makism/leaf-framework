@@ -73,8 +73,10 @@ if ($reg->Config['allow_hooks']) {
 	"<li><a href=\"#leaf_Debug_Hooks\"><em>Hooks</em></a></li>";
 }
 
+if ($reg->Load->libraryLoaded("log")) {
 	echo
 	"<li><a href=\"#leaf_Debug_Log_Buffer\"><em>Log Buffer</em></a></li>";
+}
 
 	 
 if ($reg->Config['allow_endorsed']) {
@@ -246,20 +248,22 @@ echo
 	//
 	// Log Buffer
 	//
-	echo
-		"<div id=\"leaf_Debug_Log_Buffer\" style=\"display: none;\">"
-		. " <pre style=\"font-size: 14px; font-family: Verdana, Arial, helvetica, sans-serif;\">"
-		. "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Log buffer</b></small></legend>";
-		
-		if ($reg->Log->getBackend()->supportsBuffering())
-			echo leaf_Registry::getInstance()->Log->getBuffer();
-		else
-			echo "<i>Current backend, does not support buffering.</i>";
-		
-	echo
-		"</fieldset>"
-		. "</pre>"
-		. "</div>";
+    if ($reg->Load->libraryLoaded("log")) {
+    	echo
+    		"<div id=\"leaf_Debug_Log_Buffer\" style=\"display: none;\">"
+    		. " <pre style=\"font-size: 14px; font-family: Verdana, Arial, helvetica, sans-serif;\">"
+    		. "<fieldset style=\"border: 0px solid #ffffff;\"><legend><small><b>Log buffer</b></small></legend>";
+    		
+    		if ($reg->Log->getBackend()->supportsBuffering())
+    			echo leaf_Registry::getInstance()->Log->getBuffer();
+    		else
+    			echo "<i>Current backend, does not support buffering.</i>";
+    		
+    	echo
+    		"</fieldset>"
+    		. "</pre>"
+    		. "</div>";
+    }
 
 	//
 	// Endorsed

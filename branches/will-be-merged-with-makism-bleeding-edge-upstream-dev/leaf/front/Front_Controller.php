@@ -102,7 +102,7 @@ $reg->register(new leaf_Response());
 /*
  * Begin output buffering.
  */
-$reg->Response->ouputBufferingStart();
+#$reg->Response->ouputBufferingStart();
 
 
 /*
@@ -115,7 +115,10 @@ if ($reg->Config['allow_hooks'])
 /*
  * Dispatch controller.
  */
-$reg->Dispatcher->dispatchController();
+$reg->Dispatcher->invoke(
+    $reg->Request->getControllerName(),
+    $reg->Request->getActionName()
+);
 
 
 /*
@@ -128,7 +131,7 @@ if ($reg->Config['allow_hooks'])
 /*
  * Flush buffer, and turn off.
  */
-$reg->Response->outputBufferingEnd();
+#$reg->Response->outputBufferingEnd();
 
 
 /*

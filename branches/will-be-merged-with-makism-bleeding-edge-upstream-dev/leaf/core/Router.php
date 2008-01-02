@@ -113,7 +113,7 @@ final class leaf_Router extends leaf_Base {
 		 * We check if there are any illegal characters in
 		 * the Uri that they shouldn`t.
 		 * Moreover, we take into consideration if the option
-		 * $this->config['url_suffix'] is used which defines the file
+		 * $this->Config['url_suffix'] is used which defines the file
 		 * extensions that will be shown, so we ignore it.
 		 */
         // match the virtual file extension.
@@ -213,13 +213,13 @@ final class leaf_Router extends leaf_Base {
 				"",
 				$this->requestUri
 			);
-		
+            
 		/*
 		 * Removal of trailing '/' (if exists in Uri).
 		 */
 		if (preg_match("@/$@", $this->requestUri))
 			$this->requestUri = preg_replace("@/$@", "", $this->requestUri);
-
+            
 		/*
 		 * If no class is defined instatiate the default Controller.
 		 */
@@ -235,7 +235,7 @@ final class leaf_Router extends leaf_Base {
 		else {
 			$this->chopSegment($this->requestClass);
         }
-		
+        
 		/*
 		 * We extract the method (if defined).
 		 */
@@ -243,7 +243,7 @@ final class leaf_Router extends leaf_Base {
 		if ($this->requestMethod==NULL) {
 		    $this->requestMethod = "index";
         }
-		
+        
 		/*
 		 * If there are more segments in the Uri, except from the
 		 * class name and the method name, we store those segments

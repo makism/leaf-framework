@@ -38,6 +38,17 @@ final class leaf_View extends leaf_Base {
 
     const LEAF_CLASS_ID = "LEAF_VIEW-1_0_dev";
 
+    
+    /**
+     * Default option parameters for all View files.
+     *
+     * @var array
+     */
+    private $options = array (
+        "merge" => false,
+        "expose"=> false,
+        "verbose"=> false
+    );
 	
     /**
      * Current View filename.
@@ -61,6 +72,7 @@ final class leaf_View extends leaf_Base {
      */
     private $allVariables = array();
 
+    
     /**
      * Instantiates the super class.
      *
@@ -87,20 +99,12 @@ final class leaf_View extends leaf_Base {
      * <code>
      *  echo $title;
      * </code>
-     * <br>
-     * Supported options are:
-     * <ol>
-     *  <li><b>merge</b> <i>(boolean)</i>: Whether or not merge the currently
-     *  passed variables with those that have been previously passed.<br>
-     *  Defaults in <i>true</i>.</li>
-     *  <li><b>expose</b> <i>(boolean)</i>: Request to make all the variables
-     *  available in the View object visible to the current view file.<br>
-     *  Defaults in <i>true</i>.</li>
-     * </ol>
      *
      * @param   string  $view
      * @param   array   $data
-     * @param   array   $opts
+     * @param   integer $opts1
+     * @param   integer $opts2
+     * @param   integer $opts...
      * @return  void
      * @todo
      * <ol>
@@ -111,17 +115,24 @@ final class leaf_View extends leaf_Base {
      *  that is requested.</li>
      * </ol>
      */
-    public function render($view, array $data=NULL, array $opts=NULL)
+    public function render($view, array $data=NULL)
     {
         // Number of the passed arguments.
         $s = sizeof($data);
-
+        
         // View`s filename
         $name = NULL;
-
+        
         // Application name.
         $app = NULL;
-
+        
+        // Total number of arguments passed to the function.
+        $argsTotal = func_num_args();
+        
+        if ($argsTotal>2)
+            $args = func_get_args();
+        
+        
         // Check to determine whether the requested View file
         // is stored in external Application.
         $idx = strpos($view, "/");
@@ -131,7 +142,7 @@ final class leaf_View extends leaf_Base {
         } else {
             $name= $view;
         }
-
+        
         // If no application name is given, or
         // "/" is found at the beginning of the
         // string, assign the current application`s
@@ -139,50 +150,78 @@ final class leaf_View extends leaf_Base {
         if ($app=="/" || $app==NULL) {
             $app = $this->Request->getApplicationName();
         }
-
+        
         // Create the file final name...
         $this->currViewFile = "applications/" . $app . "/View/" . $name . ".php";
-
+        
         if (file_exists($this->currViewFile) &&
             is_readable($this->currViewFile))
         {
             $this->viewFileList[] = $this->currViewFile;
-
-            // By default, the currently passed variables will be merge
-            // with those already stacked.
-            // This can be changed by passing:
-            // "merge" => false
-            // to the option array.
-            if (!empty($data))
-                if (!isset($opts['merge']) || $opts['merge']!=false)
+            
+            // Request to merge the current varialbes with those
+            // previously passed and exist within the Views` stack.
+            if (!empty($data) && $argsTotal>2) {
+                if (in_array(VIEW_MERGE, $args)) {
                     $this->allVariables = array_merge($this->allVariables, $data);
-
+                }
+            }
+            
             // Make all variables visible to the included View file.
             // It is possible to export only the current vars, ignoring
             // those at the View`s stack.
-            if (!isset($opts['expose']) || $opts['expose']!=false) {
-                if (!empty($this->allVariables)) {
+            if ($argsTotal>2) {
+                if (in_array(VIEW_EXPOSE, $args) && !empty($this->allVariables)) {
                     foreach ($this->allVariables as $Idx => $Val) {
-                        echo "<!-- exposing var \"{$Idx}\", contains \"{$Val}\" to \"{$this->currViewFile}\" -->\n";
+                    
+                        if ($this->options['verbose']) {
+                            echo
+                                "<!-- "
+                                ."exposing var \"{$Idx}\", "
+                                ."contains \"{$Val}\" to \"{$this->currViewFile}\""
+                                ."-->\n";
+                        }
+                        
                         ${$Idx} = $Val;
-                    }            
+                    }
                 }
             }
-                      
+            
             if (!empty($data)) {
                 foreach ($data as $Idx => $Val) {
-                    echo "<!-- exporting var \"{$Idx}\", contains \"{$Val}\" to \"{$this->currViewFile}\" -->\n";
+                
+                    if ($this->options['verbose']) {
+                        echo
+                            "<!-- "
+                            ."exposing var \"{$Idx}\", "
+                            ."contains \"{$Val}\" to \"{$this->currViewFile}\""
+                            ."-->\n";
+                    }
+                    
                     ${$Idx} = $Val;
                 }
             }
             
             // Clear the local variables.
             unset($data, $app, $idx, $name, $s);
-
+            
             
             require_once $this->currViewFile;
         }
-
+        
+    }
+    
+    /**
+     * Changes an "option" parameter.
+     *
+     * @param   string  $Option
+     * @param   mixed   $Value
+     * @return  void
+     */
+    public function set($Option, $Value)
+    {
+        if (array_key_exists($Option, $this->options))
+            $this->options[$Value] = $Option;
     }
 
     public function __toString()

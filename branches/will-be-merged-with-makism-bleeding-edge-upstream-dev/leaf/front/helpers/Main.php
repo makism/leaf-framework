@@ -65,27 +65,33 @@ function __autoload($className)
     		'leaf_Config'    => 'Config.php',
             'leaf_Dispatcher'=> 'Dispatcher.php',
             'leaf_Exception' => 'Exception.php',
-#			'leaf_GlobalHashTable' => "GlobalHashTable.php",
             'leaf_Loader'    => 'Loader.php',
             'leaf_Locale'    => 'Locale.php',
             'leaf_Registry'  => 'Registry.php',
+            'leaf_Router'    => 'Router.php',
+        /** Request/Response            **/
             'leaf_Request'   => 'Request.php',
             'leaf_Response'  => 'Response.php',
-            'leaf_Router'    => 'Router.php',
-    	/** MVC core libraries         **/
+    	/** MVC core libraries          **/
             'leaf_Controller'=> 'Controller.php',
             'leaf_Model'     => 'Model.php',
             'leaf_View'      => 'View.php',
+        /** Collections libraries       **/
+            'leaf_Collection'=> 'Collection.php',
+            'leaf_Enumeration'=> 'collections/Enumeration.php',
+            'leaf_Iterator' => 'collections/Iterator.php',
+        /** Hooks libraries             **/
+            'leaf_Hook'      => 'hook/Hook.php',
+            'leaf_Hook_Conditional'=> 'hook/Hook_Conditional.php',
+        /** Logs libraries              **/
+#            'leaf_Log'       => 'log/Log.php',
+#            'leaf_Logger'    => 'log/Logger.php',
         /** Database-related libraries  **/
 #			'leaf_Db'        => 'db/Db.php',
     	/** Other core libraries        **/
 #            'leaf_Benchmark' => 'Benchmark.php',
 #            'leaf_Input'     => 'Input.php',
-#            'leaf_Hash'      => 'Hash.php',
-            'leaf_Hook'      => 'hook/Hook.php',
-            'leaf_Hook_Conditional'=> 'hook/Hook_Conditional.php',
-#            'leaf_Log'       => 'log/Log.php',
-#            'leaf_Logger'    => 'log/Logger.php'
+#            'leaf_Hash'      => 'Hash.php'
     	);
 
     /*
