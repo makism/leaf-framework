@@ -27,7 +27,7 @@
  * Also, we assume that the access of the properties is public.
  *
  * @package     leaf
- * @subpackage  core
+ * @subpackage  base
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  */

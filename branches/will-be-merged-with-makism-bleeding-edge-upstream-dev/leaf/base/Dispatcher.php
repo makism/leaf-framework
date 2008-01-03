@@ -17,7 +17,7 @@
  * naming scheme.<br>
  *
  * @package		leaf
- * @subpackage	core
+ * @subpackage	base
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  */

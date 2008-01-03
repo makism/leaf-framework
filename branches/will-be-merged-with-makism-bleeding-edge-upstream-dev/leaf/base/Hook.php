@@ -14,7 +14,7 @@
  * Base class for Hook objects.
  *
  * @package		leaf
- * @subpackage	core.hook
+ * @subpackage	base
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  */

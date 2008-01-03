@@ -17,7 +17,7 @@
  * the users to provide their own implementations of specific classes.
  *
  * @package		leaf
- * @subpackage	core
+ * @subpackage	base
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  * @todo

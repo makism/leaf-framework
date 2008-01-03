@@ -38,7 +38,7 @@
  * but they are declared as "final" in the parent class.
  *
  * @package     leaf
- * @subpackage  core
+ * @subpackage  base
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  * @todo

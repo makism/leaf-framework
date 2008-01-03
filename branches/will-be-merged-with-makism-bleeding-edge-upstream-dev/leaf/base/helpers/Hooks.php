@@ -9,7 +9,7 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @package     leaf
- * @subpackage  core.hook.helpers
+ * @subpackage  base.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  * @filesource
