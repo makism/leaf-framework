@@ -115,9 +115,9 @@ if ($reg->Config['allow_hooks'])
 /*
  * Dispatch controller.
  */
-$reg->Dispatcher->invoke(
-    $reg->Request->getControllerName(),
-    $reg->Request->getActionName()
+leaf_Dispatcher::invoke(
+    $reg->Router->getClassName(),
+    $reg->Router->getMethodName()
 );
 
 

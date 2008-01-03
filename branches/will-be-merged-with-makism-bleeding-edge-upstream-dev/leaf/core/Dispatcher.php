@@ -33,7 +33,7 @@ final class leaf_Dispatcher extends leaf_Base {
      *
      * @var object StdClass
      */
-    private $dispatchObject = NULL;
+    private static $dispatchObject = NULL;
     
     
     /**
@@ -51,10 +51,6 @@ final class leaf_Dispatcher extends leaf_Base {
          */
         leaf_Registry::getInstance()->register(new leaf_View());
         
-        /*
-         * Prepare the main dispatch controller.
-         */
-        //$this->prepare($this->Request->getControllerName(), $this->Request->getActionName());
     }
     
     /**
@@ -64,26 +60,26 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   string  $Action
      * @return  void
      */
-	public function invoke($Controller, $Action=NULL)
+	public static function invoke($Controller, $Action=NULL)
 	{
-        $this->prepare($Controller, $Action);
+        self::prepare($Controller, $Action);
         
-        if (method_exists($this->dispatchObject->instance, $this->dispatchObject->action)) {
+        if (method_exists(self::$dispatchObject->instance, self::$dispatchObject->action)) {
             
             if (extension_loaded('reflection')) {
                 $refl = new ReflectionMethod (
-                    $this->dispatchObject->controller,
-                    $this->dispatchObject->action
+                    self::$dispatchObject->controller,
+                    self::$dispatchObject->action
                 );
                 
                 if ($refl->getNumberOfParameters()==2) {
                     call_user_func(
                         array(
-                            $this->dispatchObject->instance,
-                            $this->dispatchObject->action
+                            self::$dispatchObject->instance,
+                            self::$dispatchObject->action
                         ),
-                        $this->Request,
-                        $this->Response
+                        leaf_Registry::getInstance()->Request,
+                        leaf_Registry::getInstance()->Response
                     );
                     
                     return;
@@ -92,15 +88,15 @@ final class leaf_Dispatcher extends leaf_Base {
             
             call_user_func(
                 array(
-                    $this->dispatchObject->instance,
-                    $this->dispatchObject->action
+                    self::$dispatchObject->instance,
+                    self::$dispatchObject->action
                 )
             );
             
         } else {
             showHtmlMessage(
                 "Dispatcher Failure",
-                "Action \"{$this->dispatchObject->action}\" is not defined",
+                "Action \"{self::dispatchObject->action}\" is not defined",
                 TRUE
             );
         }
@@ -114,7 +110,7 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   boolean $fetch
      * @return  NULL|object StdClass
      */
-	public function prepare($Controller, $Action=NULL, $fetch=FALSE)
+	public static function prepare($Controller, $Action=NULL, $fetch=FALSE)
 	{
         if (strrpos($Controller, "_Controller")==FALSE)
             $Controller .= "_Controller";
@@ -172,7 +168,7 @@ final class leaf_Dispatcher extends leaf_Base {
         if ($fetch==TRUE)
             return $dispatchObj;
         else
-            $this->dispatchObject = $dispatchObj;
+            self::$dispatchObject = $dispatchObj;
 	}
     
     /**
@@ -183,9 +179,9 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   string  $Action
      * @return  boolean
      */
-    public function pretend($Controller, $Action=NULL)
+    public static function pretend($Controller, $Action=NULL)
     {
-        $obj = $this->prepare($Controller, $Action, TRUE);
+        $obj = self::prepare($Controller, $Action, TRUE);
         
         if ($obj!=NULL) 
             if (method_exists($obj->instance, $obj->action))

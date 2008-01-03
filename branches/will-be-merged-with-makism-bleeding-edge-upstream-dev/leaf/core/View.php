@@ -32,12 +32,7 @@ define('VIEW_EXPOSE', 2);
  *  <li>Add support for Output Buffer.</li>
  * </ol>
  */
-final class leaf_View extends leaf_Base {
-
-    const LEAF_REG_KEY = "View";
-
-    const LEAF_CLASS_ID = "LEAF_VIEW-1_0_dev";
-
+final class leaf_View {
     
     /**
      * Default option parameters for all View files.
@@ -80,7 +75,7 @@ final class leaf_View extends leaf_Base {
      */
     public function __construct()
     {
-        parent::__construct(self::LEAF_REG_KEY);
+    
     }
 
     /**

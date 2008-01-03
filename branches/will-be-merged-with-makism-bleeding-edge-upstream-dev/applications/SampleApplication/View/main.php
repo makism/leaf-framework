@@ -19,7 +19,7 @@
  </head>
  <body>
   <?php
-    $this->View->render("intro", null, array("merge"=>false, "expose"=>true));
+    $this->View->render("intro", NULL, VIEW_EXPOSE);
   ?>
  </body>
 </html>

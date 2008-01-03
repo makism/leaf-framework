@@ -28,13 +28,8 @@
  *  <li>Refactor most methods to act as wrapper methods for leaf_Router's methods.</li>
  * </ol>
  */
-final class leaf_Request extends leaf_Base {
+final class leaf_Request {
 
-    const LEAF_REG_KEY = "Request";
-    
-    const LEAF_CLASS_ID = "LEAF_REQUEST-1_0_dev";
-
-	
 	/**
 	 * The current query string that found in the Uri.
 	 *
@@ -112,15 +107,14 @@ final class leaf_Request extends leaf_Base {
      */
 	public function __construct()
 	{
-        parent::__construct(self::LEAF_REG_KEY);
-
+        
         /*
          * All classes that contain Controllers, must have their name
          " suffixed with the string "_Controller".
          * So, we attach it to the requested Controller.
          */
         $this->controller   = $this->Router->getClassName() . '_Controller';
-
+        
         /*
          * Compose the complete file name where we suppose the Controller
          * is located.
@@ -131,17 +125,17 @@ final class leaf_Request extends leaf_Base {
             . '/'
             . $this->controller
             . '.php';
-
+            
         /*
          * Fetch the Action from the {@link leaf_Router router} object.
          */
         $this->action       = $this->Router->getMethodName();
-
+        
         /*
          * Fetch the extra Uri segments from the {@link leaf_Router router} object.
          */
         $this->segments     = $this->Router->segments();
-
+        
         /*
          * Fetch the Query String from the {@link leaf_Router router} object.
          */

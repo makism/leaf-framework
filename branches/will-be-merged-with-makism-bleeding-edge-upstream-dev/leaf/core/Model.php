@@ -22,12 +22,7 @@
  *  <li>Possible removal.</li>
  * </ol>
  */
-abstract class leaf_Model extends leaf_Base {
-    
-    const LEAF_REG_KEY = "Model";
-
-    const LEAF_CLASS_ID = "LEAF_MODEL-1_0_dev";
-
+abstract class leaf_Model {
 
     /**
      *
@@ -35,7 +30,7 @@ abstract class leaf_Model extends leaf_Base {
      */
     public function __construct()
     {
-        parent::__construct(self::LEAF_REG_KEY);
+    
     }
     
     /**

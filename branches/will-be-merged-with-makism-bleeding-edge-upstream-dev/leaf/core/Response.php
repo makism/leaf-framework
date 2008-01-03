@@ -25,12 +25,7 @@
  *  <li>Implement.</li>
  * </ol>
  */
-final class leaf_Response extends leaf_Base {
-
-    const LEAF_REG_KEY = "Response";
-    
-    const LEAF_CLASS_ID = "LEAF_RESPONSE-1_0_dev";
-    
+final class leaf_Response {
 	
 	/**
      *
@@ -62,8 +57,6 @@ final class leaf_Response extends leaf_Base {
 	 */
 	public function __construct()
 	{
-        parent::__construct(self::LEAF_REG_KEY);
-        
         $outputHandler = $this->Config['output_handler'];
         
         /*

@@ -21,12 +21,7 @@
  *  <li>Implement.</li>
  * </ol>
  */
-final class leaf_Locale extends leaf_Base implements ArrayAccess {
-
-    const LEAF_REG_KEY = "Locale";
-    
-    const LEAF_CLASS_ID = "LEAF_LOCALE-1_0_dev";
-
+final class leaf_Locale implements ArrayAccess {
 
     /**
      *
@@ -51,7 +46,7 @@ final class leaf_Locale extends leaf_Base implements ArrayAccess {
      */
     public function __construct()
     {
-        parent::__construct(self::LEAF_REG_KEY);
+    
         
     }
 

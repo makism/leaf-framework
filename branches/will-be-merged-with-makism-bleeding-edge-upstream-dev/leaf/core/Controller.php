@@ -26,7 +26,7 @@
  *  depends on.</li>
  * </ol>
  */
-abstract class leaf_Controller extends leaf_Base {
+abstract class leaf_Controller {
 
     const LEAF_REG_KEY = "Controller";
     
