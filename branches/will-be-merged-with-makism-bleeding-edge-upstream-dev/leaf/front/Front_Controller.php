@@ -63,6 +63,7 @@ require_once LEAF_BASE  . 'base/helpers/Hooks.php';
  */
 $Config = new leaf_Config();
 $Router = new leaf_Router();
+new leaf_Dispatcher();
 
 /*
  * Configure timezone.

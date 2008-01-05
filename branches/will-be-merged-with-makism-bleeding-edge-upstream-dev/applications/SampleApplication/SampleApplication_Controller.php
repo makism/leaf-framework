@@ -25,7 +25,7 @@ class SampleApplication_Controller extends leaf_Controller {
 	public function index($Request, $Response)
 	{
         echo __METHOD__ . "<br/>";
-        $this->Dispatcher->invoke("App2", "method2");
+        $this->Dispatcher->invoke("App2");
 	}
 
 }
