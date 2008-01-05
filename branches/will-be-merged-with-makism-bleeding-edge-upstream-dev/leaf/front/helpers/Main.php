@@ -80,6 +80,7 @@ function __autoload($className)
             'leaf_View'      => 'core/View.php',
             'leaf_Cookie'    => 'core/Cookie.php',
             'leaf_Session'   => 'core/Session.php',
+	    'leaf_LocalLoader'=>'core/LocalLoader.php',
         /** Collection libraries        **/
             'leaf_Collection'=> 'core/Collection.php',
             'leaf_HashMap'   => 'core/collections/HashMap.php',
