@@ -21,15 +21,35 @@
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  */
-final class leaf_Dispatcher {
+final class leaf_Dispatcher extends leaf_Base {
+
+    const BASE_KEY = "Dispatcher";
+
 
     /**
-     * Object containing the dispatching information.
+     * 
+     *
+     * @var array
+     */
+    private static $dispatchObjects = array();
+    
+    /**
+     *
      *
      * @var object StdClass
      */
     public static $dispatchObject = NULL;
 
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    public function __construct()
+    {
+        parent::__construct(self::BASE_KEY, $this);
+    }
     
     /**
      * Checks for the existence of the desired method and calls it.
@@ -42,29 +62,31 @@ final class leaf_Dispatcher {
 	{
         self::prepare($Controller, $Action);
         
-        self::call("init");
+        $ControllerObject = array_pop(self::$dispatchObjects);
         
-        self::call(self::$dispatchObject->action);
+        self::call($ControllerObject, "init");
         
-        self::call("destroy");
+        self::call($ControllerObject, $ControllerObject->action);
+        
+        self::call($ControllerObject, "destroy");
 	}
     
-    private static function call($Action)
+    private static function call($ControllerObject, $Action)
     {
-        if (method_exists(self::$dispatchObject->instance, $Action)) {
+        if (method_exists($ControllerObject->instance, $Action)) {
             
             if (extension_loaded('reflection')) {
                 $refl = new ReflectionMethod (
-                    self::$dispatchObject->controller,
+                    $ControllerObject->controller,
                     $Action
                 );
                 
                 if ($refl->getNumberOfParameters()==2) {
-                    $app = self::$dispatchObject->application;
+                    $app = $ControllerObject->application;
                     
                     call_user_func(
                         array(
-                            self::$dispatchObject->instance,
+                            $ControllerObject->instance,
                             $Action
                         ),
                         leaf_Registry::getInstance($app)->Request,
@@ -77,7 +99,7 @@ final class leaf_Dispatcher {
             
             call_user_func(
                 array(
-                    self::$dispatchObject->instance,
+                    $ControllerObject->instance,
                     $Action
                 )
             );
@@ -119,6 +141,9 @@ final class leaf_Dispatcher {
                             . '/'
                             . $Controller
                             . '.php';
+
+        array_push(self::$dispatchObjects, $dispatchObj);
+        self::$dispatchObject = $dispatchObj;
         
         /*
          * Check if the Controller`s file, exists.
@@ -160,8 +185,6 @@ final class leaf_Dispatcher {
         
         if ($fetch==TRUE)
             return $dispatchObj;
-        else
-            self::$dispatchObject = $dispatchObj;
 	}
     
     /**

@@ -90,10 +90,6 @@ class leaf_Registry {
 	public function register($Id, $Obj)
     {
         $this->registry[$Id] = $Obj;
-        var_dump ($this);
-        echo "<br/>";
-        var_dump ($Id);
-        echo "<hr>";
     }
 
     /**
