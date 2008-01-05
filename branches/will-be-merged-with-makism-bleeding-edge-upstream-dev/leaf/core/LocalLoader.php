@@ -17,11 +17,25 @@
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  */
-class leaf_LocalLoader extends leaf_Loader {
+class leaf_LocalLoader extends leaf_Common {
 
-    public function __construct()
-    {
     
+    /**
+     * List of Models` instances.
+     * 
+     * @var array
+     */
+    private $models = array();
+
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    public function __construct($controllerName)
+    {
+        parent::__construct($controllerName);
     }
 
     /**
@@ -51,10 +65,6 @@ class leaf_LocalLoader extends leaf_Loader {
      * @param   string  $modelName
      * @param   array   $settings
      * @return  object|NULL
-     * @todo
-     * <ol>
-     *  <li>Extend support for settings.</li>
-     * </ol>
      */
     public function model($modelName, array $settings=NULL)
     {
@@ -106,7 +116,7 @@ class leaf_LocalLoader extends leaf_Loader {
     			if ($instance instanceof leaf_Model)
     			    $this->models[$bindName] = $instance;	
     		}
-
+            
     	}
     }
     

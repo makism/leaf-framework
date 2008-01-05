@@ -28,8 +28,8 @@ final class leaf_Dispatcher {
      *
      * @var object StdClass
      */
-    private static $dispatchObject = NULL;
-    
+    public static $dispatchObject = NULL;
+
     
     /**
      * Checks for the existence of the desired method and calls it.
@@ -42,20 +42,21 @@ final class leaf_Dispatcher {
 	{
         self::prepare($Controller, $Action);
         
-        // "init" the Controller
-        call_user_func(
-            array(
-                self::$dispatchObject->instance,
-                "init"
-            )
-        );
+        self::call("init");
         
-        if (method_exists(self::$dispatchObject->instance, self::$dispatchObject->action)) {
+        self::call(self::$dispatchObject->action);
+        
+        self::call("destroy");
+	}
+    
+    private static function call($Action)
+    {
+        if (method_exists(self::$dispatchObject->instance, $Action)) {
             
             if (extension_loaded('reflection')) {
                 $refl = new ReflectionMethod (
                     self::$dispatchObject->controller,
-                    self::$dispatchObject->action
+                    $Action
                 );
                 
                 if ($refl->getNumberOfParameters()==2) {
@@ -64,17 +65,10 @@ final class leaf_Dispatcher {
                     call_user_func(
                         array(
                             self::$dispatchObject->instance,
-                            self::$dispatchObject->action
+                            $Action
                         ),
                         leaf_Registry::getInstance($app)->Request,
                         leaf_Registry::getInstance($app)->Response
-                    );
-                    
-                    call_user_func(
-                        array(
-                            self::$dispatchObject->instance,
-                            "destroy"
-                        )
                     );
                     
                     return;
@@ -84,25 +78,18 @@ final class leaf_Dispatcher {
             call_user_func(
                 array(
                     self::$dispatchObject->instance,
-                    self::$dispatchObject->action
-                )
-            );
-            
-            call_user_func(
-                array(
-                    self::$dispatchObject->instance,
-                    "destroy"
+                    $Action
                 )
             );
             
         } else {
             showHtmlMessage(
                 "Dispatcher Failure",
-                "Action \"{self::dispatchObject->action}\" is not defined",
+                "Action \"{$Action}\" is not defined",
                 TRUE
             );
         }
-	}
+    }
     
     /**
      * Dispatcher the defined Controller/Action.
@@ -121,7 +108,7 @@ final class leaf_Dispatcher {
         
         $dispatchObj->controller = $Controller;
         
-        $dispatchObj->action = (isset($Action) ? $Action : "index");
+        $dispatchObj->action = (isset($Action)) ? $Action : "index";
         
         list($canonicalName, $suffix) = explode("_Controller", $dispatchObj->controller);
         

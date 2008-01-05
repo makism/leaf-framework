@@ -39,28 +39,29 @@ abstract class leaf_Common {
     }
     
    	/**
-     * Returns the requested object from the {@link leaf_Registry $Registry},
-     * <b>or</b> the requested Model.
+     *
      * 
-	 * @param  string  $key
+	 * @param  string  $Id
 	 * @return object|NULL
-	 * @todo
-	 * <ol>
-	 *  <li>Support for accessing the Models using a member property named "Models".
-	 *  <br>For example (<i>in Controller scope</i>):
-	 *  <code>$this->Models->modelName</code> <b>or</b>
-	 *  <code>$this->Models['modelName']</code><br>
-	 *  This denotes changes in the {@link leaf_Loader} class as well.</li>
-	 * </ol>
 	 */
-	protected function __get($Key)
+	protected function __get($Id)
 	{
-        return $this->controllerRegistry->$Key;
+        if ($this->controllerRegistry->registered($Id))
+            return $this->controllerRegistry->$Id;
+        else
+            return leaf_Base::fetch($Id);
 	}
     
-    protected function __set($Id, $Key)
+    /**
+     *
+     *
+     * @param   string  $Id
+     * @param   mixed   $Obj
+     * @return  void
+     */
+    protected function __set($Id, $Obj)
     {
-        $this->controllerRegistry->register($Id,$Key);
+        $this->controllerRegistry->register($Id, $Obj);
     }
 
 }

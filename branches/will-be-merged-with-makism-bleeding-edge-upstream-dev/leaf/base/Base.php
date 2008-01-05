@@ -27,7 +27,7 @@ abstract class leaf_Base {
     private static $BaseObjects = array ();
 
     
-    public function __construct($Id, $Obj)
+    protected function __construct($Id, $Obj)
     {
         $this->__set($Id, $Obj);   
     }

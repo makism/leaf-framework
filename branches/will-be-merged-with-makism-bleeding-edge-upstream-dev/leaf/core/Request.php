@@ -24,34 +24,7 @@
  * @see         leaf_Router
  * @version     SVN: $Id$
  */
-final class leaf_Request {
-
-	/**
-	 * The current query string that found in the Uri.
-	 *
-	 * It is immutable, that means that it can not be modified.
-	 *
-	 * @var	string
-	 */
-	private $immutablequeryString = NULL;
-	
-	/**
-	 * Will hold the new query string that we will build.
-	 *
-	 * This string mutable.
-	 *
-	 * @var	string
-	 */
-	private $mutableQueryString = NULL;
-
-    /**
-     * The extra segments found in the Uri.
-     *
-     * For more info take a look at the class leaf_Router.
-     *
-     * @var array
-     */
-    private $segments = NULL;
+final class leaf_Request extends leaf_Common {
 
     /**
      * The requested class name (Controller), suffixed with "_Controller".
@@ -76,23 +49,7 @@ final class leaf_Request {
      * @var string
      */
     private $action = NULL;
-
-    /**
-     * The query string found in the Uri.
-     *
-     * For more info take a look at the class leaf_Router.
-     *
-     * @var array
-     */
-    private $queryElems = NULL;
-	
-	/**
-	 * Will hold the elements that will make up the new mutable query string.
-	 *
-	 * @var	array
-	 */
-	private $mutableQueryElems = NULL;
-
+    
 
     /**
      * Internally uses the class {@link leaf_Router} in order to export
@@ -101,9 +58,12 @@ final class leaf_Request {
      *
      * @return  void
      */
-	public function __construct()
+	public function __construct($controllerName)
 	{
-        
+        parent::__construct($controllerName);
+        $this->controller= $controllerName;
+        $this->controllerFile = $controllerName . "_Controller.php";
+        $this->action = leaf_Dispatcher::$dispatchObject->action;
 	}
 	
 	/**

@@ -31,9 +31,10 @@ abstract class leaf_Controller extends leaf_Common {
     {
         parent::__construct($controllerName);
         
-        $this->Request = new leaf_Request();
-        $this->Response = new leaf_Response();        
-        $this->View = new leaf_View($controllerName);
+        $this->__set("Request", new leaf_Request($controllerName));
+        $this->__set("Local",new leaf_LocalLoader($controllerName));
+        $this->__set("Response", new leaf_Response($controllerName));   
+        $this->__set("View", new leaf_View($controllerName));
 	}
     
     /**
@@ -44,23 +45,6 @@ abstract class leaf_Controller extends leaf_Common {
     private function __clone()
     {
     
-    }
-    
-    /**
-     *
-     *
-     * @return  void
-     */
-    abstract public function init();
-    
-    /**
-     *
-     *
-     * @return  void
-     */
-    public function destroy()
-    {
-        return;
     }
 
 }

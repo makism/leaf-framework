@@ -17,7 +17,7 @@
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  */
-final class leaf_Response {
+final class leaf_Response extends leaf_Common {
 	
 	/**
      *

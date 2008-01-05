@@ -33,21 +33,4 @@ abstract class leaf_Model extends leaf_Common {
         parent::__construct($controllerName);
     }
     
-    /**
-     *
-     *
-     * @return  void
-     */
-    abstract public function init();
-    
-    /**
-     *
-     *
-     * @return  void
-     */
-    public function destroy()
-    {
-        return;
-    }
-    
 }

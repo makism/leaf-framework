@@ -22,9 +22,17 @@
  * @version		SVN: $Id$
  */
 class leaf_Loader extends leaf_Base {
-
-    const BASE_KEY = "Load";
     
+    const BASE_KEY = "Loader";
+    
+    
+    /**
+     *
+     *
+     * @var object leaf_Loader
+     */
+    protected static $instance = NULL;
+     
 
     /**
      * List of all the loaded plugins.
@@ -32,13 +40,6 @@ class leaf_Loader extends leaf_Base {
      * @var array 
      */
     private $plugins = array();
-    
-    /**
-     * List of Models` instances.
-     * 
-     * @var array
-     */
-    private $models = array();
     
     /**
      * List of all loaded libraries.
@@ -70,10 +71,22 @@ class leaf_Loader extends leaf_Base {
      * @return  void
      */
     public function __construct()
+    {     
+        parent::__construct(self::BASE_KEY, self::$instance);
+        require_once LEAF_BASE . "base/helpers/Loader.php";      
+    }
+    
+    /**
+     *
+     *
+     * @return  object leaf_Loader
+     */
+    public static function getInstance()
     {
-        parent::__construct(self::BASE_KEY, $this);
-        
-        require_once LEAF_BASE . "core/helpers/Loader.php";      
+        if (self::$instance==NULL)
+            self::$instance = new leaf_Loader();
+    
+        return self::$instance;
     }
 	
     /**

@@ -249,7 +249,7 @@ final class leaf_Router extends leaf_Base {
 			if ($s!=null)
 				$this->segments[] = $s;
 		}
-		
+        
 	}
     
     /**

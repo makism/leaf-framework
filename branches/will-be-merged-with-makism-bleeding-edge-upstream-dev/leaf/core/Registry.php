@@ -52,7 +52,7 @@ class leaf_Registry {
      * @return  object leaf_Registry
      */
     public static function getInstance($Key)
-    {
+    {    
         if (self::$instances==NULL)
             self::$instances = array();
      
@@ -90,6 +90,20 @@ class leaf_Registry {
 	public function register($Id, $Obj)
     {
         $this->registry[$Id] = $Obj;
+        var_dump ($this);
+        echo "<br/>";
+        var_dump ($Id);
+        echo "<hr>";
     }
 
+    /**
+     *
+     *
+     * @return  boolean
+     */
+    public function registered($Id)
+    {
+        return array_key_exists($Id, $this->registry);
+    }
+    
 }
