@@ -40,7 +40,7 @@ abstract class leaf_Collection {
      * @param   array   $data
      * @return  void
      */
-    public function __construct(array $data)
+    public function __construct(array $data=NULL)
     {
         $this->elements = $data;
         $this->pointer = -1;
@@ -52,5 +52,15 @@ abstract class leaf_Collection {
      * @return  string
      */
     abstract public function __toString();
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    private function __clone()
+    {
+        return;
+    }
 
 }

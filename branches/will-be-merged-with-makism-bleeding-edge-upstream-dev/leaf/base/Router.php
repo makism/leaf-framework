@@ -30,9 +30,7 @@
  */
 final class leaf_Router extends leaf_Base {
 
-    const LEAF_REG_KEY = "Router";
-    
-    const LEAF_CLASS_ID = "LEAF_ROUTER-1_0_dev";
+    const BASE_KEY = "Router";
 
 	
 	/**
@@ -98,16 +96,14 @@ final class leaf_Router extends leaf_Base {
 	 * @see		leaf_Config
 	 * @see		leaf_Request
 	 * @return	void
-     * @todo
-     * <ol>
-     *  <li>Possible break-down of the jobs that the constructor executes.</li>
-     * </ol>
 	 */
-	public function __construct() {
+	public function __construct()
+    {
+        parent::__construct(self::BASE_KEY, $this);
         
-        parent::__construct(self::LEAF_REG_KEY);
-	    
+        
 		$this->requestUri = $_SERVER['REQUEST_URI'];
+        
         
 		/*
 		 * We check if there are any illegal characters in
@@ -144,7 +140,6 @@ final class leaf_Router extends leaf_Base {
          * We die in case we find erroneous characters in the Uri.
          */
 		if ($checkUri==0) {
-			$this->Log->log(LEVEL_ERROR, "Malicious characters found in the Uri");
 			showHtmlMessage(
 			    "Routing Error",
 			    "Malicious characters found in Uri!",
@@ -256,7 +251,7 @@ final class leaf_Router extends leaf_Base {
 		}
 		
 	}
-
+    
     /**
      * Returns the query string as is.
      *
@@ -345,10 +340,5 @@ final class leaf_Router extends leaf_Base {
 	{
 		return $this->requestMethod;
 	}
-
-    public function __toString()
-    {
-        return __CLASS__ . " (Extracts information about the request, from the Uri)";
-    }
 
 }

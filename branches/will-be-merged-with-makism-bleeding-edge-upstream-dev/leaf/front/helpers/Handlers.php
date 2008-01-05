@@ -13,12 +13,6 @@
  * @author      Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  * @filesource
- * @todo
- * <ol>
- *  <li>Implement a function that will handle dependancies as
- *  optional.</li>
- *  <li>Recheck <b>all</b> functions.</li>
- * </ol>
  */
 
 

@@ -50,7 +50,7 @@ function __autoload($className)
      * instantiate it.
      */
 #    if ($endorsementManager==NULL && $enableEndorsementManager==TRUE) {
-#        require_once LEAF_BASE . "core/EndorsementManager.php";
+#        require_once LEAF_BASE . "base/EndorsementManager.php";
 #        leaf_Registry::getInstance()->register(new leaf_EndorsementManager());
 #        $endorsementManager = leaf_Registry::getInstance()->EndorsementMan;
 #    }
@@ -61,37 +61,30 @@ function __autoload($className)
     if ($baseClasses==NULL)
     	$baseClasses = array (
     	/** Base libraries             **/
-            'leaf_Base'      => 'Base.php',
-    		'leaf_Config'    => 'Config.php',
-            'leaf_Dispatcher'=> 'Dispatcher.php',
-            'leaf_Exception' => 'Exception.php',
-            'leaf_Loader'    => 'Loader.php',
-            'leaf_Locale'    => 'Locale.php',
-            'leaf_Registry'  => 'Registry.php',
-            'leaf_Router'    => 'Router.php',
-        /** Request/Response            **/
-            'leaf_Request'   => 'Request.php',
-            'leaf_Response'  => 'Response.php',
-    	/** MVC core libraries          **/
-            'leaf_Controller'=> 'Controller.php',
-            'leaf_Model'     => 'Model.php',
-            'leaf_View'      => 'View.php',
-        /** Collections libraries       **/
-            'leaf_Collection'=> 'Collection.php',
-            'leaf_Enumeration'=> 'collections/Enumeration.php',
-            'leaf_Iterator' => 'collections/Iterator.php',
-        /** Hooks libraries             **/
-            'leaf_Hook'      => 'hook/Hook.php',
-            'leaf_Hook_Conditional'=> 'hook/Hook_Conditional.php',
-        /** Logs libraries              **/
-#            'leaf_Log'       => 'log/Log.php',
-#            'leaf_Logger'    => 'log/Logger.php',
-        /** Database-related libraries  **/
-#			'leaf_Db'        => 'db/Db.php',
-    	/** Other core libraries        **/
-#            'leaf_Benchmark' => 'Benchmark.php',
-#            'leaf_Input'     => 'Input.php',
-#            'leaf_Hash'      => 'Hash.php'
+            'leaf_Base'      => 'base/Base.php',
+    		'leaf_Config'    => 'base/Config.php',
+            'leaf_Dispatcher'=> 'base/Dispatcher.php',
+            'leaf_Exception' => 'base/Exception.php',
+            'leaf_Loader'    => 'base/Loader.php',
+            'leaf_Locale'    => 'base/Locale.php',
+            'leaf_Router'    => 'base/Router.php',
+            'leaf_Hook'      => 'base/Hook.php',
+            'leaf_Hook_Conditional'=> 'base/Hook_Conditional.php',            
+        /** Core libraries              **/
+            'leaf_Common'    => 'core/Common.php',
+            'leaf_Registry'  => 'core/Registry.php',
+            'leaf_Request'   => 'core/Request.php',
+            'leaf_Response'  => 'core/Response.php',
+            'leaf_Controller'=> 'core/Controller.php',
+            'leaf_Model'     => 'core/Model.php',
+            'leaf_View'      => 'core/View.php',
+            'leaf_Cookie'    => 'core/Cookie.php',
+            'leaf_Session'   => 'core/Session.php',
+        /** Collection libraries        **/
+            'leaf_Collection'=> 'core/Collection.php',
+            'leaf_HashMap'   => 'core/collections/HashMap.php',
+            'leaf_Enumeration'=>'core/collections/Enumeration.php',
+            'leaf_Iterator'  => 'core/collections/Iterator.php'
     	);
 
     /*
@@ -113,7 +106,6 @@ function __autoload($className)
 #                            . $baseClasses[$className];
 #        } else {
           	require_once LEAF_BASE
-                        . 'core/'
                         . $baseClasses[$className];
 #        }
     }

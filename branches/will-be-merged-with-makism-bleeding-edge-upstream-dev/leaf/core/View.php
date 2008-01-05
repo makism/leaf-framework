@@ -32,7 +32,7 @@ define('VIEW_EXPOSE', 2);
  *  <li>Add support for Output Buffer.</li>
  * </ol>
  */
-final class leaf_View {
+final class leaf_View extends leaf_Common {
     
     /**
      * Default option parameters for all View files.
@@ -73,9 +73,9 @@ final class leaf_View {
      *
      * @return  void
      */
-    public function __construct()
+    public function __construct($controllerName)
     {
-    
+        parent::__construct($controllerName);
     }
 
     /**
@@ -217,11 +217,6 @@ final class leaf_View {
     {
         if (array_key_exists($Option, $this->options))
             $this->options[$Value] = $Option;
-    }
-
-    public function __toString()
-    {
-        return __CLASS__ . " (Handles the Views of your application)";
     }
 
 }

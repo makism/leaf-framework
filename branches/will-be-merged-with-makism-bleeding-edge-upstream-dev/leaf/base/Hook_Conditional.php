@@ -42,15 +42,6 @@ abstract class leaf_Hook_Conditional extends leaf_Hook {
      */
     abstract public function condition();
 	
-	/**
-	 *
-	 *
-	 */
-    public function __toString()
-	{
-		return __CLASS__ . " (Executes a Hook if the specified condition is met.)";
-	}
-	
 }
 
 ?>

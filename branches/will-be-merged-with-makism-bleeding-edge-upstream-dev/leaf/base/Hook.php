@@ -41,16 +41,6 @@ abstract class leaf_Hook extends leaf_Base {
 	 */
 	abstract public function run();
 
-    /**
-     *
-     *
-     * @return  string
-     */
-    public function __toString()
-	{
-		return __CLASS__ . " (Executes a Hook.)";
-	}
-
 }
 
 ?>

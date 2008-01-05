@@ -22,24 +22,32 @@
  *  <li>Possible removal.</li>
  * </ol>
  */
-abstract class leaf_Model {
+abstract class leaf_Model extends leaf_Common {
 
     /**
      *
      * @return  void
      */
-    public function __construct()
+    public function __construct($controllerName)
     {
-    
+        parent::__construct($controllerName);
     }
     
     /**
-     * 
-     * @return  string
+     *
+     *
+     * @return  void
      */
-    public function __toString()
+    abstract public function init();
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    public function destroy()
     {
-    	
+        return;
     }
     
 }

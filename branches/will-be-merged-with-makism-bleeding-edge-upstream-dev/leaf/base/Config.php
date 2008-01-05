@@ -51,9 +51,7 @@
  */
 final class leaf_Config extends leaf_Base implements ArrayAccess {
 
-    const LEAF_REG_KEY = "Config";
-    
-    const LEAF_CLASS_ID = "LEAF_CONFIG-1_0_dev"; 
+    const BASE_KEY = "Config";
 
     
 	/**
@@ -79,37 +77,49 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	 */
 	public function __construct()
 	{
-        parent::__construct(self::LEAF_REG_KEY);
-
+        //leaf_Base::storeBase(self::BASE_KEY, $this);
+        parent::__construct(self::BASE_KEY, $this);
+        
+        
 		require_once LEAF_BASE . 'etc/general.php';
 		require_once LEAF_BASE . 'etc/autoload.php';
 		require_once LEAF_BASE . 'etc/hooks.php';
         require_once LEAF_BASE . 'etc/endorsed.php';
         require_once LEAF_BASE . 'etc/database.php';
-
+        
         $this->optionsTable['general'] = $general;
         $this->optionsTable['autoload']= $autoload;
         $this->optionsTable['endorsed']= $endorsed;
         $this->optionsTable['hooks']   = $hooks;
         $this->optionsTable['database']= $database;
-
+        
         $this->options = $general;
 		
     	unset($GLOBALS);
     }
-
+    
     /**
      * Returns all parameters related with the specified key.
      *
-     * @param   string  $str
+     * @param   string  $key
      * @return  array|NULL
      */
-    public function getByHashKey($key)
+    public function fetchArray($key)
     {
         if (array_key_exists($key, $this->optionsTable))
             return $this->optionsTable[$key];
         else
             return NULL;
+    }
+    
+    /**
+     * Returns an array containing the general configuration options.
+     *
+     * @return  array
+     */
+    public function toArray()
+    {
+        return $this->options;
     }
 
 	/**
@@ -163,11 +173,5 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	{
         unset($this->options[$offset]);
 	}
-
-    public function __toString()
-    {
-        return __CLASS__ . " (Provides read access the configuration files)";
-    }
-
 
 }

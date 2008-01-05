@@ -12,7 +12,7 @@
 // in order to have your Model working properly.
 class SampleModel_Model extends leaf_Model {
     
-    const MODEL_ALIAS = "sample";
+    const BIND_NAME = "sample";
     
 
     /*
@@ -21,7 +21,7 @@ class SampleModel_Model extends leaf_Model {
 	public function __construct()
 	{
         // Call the parent`s contructor.
-		parent::__construct();
+		parent::__construct("SampleApplication");
 	}
 
     /*

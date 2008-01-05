@@ -29,11 +29,9 @@
  */
 final class leaf_EndorsementManager extends leaf_Base {
 
-    const LEAF_REG_KEY = "EndorsementMan";
+    const BASE_KEY = "EndorsementManager";
+
     
-    const LEAF_CLASS_ID = "LEAF_ENDORSEMENTMANAGER-1_0_dev";
-    
- 
     /**
      * Currently classes that are overlapped.
      *
@@ -73,10 +71,10 @@ final class leaf_EndorsementManager extends leaf_Base {
      */
     public function __construct()
     {
-        parent::__construct(self::LEAF_REG_KEY);
-
+        parent::__construct(self::BASE_KEY, $this);
+        
         dependsOn('reflection');
-
+        
         $this->registeredEndorsed = explode(",", $this->Config['endorsed']);
     }
 

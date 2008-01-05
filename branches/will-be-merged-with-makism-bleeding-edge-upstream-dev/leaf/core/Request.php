@@ -23,10 +23,6 @@
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @see         leaf_Router
  * @version     SVN: $Id$
- * @todo
- * <ol>
- *  <li>Refactor most methods to act as wrapper methods for leaf_Router's methods.</li>
- * </ol>
  */
 final class leaf_Request {
 
@@ -108,43 +104,6 @@ final class leaf_Request {
 	public function __construct()
 	{
         
-        /*
-         * All classes that contain Controllers, must have their name
-         " suffixed with the string "_Controller".
-         * So, we attach it to the requested Controller.
-         */
-        $this->controller   = $this->Router->getClassName() . '_Controller';
-        
-        /*
-         * Compose the complete file name where we suppose the Controller
-         * is located.
-         */
-        $this->controllerFile =
-            LEAF_APPS
-            . $this->Router->getClassName()
-            . '/'
-            . $this->controller
-            . '.php';
-            
-        /*
-         * Fetch the Action from the {@link leaf_Router router} object.
-         */
-        $this->action       = $this->Router->getMethodName();
-        
-        /*
-         * Fetch the extra Uri segments from the {@link leaf_Router router} object.
-         */
-        $this->segments     = $this->Router->segments();
-        
-        /*
-         * Fetch the Query String from the {@link leaf_Router router} object.
-         */
-        $this->queryElems   = $this->Router->queryStringElements();
-		
-		/*
-		 * Assign the Query String
-		 */
-		$this->immutablequeryString = $this->Router->queryString();
 	}
 	
 	/**
@@ -369,11 +328,6 @@ final class leaf_Request {
             return $str;
         } else 
             return NULL;
-    }
-
-    public function __toString()
-    {
-        return __CLASS__ . " (Allows you to access the discoveries made by the Router)";
     }
 
 }

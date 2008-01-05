@@ -21,13 +21,8 @@
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @version		SVN: $Id$
  */
-final class leaf_Dispatcher extends leaf_Base {
-	
-    const LEAF_REG_KEY = "Dispatcher";
-    
-    const LEAF_CLASS_ID = "LEAF_DISPATCHER-1_0_dev";
-    
-    
+final class leaf_Dispatcher {
+
     /**
      * Object containing the dispatching information.
      *
@@ -35,23 +30,6 @@ final class leaf_Dispatcher extends leaf_Base {
      */
     private static $dispatchObject = NULL;
     
-    
-    /**
-     * Tests the requested Controller and prepares for dispaching it, along
-     * with the Action.
-     *
-     * @return  void
-     */
-    public function __construct()
-    {
-        parent::__construct(self::LEAF_REG_KEY);
-        
-        /*
-         * Register and instance of leaf_View, for future usage.
-         */
-        leaf_Registry::getInstance()->register(new leaf_View());
-        
-    }
     
     /**
      * Checks for the existence of the desired method and calls it.
@@ -64,6 +42,14 @@ final class leaf_Dispatcher extends leaf_Base {
 	{
         self::prepare($Controller, $Action);
         
+        // "init" the Controller
+        call_user_func(
+            array(
+                self::$dispatchObject->instance,
+                "init"
+            )
+        );
+        
         if (method_exists(self::$dispatchObject->instance, self::$dispatchObject->action)) {
             
             if (extension_loaded('reflection')) {
@@ -73,13 +59,22 @@ final class leaf_Dispatcher extends leaf_Base {
                 );
                 
                 if ($refl->getNumberOfParameters()==2) {
+                    $app = self::$dispatchObject->application;
+                    
                     call_user_func(
                         array(
                             self::$dispatchObject->instance,
                             self::$dispatchObject->action
                         ),
-                        leaf_Registry::getInstance()->Request,
-                        leaf_Registry::getInstance()->Response
+                        leaf_Registry::getInstance($app)->Request,
+                        leaf_Registry::getInstance($app)->Response
+                    );
+                    
+                    call_user_func(
+                        array(
+                            self::$dispatchObject->instance,
+                            "destroy"
+                        )
                     );
                     
                     return;
@@ -90,6 +85,13 @@ final class leaf_Dispatcher extends leaf_Base {
                 array(
                     self::$dispatchObject->instance,
                     self::$dispatchObject->action
+                )
+            );
+            
+            call_user_func(
+                array(
+                    self::$dispatchObject->instance,
+                    "destroy"
                 )
             );
             
@@ -123,6 +125,8 @@ final class leaf_Dispatcher extends leaf_Base {
         
         list($canonicalName, $suffix) = explode("_Controller", $dispatchObj->controller);
         
+        $dispatchObj->application = $canonicalName;
+        
         $dispatchObj->target = LEAF_APPS
                             . $canonicalName
                             . '/'
@@ -152,7 +156,9 @@ final class leaf_Dispatcher extends leaf_Base {
         /*
          * Create an instance.
          */
-        $dispatchObj->instance = new $dispatchObj->controller;
+        $dispatchObj->instance = new $dispatchObj->controller (
+            $dispatchObj->application
+        );
         
         /*
          * Check if the current Controller inherits from our
@@ -188,11 +194,6 @@ final class leaf_Dispatcher extends leaf_Base {
                 return TRUE;
             
         return FALSE;
-    }
-
-    public function __toString()
-    {
-        return __CLASS__ . " (Dispatches the requested Action)";
     }
 
 }
