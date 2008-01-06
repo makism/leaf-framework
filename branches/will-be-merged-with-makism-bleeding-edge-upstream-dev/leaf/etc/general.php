@@ -37,7 +37,7 @@ $general['base_dir']  = "/leaf/";
 /*
  * Default application controller.
  */
-$general['default_controller'] = "SampleApplication";
+$general['default_controller'] = "WelcomeApp";
 
 
 /*

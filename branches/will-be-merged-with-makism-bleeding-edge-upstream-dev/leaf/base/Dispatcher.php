@@ -60,15 +60,23 @@ final class leaf_Dispatcher extends leaf_Base {
      */
 	public static function invoke($Controller, $Action=NULL)
 	{
-        self::prepare($Controller, $Action);
-        
-        $ControllerObject = array_pop(self::$dispatchObjects);
-        
-        self::call($ControllerObject, "init");
-        
-        self::call($ControllerObject, $ControllerObject->action);
-        
-        self::call($ControllerObject, "destroy");
+        if ($Action!="init" && $Action!="destroy") {
+            self::prepare($Controller, $Action);
+            
+            $ControllerObject = array_pop(self::$dispatchObjects);
+            
+            self::call($ControllerObject, "init");
+            
+            self::call($ControllerObject, $ControllerObject->action);
+            
+            self::call($ControllerObject, "destroy");
+        } else {
+            showHtmlMessage(
+                "Dispatcher Failure",
+                "Direct call to method \"{$Action}\" is not allowed.",
+                TRUE
+            );
+        }
 	}
     
     private static function call($ControllerObject, $Action)

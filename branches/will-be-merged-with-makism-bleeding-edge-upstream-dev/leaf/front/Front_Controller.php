@@ -105,7 +105,4 @@ if ($Config['allow_hooks'])
  */
 if ($Config['enable_debug_stats'])
     require_once LEAF_BASE . 'front/Debug.php';
-
-var_dump (memory_get_usage()/1024);
-var_dump (xdebug_time_index());
     

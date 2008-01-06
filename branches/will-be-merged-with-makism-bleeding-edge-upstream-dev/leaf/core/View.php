@@ -79,7 +79,7 @@ final class leaf_View extends leaf_Common {
     }
 
     /**
-     * Includes a view file.
+     * Includes a dynamic view file.
      *
      * View files, are common php script files. You may
      * pass an associative array with the variables you want to
@@ -112,7 +112,7 @@ final class leaf_View extends leaf_Common {
      */
     public function render($view, array $data=NULL)
     {
-        // Number of the passed arguments.
+        // Number of the passed data variables.
         $s = sizeof($data);
         
         // View`s filename
@@ -204,6 +204,40 @@ final class leaf_View extends leaf_Common {
             require_once $this->currViewFile;
         }
         
+    }
+    
+    /**
+     * Includes a static view file, usually an html file.
+     *
+     * @param   string  $view
+     * @return  void
+     */
+    public function view($view)
+    {
+        $name = NULL;
+        
+        $app = NULL;
+        
+        $idx = strpos($view, "/");
+        if ($idx!==false) {
+            $app = substr($view, 0, $idx);
+            $name= substr($view, $idx+1);
+        } else {
+            $name= $view;
+        }
+
+        if ($app=="/" || $app==NULL) {
+            $app = $this->Request->getApplicationName();
+        }
+        
+        $this->currViewFile = "applications/" . $app . "/View/" . $name;
+        
+        if (file_exists($this->currViewFile) &&
+            is_readable($this->currViewFile))
+        {
+            $this->viewFileList[] = $this->currViewFile;
+            require_once $this->currViewFile;
+        }
     }
     
     /**
