@@ -63,7 +63,7 @@ final class leaf_Request extends leaf_Common {
         parent::__construct($controllerName);
         $this->controller= $controllerName;
         $this->controllerFile = $controllerName . "_Controller.php";
-        $this->action = leaf_Dispatcher::$dispatchObject->action;
+        $this->action = $this->Dispatcher->dispatchObject->action;
 	}
 	
 	/**
@@ -94,7 +94,7 @@ final class leaf_Request extends leaf_Common {
      */
     public function getApplicationName()
     {
-    	return $this->Router->getClassName();
+    	return $this->controller;
     }
     
     /**
@@ -107,46 +107,40 @@ final class leaf_Request extends leaf_Common {
     	return $this->action;
     }
 	
-    /**
-     * Returns the total number of segments.
-     *
-     * @return  integer
-     */
-	public function totalSegments()
-	{
-	    return sizeof($this->segments);
-	}
-	
+###############################################################################
+################################################################ Extra Segments
+###############################################################################
+
     /**
      * Retrieves the requested (numeric) offset from the segments.
      *
      * @param   integer $n
      * @return  string|NULL
      */
-	public function segment($n)
+	public function getSegment($n)
 	{
 	    if (array_key_exists($n-1, $this->segments))
 	       return $this->segments[$n-1];
 	    else
 	       return NULL;
 	}
-
+    
     /**
-     * Returns the segments` array.
+     * Returns the total number of segments.
      *
-     * @return  array
+     * @return  integer
      */
-    public function segmentsAsArray()
-    {
-        return $this->segments;
-    }
+	public function getSegmentsSize()
+	{
+	    return $this->Router->segmentsSize();
+	}
 	
 	/**
 	 * Returns all the extra segments, separated with slashes.
 	 *
 	 * @return	string
 	 */
-	public function getSegments()
+	public function getRawSegments()
 	{
 		$returnStr = NULL;
 		$total = $this->totalSegments();
@@ -159,6 +153,20 @@ final class leaf_Request extends leaf_Common {
 		
 		return $returnStr;
 	}
+
+    /**
+     * Returns the segments` array.
+     *
+     * @return  array
+     */
+    public function getSegmentsAsArray()
+    {
+        return $this->segments;
+    }
+    
+###############################################################################
+################################################################## Query String
+###############################################################################
 
     /**
      * Returns the complete query string.
@@ -180,7 +188,7 @@ final class leaf_Request extends leaf_Common {
 	 *  <li>Possible method refactor.</li>
 	 * </ol>
      */
-    public function queryStringValue($offset)
+    public function getQueryStringValue($offset)
     {
         if ($this->queryElems!=NULL)
             if (array_key_exists($offset, $this->queryElems))
@@ -259,35 +267,26 @@ final class leaf_Request extends leaf_Common {
 		
 		$this->updateQueryString();
 	}
-	
-    /**
-     * Return the current query string, as a string.
-     *
-     * @return  string
-	 * @todo
-	 * <ol>
-	 *  <li>Possible complete method refactor.</li>
-	 * </ol>
-     */
-    public function getFormattedQueryString()
-    {
-        if ($this->queryElems!=NULL) {
-            $str = NULL;
-			
-            foreach($this->queryElems as $Var => $Val) {
-                if ($Val=="" || empty($Val))
-                    $Val = "NULL";
-                    
-                $str .= $Var . " = " . $Val . ", ";
-            }
-            
-            if (preg_match("@, $@", $str)) {
-                $str = preg_replace("@, $@", "", $str);
-            } 
-			
-            return $str;
-        } else 
-            return NULL;
-    }
+    
+###############################################################################
+####################################################################### Headers
+###############################################################################
+
+
+###############################################################################
+####################################################################### Cookies
+###############################################################################
+
+
+###############################################################################
+########################################################################## Post
+###############################################################################
+
+
+###############################################################################
+####################################################################### Session
+###############################################################################
+
+
 
 }

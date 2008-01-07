@@ -86,12 +86,14 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 		require_once LEAF_BASE . 'etc/hooks.php';
         require_once LEAF_BASE . 'etc/endorsed.php';
         require_once LEAF_BASE . 'etc/database.php';
+        require_once LEAF_BASE . 'etc/route.php';
         
         $this->optionsTable['general'] = $general;
         $this->optionsTable['autoload']= $autoload;
         $this->optionsTable['endorsed']= $endorsed;
         $this->optionsTable['hooks']   = $hooks;
         $this->optionsTable['database']= $database;
+        $this->optionsTable['route']  = $route;
         
         $this->options = $general;
 		

@@ -1,3 +1,10 @@
+ String 	getPathInfo()
+          Returns any extra path information associated with the URL the client sent when it made this request.
+ String 	getPathTranslated()
+          Returns any extra path information after the servlet name but before the query string, and translates it to a real path.
+ String 	getQueryString()
+          Returns the query string that is contained in the request URL after the path.
+          
  String 	getAuthType()
           Returns the name of the authentication scheme used to protect the servlet.
  String 	getContextPath()
@@ -16,12 +23,6 @@
           Returns the value of the specified request header as an int.
  String 	getMethod()
           Returns the name of the HTTP method with which this request was made, for example, GET, POST, or PUT.
- String 	getPathInfo()
-          Returns any extra path information associated with the URL the client sent when it made this request.
- String 	getPathTranslated()
-          Returns any extra path information after the servlet name but before the query string, and translates it to a real path.
- String 	getQueryString()
-          Returns the query string that is contained in the request URL after the path.
  String 	getRemoteUser()
           Returns the login of the user making this request, if the user has been authenticated, or null if the user has not been authenticated.
  String 	getRequestedSessionId()
@@ -55,7 +56,7 @@
           
           
           
-           Object 	getAttribute(String name)
+ Object 	getAttribute(String name)
           Returns the value of the named attribute as an Object, or null if no attribute of the given name exists.
  Enumeration 	getAttributeNames()
           Returns an Enumeration containing the names of the attributes available to this request.

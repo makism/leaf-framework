@@ -31,15 +31,14 @@ final class leaf_Dispatcher extends leaf_Base {
      *
      * @var array
      */
-    private static $dispatchObjects = array();
+    private $dispatchObjects = array();
     
     /**
      *
      *
      * @var object StdClass
      */
-    public static $dispatchObject = NULL;
-
+    public $dispatchObject = NULL;
     
     /**
      *
@@ -58,18 +57,26 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   string  $Action
      * @return  void
      */
-	public static function invoke($Controller, $Action=NULL)
+	public function invoke($Controller, $Action=NULL)
 	{
         if ($Action!="init" && $Action!="destroy") {
-            self::prepare($Controller, $Action);
+            $this->prepare($Controller, $Action);
             
-            $ControllerObject = array_pop(self::$dispatchObjects);
+            $ControllerObject = array_pop($this->dispatchObjects);
             
-            self::call($ControllerObject, "init");
+            // Init the Controller
+            $this->call($ControllerObject, "init");
             
-            self::call($ControllerObject, $ControllerObject->action);
+            $ControllerObject->instance->Response->ouputBufferStart();
             
-            self::call($ControllerObject, "destroy");
+            // Execute requested Action
+            $this->call($ControllerObject, $ControllerObject->action);
+            
+            $ControllerObject->instance->Response->outputBufferFlush();
+            
+            // Destroy the Controller
+            $this->call($ControllerObject, "destroy");
+            
         } else {
             showHtmlMessage(
                 "Dispatcher Failure",
@@ -79,7 +86,7 @@ final class leaf_Dispatcher extends leaf_Base {
         }
 	}
     
-    private static function call($ControllerObject, $Action)
+    private function call($ControllerObject, $Action)
     {
         if (method_exists($ControllerObject->instance, $Action)) {
             
@@ -129,12 +136,26 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   boolean $fetch
      * @return  NULL|object StdClass
      */
-	public static function prepare($Controller, $Action=NULL, $fetch=FALSE)
+	public function prepare($Controller, $Action=NULL, $fetch=FALSE)
 	{
+        static $traceDispatches;
+        
+        if ($traceDispatches==NULL) {
+            $routes = $this->Config->fetchArray("routes");
+            $traceDispatches = $routes['trace_dispatches'];
+            unset($routes);
+        }
+    
         if (strrpos($Controller, "_Controller")==FALSE)
             $Controller .= "_Controller";
         
         $dispatchObj = new StdClass();
+        
+        $dispatchObj->caller = NULL;
+        
+        if ($traceDispatches==TRUE)
+            if ($this->dispatchObject!=NULL)
+                $dispatchObj->caller = $this->dispatchObject;
         
         $dispatchObj->controller = $Controller;
         
@@ -150,8 +171,8 @@ final class leaf_Dispatcher extends leaf_Base {
                             . $Controller
                             . '.php';
 
-        array_push(self::$dispatchObjects, $dispatchObj);
-        self::$dispatchObject = $dispatchObj;
+        array_push($this->dispatchObjects, $dispatchObj);
+        $this->dispatchObject = $dispatchObj;
         
         /*
          * Check if the Controller`s file, exists.
@@ -205,7 +226,7 @@ final class leaf_Dispatcher extends leaf_Base {
      */
     public static function pretend($Controller, $Action=NULL)
     {
-        $obj = self::prepare($Controller, $Action, TRUE);
+        $obj = $this->prepare($Controller, $Action, TRUE);
         
         if ($obj!=NULL) 
             if (method_exists($obj->instance, $obj->action))

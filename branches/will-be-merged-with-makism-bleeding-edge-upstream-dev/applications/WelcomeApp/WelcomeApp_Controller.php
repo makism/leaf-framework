@@ -29,7 +29,7 @@ final class WelcomeApp_Controller extends leaf_Controller {
         
     }
 
-	public function index()
+	public function index($Request, $Response)
 	{
         $data['title']= "&#8220;leaf framework ~ Open Source MVC Framework in PHP&#8221;";
         

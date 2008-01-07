@@ -11,6 +11,11 @@ class AnotherApp_Controller extends leaf_Controller {
     {
         echo __METHOD__ . "<br/>";
     }
+    
+    public function index()
+    {
+        echo __METHOD__ . "<br/>";
+    }
 
     public function someAction($Request, $Response)
     {

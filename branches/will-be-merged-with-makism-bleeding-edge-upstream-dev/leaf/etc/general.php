@@ -35,12 +35,6 @@ $general['base_dir']  = "/leaf/";
 
 
 /*
- * Default application controller.
- */
-$general['default_controller'] = "WelcomeApp";
-
-
-/*
  * Default locale settings.
  */
 $general['locale'] = "en";
@@ -99,36 +93,6 @@ $general['allow_endorsed'] = FALSE;
  * Default: FALSE
  */
 $general['allow_hooks'] = FALSE;
-
-
-/*
- * Enable/Disable query strings.
- *
- * Legal values: TRUE, FALSE
- * Default: TRUE
- */
-$general['allow_query_strings'] = TRUE;
-
-
-/*
- * Allowed characters in the query strings.
- * Do _NOT_ set to nothing, unless you are aware of the
- * consicouences.
- *
- * Default value: "a-z0-9-_"
- */
-$general['allow_query_string_chars'] = "a-z0-9-_";
-
-
-/*
- * Allowed characters in the URIs. The default values are
- * the best out there.
- * Change only if sure and do _NOT_ set to nothing,
- * unless you are aware of the consicouences.
- *
- * Default value: "a-z0-9-/_:+~%*"
- */
-$general['allow_uri_chars'] = "a-z0-9-/_:+~%*";
 
 
 /*

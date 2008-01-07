@@ -104,6 +104,7 @@ final class leaf_Router extends leaf_Base {
         
 		$this->requestUri = $_SERVER['REQUEST_URI'];
         
+        $routeOptions = $this->Config->fetchArray("route");
         
 		/*
 		 * We check if there are any illegal characters in
@@ -118,18 +119,18 @@ final class leaf_Router extends leaf_Base {
 					: "";
 		
         // match the query string
-		$skipQueryString = ($this->Config['allow_query_strings'])
+		$skipQueryString = ($routeOptions['allow_query_strings'])
 			? "(\?(["
-				. $this->Config['allow_query_string_chars']
+				. $routeOptions['allow_query_string_chars']
 				. "]+(=["
-				. $this->Config['allow_query_string_chars']
+				. $routeOptions['allow_query_string_chars']
 				. "]*)?\&?)*)?"
 			: "";
 		
         // match all
 		$checkUri = preg_match_all(
 			"|"
-				. "^[" . preg_quote($this->Config['allow_uri_chars']) . "]+"
+				. "^[" . preg_quote($routeOptions['allow_uri_chars']) . "]+"
 				. "{$skipExt}{$skipQueryString}$" .
 			"|iu",
 			$this->requestUri,
@@ -155,7 +156,7 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if (preg_match("@\?(.+(=.+)?\&?$)+@iu", $this->requestUri, $matches)) {
             
-			if ($this->Config['allow_query_strings']) {
+			if ($routeOptions['allow_query_strings']) {
                 
 				$this->queryString = $matches[0];
                 
@@ -220,9 +221,9 @@ final class leaf_Router extends leaf_Base {
 		 */
 		if ($this->requestUri=="/"	||
 			$this->requestUri==NULL	||
-			($this->requestUri{0}=="?" && $this->Config['allow_query_strings'])
+			($this->requestUri{0}=="?" && $routeOptions['allow_query_strings'])
 			) {
-			$this->requestClass = $this->Config['default_controller'];
+			$this->requestClass = $routeOptions['default_route'];
         }	
 		/*
 		 * We extract the Controller class.

@@ -63,7 +63,7 @@ require_once LEAF_BASE  . 'base/helpers/Hooks.php';
  */
 $Config = new leaf_Config();
 $Router = new leaf_Router();
-new leaf_Dispatcher();
+$Dispatcher = new leaf_Dispatcher();
 
 /*
  * Configure timezone.
@@ -83,7 +83,7 @@ if ($Config['allow_hooks'])
 /*
  * Dispatch main controller.
  */
-leaf_Dispatcher::invoke(
+$Dispatcher->invoke(
     $Router->getClassName(),
     $Router->getMethodName()
 );
@@ -104,5 +104,4 @@ if ($Config['allow_hooks'])
  * General statistics like memory usage, parsing time and other.
  */
 if ($Config['enable_debug_stats'])
-    require_once LEAF_BASE . 'front/Debug.php';
-    
+    require_once LEAF_BASE . 'front/Debug.php';    
