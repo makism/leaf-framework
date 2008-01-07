@@ -19,14 +19,13 @@
  */
 class leaf_LocalLoader extends leaf_Common {
 
-    
     /**
-     * List of Models` instances.
-     * 
+     *
+     *
      * @var array
      */
     private $models = array();
-
+    
     
     /**
      *
@@ -91,16 +90,18 @@ class leaf_LocalLoader extends leaf_Common {
             
             // class name
             $modelClass = $modelName . "_Model";
-    		
+
     		if (file_exists($modelFile) && is_readable($modelFile)) {
     			// include model class
     			require_once $modelFile;
     			    			
     			// instantiate and register model
-    			$instance = new $modelClass;
+    			$instance = new $modelClass (
+                    $this->Request->getControllerName()
+                );
     			
     			// bind name
-    			$bindName = @constant("{$modelClass}::MODEL_ALIAS");
+    			$bindName = @constant("{$modelClass}::BIND_NAME");
     			
     			// Give the "bindName" parameter given in the
     			// "settings" array higher priority, thus
@@ -112,9 +113,9 @@ class leaf_LocalLoader extends leaf_Common {
     			if ($bindName==NULL) {
     			    return NULL;
     			}
-    			
+                
     			if ($instance instanceof leaf_Model)
-    			    $this->models[$bindName] = $instance;	
+    			    $this->models[$bindName] = $instance;
     		}
             
     	}

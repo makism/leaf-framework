@@ -27,6 +27,13 @@ abstract class leaf_Base {
     private static $BaseObjects = array ();
 
     
+    /**
+     *
+     *
+     * @param   string  $Id
+     * @param   object  $Obj
+     * @return  void
+     */
     protected function __construct($Id, $Obj)
     {
         $this->__set($Id, $Obj);   
@@ -35,6 +42,8 @@ abstract class leaf_Base {
     /**
      *
      *
+     * @param   string  $Id
+     * @return  object|NULL
      */
 	public function __get($Id)
 	{
@@ -44,6 +53,9 @@ abstract class leaf_Base {
     /**
      *
      *
+     * @param   string  $Id
+     * @param   object  $Obj
+     * @return  void
      */
 	private function __set($Id, $Obj)
 	{
@@ -58,10 +70,21 @@ abstract class leaf_Base {
      */
     public static function fetch($Id)
     {
-        if (array_key_exists($Id, self::$BaseObjects))
+        if (self::exists($Id))
             return self::$BaseObjects[$Id];
         else
             return NULL;
+    }
+    
+    /**
+     *
+     *
+     * @param   string  $Id
+     * @return  boolean
+     */
+    public static function exists($Id)
+    {
+        return array_key_exists($Id, self::$BaseObjects);
     }
     
 }

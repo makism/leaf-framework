@@ -47,14 +47,6 @@ $general['base_url'] = $general['hostname'] . $general['base_dir'];
 
 
 /*
- * Virtual file extension, shown in the Uri.
- *
- * Default: "xml";
- */
-$general['url_suffix']= "xml";
-
-
-/*
  * Default encoding used when necesery.
  */
 $general['charset'] = "utf-8";

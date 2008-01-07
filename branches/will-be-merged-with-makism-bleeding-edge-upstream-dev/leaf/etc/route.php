@@ -22,6 +22,7 @@ $route = array();
  */
 $route['default_route'] = "WelcomeApp";
 
+
 /*
  * Enable/Disable query strings.
  *
@@ -29,6 +30,14 @@ $route['default_route'] = "WelcomeApp";
  * Default: TRUE
  */
 $route['allow_query_strings'] = TRUE;
+
+
+/*
+ * Virtual file extension, shown in the Uri.
+ *
+ * Default: "xml";
+ */
+$route['url_suffix']= "xml";
 
 
 /*

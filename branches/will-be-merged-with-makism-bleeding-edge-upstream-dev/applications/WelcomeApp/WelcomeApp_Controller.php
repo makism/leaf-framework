@@ -17,22 +17,50 @@
 // in case you supply  a different signature, the
 // whole application will not work as expected,
 // or not work at all...
+
+// Method execution summary:
+// 1) __construct (provided by the parent class)
+// 2) init
+// 3) user-defined method or, index
+// 4) destroy
+// 5) __destruct  (provided by the parent class)
 final class WelcomeApp_Controller extends leaf_Controller {
 
+    /*
+     * This method is called after the default class
+     * Constructor, provided by the leaf_Controller
+     * abstract class.
+     */
     public function init()
     {
-        
+        $this->Local->model("SampleModel");
     }
     
+    /*
+     * This method is called after the specified Action
+     * and before the default class Destructor, provided
+     * by the leaf_Controller abstract class.
+     */
     public function destroy()
     {
-        
+    
     }
 
+    /*
+     * This is the default method that all Controllers,
+     * must implement.
+     * You can optionally support the method with two
+     * arguments. Then, two objects ($this->Request and
+     * $this->Response) will be passed by reference to
+     * the method`s scope.
+     *
+     * That is why there are no abstract declarations
+     * of the methods "init", "destroy" and "index"
+     * in the parent class.
+     */
 	public function index($Request, $Response)
 	{
-        $data['title']= "&#8220;leaf framework ~ Open Source MVC Framework in PHP&#8221;";
-        
+        $data['title']= $this->SampleModel->getPageTitle();
         $this->View->render("main", $data);
 	}
 

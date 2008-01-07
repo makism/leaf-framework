@@ -23,7 +23,8 @@
 abstract class leaf_Controller extends leaf_Common {
 
     /**
-     * Calls the parent constructor.
+     * Calls the parent constructor and registers the basic
+     * objects needed for this Application.
      *
      * @return  void
      */
@@ -42,9 +43,31 @@ abstract class leaf_Controller extends leaf_Common {
      *
      * @return  void
      */
+    public function __destruct()
+    {
+        
+    }
+    
+    /**
+     *
+     *
+     * @return  void
+     */
     private function __clone()
     {
     
+    }
+    
+    /**
+     *
+     *
+     * @return  string
+     */
+    public function __toString()
+    {
+        return
+            $this->Request->getControllerName() . "/" .
+            $this->Request->getActionName();
     }
 
 }

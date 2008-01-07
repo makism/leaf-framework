@@ -25,7 +25,7 @@ abstract class leaf_Common {
      * @var object leaf_Registry
      */
     private $controllerRegistry = NULL;
-    
+
 
     /**
      *
@@ -46,10 +46,14 @@ abstract class leaf_Common {
 	 */
 	protected function __get($Id)
 	{
-        if ($this->controllerRegistry->registered($Id))
+        if ($this->controllerRegistry->registered($Id)) {
             return $this->controllerRegistry->$Id;
-        else
+        } else if (leaf_Base::exists($Id)) {
             return leaf_Base::fetch($Id);
+        } else {
+            if ($this->controllerRegistry->Local->modelLoaded($Id))
+                return $this->controllerRegistry->Local->model($Id);
+        }
 	}
     
     /**

@@ -114,7 +114,7 @@ final class leaf_Router extends leaf_Base {
 		 * extensions that will be shown, so we ignore it.
 		 */
         // match the virtual file extension.
-		$skipExt = (!empty($this->Config['url_suffix']))
+		$skipExt = (!empty($routeOptions['url_suffix']))
 					? "(\.[^?=&]+)?"
 					: "";
 		
@@ -203,9 +203,9 @@ final class leaf_Router extends leaf_Base {
 		 * Removal of the virtual file extension
          * if enabled, and if found in the Uri.
 		 */
-		if (!empty($this->Config['url_suffix']))
+		if (!empty($routeOptions['url_suffix']))
 			$this->requestUri = preg_replace(
-				"@\.{$this->Config['url_suffix']}@",
+				"@\.{$routeOptions['url_suffix']}@",
 				"",
 				$this->requestUri
 			);

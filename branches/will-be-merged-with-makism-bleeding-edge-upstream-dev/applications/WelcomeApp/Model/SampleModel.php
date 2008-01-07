@@ -12,24 +12,22 @@
 // in order to have your Model working properly.
 class SampleModel_Model extends leaf_Model {
     
-    const BIND_NAME = "sample";
+    const BIND_NAME = "SampleModel";
     
 
-    /*
-     * Init our model.
-     */
-	public function __construct()
-	{
-        // Call the parent`s contructor.
-		parent::__construct("SampleApplication");
-	}
-
-    /*
-     * Return the page`s title.
-     */
+    public function init()
+    {
+    
+    }
+    
+    public function destroy()
+    {
+    
+    }
+    
     public function getPageTitle()
     {
-        return "&#8220;leaf framework, Sample Application&#8221";
+        return "&#8220;leaf framework ~ Open Source MVC Framework in PHP&#8221;";
     }
 
 }

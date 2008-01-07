@@ -19,7 +19,6 @@
  * @todo
  * <ol>
  *  <li>For security issues, restrict it's access to specific resources.</li>
- *  <li>Possible removal.</li>
  * </ol>
  */
 abstract class leaf_Model extends leaf_Common {
@@ -31,6 +30,36 @@ abstract class leaf_Model extends leaf_Common {
     public function __construct($controllerName)
     {
         parent::__construct($controllerName);
+    }
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    public function __destruct()
+    {
+    
+    }
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    private function __clone()
+    {
+    
+    }
+    
+    /**
+     *
+     *
+     * @return  string
+     */
+    public function __toString()
+    {
+        return;
     }
     
 }
