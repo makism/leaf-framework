@@ -87,4 +87,21 @@ abstract class leaf_Base {
         return array_key_exists($Id, self::$BaseObjects);
     }
     
+    /**
+     *
+     *
+     * @return  void
+     */
+    private function __clone()
+    {
+    
+    }
+    
+    /**
+     *
+     *
+     * @return  string
+     */
+    abstract public function __toString();
+    
 }

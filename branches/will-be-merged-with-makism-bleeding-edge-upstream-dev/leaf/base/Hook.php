@@ -19,10 +19,6 @@
  * @version		SVN: $Id$
  */
 abstract class leaf_Hook extends leaf_Base {
-
-    const LEAF_REG_KEY = "hook";
-    
-    const LEAF_CLASS_ID = "LEAF_HOOK-1_0_dev";
     
 
 	/**
@@ -41,6 +37,10 @@ abstract class leaf_Hook extends leaf_Base {
 	 */
 	abstract public function run();
 
+    public function __toString()
+    {
+        return __CLASS__ . " ()";
+    }
 }
 
 ?>

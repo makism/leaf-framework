@@ -19,11 +19,6 @@
  * @version		SVN: $Id$
  */
 abstract class leaf_Hook_Conditional extends leaf_Hook {
-
-    const LEAF_REG_KEY = "conditional_hook";
-    
-    const LEAF_CLASS_ID = "LEAF_HOOK_CONDITIONAL-1_0_dev";
-    
 	
     /**
      *
@@ -41,6 +36,11 @@ abstract class leaf_Hook_Conditional extends leaf_Hook {
      * @return  boolean
      */
     abstract public function condition();
+    
+    public function __toString()
+    {
+        return __CLASS__ . " ()";
+    }
 	
 }
 

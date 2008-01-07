@@ -21,7 +21,7 @@
  *  <li>Implement.</li>
  * </ol>
  */
-final class leaf_Locale implements ArrayAccess {
+final class leaf_Locale extends leaf_Base implements ArrayAccess {
 
     /**
      *

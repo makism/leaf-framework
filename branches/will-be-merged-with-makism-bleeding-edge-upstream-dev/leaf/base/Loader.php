@@ -186,5 +186,10 @@ class leaf_Loader extends leaf_Base {
 	{
 	    return in_array($plugin, $this->plugins);
 	}
+    
+    public function __toString()
+    {
+        return __CLASS__ . " (Loads libraries and plugins)";
+    }
 
 }

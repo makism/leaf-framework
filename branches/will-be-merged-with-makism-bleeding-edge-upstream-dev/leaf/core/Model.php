@@ -59,7 +59,7 @@ abstract class leaf_Model extends leaf_Common {
      */
     public function __toString()
     {
-        return;
+        return __CLASS__ . " ()";
     }
     
 }

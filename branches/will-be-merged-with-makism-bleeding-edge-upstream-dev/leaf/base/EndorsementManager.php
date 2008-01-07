@@ -148,5 +148,10 @@ final class leaf_EndorsementManager extends leaf_Base {
     {
         return $this->endorsed;
     }
+
+    public function __toString()
+    {
+        return __CLASS__ . " (Supports the endorsed mechanism)";
+    }
     
 }

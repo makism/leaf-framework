@@ -234,5 +234,10 @@ final class leaf_Dispatcher extends leaf_Base {
             
         return FALSE;
     }
-
+    
+    public function __toString()
+    {
+        return __CLASS__ . " (Dispatches the requested Controller/Action)";
+    }
+    
 }

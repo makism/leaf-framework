@@ -341,5 +341,11 @@ final class leaf_Router extends leaf_Base {
 	{
 		return $this->requestMethod;
 	}
+    
+    
+    public function __toString()
+    {
+        return __CLASS__ . " ()";
+    }
 
 }

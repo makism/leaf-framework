@@ -175,5 +175,10 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	{
         unset($this->options[$offset]);
 	}
-
+    
+    public function __toString()
+    {
+        return __CLASS__ . " (Provides read access to the config files)";
+    }
+    
 }
