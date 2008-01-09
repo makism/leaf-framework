@@ -11,7 +11,7 @@
  * @package     leaf
  * @subpackage  front.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @filesource
  * @todo
  * <ol>
@@ -338,5 +338,3 @@ function _inspect_var_Object_getSubclasses($obj)
     else
         return $obj;
 }
-
-?>

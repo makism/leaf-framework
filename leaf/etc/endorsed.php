@@ -30,6 +30,3 @@ $endorsed = array();
  * these two classes and take the measures required.
  */
 $endorsed[] = "";
-
-
-?>

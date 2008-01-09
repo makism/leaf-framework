@@ -21,15 +21,19 @@ $hooks = array (
      * after (post) dispatching the requested
      * controller.
      */
-    "pre_controller_dispatch"   => array(),
-    "post_controller_dispatch"  => array(),
+    "pre_controller_dispatch"   => array(
+		
+	),
+    "post_controller_dispatch"  => array(
+		"SampleHook"
+	),
 
     /*
      * These hooks will be run, after the
      * Front Controller has cesead execution.
      */
-    "post_front_controller"  => array()
+    "post_front_controller"  => array(
+		"SampleHookConditional"
+	)
 
 );
-
-?>

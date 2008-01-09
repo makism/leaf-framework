@@ -15,18 +15,13 @@
  * @package     leaf
  * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    $Id$
+ * @version	    SVN: $Id$
  * @todo
  * <ol>
  *  <li>Implement.</li>
  * </ol>
  */
 final class leaf_Locale extends leaf_Base implements ArrayAccess {
-
-    const LEAF_REG_KEY = "Locale";
-    
-    const LEAF_CLASS_ID = "LEAF_LOCALE-1_0_dev";
-
 
     /**
      *
@@ -51,13 +46,8 @@ final class leaf_Locale extends leaf_Base implements ArrayAccess {
      */
     public function __construct()
     {
-        parent::__construct(self::LEAF_REG_KEY);
+    
         
-    }
-
-    public function __toString()
-    {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
     }
 
     /**
@@ -105,6 +95,9 @@ final class leaf_Locale extends leaf_Base implements ArrayAccess {
 
     }
 
-}
+    public function __toString()
+    {
+        return __CLASS__ . " (Supports your localization needs)";
+    }
 
-?>
+}

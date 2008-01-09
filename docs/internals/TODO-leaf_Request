@@ -1,0 +1,116 @@
+ String 	getPathInfo()
+          Returns any extra path information associated with the URL the client sent when it made this request.
+ String 	getPathTranslated()
+          Returns any extra path information after the servlet name but before the query string, and translates it to a real path.
+ String 	getQueryString()
+          Returns the query string that is contained in the request URL after the path.
+          
+ String 	getAuthType()
+          Returns the name of the authentication scheme used to protect the servlet.
+ String 	getContextPath()
+          Returns the portion of the request URI that indicates the context of the request.
+ Cookie[] 	getCookies()
+          Returns an array containing all of the Cookie objects the client sent with this request.
+ long 	getDateHeader(String name)
+          Returns the value of the specified request header as a long value that represents a Date object.
+ String 	getHeader(String name)
+          Returns the value of the specified request header as a String.
+ Enumeration 	getHeaderNames()
+          Returns an enumeration of all the header names this request contains.
+ Enumeration 	getHeaders(String name)
+          Returns all the values of the specified request header as an Enumeration of String objects.
+ int 	getIntHeader(String name)
+          Returns the value of the specified request header as an int.
+ String 	getMethod()
+          Returns the name of the HTTP method with which this request was made, for example, GET, POST, or PUT.
+ String 	getRemoteUser()
+          Returns the login of the user making this request, if the user has been authenticated, or null if the user has not been authenticated.
+ String 	getRequestedSessionId()
+          Returns the session ID specified by the client.
+ String 	getRequestURI()
+          Returns the part of this request's URL from the protocol name up to the query string in the first line of the HTTP request.
+ StringBuffer 	getRequestURL()
+          Reconstructs the URL the client used to make the request.
+ String 	getServletPath()
+          Returns the part of this request's URL that calls the servlet.
+ HttpSession 	getSession()
+          Returns the current session associated with this request, or if the request does not have a session, creates one.
+ HttpSession 	getSession(boolean create)
+          Returns the current HttpSession associated with this request or, if there is no current session and create is true, returns a new session.
+ Principal 	getUserPrincipal()
+          Returns a java.security.Principal object containing the name of the current authenticated user.
+ boolean 	isRequestedSessionIdFromCookie()
+          Checks whether the requested session ID came in as a cookie.
+ boolean 	isRequestedSessionIdFromUrl()
+          Deprecated. As of Version 2.1 of the Java Servlet API, use isRequestedSessionIdFromURL() instead.
+ boolean 	isRequestedSessionIdFromURL()
+          Checks whether the requested session ID came in as part of the request URL.
+ boolean 	isRequestedSessionIdValid()
+          Checks whether the requested session ID is still valid.
+ boolean 	isUserInRole(String role)
+          Returns a boolean indicating whether the authenticated user is included in the specified logical "role".
+          
+          
+          
+          
+          
+          
+          
+ Object 	getAttribute(String name)
+          Returns the value of the named attribute as an Object, or null if no attribute of the given name exists.
+ Enumeration 	getAttributeNames()
+          Returns an Enumeration containing the names of the attributes available to this request.
+ String 	getCharacterEncoding()
+          Returns the name of the character encoding used in the body of this request.
+ int 	getContentLength()
+          Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is not known.
+ String 	getContentType()
+          Returns the MIME type of the body of the request, or null if the type is not known.
+ ServletInputStream 	getInputStream()
+          Retrieves the body of the request as binary data using a ServletInputStream.
+ String 	getLocalAddr()
+          Returns the Internet Protocol (IP) address of the interface on which the request was received.
+ Locale 	getLocale()
+          Returns the preferred Locale that the client will accept content in, based on the Accept-Language header.
+ Enumeration 	getLocales()
+          Returns an Enumeration of Locale objects indicating, in decreasing order starting with the preferred locale, the locales that are acceptable to the client based on the Accept-Language header.
+ String 	getLocalName()
+          Returns the host name of the Internet Protocol (IP) interface on which the request was received.
+ int 	getLocalPort()
+          Returns the Internet Protocol (IP) port number of the interface on which the request was received.
+ String 	getParameter(String name)
+          Returns the value of a request parameter as a String, or null if the parameter does not exist.
+ Map 	getParameterMap()
+          Returns a java.util.Map of the parameters of this request.
+ Enumeration 	getParameterNames()
+          Returns an Enumeration of String objects containing the names of the parameters contained in this request.
+ String[] 	getParameterValues(String name)
+          Returns an array of String objects containing all of the values the given request parameter has, or null if the parameter does not exist.
+ String 	getProtocol()
+          Returns the name and version of the protocol the request uses in the form protocol/majorVersion.minorVersion, for example, HTTP/1.1.
+ BufferedReader 	getReader()
+          Retrieves the body of the request as character data using a BufferedReader.
+ String 	getRealPath(String path)
+          Deprecated. As of Version 2.1 of the Java Servlet API, use ServletContext.getRealPath(java.lang.String) instead.
+ String 	getRemoteAddr()
+          Returns the Internet Protocol (IP) address of the client or last proxy that sent the request.
+ String 	getRemoteHost()
+          Returns the fully qualified name of the client or the last proxy that sent the request.
+ int 	getRemotePort()
+          Returns the Internet Protocol (IP) source port of the client or last proxy that sent the request.
+ RequestDispatcher 	getRequestDispatcher(String path)
+          Returns a RequestDispatcher object that acts as a wrapper for the resource located at the given path.
+ String 	getScheme()
+          Returns the name of the scheme used to make this request, for example, http, https, or ftp.
+ String 	getServerName()
+          Returns the host name of the server to which the request was sent.
+ int 	getServerPort()
+          Returns the port number to which the request was sent.
+ boolean 	isSecure()
+          Returns a boolean indicating whether this request was made using a secure channel, such as HTTPS.
+ void 	removeAttribute(String name)
+          Removes an attribute from this request.
+ void 	setAttribute(String name, Object o)
+          Stores an attribute in this request.
+ void 	setCharacterEncoding(String env)
+          Overrides the name of the character encoding used in the body of this request.
