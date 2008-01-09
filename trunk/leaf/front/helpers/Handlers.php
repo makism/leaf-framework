@@ -11,14 +11,8 @@
  * @package     leaf
  * @subpackage  front.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @filesource
- * @todo
- * <ol>
- *  <li>Implement a function that will handle dependancies as
- *  optional.</li>
- *  <li>Recheck <b>all</b> functions.</li>
- * </ol>
  */
 
 
@@ -69,12 +63,9 @@ function errorHandler($errno, $errstr, $errfile, $errline)
 function exceptionHandler(Exception $ex)
 {
 	showHtmlMessage(
-    	"Uncaught Exception",
+    	"Exception",
         $ex->getMessage(),
     	true
 	);
 
-
 }
-
-?>
