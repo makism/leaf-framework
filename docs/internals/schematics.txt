@@ -1,0 +1,31 @@
+=============================[ BASE ]=============================
+Router
+
+Config
+
+Loader (loads libraries/etc)
+
+Dispatcher
+
+EndorsedManager
+
+===========================[ USERSPACE ]===========================
+Controller
+
+Registry
+
+Model
+
+View
+
+Request
+
+Response
+
+Local Loader
+
+Sesssion
+
+Cookie
+
+Locale

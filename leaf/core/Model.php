@@ -10,43 +10,56 @@
 
 
 /**
- *
+ * Provides a common base layout for all Models.
  *
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @todo
  * <ol>
- *  <li>Implement.</li>
- *  <li>Possible removal.</li>
+ *  <li>For security issues, restrict it's access to specific resources.</li>
  * </ol>
  */
-abstract class leaf_Model extends leaf_Base {
-    
-    const LEAF_REG_KEY = "Model";
-
-    const LEAF_CLASS_ID = "LEAF_MODEL-1_0_dev";
-
+abstract class leaf_Model extends leaf_Common {
 
     /**
      *
      * @return  void
      */
-    public function __construct()
+    public function __construct($controllerName)
     {
-        parent::__construct(self::LEAF_REG_KEY);
+        parent::__construct($controllerName);
     }
     
     /**
-     * 
+     *
+     *
+     * @return  void
+     */
+    public function __destruct()
+    {
+    
+    }
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    private function __clone()
+    {
+    
+    }
+    
+    /**
+     *
+     *
      * @return  string
      */
     public function __toString()
     {
-    	
+        return __CLASS__ . " ()";
     }
     
 }
-
-?>

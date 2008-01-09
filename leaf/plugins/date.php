@@ -9,8 +9,8 @@
  *
  * @package     leaf
  * @subpackage  plugins
- * @author      Marimpis Avraam <makism@users.sf.net>
- * @version     $Id$
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version     SVN: $Id$
  * @filesource
  */
 
@@ -39,6 +39,3 @@ function period($to, $from=NULL, array $fields=NULL)
 {
 
 }
-
-?>
-

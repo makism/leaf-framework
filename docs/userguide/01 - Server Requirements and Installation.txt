@@ -1,0 +1,36 @@
+﻿Server Requirements.
+
+    * A running Apache webserver.
+
+	* PHP 5.1 (at least), compliled optionaly with:
+        + "Reflection support":
+            For advanced and more sophisticated object handling.
+        + "--enable-memory-limit" (for PHP versions < 5.2.1):  
+            For debug purposes.
+	
+	* Mod-rewrite enabled.
+	
+	* XDebug (yup, for the time being -
+	  used to generate some statistics).
+
+
+Installation & Configuration in Three Steps.
+
+	* Copy the whole framework in a subdirectory
+	  under "htdocs", or in your personal "public_html".
+
+	* Edit .htaccess and have "RewriteBase" to point to
+	  your Url address, for example "/~username/".
+
+	* Edit the general.php configuration file, located
+	  under the leaf/etc/ directory.
+	  The options that you should change at first are:
+	  $general['hostname'] and $general['base_dir'].
+
+That's it! leaf framework can now run and you can deploy
+your very first web application.
+If you point your browser to the Url in which the framework
+will be run, you will see a welcome message and a sample
+application.
+Don't forget to check out the other configuration settings
+for more advanced features.

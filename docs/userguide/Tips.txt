@@ -1,0 +1,21 @@
+
+* You should keep in mind that most of the internal
+  instances, have their first character uppercased.
+  For example you use: $this->Db
+  This is to minimize the possible of accidentally
+  overlapping the core instances.
+
+* Do not instantiate the core classes by yourself.
+  This will result in errors and the framework`s
+  behavior is unknown (but surely faulty).
+
+* Don`t forget that when you load a Model, it is
+  visible only in the Controller as a member
+  property. Watch out for name collisions! ;)
+
+* It is best to load any resources you need, like
+  Models/Plugins/Libraries when you need them,
+  and not massively in the Controller`s constructor
+  (unless you need access to these resources in all
+  methods).
+

@@ -1,0 +1,32 @@
+﻿	Welcome to leaf framework!
+
+	leaf framework is the first Greek open source web application framework.
+In a nutshell, leaf framework will provide you a base for developing your
+web applications, a wrapper api for PHP native functions, url routing and
+a bunch of other cool features.
+	
+	* Easy application development, supporting Url-rewrite.
+
+	* Well written documents and api-docs.
+
+	* Advanced features, like attaching Hooks to the code
+	  and support for managing Endorsed classes.
+
+	* Many configuration options, but only three of them
+	  are needed to bootstrap a simple application.
+
+	* Extended debug statistics and information.
+	
+	* Constantly bleeding-edge developing, adding new
+	  exciting features.
+
+	* Takes advantage of the new features that were
+	  introduced in PHP 5, producing top notch code.
+
+	Since, this is an open source project, that means that we develop leaf
+framework out of curiocity and for fun. Please be patient and new features
+will soon become available.
+
+										Project admin/Lead developer
+											  Marimpis Avraam
+										    <makism@users.sf.net>

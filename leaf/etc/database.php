@@ -61,6 +61,3 @@ $database["profiles"]["sample"] = array (
     // Active Record
     "active_record_enabled" => false
 );
-
-
-?>
