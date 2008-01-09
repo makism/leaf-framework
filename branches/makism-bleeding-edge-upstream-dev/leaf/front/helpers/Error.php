@@ -11,7 +11,7 @@
  * @package     leaf
  * @subpackage  front.helpers
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version		SVN: $Id$
  * @filesource
  * @todo
  * <ol>
@@ -93,5 +93,3 @@ function showHtmlMessage($title, $str=NULL, $die=FALSE)
 	if ($die)
         die();
 }
-
-?>

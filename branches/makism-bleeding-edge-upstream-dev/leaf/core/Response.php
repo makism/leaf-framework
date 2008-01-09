@@ -8,6 +8,27 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+ 
+/**
+ *
+ * @package     leaf
+ * @subpackage  core
+ * @author		Avraam Marimpis <makism@users.sf.net>
+ * @version  SVN: $Id$
+ */
+class leaf_OutputBuffer {
+
+    const GZIP_HANDLER  = "gzip_handler";
+    
+    const TIDY_HANDLER  = "tidy_handler";
+
+    const BZ2_HANDLER   = "bz2_handler";
+    
+    const OB_RUNNING = 1;
+    
+    const OB_ENDED = 0;
+    
+}
 
 /**
  *
@@ -15,32 +36,19 @@
  * @package     leaf
  * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
- * @todo
- * <ol>
- *  <li>Implement.</li>
- * </ol>
+ * @version		SVN: $Id$
  */
-final class leaf_Response extends leaf_Base {
-
-    const LEAF_REG_KEY = "Response";
+final class leaf_Response extends leaf_Common  {
     
-    const LEAF_CLASS_ID = "LEAF_RESPONSE-1_0_dev";
-    
+    const BASE_KEY = "Reponse";
 
-	/**
+    
+    /**
      *
      *
      * @var boolean
      */
-	private $useTidy = FALSE;
-	
-	/**
-     *
-     *
-     * @var boolean
-     */
-	private $useGzip = FALSE;
+    private static $OUTPUT_STATUS = NULL;
 
 	/**
      *
@@ -51,84 +59,18 @@ final class leaf_Response extends leaf_Base {
 	
 	
 	/**
-	 * Class constructor
 	 * 
 	 * 
 	 * @return	void
 	 */
 	public function __construct()
 	{
-        parent::__construct(self::LEAF_REG_KEY);
-        
-        $outputHandler = $this->Config['output_handler'];
-        
-        /*
-         *
-         */
-        if (!empty($outputHandler)) {
-
-            /*
-             *
-             *
-             */
-            if (in_array($outputHandler, ob_list_handlers())) {
-                
-                switch ($outputHandler) {
-                    
-                    /*
-                     *
-                     *
-                     */
-                    case "gz":
-                        $zlibCompressionStatus = ini_get('zlib.output_compression');
-
-                        if ($zlibCompressionStatus==FALSE)
-                            $this->useGzip = TRUE;
-                    break;
-                    
-                    /*
-                     *
-                     *
-                     */
-                    case "tidy":
-                        if (extension_loaded('tidy') && function_exists('ob_tidyhandler'))
-                            $this->useTidy = TRUE;
-                    break;
-
-                    default:
-                    break;
-                }
-
-            }
-        }
+        parent::__construct(self::BASE_KEY, $this);
 	}
-    
-    /**
-     *
-     *
-     * @param   string  $name
-     * @param   string  $value
-     * @return  void
-     */
-    public function setHeader($name, $value)
-    {
-    }
 
-    public function clearHeaders()
-    {
-
-    }
-
-    /**
-     *
-     *
-     *
-     * @return  void
-     */
-    public function sendResponse()
-    {
-
-    }
+###############################################################################
+################################################################# Output Buffer
+###############################################################################
 
     /**
      * Start output buffering
@@ -136,12 +78,9 @@ final class leaf_Response extends leaf_Base {
      *
      * @return  void
      */
-    public function ouputBufferingStart()
+    public function ouputBufferStart()
     {
-        if ($this->useGzip)
-            ob_start('ob_gzhandler');
-        else if ($this->useTidy)
-            ob_start('ob_tidyhandler');
+        self::$OUTPUT_STATUS = leaf_OutputBuffer::OB_RUNNING;
     }
 
     /**
@@ -151,40 +90,96 @@ final class leaf_Response extends leaf_Base {
      * @param   boolean $returnBuffer
      * @return  void|string
      */
-    public function outputBufferingEnd($returnBuffer=FALSE)
+    public function outputBufferEnd($returnBuffer=FALSE)
     {
-
+        self::$OUTPUT_STATUS = leaf_OutputBuffer::OB_ENDED;
+    }
+    
+    /**
+     *
+     *
+     *
+     */
+    public function outputBufferFlush()
+    {
+    
     }
 
     /**
      * Gets output buffer.
      *
      *
+     * @param   boolean $flush
      * @return  string
      */
     public function getOutputBuffer($flush=FALSE)
     {
-        if ($flush)
-            ob_get_flush();
-        else
-            return ob_get_contents();
-    }
-
-    /**
-     * 
-     *
-     * @return  void
-     */
-    public function flushOutputBuffer()
-    {
-        ob_end_flush();
+        
+        $buffer = $this->buffer;
+        
+        $this->buffer = NULL;
+        
+        return $buffer;
     }
     
-    public function __toString()
+###############################################################################
+####################################################################### Headers
+###############################################################################
+
+    /**
+     *
+     *
+     * @param   string  $name
+     * @param   string  $value
+     * @return  void
+     */
+    public function addHeader($name, $value)
     {
-        return __CLASS__ . " (Manipulates and manages the finalized output)";
+    
     }
 
-}
+    public function clearHeaders()
+    {
 
-?>
+    }
+    
+    
+###############################################################################
+######################################################################## Other
+###############################################################################
+
+    /**
+     *
+     *
+     * @param   string  $target
+     * @return  void
+     */
+    public function sendForward($target)
+    {
+    
+    }
+    
+    /**
+     *
+     *
+     * @param   string  $target
+     * @return  void
+     */
+    public function sendRedirect($target)
+    {
+    
+    }
+    
+    
+    /**
+     *
+     *
+     * @param   string  $target
+     * @return  void
+     */
+    public function sendError($target)
+    {
+    
+    }    
+
+}

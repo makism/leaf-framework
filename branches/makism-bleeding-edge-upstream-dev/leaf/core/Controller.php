@@ -12,71 +12,62 @@
 /**
  * Assigns some common characteristics to all user`s Controllers.
  *
- * All Controller, <b>must</b> inherit from this class, otherwise
+ * All Controllers, <b>must</b> inherit from this class, otherwise
  * they will be <b>ignored</b>.
  *
  * @package		leaf
  * @subpackage	core
  * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
- * @todo
- * <ol>
- *  <li>Refactor.</li>
- *  <li>Possible implementation of "Dependacies Injection (DI)" method,
- *  so that each Controller, will load <b>only</b> the classes it
- *  depends on.</li>
- * </ol>
+ * @version		SVN: $Id$
  */
-abstract class leaf_Controller extends leaf_Base {
-
-    const LEAF_REG_KEY = "Controller";
-    
-    const LEAF_CLASS_ID = "LEAF_CONTROLLER-1_0_dev";
-
+abstract class leaf_Controller extends leaf_Common {
 
     /**
-     * Calls the parent constructor.
+     * Calls the parent constructor and registers the basic
+     * objects needed for this Application.
      *
      * @return  void
      */
-	public function __construct()
-	{
-        parent::__construct(self::LEAF_REG_KEY);
+	public function __construct($controllerName)
+    {
+        parent::__construct($controllerName);
+        
+        $this->__set("Request", new leaf_Request($controllerName));
+        $this->__set("Local",new leaf_LocalLoader($controllerName));
+        $this->__set("Response", new leaf_Response($controllerName));   
+        $this->__set("View", new leaf_View($controllerName));
 	}
-	
-	/**
-     * Returns the requested object from the {@link leaf_Registry $Registry},
-     * <b>or</b> the requested Model.
-     * 
-	 * @param  string  $key
-	 * @return object|NULL
-	 * @todo
-	 * <ol>
-	 *  <li>Support for accessing the Models using a member property named "Models".
-	 *  <br>For example (<i>in Controller scope</i>):
-	 *  <code>$this->Models->modelName</code> <b>or</b>
-	 *  <code>$this->Models['modelName']</code><br>
-	 *  This denotes changes in the {@link leaf_Loader} class as well.</li>
-	 * </ol>
-	 */
-	protected function __get($key)
-	{
-        // Search the requested key in the Registry and
-        // return it if found.
-        if (leaf_Registry::getInstance()->isRegistered($key)!=FALSE)
-            return parent::__get($key);
-            
-        // Otherwise, asume that a Model is requested
-        // and thus return it -if found-.
-        else
-            return $this->Load->model($key);
-	}
-
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    public function __destruct()
+    {
+        
+    }
+    
+    /**
+     *
+     *
+     * @return  void
+     */
+    private function __clone()
+    {
+    
+    }
+    
+    /**
+     *
+     *
+     * @return  string
+     */
     public function __toString()
     {
-        return __CLASS__ . " " . self::LEAF_CLASS_ID;
+        return
+            $this->Request->getControllerName() . "/" .
+            $this->Request->getActionName();
     }
 
 }
-
-?>

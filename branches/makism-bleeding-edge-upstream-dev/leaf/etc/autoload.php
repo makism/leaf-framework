@@ -43,5 +43,3 @@ $autoload['extensions'] = "";
  * Default: ""
  */
 $autoload['libraries'] = "";
-
-?>

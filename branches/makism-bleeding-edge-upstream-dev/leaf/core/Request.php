@@ -22,27 +22,9 @@
  * @subpackage  core
  * @author		Avraam Marimpis <makism@users.sf.net>
  * @see         leaf_Router
- * @version     $Id$
- * @todo
- * <ol>
- *  <li>Possible implementation of {@link http://en.wikipedia.org/wiki/Facade_pattern facade} functions.</li>
- * </ol>
+ * @version     SVN: $Id$
  */
-final class leaf_Request extends leaf_Base {
-
-    const LEAF_REG_KEY = "Request";
-    
-    const LEAF_CLASS_ID = "LEAF_REQUEST-1_0_dev";
-
-
-    /**
-     * The extra segments found in the Uri.
-     *
-     * For more info take a look at the class leaf_Router.
-     *
-     * @var array
-     */
-    private $segments = NULL;
+final class leaf_Request extends leaf_Common {
 
     /**
      * The requested class name (Controller), suffixed with "_Controller".
@@ -67,16 +49,7 @@ final class leaf_Request extends leaf_Base {
      * @var string
      */
     private $action = NULL;
-
-    /**
-     * The query string found in the Uri.
-     *
-     * For more info take a look at the class leaf_Router.
-     *
-     * @var array
-     */
-    private $queryElems = NULL;
-
+    
 
     /**
      * Internally uses the class {@link leaf_Router} in order to export
@@ -85,42 +58,12 @@ final class leaf_Request extends leaf_Base {
      *
      * @return  void
      */
-	public function __construct()
+	public function __construct($controllerName)
 	{
-        parent::__construct(self::LEAF_REG_KEY);
-
-        /*
-         * All classes that contain Controllers, must have their name
-         " suffixed with the string "_Controller".
-         * So, we attach it to the requested Controller.
-         */
-        $this->controller   = $this->Router->getClassName() . '_Controller';
-
-        /*
-         * Compose the complete file name where we suppose the Controller
-         * is located.
-         */
-        $this->controllerFile =
-            LEAF_APPS
-            . $this->Router->getClassName()
-            . '/'
-            . $this->controller
-            . '.php';
-
-        /*
-         * Fetch the Action from the {@link leaf_Router router} object.
-         */
-        $this->action       = $this->Router->getMethodName();
-
-        /*
-         * Fetch the extra Uri segments from the {@link leaf_Router router} object.
-         */
-        $this->segments     = $this->Router->segments();
-
-        /*
-         * Fetch the Query String from the {@link leaf_Router router} object.
-         */
-        $this->queryElems   = $this->Router->queryStringElements();
+        parent::__construct($controllerName);
+        $this->controller= $controllerName;
+        $this->controllerFile = $controllerName . "_Controller.php";
+        $this->action = $this->Dispatcher->dispatchObject->action;
 	}
 	
 	/**
@@ -151,11 +94,11 @@ final class leaf_Request extends leaf_Base {
      */
     public function getApplicationName()
     {
-    	return $this->Router->getClassName();
+    	return $this->controller;
     }
     
     /**
-     * 
+     * Returns the current Action's name.
      *
      * @var string 
      */
@@ -163,67 +106,52 @@ final class leaf_Request extends leaf_Base {
     {
     	return $this->action;
     }
-    
-	/**
-	 * Performs a redirect to the speficied Uri.
-     *
-	 * @param	string	$target
-	 * @param	boolean	$isExternal
-	 * @return	void
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
-	 */
-	public function redirect($target, $isExternal=FALSE)
-	{
 	
-	}
-	
-	/**
-	 * Reconstructs a Uri, based on the data passed.
-     *
-	 * @param	string	$className
-	 * @param	string	$methodName
-	 * @param	array	$segments
-     * @param   array   $queryString
-	 * @return	string
-     * @todo
-     * <ol>
-     *  <li>Implement.</li>
-     * </ol>
-	 */
-	public function recostructUrl
-		($className = NULL,
-         $methodName = NULL,
-         array $segments = NULL,
-         array $queryString = NULL)
-	{
-	
-	}
-	
-    /**
-     * Returns the total number of segments.
-     *
-     * @return  integer
-     */
-	public function totalSegments()
-	{
-	    return sizeof($this->segments);
-	}
-	
+###############################################################################
+################################################################ Extra Segments
+###############################################################################
+
     /**
      * Retrieves the requested (numeric) offset from the segments.
      *
      * @param   integer $n
      * @return  string|NULL
      */
-	public function segment($n)
+	public function getSegment($n)
 	{
 	    if (array_key_exists($n-1, $this->segments))
 	       return $this->segments[$n-1];
 	    else
 	       return NULL;
+	}
+    
+    /**
+     * Returns the total number of segments.
+     *
+     * @return  integer
+     */
+	public function getSegmentsSize()
+	{
+	    return $this->Router->segmentsSize();
+	}
+	
+	/**
+	 * Returns all the extra segments, separated with slashes.
+	 *
+	 * @return	string
+	 */
+	public function getRawSegments()
+	{
+		$returnStr = NULL;
+		$total = $this->totalSegments();
+		
+		if ($total==0)
+			return NULL;
+		
+		for ($i=0; $i<$total; $i++)
+			$returnStr .= $this->segments[$i] . "/";
+		
+		return $returnStr;
 	}
 
     /**
@@ -231,10 +159,14 @@ final class leaf_Request extends leaf_Base {
      *
      * @return  array
      */
-    public function segmentsAsArray()
+    public function getSegmentsAsArray()
     {
         return $this->segments;
     }
+    
+###############################################################################
+################################################################## Query String
+###############################################################################
 
     /**
      * Returns the complete query string.
@@ -243,7 +175,7 @@ final class leaf_Request extends leaf_Base {
      */
     public function getQueryString()
     {
-    	return $this->Router->queryString();
+    	return $this->mutableQueryString;
     }
     
     /**
@@ -256,7 +188,7 @@ final class leaf_Request extends leaf_Base {
 	 *  <li>Possible method refactor.</li>
 	 * </ol>
      */
-    public function queryStringValue($offset)
+    public function getQueryStringValue($offset)
     {
         if ($this->queryElems!=NULL)
             if (array_key_exists($offset, $this->queryElems))
@@ -276,45 +208,85 @@ final class leaf_Request extends leaf_Base {
         if ($this->queryElems!=NULL)
             if (array_key_exists($key, $this->queryElems))
                 return true;
-            else
-                return NULL;
+		
+		return false;
     }
-
-    /**
-     * Return the current query string, as a string.
-     *
-     * @return  string
+	
+	/**
+	 * Recreates the query string based on the elements' array.
+	 *
+	 * @return	void
+	 */
+	private function updateQueryString()
+	{
+		$this->mutableQueryString = "?";
+		
+		$total = sizeof($this->mutableQueryElems);
+		
+		for ($i=0; $i<$total; $i++) {
+			list($Key, $Value) = each($this->mutableQueryElems);
+			
+			$this->mutableQueryString .= $Key;
+			
+			if ($Value!=NULL)
+				$this->mutableQueryString .= "=" . $Value;
+			
+			if ($i<$total-1)
+				$this->mutableQueryString .= "&";
+		}
+		
+		reset($this->mutableQueryElems);
+	}
+	
+	/**
+	 * Merges the immutableQueryString with the mutableQueryString.
+	 * The result will be stored in the mutableQueryString.
+	 *
+	 * @return	void
 	 * @todo
 	 * <ol>
-	 *  <li>Possible complete method refactor.</li>
+	 *  <li>Implement.</li>
 	 * </ol>
-     */
-    public function getQueryStringAsString()
-    {
-        if ($this->queryElems!=NULL) {
-            $str = NULL;
-        
-            foreach($this->queryElems as $Var => $Val) {
-                if ($Val=="" || empty($Val))
-                    $Val = "NULL";
-                    
-                $str .= $Var . " = " . $Val . ", ";
-            }
-            
-            if (preg_match("@, $@", $str)) {
-                $str = preg_replace("@, $@", "", $str);
-            } 
+	 */
+	public function mergeQueryStrings()
+	{
+	
+	}
+	
+	/**
+	 * Append's a key with an optional value at the query string.
+	 *
+	 * @param	string	$key
+	 * @param	string	$value
+	 * @return	void
+	 */
+	public function appendQueryString($key, $value=NULL)
+	{
+		$value = (isset($value)) ? $value : NULL;
+		$this->mutableQueryElems[$key] = $value;
+		
+		$this->updateQueryString();
+	}
+    
+###############################################################################
+####################################################################### Headers
+###############################################################################
 
-            return $str;
-        } else 
-            return NULL;
-    }
 
-    public function __toString()
-    {
-        return __CLASS__ . " (Allows you to access the discoveries made by the Router)";
-    }
+###############################################################################
+####################################################################### Cookies
+###############################################################################
+
+
+###############################################################################
+########################################################################## Post
+###############################################################################
+
+
+###############################################################################
+####################################################################### Session
+###############################################################################
+
+
 
 }
-
-?>
