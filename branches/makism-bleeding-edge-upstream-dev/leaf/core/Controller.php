@@ -23,6 +23,14 @@
 abstract class leaf_Controller extends leaf_Common {
 
     /**
+     *
+     *
+     * @var boolean
+     */
+    const ALLOW_CALL = TRUE;
+
+
+    /**
      * Calls the parent constructor and registers the basic
      * objects needed for this Application.
      *
