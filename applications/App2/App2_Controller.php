@@ -15,7 +15,14 @@ class App2_Controller extends leaf_Controller {
     public function index()
     {
         echo __METHOD__ . "<br/>";
-        $this->Dispatcher->invoke("AnotherApp", "someAction");
+
+
+        $testController =
+            $this->Dispatcher->pretend("AnotherApp", "someAction");
+
+        if ($testController)
+            $this->Dispatcher->invoke();
     }
 
 }
+
