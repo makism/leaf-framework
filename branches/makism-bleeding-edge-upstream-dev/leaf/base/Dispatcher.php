@@ -39,7 +39,15 @@ final class leaf_Dispatcher extends leaf_Base {
      * @var object StdClass
      */
     public $dispatchObject = NULL;
+
+    /**
+     *
+     *
+     * @var string
+     */
+    private $applicationObject = NULL;
     
+
     /**
      *
      *
@@ -57,13 +65,39 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   string  $Action
      * @return  void
      */
-	public function invoke($Controller, $Action=NULL)
+	public function invoke($Controller=NULL, $Action=NULL)
 	{
         if ($Action!="init" && $Action!="destroy") {
-            $this->prepare($Controller, $Action);
+
+            if ($Controller!=NULL)
+                $this->prepare($Controller, $Action);
+            
+            if ($Controller==NULL && empty($this->dispatchObjects))
+                showHtmlMessage(
+                    "Dispatcher Error.",
+                    "No Controller found in the stack to dispatch.",
+                    TRUE
+                );
             
             $ControllerObject = array_pop($this->dispatchObjects);
-            
+
+            // Store the main application controller name.
+            if ($this->applicationObject==NULL)
+                $this->applicationObject = $ControllerObject->controller;
+
+            // Check if the current controller if it`s not the main
+            // controller and allows to be called from another one.
+            if ($this->applicationObject!=$ControllerObject->controller) {
+                if (constant("{$ControllerObject->controller}::ALLOW_CALL")==FALSE) {
+                    showHtmlMessage(
+                        "Dispatcher Error.",
+                        "Requested controller {$ControllerObject->controller} " .
+                        "can not be invoked externally.",
+                        TRUE
+                    );
+                }
+            }
+
             // Init the Controller
             $this->call($ControllerObject, "init");
             
@@ -222,17 +256,37 @@ final class leaf_Dispatcher extends leaf_Base {
      *
      * @param   string  $Controller
      * @param   string  $Action
+     * @param   boolean $popFromStack
      * @return  boolean
      */
-    public static function pretend($Controller, $Action=NULL)
+    public function pretend($Controller, $Action=NULL, $popFromStack=FALSE)
     {
         $obj = $this->prepare($Controller, $Action, TRUE);
         
-        if ($obj!=NULL) 
-            if (method_exists($obj->instance, $obj->action))
+        if ($obj!=NULL) {
+            if (method_exists($obj->instance, $obj->action)) {
+
+                if ($popFromStack==TRUE)
+                    $this->clear();
+
                 return TRUE;
+            }
+        }
+
+        $this->clear();
             
         return FALSE;
+    }
+
+    /**
+     *
+     *
+     * @return  void
+     */
+    private function clear()
+    {
+        $this->dispatchObject = NULL;
+        array_pop($this->dispatchObjects);
     }
     
     public function __toString()
@@ -241,3 +295,4 @@ final class leaf_Dispatcher extends leaf_Base {
     }
     
 }
+
