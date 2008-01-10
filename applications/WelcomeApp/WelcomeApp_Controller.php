@@ -26,6 +26,9 @@
 // 5) __destruct  (provided by the parent class)
 final class WelcomeApp_Controller extends leaf_Controller {
 
+    const ALLOW_CALL = FALSE;
+
+
     /*
      * This method is called after the default class
      * Constructor, provided by the leaf_Controller
@@ -65,3 +68,4 @@ final class WelcomeApp_Controller extends leaf_Controller {
 	}
 
 }
+
