@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 class SampleHookConditional extends leaf_Hook_Conditional {
 
@@ -19,3 +19,4 @@ class SampleHookConditional extends leaf_Hook_Conditional {
 	}
 
 }
+

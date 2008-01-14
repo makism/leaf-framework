@@ -23,3 +23,4 @@ class AnotherApp_Controller extends leaf_Controller {
     }
 
 }
+

@@ -93,3 +93,4 @@ function showHtmlMessage($title, $str=NULL, $die=FALSE)
 	if ($die)
         die();
 }
+

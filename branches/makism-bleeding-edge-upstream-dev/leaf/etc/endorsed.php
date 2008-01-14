@@ -9,7 +9,7 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version	SVN: $Id$
  */
 
 
@@ -30,3 +30,4 @@ $endorsed = array();
  * these two classes and take the measures required.
  */
 $endorsed[] = "";
+

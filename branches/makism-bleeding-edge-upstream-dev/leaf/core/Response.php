@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -13,8 +13,8 @@
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version  SVN: $Id$
+ * @author	Avraam Marimpis <makism@users.sf.net>
+ * @version	SVN: $Id$
  */
 class leaf_OutputBuffer {
 
@@ -133,11 +133,55 @@ final class leaf_Response extends leaf_Common  {
      * @param   string  $value
      * @return  void
      */
-    public function addHeader($name, $value)
+    public function addRawHeader($header)
     {
-    
+        header($header);
     }
 
+    /**
+     *
+     *
+     *
+     */
+    public function addExpireHeader($when)
+    {
+
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function addCacheHeader($date)
+    {
+
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function addContentTypeHeader($content, $enc)
+    {
+
+    }
+
+    /**
+     *
+     *
+     */
+    public function addXHeader($name, $value)
+    {
+
+    }
+
+    /**
+     *
+     *
+     *
+     */
     public function clearHeaders()
     {
 
@@ -183,3 +227,4 @@ final class leaf_Response extends leaf_Common  {
     }    
 
 }
+

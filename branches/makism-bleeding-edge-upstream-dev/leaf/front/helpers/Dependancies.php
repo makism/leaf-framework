@@ -75,3 +75,4 @@ function dependsOnFunc($func)
 {
     return function_exists($func);
 }
+

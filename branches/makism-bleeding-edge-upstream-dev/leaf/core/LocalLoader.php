@@ -12,10 +12,10 @@
 /**
  *
  * 
- * @package		leaf
+ * @package	leaf
  * @subpackage	base
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author	Avraam Marimpis <makism@users.sf.net>
+ * @version	SVN: $Id$
  */
 class leaf_LocalLoader extends leaf_Common {
 
@@ -133,3 +133,4 @@ class leaf_LocalLoader extends leaf_Common {
     }
 
 }
+

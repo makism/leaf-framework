@@ -14,8 +14,8 @@
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
+ * @author	Avraam Marimpis <makism@users.sf.net>
+ * @version	SVN: $Id$
  * @todo
  * <ol>
  *  <li>Implement.</li>
@@ -101,3 +101,4 @@ final class leaf_Locale extends leaf_Base implements ArrayAccess {
     }
 
 }
+

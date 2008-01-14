@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -9,7 +9,7 @@
  *
  * @package     leaf
  * @subpackage  base.helpers
- * @author		Avraam Marimpis <makism@users.sf.net>
+ * @author	Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  * @filesource
  */
@@ -24,3 +24,4 @@ function getBase($obj)
 {
 
 }
+
