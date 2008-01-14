@@ -20,9 +20,9 @@
  *
  * @package     leaf
  * @subpackage  core
- * @author	Avraam Marimpis <makism@users.sf.net>
- * @see         leaf_Router
+ * @author	    Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
+ * @see         leaf_Router
  */
 final class leaf_Request extends leaf_Common {
 

@@ -13,10 +13,10 @@
 /**
  * Base class for Hook objects, based on a conditional event.
  *
- * @package	leaf
+ * @package 	leaf
  * @subpackage	base
- * @author	Avraam Marimpis <makism@users.sf.net>
- * @version	SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version	    SVN: $Id$
  */
 abstract class leaf_Hook_Conditional extends leaf_Hook {
 	

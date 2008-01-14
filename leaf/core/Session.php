@@ -7,18 +7,22 @@
  * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
- 
+
  
 /**
  *
  *
- * @package     leaf
- * @subpackage  core.log.backend
- * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @package 	leaf
+ * @subpackage	core
+ * @author  	Avraam Marimpis <makism@users.sf.net>
  * @version 	SVN: $Id$
  */
-final class leaf_Logger_File extends leaf_Logger_Heap {
+final class leaf_Session {
 
+    public function __construct()
+    {
+    
+    }
 
 }
 

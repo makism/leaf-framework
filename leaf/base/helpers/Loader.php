@@ -6,19 +6,22 @@
  *
  * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
- */
- 
- 
-/**
- *
  *
  * @package     leaf
- * @subpackage  core.log.backend
+ * @subpackage  base.helpers
  * @author	    Avraam Marimpis <makism@users.sf.net>
- * @version 	SVN: $Id$
+ * @version     SVN: $Id$
+ * @filesource
  */
-final class leaf_Logger_File extends leaf_Logger_Heap {
 
 
+/**
+ * Loads a plugin.
+ *
+ * @return  void
+ */
+function use_plugin ($plugin)
+{
+    leaf_Registry::getInstance()->Load->plugin($plugin);
 }
 

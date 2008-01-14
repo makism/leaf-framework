@@ -14,7 +14,7 @@
  *
  * @package     leaf
  * @subpackage  base
- * @author	Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  */
 abstract class leaf_Base {

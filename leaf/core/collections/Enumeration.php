@@ -14,7 +14,7 @@
  *
  * @package     leaf
  * @subpackage  core.collections
- * @author	Avraam Marimpis <makism@users.sf.net>
+ * @author	    Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  */
 final class leaf_Enumeration extends leaf_Collection {
