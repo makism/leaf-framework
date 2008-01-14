@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 // Your Controller must:
 // 1) extend "leaf_Controller",
@@ -36,6 +36,7 @@ final class WelcomeApp_Controller extends leaf_Controller {
      */
     public function init()
     {
+        $this->Response->addRawHeader("X-Tmp: asd");
         $this->Local->model("SampleModel");
     }
     

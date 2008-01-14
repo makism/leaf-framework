@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is part of the leaf framework and
  * is licensed under the New BSD license.

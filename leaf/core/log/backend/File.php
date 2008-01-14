@@ -14,12 +14,11 @@
  *
  * @package     leaf
  * @subpackage  core.log.backend
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
+ * @author	Avraam Marimpis <makism@users.sf.net>
+ * @version	SVN: $Id$
  */
 final class leaf_Logger_File extends leaf_Logger_Heap {
 
 
 }
 
-?>

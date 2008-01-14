@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -14,7 +14,7 @@
  *
  * @package     leaf
  * @subpackage  core.collections
- * @author		Avraam Marimpis <makism@users.sf.net>
+ * @author	Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  */
 final class leaf_Enumeration extends leaf_Collection {
@@ -46,3 +46,4 @@ final class leaf_Enumeration extends leaf_Collection {
     }
 
 }
+

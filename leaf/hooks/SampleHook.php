@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 class SampleHook extends leaf_Hook {
 
@@ -13,3 +13,4 @@ class SampleHook extends leaf_Hook {
 	}
 
 }
+

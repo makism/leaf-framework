@@ -16,10 +16,10 @@
  * This way, the framework can easily be updated, and hacked - allowing
  * the users to provide their own implementations of specific classes.
  *
- * @package		leaf
+ * @package	leaf
  * @subpackage	base
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author	Avraam Marimpis <makism@users.sf.net>
+ * @version	SVN: $Id$
  * @todo
  * <ol>
  *  <li>Implement.</li>
@@ -155,3 +155,4 @@ final class leaf_EndorsementManager extends leaf_Base {
     }
     
 }
+

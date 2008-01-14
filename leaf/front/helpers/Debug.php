@@ -338,3 +338,4 @@ function _inspect_var_Object_getSubclasses($obj)
     else
         return $obj;
 }
+

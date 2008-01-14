@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -20,7 +20,7 @@
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@users.sf.net>
+ * @author	Avraam Marimpis <makism@users.sf.net>
  * @see         leaf_Router
  * @version     SVN: $Id$
  */
@@ -290,3 +290,4 @@ final class leaf_Request extends leaf_Common {
 
 
 }
+

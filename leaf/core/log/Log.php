@@ -14,8 +14,8 @@
  *
  * @package     leaf
  * @subpackage  core.log
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
+ * @author	Avraam Marimpis <makism@users.sf.net>
+ * @version	SVN: $Id$
  */
 abstract class leaf_Log  {
 
@@ -141,4 +141,3 @@ abstract class leaf_Log  {
 
 }
 
-?>
