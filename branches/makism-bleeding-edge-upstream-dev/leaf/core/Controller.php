@@ -15,10 +15,10 @@
  * All Controllers, <b>must</b> inherit from this class, otherwise
  * they will be <b>ignored</b>.
  *
- * @package	leaf
+ * @package 	leaf
  * @subpackage	core
- * @author	Avraam Marimpis <makism@users.sf.net>
- * @version	SVN: $Id$
+ * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
  */
 abstract class leaf_Controller extends leaf_Common {
 

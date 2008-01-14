@@ -8,20 +8,24 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @package     leaf
- * @subpackage  base.helpers
- * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @subpackage  plugins
+ * @author      Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  * @filesource
  */
 
-
+ 
 /**
+ * Converts a boolean value, to the text tha represents that value.
  *
- *
- * @return  object
+ * @param	string	$var
+ * @return	string
  */
-function getBase($obj)
+function boolean2text($var)
 {
-
+	if (is_bool($var))
+		return ($var) ? "true" : "false";
+	else
+		return $var;
 }
 

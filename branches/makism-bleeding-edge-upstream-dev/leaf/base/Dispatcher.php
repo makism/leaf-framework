@@ -16,10 +16,10 @@
  * performs some basic checks in the Controller`s implementation and
  * naming scheme.<br>
  *
- * @package	leaf
+ * @package	    leaf
  * @subpackage	base
- * @author	Avraam Marimpis <makism@users.sf.net>
- * @version	SVN: $Id$
+ * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
  */
 final class leaf_Dispatcher extends leaf_Base {
 

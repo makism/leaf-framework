@@ -39,8 +39,8 @@
  *
  * @package     leaf
  * @subpackage  base
- * @author	Avraam Marimpis <makism@users.sf.net>
- * @version	SVN: $Id$
+ * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @version	    SVN: $Id$
  * @todo
  * <ol>
  *  <li>Maybe we should unset the global variable $GLOBALS somewhere else.</li>

@@ -12,10 +12,10 @@
 /**
  * Provides a common base layout for all Models.
  *
- * @package	leaf
+ * @package 	leaf
  * @subpackage	core
- * @author	Avraam Marimpis <makism@users.sf.net>
- * @version	SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version	    SVN: $Id$
  * @todo
  * <ol>
  *  <li>For security issues, restrict it's access to specific resources.</li>

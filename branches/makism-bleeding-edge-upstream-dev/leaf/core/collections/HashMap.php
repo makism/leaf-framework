@@ -13,7 +13,7 @@
  *
  * @package     leaf
  * @subpackage  core.collections
- * @author	Avraam Marimpis <makism@users.sf.net>
+ * @author	    Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  */
 class leaf_HashMap extends leaf_Collection {

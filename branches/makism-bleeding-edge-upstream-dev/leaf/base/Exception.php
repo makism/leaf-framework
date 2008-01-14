@@ -14,9 +14,9 @@
  *
  * @package     leaf
  * @subpackage  base
- * @author	Avraam Marimpis <makism@users.sf.net>
- * @version	SVN: $Id$
- * @link	http://php.net/manual/en/language.exceptions.html
+ * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
+ * @link	    http://php.net/manual/en/language.exceptions.html
  * @todo
  * <ol>
  *  <li>Possible, internal logging function.</li>
