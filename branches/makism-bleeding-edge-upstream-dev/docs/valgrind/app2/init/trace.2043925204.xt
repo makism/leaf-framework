@@ -1,0 +1,578 @@
+TRACE START [2008-01-14 09:52:36]
+    0.0012      54872   +54872   -> {main}() /mnt/NFS_WS/leaf/index.php:0
+    0.0017      55128     +256     -> phpversion() /mnt/NFS_WS/leaf/index.php:19
+                                   >=> '5.2.1'
+    0.0024      55336     +208     -> version_compare(string(5), string(3), string(1)) /mnt/NFS_WS/leaf/index.php:19
+                                   >=> FALSE
+    0.0027      55368      +32     -> error_reporting(long) /mnt/NFS_WS/leaf/index.php:32
+                                   >=> 6135
+    0.0030      55444      +76     -> define(string(15), string(3)) /mnt/NFS_WS/leaf/index.php:37
+                                   >=> TRUE
+    0.0032      55488      +44     -> define(string(16), string(3)) /mnt/NFS_WS/leaf/index.php:38
+                                   >=> TRUE
+    0.0036      55568      +80     -> realpath(string(26)) /mnt/NFS_WS/leaf/index.php:43
+                                   >=> '/mnt/NFS_WS/leaf/index.php'
+    0.0040      55672     +104     -> dirname(string(26)) /mnt/NFS_WS/leaf/index.php:43
+                                   >=> '/mnt/NFS_WS/leaf'
+    0.0043      55716      +44     -> define(string(16), string(17)) /mnt/NFS_WS/leaf/index.php:43
+                                   >=> TRUE
+    0.0046      55760      +44     -> define(string(9), string(22)) /mnt/NFS_WS/leaf/index.php:48
+                                   >=> TRUE
+    0.0049      55864     +104     -> define(string(9), string(30)) /mnt/NFS_WS/leaf/index.php:53
+                                   >=> TRUE
+    0.0051      55920      +56     -> define(string(8), string(21)) /mnt/NFS_WS/leaf/index.php:58
+                                   >=> TRUE
+    0.0052      55968      +48     -> define(string(12), string(25)) /mnt/NFS_WS/leaf/index.php:63
+                                   >=> TRUE
+    0.0059      56888     +920     -> require_once(/mnt/NFS_WS/leaf/leaf/front/Front_Controller.php) /mnt/NFS_WS/leaf/index.php:69
+    0.0066      57756     +868       -> require_once(/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php) /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:23
+                                     >=> 1
+    0.0072      58716     +960       -> require_once(/mnt/NFS_WS/leaf/leaf/front/helpers/Dependancies.php) /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:30
+                                     >=> 1
+    0.0079      59484     +768       -> require_once(/mnt/NFS_WS/leaf/leaf/front/helpers/Handlers.php) /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:36
+                                     >=> 1
+    0.0084      60224     +740       -> require_once(/mnt/NFS_WS/leaf/leaf/front/helpers/Error.php) /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:42
+                                     >=> 1
+    0.0089      61152     +928       -> require_once(/mnt/NFS_WS/leaf/leaf/base/helpers/Hooks.php) /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:57
+    0.0091      61328     +176         -> define(string(28), string(23)) /mnt/NFS_WS/leaf/leaf/base/helpers/Hooks.php:24
+                                       >=> TRUE
+    0.0093      61376      +48         -> define(string(29), string(24)) /mnt/NFS_WS/leaf/leaf/base/helpers/Hooks.php:31
+                                       >=> TRUE
+    0.0095      61376       +0         -> define(string(26), string(21)) /mnt/NFS_WS/leaf/leaf/base/helpers/Hooks.php:38
+                                       >=> TRUE
+                                     >=> 1
+    0.0099      61508     +132       -> __autoload(string(11)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0102      66824    +5316         -> array_key_exists(string(11), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                       >=> TRUE
+    0.0111      70120    +3296         -> require_once(/mnt/NFS_WS/leaf/leaf/base/Config.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+    0.0113      70280     +160           -> __autoload(string(9)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0115      71304    +1024             -> array_key_exists(string(9), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                           >=> TRUE
+    0.0123      74168    +2864             -> require_once(/mnt/NFS_WS/leaf/leaf/base/Base.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                           >=> 1
+                                         >=> NULL
+                                       >=> 1
+                                     >=> NULL
+    0.0132      75380    +1212       -> leaf_Config->__construct() /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:71
+    0.0136      75476      +96         -> leaf_Base->__construct(string(6), class leaf_Config) /mnt/NFS_WS/leaf/leaf/base/Config.php:81
+    0.0139      75724     +248           -> leaf_Base->__set(string(6), class leaf_Config) /mnt/NFS_WS/leaf/leaf/base/Base.php:39
+    0.0141      76016     +292             -> array_key_exists(string(6), array(0)) /mnt/NFS_WS/leaf/leaf/base/Base.php:62
+                                           >=> FALSE
+                                         >=> NULL
+                                       >=> NULL
+    0.0150      76396     +380         -> require_once(/mnt/NFS_WS/leaf/leaf/etc/general.php) /mnt/NFS_WS/leaf/leaf/base/Config.php:84
+                                       >=> 1
+    0.0157      77772    +1376         -> require_once(/mnt/NFS_WS/leaf/leaf/etc/autoload.php) /mnt/NFS_WS/leaf/leaf/base/Config.php:85
+                                       >=> 1
+    0.0163      78352     +580         -> require_once(/mnt/NFS_WS/leaf/leaf/etc/hooks.php) /mnt/NFS_WS/leaf/leaf/base/Config.php:86
+                                       >=> 1
+    0.0170      79660    +1308         -> require_once(/mnt/NFS_WS/leaf/leaf/etc/endorsed.php) /mnt/NFS_WS/leaf/leaf/base/Config.php:87
+                                       >=> 1
+    0.0176      80152     +492         -> require_once(/mnt/NFS_WS/leaf/leaf/etc/database.php) /mnt/NFS_WS/leaf/leaf/base/Config.php:88
+                                       >=> 1
+    0.0182      82772    +2620         -> require_once(/mnt/NFS_WS/leaf/leaf/etc/route.php) /mnt/NFS_WS/leaf/leaf/base/Config.php:89
+                                       >=> 1
+                                     >=> NULL
+    0.0190      87364    +4592       -> __autoload(string(11)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0192      89508    +2144         -> array_key_exists(string(11), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                       >=> TRUE
+    0.0201      94784    +5276         -> require_once(/mnt/NFS_WS/leaf/leaf/base/Router.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                       >=> 1
+                                     >=> NULL
+    0.0207      95180     +396       -> leaf_Router->__construct() /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:72
+    0.0209      95212      +32         -> leaf_Base->__construct(string(6), class leaf_Router) /mnt/NFS_WS/leaf/leaf/base/Router.php:102
+    0.0211      95212       +0           -> leaf_Base->__set(string(6), class leaf_Router) /mnt/NFS_WS/leaf/leaf/base/Base.php:39
+    0.0212      95616     +404             -> array_key_exists(string(6), array(1)) /mnt/NFS_WS/leaf/leaf/base/Base.php:62
+                                           >=> FALSE
+                                         >=> NULL
+                                       >=> NULL
+    0.0219      95772     +156         -> leaf_Base->__get(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:0
+    0.0221      95772       +0           -> leaf_Base::fetch(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:50
+    0.0223      95772       +0             -> leaf_Base::exists(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0224      96068     +296               -> array_key_exists(string(6), array(2)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                             >=> TRUE
+                                           >=> TRUE
+                                         >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+                                       >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+    0.0236      96484     +416         -> leaf_Config->fetchArray(string(5)) /mnt/NFS_WS/leaf/leaf/base/Router.php:107
+    0.0238      96484       +0           -> array_key_exists(string(5), array(6)) /mnt/NFS_WS/leaf/leaf/base/Config.php:111
+                                         >=> TRUE
+                                       >=> array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)
+    0.0243      96628     +144         -> preg_quote(string(14)) /mnt/NFS_WS/leaf/leaf/base/Router.php:133
+                                       >=> 'a-z0-9-/_\\:\\+~%\\*'
+    0.0247      96920     +292         -> preg_match_all(string(75), string(10), null) /mnt/NFS_WS/leaf/leaf/base/Router.php:138
+                                       >=> 1
+    0.0252      98528    +1608         -> preg_match(string(21), string(10), null) /mnt/NFS_WS/leaf/leaf/base/Router.php:157
+                                       >=> 0
+    0.0256      98856     +328         -> leaf_Base->__get(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:0
+    0.0258      98920      +64           -> leaf_Base::fetch(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:50
+    0.0259      98984      +64             -> leaf_Base::exists(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0261      99344     +360               -> array_key_exists(string(6), array(2)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                             >=> TRUE
+                                           >=> TRUE
+                                         >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+                                       >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+    0.0274      99360      +16         -> leaf_Config->offsetGet(string(8)) /mnt/NFS_WS/leaf/leaf/base/Config.php:0
+                                       >=> '/leaf/'
+    0.0278      99428      +68         -> preg_replace(string(9), string(0), string(10)) /mnt/NFS_WS/leaf/leaf/base/Router.php:200
+                                       >=> 'App2'
+    0.0281      99428       +0         -> preg_replace(string(7), string(0), string(4)) /mnt/NFS_WS/leaf/leaf/base/Router.php:211
+                                       >=> 'App2'
+    0.0285      99428       +0         -> preg_match(string(4), string(4)) /mnt/NFS_WS/leaf/leaf/base/Router.php:216
+                                       >=> 0
+    0.0289      99428       +0         -> leaf_Router->chopSegment(null) /mnt/NFS_WS/leaf/leaf/base/Router.php:232
+    0.0291      99428       +0           -> preg_match(string(11), string(4), null) /mnt/NFS_WS/leaf/leaf/base/Router.php:311
+                                         >=> 1
+    0.0294      99532     +104           -> preg_replace(string(13), string(0), string(4), long) /mnt/NFS_WS/leaf/leaf/base/Router.php:318
+                                         >=> ''
+                                       >=> NULL
+    0.0300      99620      +88         -> leaf_Router->chopSegment(null) /mnt/NFS_WS/leaf/leaf/base/Router.php:238
+                                       >=> NULL
+    0.0303      99620       +0         -> explode(string(1), string(0)) /mnt/NFS_WS/leaf/leaf/base/Router.php:248
+                                       >=> array (0 => '')
+                                     >=> NULL
+    0.0309      99736     +116       -> __autoload(string(15)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0312     101304    +1568         -> array_key_exists(string(15), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                       >=> TRUE
+    0.0320     105280    +3976         -> require_once(/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                       >=> 1
+                                     >=> NULL
+    0.0325     105304      +24       -> leaf_Dispatcher->__construct() /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:73
+    0.0327     105304       +0         -> leaf_Base->__construct(string(10), class leaf_Dispatcher) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:58
+    0.0328     105304       +0           -> leaf_Base->__set(string(10), class leaf_Dispatcher) /mnt/NFS_WS/leaf/leaf/base/Base.php:39
+    0.0330     105304       +0             -> array_key_exists(string(10), array(2)) /mnt/NFS_WS/leaf/leaf/base/Base.php:62
+                                           >=> FALSE
+                                         >=> NULL
+                                       >=> NULL
+                                     >=> NULL
+    0.0336     105304       +0       -> leaf_Config->offsetExists(string(8)) /mnt/NFS_WS/leaf/leaf/base/Config.php:0
+    0.0338     105304       +0         -> array_key_exists(string(8), array(11)) /mnt/NFS_WS/leaf/leaf/base/Config.php:135
+                                       >=> FALSE
+                                     >=> FALSE
+    0.0341     105304       +0       -> date_default_timezone_get() /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:80
+                                     >=> 'Europe/Helsinki'
+    0.0348     105448     +144       -> date_default_timezone_set(string(15)) /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:83
+                                     >=> TRUE
+    0.0351     105448       +0       -> leaf_Config->offsetGet(string(11)) /mnt/NFS_WS/leaf/leaf/base/Config.php:0
+                                     >=> FALSE
+    0.0353     105448       +0       -> leaf_Router->getClassName() /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:97
+                                     >=> 'App2'
+    0.0357     105448       +0       -> leaf_Router->getMethodName() /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:98
+                                     >=> 'index'
+    0.0360     105448       +0       -> leaf_Dispatcher->invoke(string(4), string(5)) /mnt/NFS_WS/leaf/leaf/front/Front_Controller.php:99
+    0.0361     105448       +0         -> leaf_Dispatcher->prepare(string(4), string(5), ???) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:73
+    0.0363     105520      +72           -> leaf_Base->__get(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:0
+    0.0364     105520       +0             -> leaf_Base::fetch(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:50
+    0.0366     105520       +0               -> leaf_Base::exists(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0367     105656     +136                 -> array_key_exists(string(6), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                               >=> TRUE
+                                             >=> TRUE
+                                           >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+                                         >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+    0.0377     105960     +304           -> leaf_Config->fetchArray(string(6)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:178
+    0.0378     105960       +0             -> array_key_exists(string(6), array(6)) /mnt/NFS_WS/leaf/leaf/base/Config.php:111
+                                           >=> FALSE
+                                         >=> NULL
+    0.0382     106028      +68           -> strrpos(string(4), string(11)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:183
+                                         >=> FALSE
+    0.0386     106096      +68           -> explode(string(11), string(15)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:198
+                                         >=> array (0 => 'App2', 1 => '')
+    0.0389     106552     +456           -> array_push(array(0), class stdClass) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:208
+                                         >=> 1
+    0.0392     106552       +0           -> file_exists(string(54)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:214
+                                         >=> TRUE
+    0.0436     112836    +6284           -> require_once(/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:229
+    0.0438     112892      +56             -> __autoload(string(15)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0440     114532    +1640               -> array_key_exists(string(15), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                             >=> TRUE
+    0.0446     116496    +1964               -> require_once(/mnt/NFS_WS/leaf/leaf/core/Controller.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+    0.0448     116580      +84                 -> __autoload(string(11)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0450     117236     +656                   -> array_key_exists(string(11), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                                 >=> TRUE
+    0.0456     118676    +1440                   -> require_once(/mnt/NFS_WS/leaf/leaf/core/Common.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                                 >=> 1
+                                               >=> NULL
+                                             >=> 1
+                                           >=> NULL
+                                         >=> 1
+    0.0466     119900    +1224           -> leaf_Controller->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:236
+    0.0468     119900       +0             -> leaf_Common->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:41
+    0.0469     120028     +128               -> __autoload(string(13)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0471     120484     +456                 -> array_key_exists(string(13), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                               >=> TRUE
+    0.0478     122852    +2368                 -> require_once(/mnt/NFS_WS/leaf/leaf/core/Registry.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                               >=> 1
+                                             >=> NULL
+    0.0482     122688     -164               -> leaf_Registry::getInstance(string(4)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+    0.0484     123072     +384                 -> leaf_Registry->__construct() /mnt/NFS_WS/leaf/leaf/core/Registry.php:65
+                                               >=> NULL
+                                             >=> class leaf_Registry { private $registry = array () }
+                                           >=> NULL
+    0.0490     123192     +120             -> __autoload(string(12)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0492     123860     +668               -> array_key_exists(string(12), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                             >=> TRUE
+    0.0499     129824    +5964               -> require_once(/mnt/NFS_WS/leaf/leaf/core/Request.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                             >=> 1
+                                           >=> NULL
+    0.0503     129956     +132             -> leaf_Request->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:43
+    0.0505     129956       +0               -> leaf_Common->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/Request.php:63
+    0.0507     130024      +68                 -> leaf_Registry::getInstance(string(4)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+                                               >=> class leaf_Registry { private $registry = array () }
+                                             >=> NULL
+    0.0511     130236     +212               -> leaf_Common->__get(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.0512     130300      +64                 -> leaf_Registry->registered(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.0513     130404     +104                   -> array_key_exists(string(10), array(0)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                                 >=> FALSE
+                                               >=> FALSE
+    0.0516     130404       +0                 -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:51
+    0.0517     130564     +160                   -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                 >=> TRUE
+                                               >=> TRUE
+    0.0520     130564       +0                 -> leaf_Base::fetch(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:52
+    0.0521     130564       +0                   -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0522     130628      +64                     -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                   >=> TRUE
+                                                 >=> TRUE
+                                               >=> class leaf_Dispatcher { private $dispatchObjects = array (0 => class stdClass { public $caller = NULL; public $controller = 'App2_Controller'; public $action = 'index'; public $application = 'App2'; public $target = '/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php' }); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'App2_Controller'; public $action = 'index'; public $application = 'App2'; public $target = '/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php' }; private $applicationObject = NULL }
+                                             >=> class leaf_Dispatcher { private $dispatchObjects = array (0 => class stdClass { public $caller = NULL; public $controller = 'App2_Controller'; public $action = 'index'; public $application = 'App2'; public $target = '/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php' }); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'App2_Controller'; public $action = 'index'; public $application = 'App2'; public $target = '/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php' }; private $applicationObject = NULL }
+                                           >=> NULL
+    0.0533     131108     +480             -> leaf_Common->__set(string(7), class leaf_Request) /mnt/NFS_WS/leaf/leaf/core/Controller.php:43
+    0.0535     131108       +0               -> leaf_Registry->register(string(7), class leaf_Request) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                             >=> NULL
+                                           >=> NULL
+    0.0539     131108       +0             -> __autoload(string(16)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0541     131940     +832               -> array_key_exists(string(16), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                             >=> TRUE
+    0.0548     134420    +2480               -> require_once(/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                             >=> 1
+                                           >=> NULL
+    0.0552     134348      -72             -> leaf_LocalLoader->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:44
+    0.0554     134348       +0               -> leaf_Common->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/LocalLoader.php:37
+    0.0556     134348       +0                 -> leaf_Registry::getInstance(string(4)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+                                               >=> class leaf_Registry { private $registry = array ('Request' => class leaf_Request { private $controller = 'App2'; private $controllerFile = 'App2_Controller.php'; private $action = 'index'; private $controllerRegistry = ... }) }
+                                             >=> NULL
+                                           >=> NULL
+    0.0563     134424      +76             -> leaf_Common->__set(string(5), class leaf_LocalLoader) /mnt/NFS_WS/leaf/leaf/core/Controller.php:44
+    0.0566     134424       +0               -> leaf_Registry->register(string(5), class leaf_LocalLoader) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                             >=> NULL
+                                           >=> NULL
+    0.0570     134608     +184             -> __autoload(string(13)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0572     134988     +380               -> array_key_exists(string(13), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                             >=> TRUE
+    0.0579     140120    +5132               -> require_once(/mnt/NFS_WS/leaf/leaf/core/Response.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+                                             >=> 1
+                                           >=> NULL
+    0.0585     140172      +52             -> leaf_Response->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:45
+    0.0587     140172       +0               -> leaf_Common->__construct(string(7), class leaf_Response) /mnt/NFS_WS/leaf/leaf/core/Response.php:68
+    0.0588     140252      +80                 -> leaf_Registry::getInstance(string(7)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+    0.0590     140656     +404                   -> leaf_Registry->__construct() /mnt/NFS_WS/leaf/leaf/core/Registry.php:65
+                                                 >=> NULL
+                                               >=> class leaf_Registry { private $registry = array () }
+                                             >=> NULL
+                                           >=> NULL
+    0.0598     140764     +108             -> leaf_Common->__set(string(8), class leaf_Response) /mnt/NFS_WS/leaf/leaf/core/Controller.php:45
+    0.0600     140764       +0               -> leaf_Registry->register(string(8), class leaf_Response) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                             >=> NULL
+                                           >=> NULL
+    0.0604     140948     +184             -> __autoload(string(9)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:0
+    0.0607     142204    +1256               -> array_key_exists(string(9), array(23)) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:95
+                                             >=> TRUE
+    0.0613     146012    +3808               -> require_once(/mnt/NFS_WS/leaf/leaf/core/View.php) /mnt/NFS_WS/leaf/leaf/front/helpers/Main.php:110
+    0.0615     146132     +120                 -> define(string(10), long) /mnt/NFS_WS/leaf/leaf/core/View.php:15
+                                               >=> TRUE
+    0.0618     146132       +0                 -> define(string(11), long) /mnt/NFS_WS/leaf/leaf/core/View.php:20
+                                               >=> TRUE
+                                             >=> 1
+                                           >=> NULL
+    0.0623     146392     +260             -> leaf_View->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:46
+    0.0624     146392       +0               -> leaf_Common->__construct(string(4)) /mnt/NFS_WS/leaf/leaf/core/View.php:78
+    0.0626     146460      +68                 -> leaf_Registry::getInstance(string(4)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+                                               >=> class leaf_Registry { private $registry = array ('Request' => class leaf_Request { private $controller = 'App2'; private $controllerFile = 'App2_Controller.php'; private $action = 'index'; private $controllerRegistry = ... }, 'Local' => class leaf_LocalLoader { private $models = array (...); private $controllerRegistry = ... }, 'Response' => class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { ... } }) }
+                                             >=> NULL
+                                           >=> NULL
+    0.0632     146736     +276             -> leaf_Common->__set(string(4), class leaf_View) /mnt/NFS_WS/leaf/leaf/core/Controller.php:46
+    0.0634     146800      +64               -> leaf_Registry->register(string(4), class leaf_View) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                             >=> NULL
+                                           >=> NULL
+                                         >=> NULL
+                                       >=> NULL
+    0.0642     146992     +192         -> array_pop(array(1)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:82
+                                       >=> class stdClass { public $caller = NULL; public $controller = 'App2_Controller'; public $action = 'index'; public $application = 'App2'; public $target = '/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php'; public $instance = class App2_Controller { private $controllerRegistry = class leaf_Registry { private $registry = array (...) } } }
+    0.0647     147112     +120         -> leaf_Dispatcher->call(class stdClass, string(4)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:102
+    0.0649     147112       +0           -> method_exists(class App2_Controller, string(4)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:125
+                                         >=> TRUE
+    0.0651     147112       +0           -> extension_loaded(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:127
+                                         >=> TRUE
+    0.0654     147332     +220           -> ReflectionMethod->__construct(string(15), string(4)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:131
+                                         >=> NULL
+    0.0657     147396      +64           -> ReflectionFunctionAbstract->getNumberOfParameters() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:133
+                                         >=> 0
+    0.0660     147556     +160           -> call_user_func(array(2)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:154
+    0.0661     147756     +200             -> App2_Controller->init() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:0
+                                           >=> NULL
+                                         >=> NULL
+                                       >=> NULL
+    0.0666     147848      +92         -> leaf_Common->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.0668     147848       +0           -> leaf_Registry->registered(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.0670     147848       +0             -> array_key_exists(string(8), array(4)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                           >=> TRUE
+                                         >=> TRUE
+    0.0673     147904      +56           -> leaf_Registry->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:0
+                                         >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+                                       >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+    0.0679     147968      +64         -> leaf_Response->ouputBufferStart() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:104
+                                       >=> NULL
+    0.0681     147968       +0         -> leaf_Dispatcher->call(class stdClass, string(5)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:107
+    0.0683     147968       +0           -> method_exists(class App2_Controller, string(5)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:125
+                                         >=> TRUE
+    0.0685     147968       +0           -> extension_loaded(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:127
+                                         >=> TRUE
+    0.0688     147968       +0           -> ReflectionMethod->__construct(string(15), string(5)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:131
+                                         >=> NULL
+    0.0690     147968       +0           -> ReflectionFunctionAbstract->getNumberOfParameters() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:133
+                                         >=> 0
+    0.0693     147968       +0           -> call_user_func(array(2)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:154
+    0.0694     148120     +152             -> App2_Controller->index() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:0
+    0.0696     148240     +120               -> leaf_Common->__get(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.0698     148304      +64                 -> leaf_Registry->registered(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.0700     148368      +64                   -> array_key_exists(string(10), array(4)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                                 >=> FALSE
+                                               >=> FALSE
+    0.0703     148368       +0                 -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:51
+    0.0705     148664     +296                   -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                 >=> TRUE
+                                               >=> TRUE
+    0.0709     148664       +0                 -> leaf_Base::fetch(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:52
+    0.0710     148664       +0                   -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0712     148728      +64                     -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                   >=> TRUE
+                                                 >=> TRUE
+                                               >=> class leaf_Dispatcher { private $dispatchObjects = array (); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'App2_Controller'; public $action = 'index'; public $application = 'App2'; public $target = '/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php'; public $instance = class App2_Controller { private $controllerRegistry = class leaf_Registry { ... } } }; private $applicationObject = 'App2_Controller' }
+                                             >=> class leaf_Dispatcher { private $dispatchObjects = array (); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'App2_Controller'; public $action = 'index'; public $application = 'App2'; public $target = '/mnt/NFS_WS/leaf/applications/App2/App2_Controller.php'; public $instance = class App2_Controller { private $controllerRegistry = class leaf_Registry { ... } } }; private $applicationObject = 'App2_Controller' }
+    0.0721     149096     +368               -> leaf_Dispatcher->pretend(string(10), string(10), ???) /mnt/NFS_WS/leaf/applications/App2/App2_Controller.php:21
+    0.0723     149096       +0                 -> leaf_Dispatcher->prepare(string(10), string(10), bool) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:264
+    0.0724     149196     +100                   -> leaf_Base->__get(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:0
+    0.0726     149196       +0                     -> leaf_Base::fetch(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:50
+    0.0727     149196       +0                       -> leaf_Base::exists(string(6)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0728     149332     +136                         -> array_key_exists(string(6), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                       >=> TRUE
+                                                     >=> TRUE
+                                                   >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+                                                 >=> class leaf_Config { private $options = array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE); private $optionsTable = array ('general' => array ('hostname' => 'http://hideo', 'base_dir' => '/leaf/', 'locale' => 'en', 'base_url' => 'http://hideo/leaf/', 'charset' => 'utf-8', 'enable_sandbox' => FALSE, 'allow_endorsed' => FALSE, 'allow_hooks' => FALSE, 'output_handler' => 'normal', 'log_level' => 'None', 'enable_debug_stats' => FALSE), 'autoload' => array ('plugins' => '', 'extensions' => '', 'libraries' => ''), 'endorsed' => array (0 => ''), 'hooks' => array ('pre_controller_dispatch' => array (...), 'post_controller_dispatch' => array (...), 'post_front_controller' => array (...)), 'database' => array ('general' => array (...), 'profiles' => array (...)), 'route' => array ('default_route' => 'WelcomeApp', 'allow_query_strings' => TRUE, 'url_suffix' => 'xml', 'allow_query_string_chars' => 'a-z0-9-_', 'allow_uri_chars' => 'a-z0-9-/_:+~%*', 'trace_dispatches' => FALSE)) }
+    0.0739     149688     +356                   -> leaf_Config->fetchArray(string(6)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:178
+    0.0741     149688       +0                     -> array_key_exists(string(6), array(6)) /mnt/NFS_WS/leaf/leaf/base/Config.php:111
+                                                   >=> FALSE
+                                                 >=> NULL
+    0.0744     149756      +68                   -> strrpos(string(10), string(11)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:183
+                                                 >=> FALSE
+    0.0748     149824      +68                   -> explode(string(11), string(21)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:198
+                                                 >=> array (0 => 'AnotherApp', 1 => '')
+    0.0751     150276     +452                   -> array_push(array(0), class stdClass) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:208
+                                                 >=> 1
+    0.0754     150276       +0                   -> file_exists(string(66)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:214
+                                                 >=> TRUE
+    0.0771     157472    +7196                   -> require_once(/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:229
+                                                 >=> 1
+    0.0775     156904     -568                   -> leaf_Controller->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:236
+    0.0777     156904       +0                     -> leaf_Common->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:41
+    0.0778     156972      +68                       -> leaf_Registry::getInstance(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+    0.0779     157336     +364                         -> leaf_Registry->__construct() /mnt/NFS_WS/leaf/leaf/core/Registry.php:65
+                                                       >=> NULL
+                                                     >=> class leaf_Registry { private $registry = array () }
+                                                   >=> NULL
+    0.0784     157640     +304                     -> leaf_Request->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:43
+    0.0786     157640       +0                       -> leaf_Common->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/Request.php:63
+    0.0787     157640       +0                         -> leaf_Registry::getInstance(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+                                                       >=> class leaf_Registry { private $registry = array () }
+                                                     >=> NULL
+    0.0791     158152     +512                       -> leaf_Common->__get(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.0793     158216      +64                         -> leaf_Registry->registered(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.0794     158320     +104                           -> array_key_exists(string(10), array(0)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                                         >=> FALSE
+                                                       >=> FALSE
+    0.0802     158320       +0                         -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:51
+    0.0804     158552     +232                           -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                         >=> TRUE
+                                                       >=> TRUE
+    0.0813     158552       +0                         -> leaf_Base::fetch(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:52
+    0.0814     158552       +0                           -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0817     158616      +64                             -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                           >=> TRUE
+                                                         >=> TRUE
+                                                       >=> class leaf_Dispatcher { private $dispatchObjects = array (0 => class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php' }); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php' }; private $applicationObject = 'App2_Controller' }
+                                                     >=> class leaf_Dispatcher { private $dispatchObjects = array (0 => class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php' }); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php' }; private $applicationObject = 'App2_Controller' }
+                                                   >=> NULL
+    0.0828     159184     +568                     -> leaf_Common->__set(string(7), class leaf_Request) /mnt/NFS_WS/leaf/leaf/core/Controller.php:43
+    0.0829     159184       +0                       -> leaf_Registry->register(string(7), class leaf_Request) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                                     >=> NULL
+                                                   >=> NULL
+    0.0834     159336     +152                     -> leaf_LocalLoader->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:44
+    0.0836     159336       +0                       -> leaf_Common->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/LocalLoader.php:37
+    0.0837     159404      +68                         -> leaf_Registry::getInstance(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+                                                       >=> class leaf_Registry { private $registry = array ('Request' => class leaf_Request { private $controller = 'AnotherApp'; private $controllerFile = 'AnotherApp_Controller.php'; private $action = 'someAction'; private $controllerRegistry = ... }) }
+                                                     >=> NULL
+                                                   >=> NULL
+    0.0843     159628     +224                     -> leaf_Common->__set(string(5), class leaf_LocalLoader) /mnt/NFS_WS/leaf/leaf/core/Controller.php:44
+    0.0844     159628       +0                       -> leaf_Registry->register(string(5), class leaf_LocalLoader) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                                     >=> NULL
+                                                   >=> NULL
+    0.0849     159836     +208                     -> leaf_Response->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:45
+    0.0850     159836       +0                       -> leaf_Common->__construct(string(7), class leaf_Response) /mnt/NFS_WS/leaf/leaf/core/Response.php:68
+    0.0852     159836       +0                         -> leaf_Registry::getInstance(string(7)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+                                                       >=> class leaf_Registry { private $registry = array () }
+                                                     >=> NULL
+                                                   >=> NULL
+    0.0859     159904      +68                     -> leaf_Common->__set(string(8), class leaf_Response) /mnt/NFS_WS/leaf/leaf/core/Controller.php:45
+    0.0860     159904       +0                       -> leaf_Registry->register(string(8), class leaf_Response) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                                     >=> NULL
+                                                   >=> NULL
+    0.0864     160276     +372                     -> leaf_View->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/Controller.php:46
+    0.0866     160276       +0                       -> leaf_Common->__construct(string(10)) /mnt/NFS_WS/leaf/leaf/core/View.php:78
+    0.0867     160276       +0                         -> leaf_Registry::getInstance(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:38
+                                                       >=> class leaf_Registry { private $registry = array ('Request' => class leaf_Request { private $controller = 'AnotherApp'; private $controllerFile = 'AnotherApp_Controller.php'; private $action = 'someAction'; private $controllerRegistry = ... }, 'Local' => class leaf_LocalLoader { private $models = array (...); private $controllerRegistry = ... }, 'Response' => class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { ... } }) }
+                                                     >=> NULL
+                                                   >=> NULL
+    0.0873     160504     +228                     -> leaf_Common->__set(string(4), class leaf_View) /mnt/NFS_WS/leaf/leaf/core/Controller.php:46
+    0.0874     160504       +0                       -> leaf_Registry->register(string(4), class leaf_View) /mnt/NFS_WS/leaf/leaf/core/Common.php:68
+                                                     >=> NULL
+                                                   >=> NULL
+                                                 >=> NULL
+                                               >=> class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php'; public $instance = class AnotherApp_Controller { private $controllerRegistry = class leaf_Registry { private $registry = array (...) } } }
+    0.0883     160776     +272                 -> method_exists(class AnotherApp_Controller, string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:267
+                                               >=> TRUE
+                                             >=> TRUE
+    0.0888     160832      +56               -> leaf_Common->__get(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.0889     160832       +0                 -> leaf_Registry->registered(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.0891     160832       +0                   -> array_key_exists(string(10), array(4)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                                 >=> FALSE
+                                               >=> FALSE
+    0.0894     160832       +0                 -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:51
+    0.0896     160888      +56                   -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                 >=> TRUE
+                                               >=> TRUE
+    0.0900     160888       +0                 -> leaf_Base::fetch(string(10)) /mnt/NFS_WS/leaf/leaf/core/Common.php:52
+    0.0901     160888       +0                   -> leaf_Base::exists(string(10)) /mnt/NFS_WS/leaf/leaf/base/Base.php:73
+    0.0904     160952      +64                     -> array_key_exists(string(10), array(3)) /mnt/NFS_WS/leaf/leaf/base/Base.php:87
+                                                   >=> TRUE
+                                                 >=> TRUE
+                                               >=> class leaf_Dispatcher { private $dispatchObjects = array (0 => class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php'; public $instance = class AnotherApp_Controller { ... } }); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php'; public $instance = class AnotherApp_Controller { private $controllerRegistry = class leaf_Registry { ... } } }; private $applicationObject = 'App2_Controller' }
+                                             >=> class leaf_Dispatcher { private $dispatchObjects = array (0 => class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php'; public $instance = class AnotherApp_Controller { ... } }); public $dispatchObject = class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php'; public $instance = class AnotherApp_Controller { private $controllerRegistry = class leaf_Registry { ... } } }; private $applicationObject = 'App2_Controller' }
+    0.0912     161608     +656               -> leaf_Dispatcher->invoke(???, ???) /mnt/NFS_WS/leaf/applications/App2/App2_Controller.php:24
+    0.0914     161676      +68                 -> array_pop(array(1)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:82
+                                               >=> class stdClass { public $caller = NULL; public $controller = 'AnotherApp_Controller'; public $action = 'someAction'; public $application = 'AnotherApp'; public $target = '/mnt/NFS_WS/leaf/applications/AnotherApp/AnotherApp_Controller.php'; public $instance = class AnotherApp_Controller { private $controllerRegistry = class leaf_Registry { private $registry = array (...) } } }
+    0.0918     161888     +212                 -> constant(string(33)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:91
+                                               >=> TRUE
+    0.0921     161888       +0                 -> leaf_Dispatcher->call(class stdClass, string(4)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:102
+    0.0923     161956      +68                   -> method_exists(class AnotherApp_Controller, string(4)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:125
+                                                 >=> TRUE
+    0.0925     161956       +0                   -> extension_loaded(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:127
+                                                 >=> TRUE
+    0.0928     162024      +68                   -> ReflectionMethod->__construct(string(21), string(4)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:131
+                                                 >=> NULL
+    0.0930     162064      +40                   -> ReflectionFunctionAbstract->getNumberOfParameters() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:133
+                                                 >=> 0
+    0.0933     162104      +40                   -> call_user_func(array(2)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:154
+    0.0934     162272     +168                     -> AnotherApp_Controller->init() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:0
+                                                   >=> NULL
+                                                 >=> NULL
+                                               >=> NULL
+    0.0940     162312      +40                 -> leaf_Common->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.0942     162312       +0                   -> leaf_Registry->registered(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.0943     162312       +0                     -> array_key_exists(string(8), array(4)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                                   >=> TRUE
+                                                 >=> TRUE
+    0.0946     162368      +56                   -> leaf_Registry->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:0
+                                                 >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+                                               >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+    0.0949     162432      +64                 -> leaf_Response->ouputBufferStart() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:104
+                                               >=> NULL
+    0.0951     162432       +0                 -> leaf_Dispatcher->call(class stdClass, string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:107
+    0.0953     162500      +68                   -> method_exists(class AnotherApp_Controller, string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:125
+                                                 >=> TRUE
+    0.0956     162500       +0                   -> extension_loaded(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:127
+                                                 >=> TRUE
+    0.0959     162568      +68                   -> ReflectionMethod->__construct(string(21), string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:131
+                                                 >=> NULL
+    0.0962     162568       +0                   -> ReflectionFunctionAbstract->getNumberOfParameters() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:133
+                                                 >=> 2
+    0.0964     162632      +64                   -> leaf_Registry::getInstance(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:141
+                                                 >=> class leaf_Registry { private $registry = array ('Request' => class leaf_Request { private $controller = 'AnotherApp'; private $controllerFile = 'AnotherApp_Controller.php'; private $action = 'someAction'; private $controllerRegistry = ... }, 'Local' => class leaf_LocalLoader { private $models = array (...); private $controllerRegistry = ... }, 'Response' => class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { ... } }, 'View' => class leaf_View { private $options = array (...); private $currViewFile = NULL; private $viewFileList = array (...); private $allVariables = array (...); private $controllerRegistry = ... }) }
+    0.0969     162976     +344                   -> leaf_Registry->__get(string(7)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:0
+                                                 >=> class leaf_Request { private $controller = 'AnotherApp'; private $controllerFile = 'AnotherApp_Controller.php'; private $action = 'someAction'; private $controllerRegistry = class leaf_Registry { private $registry = array ('Request' => ..., 'Local' => class leaf_LocalLoader { ... }, 'Response' => class leaf_Response { ... }, 'View' => class leaf_View { ... }) } }
+    0.0973     163228     +252                   -> leaf_Registry::getInstance(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:142
+                                                 >=> class leaf_Registry { private $registry = array ('Request' => class leaf_Request { private $controller = 'AnotherApp'; private $controllerFile = 'AnotherApp_Controller.php'; private $action = 'someAction'; private $controllerRegistry = ... }, 'Local' => class leaf_LocalLoader { private $models = array (...); private $controllerRegistry = ... }, 'Response' => class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { ... } }, 'View' => class leaf_View { private $options = array (...); private $currViewFile = NULL; private $viewFileList = array (...); private $allVariables = array (...); private $controllerRegistry = ... }) }
+    0.0979     163420     +192                   -> leaf_Registry->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:0
+                                                 >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+    0.0982     163420       +0                   -> call_user_func(array(2), class leaf_Request, class leaf_Response) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:143
+    0.0984     163420       +0                     -> AnotherApp_Controller->someAction(class leaf_Request, class leaf_Response) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:0
+                                                   >=> NULL
+                                                 >=> NULL
+                                               >=> NULL
+    0.0990     163488      +68                 -> leaf_Common->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.0992     163488       +0                   -> leaf_Registry->registered(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.0993     163488       +0                     -> array_key_exists(string(8), array(4)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                                   >=> TRUE
+                                                 >=> TRUE
+    0.0997     163488       +0                   -> leaf_Registry->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:0
+                                                 >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+                                               >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+    0.1001     163488       +0                 -> leaf_Response->outputBufferFlush() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:109
+                                               >=> NULL
+    0.1003     163488       +0                 -> leaf_Dispatcher->call(class stdClass, string(7)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:112
+    0.1005     163488       +0                   -> method_exists(class AnotherApp_Controller, string(7)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:125
+                                                 >=> TRUE
+    0.1008     163488       +0                   -> extension_loaded(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:127
+                                                 >=> TRUE
+    0.1010     163488       +0                   -> ReflectionMethod->__construct(string(21), string(7)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:131
+                                                 >=> NULL
+    0.1013     163488       +0                   -> ReflectionFunctionAbstract->getNumberOfParameters() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:133
+                                                 >=> 0
+    0.1016     163488       +0                   -> call_user_func(array(2)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:154
+    0.1018     163544      +56                     -> AnotherApp_Controller->destroy() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:0
+                                                   >=> NULL
+                                                 >=> NULL
+                                               >=> NULL
+                                             >=> NULL
+                                           >=> NULL
+                                         >=> NULL
+                                       >=> NULL
+    0.1030     163544       +0         -> leaf_Common->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:0
+    0.1032     163544       +0           -> leaf_Registry->registered(string(8)) /mnt/NFS_WS/leaf/leaf/core/Common.php:49
+    0.1034     163544       +0             -> array_key_exists(string(8), array(4)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:102
+                                           >=> TRUE
+                                         >=> TRUE
+    0.1038     163544       +0           -> leaf_Registry->__get(string(8)) /mnt/NFS_WS/leaf/leaf/core/Registry.php:0
+                                         >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+                                       >=> class leaf_Response { private $buffer = NULL; private $controllerRegistry = class leaf_Registry { private $registry = array () } }
+    0.1042     163544       +0         -> leaf_Response->outputBufferFlush() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:109
+                                       >=> NULL
+    0.1045     163544       +0         -> leaf_Dispatcher->call(class stdClass, string(7)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:112
+    0.1047     163544       +0           -> method_exists(class App2_Controller, string(7)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:125
+                                         >=> TRUE
+    0.1049     163544       +0           -> extension_loaded(string(10)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:127
+                                         >=> TRUE
+    0.1051     163544       +0           -> ReflectionMethod->__construct(string(15), string(7)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:131
+                                         >=> NULL
+    0.1054     163544       +0           -> ReflectionFunctionAbstract->getNumberOfParameters() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:133
+                                         >=> 0
+    0.1057     163544       +0           -> call_user_func(array(2)) /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:154
+    0.1058     163544       +0             -> App2_Controller->destroy() /mnt/NFS_WS/leaf/leaf/base/Dispatcher.php:0
+                                           >=> NULL
+                                         >=> NULL
+                                       >=> NULL
+                                     >=> NULL
+    0.1064     163544       +0       -> leaf_Controller->__destruct() /mnt/NFS_WS/leaf/leaf/core/Controller.php:0
+                                     >=> NULL
+    0.1068     163544       +0       -> leaf_Config->offsetGet(string(11)) /mnt/NFS_WS/leaf/leaf/base/Config.php:0
+                                     >=> FALSE
+    0.1070     163544       +0       -> leaf_Config->offsetGet(string(11)) /mnt/NFS_WS/leaf/leaf/base/Config.php:0
+                                     >=> FALSE
+    0.1073     163544       +0       -> leaf_Config->offsetGet(string(18)) /mnt/NFS_WS/leaf/leaf/base/Config.php:0
+                                     >=> FALSE
+                                   >=> 1
+                                 >=> 1
+    0.1081     163216     -328   -> leaf_Controller->__destruct() /mnt/NFS_WS/leaf/leaf/core/Controller.php:0
+                                 >=> NULL
+    0.1093      83764
+TRACE END   [2008-01-14 09:52:36]
+

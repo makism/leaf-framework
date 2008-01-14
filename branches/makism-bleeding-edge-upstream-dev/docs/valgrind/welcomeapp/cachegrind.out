@@ -1,0 +1,1708 @@
+version: 0.9.6
+cmd: /mnt/NFS_WS/leaf/index.php
+part: 1
+
+events: Time
+
+fl=php:internal
+fn=php::phpversion
+19 7
+
+fl=php:internal
+fn=php::version_compare
+19 21
+
+fl=php:internal
+fn=php::error_reporting
+32 30
+
+fl=php:internal
+fn=php::define
+37 18
+
+fl=php:internal
+fn=php::define
+38 10
+
+fl=php:internal
+fn=php::realpath
+43 23
+
+fl=php:internal
+fn=php::dirname
+43 8
+
+fl=php:internal
+fn=php::define
+43 15
+
+fl=php:internal
+fn=php::define
+48 15
+
+fl=php:internal
+fn=php::define
+53 12
+
+fl=php:internal
+fn=php::define
+58 15
+
+fl=php:internal
+fn=php::define
+63 16
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+1 26
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Dependancies.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Dependancies.php
+1 13
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Handlers.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Handlers.php
+1 14
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Error.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Error.php
+1 19
+
+fl=php:internal
+fn=php::define
+24 17
+
+fl=php:internal
+fn=php::define
+31 15
+
+fl=php:internal
+fn=php::define
+38 14
+
+fl=/mnt/NFS_WS/leaf/leaf/base/helpers/Hooks.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/base/helpers/Hooks.php
+1 667
+cfn=php::define
+calls=1 0 0
+24 17
+cfn=php::define
+calls=1 0 0
+31 15
+cfn=php::define
+calls=1 0 0
+38 14
+
+fl=php:internal
+fn=php::array_key_exists
+95 7
+
+fl=php:internal
+fn=php::array_key_exists
+95 14
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/base/Base.php
+1 15
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 998
+cfn=php::array_key_exists
+calls=1 0 0
+95 14
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/base/Base.php
+calls=1 0 0
+110 15
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/base/Config.php
+1 339
+cfn=__autoload
+calls=1 0 0
+0 1027
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 952
+cfn=php::array_key_exists
+calls=1 0 0
+95 7
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/base/Config.php
+calls=1 0 0
+110 1367
+
+fl=php:internal
+fn=php::array_key_exists
+62 8
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__set
+39 280
+cfn=php::array_key_exists
+calls=1 0 0
+62 8
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__construct
+81 303
+cfn=leaf_Base->__set
+calls=1 0 0
+39 288
+
+fl=/mnt/NFS_WS/leaf/leaf/etc/general.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/etc/general.php
+1 88
+
+fl=/mnt/NFS_WS/leaf/leaf/etc/autoload.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/etc/autoload.php
+1 61
+
+fl=/mnt/NFS_WS/leaf/leaf/etc/hooks.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/etc/hooks.php
+1 48
+
+fl=/mnt/NFS_WS/leaf/leaf/etc/endorsed.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/etc/endorsed.php
+1 44
+
+fl=/mnt/NFS_WS/leaf/leaf/etc/database.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/etc/database.php
+1 62
+
+fl=/mnt/NFS_WS/leaf/leaf/etc/route.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/etc/route.php
+1 41
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->__construct
+71 3235
+cfn=leaf_Base->__construct
+calls=1 0 0
+81 591
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/etc/general.php
+calls=1 0 0
+84 88
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/etc/autoload.php
+calls=1 0 0
+85 61
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/etc/hooks.php
+calls=1 0 0
+86 48
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/etc/endorsed.php
+calls=1 0 0
+87 44
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/etc/database.php
+calls=1 0 0
+88 62
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/etc/route.php
+calls=1 0 0
+89 41
+
+fl=php:internal
+fn=php::array_key_exists
+95 6
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Router.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/base/Router.php
+1 33
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 868
+cfn=php::array_key_exists
+calls=1 0 0
+95 6
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/base/Router.php
+calls=1 0 0
+110 33
+
+fl=php:internal
+fn=php::array_key_exists
+62 7
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__set
+39 375
+cfn=php::array_key_exists
+calls=1 0 0
+62 7
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__construct
+102 263
+cfn=leaf_Base->__set
+calls=1 0 0
+39 383
+
+fl=php:internal
+fn=php::array_key_exists
+87 10
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::exists
+73 290
+cfn=php::array_key_exists
+calls=1 0 0
+87 10
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::fetch
+50 221
+cfn=leaf_Base::exists
+calls=1 0 0
+73 300
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__get
+0 566
+cfn=leaf_Base::fetch
+calls=1 0 0
+50 521
+
+fl=php:internal
+fn=php::array_key_exists
+111 10
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->fetchArray
+107 269
+cfn=php::array_key_exists
+calls=1 0 0
+111 10
+
+fl=php:internal
+fn=php::preg_quote
+133 19
+
+fl=php:internal
+fn=php::preg_match_all
+138 66
+
+fl=php:internal
+fn=php::preg_match
+157 33
+
+fl=php:internal
+fn=php::array_key_exists
+87 9
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::exists
+73 233
+cfn=php::array_key_exists
+calls=1 0 0
+87 9
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::fetch
+50 242
+cfn=leaf_Base::exists
+calls=1 0 0
+73 242
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__get
+0 669
+cfn=leaf_Base::fetch
+calls=1 0 0
+50 485
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->offsetGet
+0 37
+
+fl=php:internal
+fn=php::preg_replace
+200 39
+
+fl=php:internal
+fn=php::preg_replace
+211 25
+
+fl=php:internal
+fn=php::preg_match
+216 28
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Router.php
+fn=leaf_Router->chopSegment
+238 31
+
+fl=php:internal
+fn=php::explode
+248 14
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Router.php
+fn=leaf_Router->__construct
+72 4419
+cfn=leaf_Base->__construct
+calls=1 0 0
+102 647
+cfn=leaf_Base->__get
+calls=1 0 0
+0 1088
+cfn=leaf_Config->fetchArray
+calls=1 0 0
+107 279
+cfn=php::preg_quote
+calls=1 0 0
+133 19
+cfn=php::preg_match_all
+calls=1 0 0
+138 66
+cfn=php::preg_match
+calls=1 0 0
+157 33
+cfn=leaf_Base->__get
+calls=1 0 0
+0 1155
+cfn=leaf_Config->offsetGet
+calls=1 0 0
+0 37
+cfn=php::preg_replace
+calls=1 0 0
+200 39
+cfn=php::preg_replace
+calls=1 0 0
+211 25
+cfn=php::preg_match
+calls=1 0 0
+216 28
+cfn=leaf_Router->chopSegment
+calls=1 0 0
+238 31
+cfn=php::explode
+calls=1 0 0
+248 14
+
+fl=php:internal
+fn=php::array_key_exists
+95 10
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+1 30
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 947
+cfn=php::array_key_exists
+calls=1 0 0
+95 10
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+calls=1 0 0
+110 30
+
+fl=php:internal
+fn=php::array_key_exists
+62 9
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__set
+39 273
+cfn=php::array_key_exists
+calls=1 0 0
+62 9
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__construct
+58 246
+cfn=leaf_Base->__set
+calls=1 0 0
+39 283
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+fn=leaf_Dispatcher->__construct
+73 265
+cfn=leaf_Base->__construct
+calls=1 0 0
+58 529
+
+fl=php:internal
+fn=php::array_key_exists
+135 10
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->offsetExists
+0 228
+cfn=php::array_key_exists
+calls=1 0 0
+135 10
+
+fl=php:internal
+fn=php::date_default_timezone_get
+80 174
+
+fl=php:internal
+fn=php::date_default_timezone_set
+83 24
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->offsetGet
+0 30
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Router.php
+fn=leaf_Router->getClassName
+97 13
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Router.php
+fn=leaf_Router->getMethodName
+98 11
+
+fl=php:internal
+fn=php::array_key_exists
+87 7
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::exists
+73 184
+cfn=php::array_key_exists
+calls=1 0 0
+87 7
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::fetch
+50 174
+cfn=leaf_Base::exists
+calls=1 0 0
+73 191
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base->__get
+0 432
+cfn=leaf_Base::fetch
+calls=1 0 0
+50 365
+
+fl=php:internal
+fn=php::array_key_exists
+111 10
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->fetchArray
+178 256
+cfn=php::array_key_exists
+calls=1 0 0
+111 10
+
+fl=php:internal
+fn=php::strrpos
+183 14
+
+fl=php:internal
+fn=php::explode
+198 18
+
+fl=php:internal
+fn=php::array_push
+208 7
+
+fl=php:internal
+fn=php::file_exists
+214 41
+
+fl=php:internal
+fn=php::array_key_exists
+95 11
+
+fl=php:internal
+fn=php::array_key_exists
+95 6
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/Common.php
+1 12
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 1004
+cfn=php::array_key_exists
+calls=1 0 0
+95 6
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/Common.php
+calls=1 0 0
+110 12
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Controller.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/Controller.php
+1 282
+cfn=__autoload
+calls=1 0 0
+0 1024
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 931
+cfn=php::array_key_exists
+calls=1 0 0
+95 11
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/Controller.php
+calls=1 0 0
+110 1306
+
+fl=/mnt/NFS_WS/leaf/applications/WelcomeApp/WelcomeApp_Controller.php
+fn=require_once::/mnt/NFS_WS/leaf/applications/WelcomeApp/WelcomeApp_Controller.php
+1 308
+cfn=__autoload
+calls=1 0 0
+0 2249
+
+fl=php:internal
+fn=php::array_key_exists
+95 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/Registry.php
+1 14
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 1049
+cfn=php::array_key_exists
+calls=1 0 0
+95 10
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/Registry.php
+calls=1 0 0
+110 14
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__construct
+65 12
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+38 304
+cfn=leaf_Registry->__construct
+calls=1 0 0
+65 12
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__construct
+41 530
+cfn=__autoload
+calls=1 0 0
+0 1075
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+38 317
+
+fl=php:internal
+fn=php::array_key_exists
+95 7
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Request.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/Request.php
+1 36
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 934
+cfn=php::array_key_exists
+calls=1 0 0
+95 7
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/Request.php
+calls=1 0 0
+110 36
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+38 51
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__construct
+63 262
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+38 51
+
+fl=php:internal
+fn=php::array_key_exists
+102 6
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 302
+cfn=php::array_key_exists
+calls=1 0 0
+102 6
+
+fl=php:internal
+fn=php::array_key_exists
+87 10
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::exists
+51 223
+cfn=php::array_key_exists
+calls=1 0 0
+87 10
+
+fl=php:internal
+fn=php::array_key_exists
+87 6
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::exists
+73 243
+cfn=php::array_key_exists
+calls=1 0 0
+87 6
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::fetch
+52 239
+cfn=leaf_Base::exists
+calls=1 0 0
+73 250
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 742
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 308
+cfn=leaf_Base::exists
+calls=1 0 0
+51 233
+cfn=leaf_Base::fetch
+calls=1 0 0
+52 489
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Request.php
+fn=leaf_Request->__construct
+43 666
+cfn=leaf_Common->__construct
+calls=1 0 0
+63 314
+cfn=leaf_Common->__get
+calls=1 0 0
+0 1775
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->register
+68 41
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__set
+43 256
+cfn=leaf_Registry->register
+calls=1 0 0
+68 41
+
+fl=php:internal
+fn=php::array_key_exists
+95 6
+
+fl=/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+1 11
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 695
+cfn=php::array_key_exists
+calls=1 0 0
+95 6
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+calls=1 0 0
+110 11
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+38 40
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__construct
+37 293
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+38 40
+
+fl=/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+fn=leaf_LocalLoader->__construct
+44 182
+cfn=leaf_Common->__construct
+calls=1 0 0
+37 333
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->register
+68 36
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__set
+44 262
+cfn=leaf_Registry->register
+calls=1 0 0
+68 36
+
+fl=php:internal
+fn=php::array_key_exists
+95 9
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Response.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/Response.php
+1 28
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 1031
+cfn=php::array_key_exists
+calls=1 0 0
+95 9
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/Response.php
+calls=1 0 0
+110 28
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__construct
+65 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+38 283
+cfn=leaf_Registry->__construct
+calls=1 0 0
+65 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__construct
+68 327
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+38 293
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Response.php
+fn=leaf_Response->__construct
+45 230
+cfn=leaf_Common->__construct
+calls=1 0 0
+68 621
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->register
+68 36
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__set
+45 298
+cfn=leaf_Registry->register
+calls=1 0 0
+68 36
+
+fl=php:internal
+fn=php::array_key_exists
+95 7
+
+fl=php:internal
+fn=php::define
+15 15
+
+fl=php:internal
+fn=php::define
+20 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/View.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/View.php
+1 526
+cfn=php::define
+calls=1 0 0
+15 15
+cfn=php::define
+calls=1 0 0
+20 10
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 899
+cfn=php::array_key_exists
+calls=1 0 0
+95 7
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/View.php
+calls=1 0 0
+110 552
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+38 56
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__construct
+78 372
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+38 56
+
+fl=/mnt/NFS_WS/leaf/leaf/core/View.php
+fn=leaf_View->__construct
+46 272
+cfn=leaf_Common->__construct
+calls=1 0 0
+78 429
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->register
+68 31
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__set
+46 301
+cfn=leaf_Registry->register
+calls=1 0 0
+68 31
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Controller.php
+fn=leaf_Controller->__construct
+236 3377
+cfn=leaf_Common->__construct
+calls=1 0 0
+41 1923
+cfn=__autoload
+calls=1 0 0
+0 977
+cfn=leaf_Request->__construct
+calls=1 0 0
+43 2756
+cfn=leaf_Common->__set
+calls=1 0 0
+43 298
+cfn=__autoload
+calls=1 0 0
+0 714
+cfn=leaf_LocalLoader->__construct
+calls=1 0 0
+44 515
+cfn=leaf_Common->__set
+calls=1 0 0
+44 299
+cfn=__autoload
+calls=1 0 0
+0 1069
+cfn=leaf_Response->__construct
+calls=1 0 0
+45 851
+cfn=leaf_Common->__set
+calls=1 0 0
+45 334
+cfn=__autoload
+calls=1 0 0
+0 1458
+cfn=leaf_View->__construct
+calls=1 0 0
+46 702
+cfn=leaf_Common->__set
+calls=1 0 0
+46 333
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+fn=leaf_Dispatcher->prepare
+73 2903
+cfn=leaf_Base->__get
+calls=1 0 0
+0 797
+cfn=leaf_Config->fetchArray
+calls=1 0 0
+178 266
+cfn=php::strrpos
+calls=1 0 0
+183 14
+cfn=php::explode
+calls=1 0 0
+198 18
+cfn=php::array_push
+calls=1 0 0
+208 7
+cfn=php::file_exists
+calls=1 0 0
+214 41
+cfn=require_once::/mnt/NFS_WS/leaf/applications/WelcomeApp/WelcomeApp_Controller.php
+calls=1 0 0
+229 2558
+cfn=leaf_Controller->__construct
+calls=1 0 0
+236 15613
+
+fl=php:internal
+fn=php::array_pop
+82 19
+
+fl=php:internal
+fn=php::method_exists
+125 13
+
+fl=php:internal
+fn=php::extension_loaded
+127 10
+
+fl=php:internal
+fn=php::ReflectionMethod->__construct
+131 30
+
+fl=php:internal
+fn=php::ReflectionFunctionAbstract->getNumberOfParameters
+133 9
+
+fl=php:internal
+fn=php::array_key_exists
+102 9
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 258
+cfn=php::array_key_exists
+calls=1 0 0
+102 9
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 22
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 509
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 267
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 22
+
+fl=php:internal
+fn=php::array_key_exists
+132 6
+
+fl=/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+fn=leaf_LocalLoader->modelLoaded
+72 246
+cfn=php::array_key_exists
+calls=1 0 0
+132 6
+
+fl=php:internal
+fn=php::array_key_exists
+102 7
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 211
+cfn=php::array_key_exists
+calls=1 0 0
+102 7
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 25
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 704
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 218
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 25
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Request.php
+fn=leaf_Request->getApplicationName
+81 18
+
+fl=php:internal
+fn=php::file_exists
+94 30
+
+fl=php:internal
+fn=php::is_readable
+94 22
+
+fl=php:internal
+fn=php::array_key_exists
+95 36
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Model.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/core/Model.php
+1 21
+
+fl=/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+fn=__autoload
+0 671
+cfn=php::array_key_exists
+calls=1 0 0
+95 36
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/core/Model.php
+calls=1 0 0
+110 21
+
+fl=/mnt/NFS_WS/leaf/applications/WelcomeApp/Model/SampleModel.php
+fn=require_once::/mnt/NFS_WS/leaf/applications/WelcomeApp/Model/SampleModel.php
+1 278
+cfn=__autoload
+calls=1 0 0
+0 730
+
+fl=php:internal
+fn=php::array_key_exists
+102 8
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 221
+cfn=php::array_key_exists
+calls=1 0 0
+102 8
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 28
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 587
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 229
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 28
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Request.php
+fn=leaf_Request->getControllerName
+100 17
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+38 50
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__construct
+32 350
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+38 50
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Model.php
+fn=leaf_Model->__construct
+101 246
+cfn=leaf_Common->__construct
+calls=1 0 0
+32 401
+
+fl=php:internal
+fn=php::constant
+104 20
+
+fl=/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+fn=leaf_LocalLoader->model
+39 2899
+cfn=leaf_LocalLoader->modelLoaded
+calls=1 0 0
+72 252
+cfn=leaf_Common->__get
+calls=1 0 0
+0 948
+cfn=leaf_Request->getApplicationName
+calls=1 0 0
+81 18
+cfn=php::file_exists
+calls=1 0 0
+94 30
+cfn=php::is_readable
+calls=1 0 0
+94 22
+cfn=require_once::/mnt/NFS_WS/leaf/applications/WelcomeApp/Model/SampleModel.php
+calls=1 0 0
+96 1008
+cfn=leaf_Common->__get
+calls=1 0 0
+0 844
+cfn=leaf_Request->getControllerName
+calls=1 0 0
+100 17
+cfn=leaf_Model->__construct
+calls=1 0 0
+101 647
+cfn=php::constant
+calls=1 0 0
+104 20
+
+fl=/mnt/NFS_WS/leaf/applications/WelcomeApp/WelcomeApp_Controller.php
+fn=WelcomeApp_Controller->init
+0 581
+cfn=leaf_Common->__get
+calls=1 0 0
+0 800
+cfn=leaf_LocalLoader->model
+calls=1 0 0
+39 6711
+
+fl=php:internal
+fn=php::call_user_func
+154 262
+cfn=WelcomeApp_Controller->init
+calls=1 0 0
+0 8094
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+fn=leaf_Dispatcher->call
+102 1332
+cfn=php::method_exists
+calls=1 0 0
+125 13
+cfn=php::extension_loaded
+calls=1 0 0
+127 10
+cfn=php::ReflectionMethod->__construct
+calls=1 0 0
+131 30
+cfn=php::ReflectionFunctionAbstract->getNumberOfParameters
+calls=1 0 0
+133 9
+cfn=php::call_user_func
+calls=1 0 0
+154 8357
+
+fl=php:internal
+fn=php::array_key_exists
+102 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 220
+cfn=php::array_key_exists
+calls=1 0 0
+102 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 28
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 608
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 230
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 28
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Response.php
+fn=leaf_Response->ouputBufferStart
+104 38
+
+fl=php:internal
+fn=php::method_exists
+125 12
+
+fl=php:internal
+fn=php::extension_loaded
+127 10
+
+fl=php:internal
+fn=php::ReflectionMethod->__construct
+131 28
+
+fl=php:internal
+fn=php::ReflectionFunctionAbstract->getNumberOfParameters
+133 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+141 87
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 28
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry::getInstance
+142 54
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 31
+
+fl=php:internal
+fn=php::array_key_exists
+102 8
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 216
+cfn=php::array_key_exists
+calls=1 0 0
+102 8
+
+fl=php:internal
+fn=php::array_key_exists
+87 6
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Base.php
+fn=leaf_Base::exists
+51 217
+cfn=php::array_key_exists
+calls=1 0 0
+87 6
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 34
+
+fl=php:internal
+fn=php::array_key_exists
+132 8
+
+fl=/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+fn=leaf_LocalLoader->modelLoaded
+54 285
+cfn=php::array_key_exists
+calls=1 0 0
+132 8
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 29
+
+fl=php:internal
+fn=php::array_key_exists
+132 12
+
+fl=/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+fn=leaf_LocalLoader->modelLoaded
+72 536
+cfn=php::array_key_exists
+calls=1 0 0
+132 12
+
+fl=/mnt/NFS_WS/leaf/leaf/core/LocalLoader.php
+fn=leaf_LocalLoader->model
+55 393
+cfn=leaf_LocalLoader->modelLoaded
+calls=1 0 0
+72 549
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 2287
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 225
+cfn=leaf_Base::exists
+calls=1 0 0
+51 224
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 34
+cfn=leaf_LocalLoader->modelLoaded
+calls=1 0 0
+54 293
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 29
+cfn=leaf_LocalLoader->model
+calls=1 0 0
+55 942
+
+fl=/mnt/NFS_WS/leaf/applications/WelcomeApp/Model/SampleModel.php
+fn=SampleModel_Model->getPageTitle
+66 15
+
+fl=php:internal
+fn=php::array_key_exists
+102 7
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 198
+cfn=php::array_key_exists
+calls=1 0 0
+102 7
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 20
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 426
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 205
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 20
+
+fl=php:internal
+fn=php::sizeof
+116 10
+
+fl=php:internal
+fn=php::func_num_args
+125 5
+
+fl=php:internal
+fn=php::strpos
+133 5
+
+fl=php:internal
+fn=php::array_key_exists
+102 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 202
+cfn=php::array_key_exists
+calls=1 0 0
+102 10
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 29
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 585
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 213
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 29
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Request.php
+fn=leaf_Request->getApplicationName
+146 25
+
+fl=php:internal
+fn=php::file_exists
+152 41
+
+fl=php:internal
+fn=php::is_readable
+153 26
+
+fl=/mnt/NFS_WS/leaf/applications/WelcomeApp/View/main.php
+fn=require_once::/mnt/NFS_WS/leaf/applications/WelcomeApp/View/main.php
+1 46
+
+fl=/mnt/NFS_WS/leaf/leaf/core/View.php
+fn=leaf_View->render
+67 2566
+cfn=php::sizeof
+calls=1 0 0
+116 10
+cfn=php::func_num_args
+calls=1 0 0
+125 5
+cfn=php::strpos
+calls=1 0 0
+133 5
+cfn=leaf_Common->__get
+calls=1 0 0
+0 828
+cfn=leaf_Request->getApplicationName
+calls=1 0 0
+146 25
+cfn=php::file_exists
+calls=1 0 0
+152 41
+cfn=php::is_readable
+calls=1 0 0
+153 26
+cfn=require_once::/mnt/NFS_WS/leaf/applications/WelcomeApp/View/main.php
+calls=1 0 0
+204 46
+
+fl=/mnt/NFS_WS/leaf/applications/WelcomeApp/WelcomeApp_Controller.php
+fn=WelcomeApp_Controller->index
+0 1291
+cfn=leaf_Common->__get
+calls=1 0 0
+0 4036
+cfn=SampleModel_Model->getPageTitle
+calls=1 0 0
+66 15
+cfn=leaf_Common->__get
+calls=1 0 0
+0 652
+cfn=leaf_View->render
+calls=1 0 0
+67 3554
+
+fl=php:internal
+fn=php::call_user_func
+143 277
+cfn=WelcomeApp_Controller->index
+calls=1 0 0
+0 9550
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+fn=leaf_Dispatcher->call
+107 2815
+cfn=php::method_exists
+calls=1 0 0
+125 12
+cfn=php::extension_loaded
+calls=1 0 0
+127 10
+cfn=php::ReflectionMethod->__construct
+calls=1 0 0
+131 28
+cfn=php::ReflectionFunctionAbstract->getNumberOfParameters
+calls=1 0 0
+133 10
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+141 87
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 28
+cfn=leaf_Registry::getInstance
+calls=1 0 0
+142 54
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 31
+cfn=php::call_user_func
+calls=1 0 0
+143 9827
+
+fl=php:internal
+fn=php::array_key_exists
+102 9
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->registered
+49 215
+cfn=php::array_key_exists
+calls=1 0 0
+102 9
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Registry.php
+fn=leaf_Registry->__get
+0 32
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Common.php
+fn=leaf_Common->__get
+0 586
+cfn=leaf_Registry->registered
+calls=1 0 0
+49 224
+cfn=leaf_Registry->__get
+calls=1 0 0
+0 32
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Response.php
+fn=leaf_Response->outputBufferFlush
+109 10
+
+fl=php:internal
+fn=php::method_exists
+125 13
+
+fl=php:internal
+fn=php::extension_loaded
+127 10
+
+fl=php:internal
+fn=php::ReflectionMethod->__construct
+131 29
+
+fl=php:internal
+fn=php::ReflectionFunctionAbstract->getNumberOfParameters
+133 11
+
+fl=/mnt/NFS_WS/leaf/applications/WelcomeApp/WelcomeApp_Controller.php
+fn=WelcomeApp_Controller->destroy
+0 12
+
+fl=php:internal
+fn=php::call_user_func
+154 212
+cfn=WelcomeApp_Controller->destroy
+calls=1 0 0
+0 12
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+fn=leaf_Dispatcher->call
+112 1108
+cfn=php::method_exists
+calls=1 0 0
+125 13
+cfn=php::extension_loaded
+calls=1 0 0
+127 10
+cfn=php::ReflectionMethod->__construct
+calls=1 0 0
+131 29
+cfn=php::ReflectionFunctionAbstract->getNumberOfParameters
+calls=1 0 0
+133 11
+cfn=php::call_user_func
+calls=1 0 0
+154 225
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Dispatcher.php
+fn=leaf_Dispatcher->invoke
+99 2982
+cfn=leaf_Dispatcher->prepare
+calls=1 0 0
+73 22221
+cfn=php::array_pop
+calls=1 0 0
+82 19
+cfn=leaf_Dispatcher->call
+calls=1 0 0
+102 9752
+cfn=leaf_Common->__get
+calls=1 0 0
+0 867
+cfn=leaf_Response->ouputBufferStart
+calls=1 0 0
+104 38
+cfn=leaf_Dispatcher->call
+calls=1 0 0
+107 12908
+cfn=leaf_Common->__get
+calls=1 0 0
+0 844
+cfn=leaf_Response->outputBufferFlush
+calls=1 0 0
+109 10
+cfn=leaf_Dispatcher->call
+calls=1 0 0
+112 1397
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->offsetGet
+0 33
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->offsetGet
+0 23
+
+fl=/mnt/NFS_WS/leaf/leaf/base/Config.php
+fn=leaf_Config->offsetGet
+0 22
+
+fl=/mnt/NFS_WS/leaf/leaf/front/Front_Controller.php
+fn=require_once::/mnt/NFS_WS/leaf/leaf/front/Front_Controller.php
+1 6721
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Main.php
+calls=1 0 0
+23 26
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Dependancies.php
+calls=1 0 0
+30 13
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Handlers.php
+calls=1 0 0
+36 14
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/front/helpers/Error.php
+calls=1 0 0
+42 19
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/base/helpers/Hooks.php
+calls=1 0 0
+57 714
+cfn=__autoload
+calls=1 0 0
+0 2327
+cfn=leaf_Config->__construct
+calls=1 0 0
+71 4173
+cfn=__autoload
+calls=1 0 0
+0 908
+cfn=leaf_Router->__construct
+calls=1 0 0
+72 7885
+cfn=__autoload
+calls=1 0 0
+0 989
+cfn=leaf_Dispatcher->__construct
+calls=1 0 0
+73 794
+cfn=leaf_Config->offsetExists
+calls=1 0 0
+0 238
+cfn=php::date_default_timezone_get
+calls=1 0 0
+80 174
+cfn=php::date_default_timezone_set
+calls=1 0 0
+83 24
+cfn=leaf_Config->offsetGet
+calls=1 0 0
+0 30
+cfn=leaf_Router->getClassName
+calls=1 0 0
+97 13
+cfn=leaf_Router->getMethodName
+calls=1 0 0
+98 11
+cfn=leaf_Dispatcher->invoke
+calls=1 0 0
+99 51043
+cfn=leaf_Config->offsetGet
+calls=1 0 0
+0 33
+cfn=leaf_Config->offsetGet
+calls=1 0 0
+0 23
+cfn=leaf_Config->offsetGet
+calls=1 0 0
+0 22
+
+fl=/mnt/NFS_WS/leaf/index.php
+fn={main}
+
+summary: 79784
+
+0 3380
+cfn=php::phpversion
+calls=1 0 0
+19 7
+cfn=php::version_compare
+calls=1 0 0
+19 21
+cfn=php::error_reporting
+calls=1 0 0
+32 30
+cfn=php::define
+calls=1 0 0
+37 18
+cfn=php::define
+calls=1 0 0
+38 10
+cfn=php::realpath
+calls=1 0 0
+43 23
+cfn=php::dirname
+calls=1 0 0
+43 8
+cfn=php::define
+calls=1 0 0
+43 15
+cfn=php::define
+calls=1 0 0
+48 15
+cfn=php::define
+calls=1 0 0
+53 12
+cfn=php::define
+calls=1 0 0
+58 15
+cfn=php::define
+calls=1 0 0
+63 16
+cfn=require_once::/mnt/NFS_WS/leaf/leaf/front/Front_Controller.php
+calls=1 0 0
+69 76207
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Controller.php
+fn=leaf_Controller->__destruct
+0 11
+
+fl=/mnt/NFS_WS/leaf/leaf/core/Model.php
+fn=leaf_Model->__destruct
+0 17
+
