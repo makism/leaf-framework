@@ -68,7 +68,7 @@ final class leaf_Dispatcher extends leaf_Base {
      */
 	public function invoke($Controller=NULL, $Action=NULL)
 	{
-        if ($Action!="init" && $Action!="destroy") {
+        if ($Action!="init" && $Action!="destroy" && $Action!="handlePost") {
 
             if ($Controller!=NULL)
                 $this->prepare($Controller, $Action);
@@ -103,6 +103,10 @@ final class leaf_Dispatcher extends leaf_Base {
             $this->call($ControllerObject, "init");
             
             $ControllerObject->instance->Response->ouputBufferStart();
+
+            if ($ControllerObject->instance->Request->hasPosted()) {
+                $this->call($ControllerObject, "handlePost");
+            }
             
             // Execute requested Action
             $this->call($ControllerObject, $ControllerObject->action);
