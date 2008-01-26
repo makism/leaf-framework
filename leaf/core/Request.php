@@ -138,8 +138,10 @@ final class leaf_Request extends leaf_Common {
         $this->immutableQueryString = $this->Router->queryString();
         
         // 
-        $this->parameters = $_POST;
-        unset($_POST);
+        if (!empty($_POST)) {
+            $this->parameters = $_POST;
+            unset($_POST);
+        }
 
         // Gather the request headers.
         if (function_exists('apache_request_headers'))
