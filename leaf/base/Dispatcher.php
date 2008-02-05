@@ -238,6 +238,19 @@ final class leaf_Dispatcher extends leaf_Base {
          * is declared.
          */
         require_once $dispatchObj->target;
+
+        /*
+         * Check if the requested Controller is enabled.
+         */
+        // IS_ENABLED
+        if (constant("{$dispatchObj->controller}::IS_ENABLED")==FALSE) {
+            $dispatchObj = NULL;
+            showHtmlMessage(
+                "Application Error",
+                "The requested Application is disabled, thus cannot be called.",
+                TRUE
+            );
+        }
         
         /*
          * Create an instance.
