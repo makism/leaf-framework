@@ -29,6 +29,13 @@ abstract class leaf_Controller extends leaf_Common {
      */
     const ALLOW_CALL = TRUE;
 
+    /**
+     * Enable/Disable the Application.
+     *
+     * @var boolean
+     */
+    const IS_ENABLED = TRUE;
+
 
     /**
      * Calls the parent constructor and registers the basic
