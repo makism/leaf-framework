@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is part of the leaf framework and
  * is licensed under the New BSD license.
@@ -13,10 +13,10 @@
 /**
  * Base class for Hook objects.
  *
- * @package		leaf
+ * @package 	leaf
  * @subpackage	base
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version	    SVN: $Id$
  */
 abstract class leaf_Hook extends leaf_Base {
     
@@ -43,4 +43,3 @@ abstract class leaf_Hook extends leaf_Base {
     }
 }
 
-?>

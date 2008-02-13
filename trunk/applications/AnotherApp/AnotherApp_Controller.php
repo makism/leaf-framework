@@ -1,6 +1,16 @@
 <?php
 
+/*
+ * This controller is disabled.
+ * To enable it, simply remove the line:
+ * `const IS_ENABLED = FALSE;`
+ */
 class AnotherApp_Controller extends leaf_Controller {
+
+    const ALLOW_CALL = TRUE;
+
+    const IS_ENABLED = FALSE;
+
 
     public function init()
     {
@@ -23,3 +33,4 @@ class AnotherApp_Controller extends leaf_Controller {
     }
 
 }
+

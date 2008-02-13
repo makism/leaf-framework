@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -16,10 +16,10 @@
  * performs some basic checks in the Controller`s implementation and
  * naming scheme.<br>
  *
- * @package		leaf
+ * @package	    leaf
  * @subpackage	base
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
  */
 final class leaf_Dispatcher extends leaf_Base {
 
@@ -39,7 +39,15 @@ final class leaf_Dispatcher extends leaf_Base {
      * @var object StdClass
      */
     public $dispatchObject = NULL;
+
+    /**
+     *
+     *
+     * @var string
+     */
+    private $applicationObject = NULL;
     
+
     /**
      *
      *
@@ -50,6 +58,7 @@ final class leaf_Dispatcher extends leaf_Base {
         parent::__construct(self::BASE_KEY, $this);
     }
     
+    
     /**
      * Checks for the existence of the desired method and calls it.
      *
@@ -57,17 +66,47 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   string  $Action
      * @return  void
      */
-	public function invoke($Controller, $Action=NULL)
+	public function invoke($Controller=NULL, $Action=NULL)
 	{
-        if ($Action!="init" && $Action!="destroy") {
-            $this->prepare($Controller, $Action);
+        if ($Action!="init" && $Action!="destroy" && $Action!="handlePost") {
+
+            if ($Controller!=NULL)
+                $this->prepare($Controller, $Action);
+            
+            if ($Controller==NULL && empty($this->dispatchObjects))
+                showHtmlMessage(
+                    "Dispatcher Error.",
+                    "No Controller found in the stack to dispatch.",
+                    TRUE
+                );
             
             $ControllerObject = array_pop($this->dispatchObjects);
-            
+
+            // Store the main application controller name.
+            if ($this->applicationObject==NULL)
+                $this->applicationObject = $ControllerObject->controller;
+
+            // Check if the current controller if it`s not the main
+            // controller and allows to be called from another one.
+            if ($this->applicationObject!=$ControllerObject->controller) {
+                if (constant("{$ControllerObject->controller}::ALLOW_CALL")==FALSE) {
+                    showHtmlMessage(
+                        "Dispatcher Error.",
+                        "Requested controller {$ControllerObject->controller} " .
+                        "can not be invoked externally.",
+                        TRUE
+                    );
+                }
+            }
+
             // Init the Controller
             $this->call($ControllerObject, "init");
             
             $ControllerObject->instance->Response->ouputBufferStart();
+
+            if ($ControllerObject->instance->Request->hasPosted()) {
+                $this->call($ControllerObject, "handlePost");
+            }
             
             // Execute requested Action
             $this->call($ControllerObject, $ControllerObject->action);
@@ -85,7 +124,13 @@ final class leaf_Dispatcher extends leaf_Base {
             );
         }
 	}
-    
+	
+	/**
+	 * Makes a call the specified action, to the passed object.
+	 * 
+	 * @param  object  $ControllerObject
+	 * @param  string  $Action
+	 */
     private function call($ControllerObject, $Action)
     {
         if (method_exists($ControllerObject->instance, $Action)) {
@@ -129,7 +174,7 @@ final class leaf_Dispatcher extends leaf_Base {
     }
     
     /**
-     * Dispatcher the defined Controller/Action.
+     * Prepares the defined Controller/Action.
      *
      * @param   string  $Controller
      * @param   string  $Action
@@ -193,6 +238,19 @@ final class leaf_Dispatcher extends leaf_Base {
          * is declared.
          */
         require_once $dispatchObj->target;
+
+        /*
+         * Check if the requested Controller is enabled.
+         */
+        // IS_ENABLED
+        if (constant("{$dispatchObj->controller}::IS_ENABLED")==FALSE) {
+            $dispatchObj = NULL;
+            showHtmlMessage(
+                "Application Error",
+                "The requested Application is disabled, thus cannot be called.",
+                TRUE
+            );
+        }
         
         /*
          * Create an instance.
@@ -222,18 +280,41 @@ final class leaf_Dispatcher extends leaf_Base {
      *
      * @param   string  $Controller
      * @param   string  $Action
+     * @param   boolean $popFromStack
      * @return  boolean
      */
-    public static function pretend($Controller, $Action=NULL)
+	
+    public function pretend($Controller, $Action=NULL, $popFromStack=FALSE)
     {
         $obj = $this->prepare($Controller, $Action, TRUE);
         
-        if ($obj!=NULL) 
-            if (method_exists($obj->instance, $obj->action))
+        if ($obj!=NULL) {
+            if (method_exists($obj->instance, $obj->action)) {
+
+                if ($popFromStack==TRUE)
+                    $this->clear();
+
                 return TRUE;
+            }
+        }
+
+        $this->clear();
             
         return FALSE;
     }
+    
+
+    /**
+     *
+     *
+     * @return  void
+     */
+    private function clear()
+    {
+        $this->dispatchObject = NULL;
+        array_pop($this->dispatchObjects);
+    }
+    
     
     public function __toString()
     {
@@ -241,3 +322,4 @@ final class leaf_Dispatcher extends leaf_Base {
     }
     
 }
+

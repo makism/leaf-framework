@@ -12,10 +12,10 @@
 /**
  *
  *
- * @package		leaf
+ * @package 	leaf
  * @subpackage	core
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
  */
 final class leaf_Session {
 
@@ -25,4 +25,4 @@ final class leaf_Session {
     }
 
 }
- 
+

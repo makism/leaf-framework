@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -15,8 +15,8 @@
  *
  * @package     leaf
  * @subpackage  core.log.backend
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
  */
 class leaf_Logger_Heap extends leaf_Log {
 
@@ -92,4 +92,3 @@ class leaf_Logger_Heap extends leaf_Log {
 
 }
 
-?>

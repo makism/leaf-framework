@@ -72,3 +72,4 @@ $route['allow_uri_chars'] = "a-z0-9-/_:+~%*";
  * Default: FALSE.
  */
 $route['trace_dispatches'] = FALSE;
+

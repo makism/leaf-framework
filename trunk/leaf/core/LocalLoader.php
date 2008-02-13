@@ -12,10 +12,10 @@
 /**
  *
  * 
- * @package		leaf
+ * @package 	leaf
  * @subpackage	base
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version	    SVN: $Id$
  */
 class leaf_LocalLoader extends leaf_Common {
 
@@ -75,11 +75,16 @@ class leaf_LocalLoader extends leaf_Common {
         // Fallback to usage method #1
         // That is, loading a new Model.
     	} else {
-			// application base name
-            $appName = (!empty($settings) && isset($settings['application']))
-                        ? $settings['application']
-                        : $this->Request->getApplicationName();
-            
+            // application base name
+            if (!empty($settings) && isset($settings['application'])) {
+                $appName = $settings['application'];
+            } else if ( ($pos=stripos($modelName, "/"))!==FALSE ) {
+                $appName = substr($modelName, 0, $pos);
+                $modelName = substr($modelName, $pos+1);
+            } else {
+                $appName = $this->Request->getApplicationName();
+            }
+
     		$baseDir =
     		  "applications/" .
     		  $appName .
@@ -133,3 +138,4 @@ class leaf_LocalLoader extends leaf_Common {
     }
 
 }
+

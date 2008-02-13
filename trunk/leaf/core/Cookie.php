@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -12,10 +12,10 @@
 /**
  *
  *
- * @package		leaf
+ * @package	    leaf
  * @subpackage	core
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version	    SVN: $Id$
  */
 final class leaf_Cookie {
 
@@ -25,4 +25,4 @@ final class leaf_Cookie {
     }
 
 }
- 
+

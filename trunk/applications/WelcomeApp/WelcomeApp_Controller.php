@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 // Your Controller must:
 // 1) extend "leaf_Controller",
@@ -26,6 +26,9 @@
 // 5) __destruct  (provided by the parent class)
 final class WelcomeApp_Controller extends leaf_Controller {
 
+    const ALLOW_CALL = FALSE;
+
+
     /*
      * This method is called after the default class
      * Constructor, provided by the leaf_Controller
@@ -33,6 +36,7 @@ final class WelcomeApp_Controller extends leaf_Controller {
      */
     public function init()
     {
+        $this->Response->addRawHeader("X-Tmp: asd");
         $this->Local->model("SampleModel");
     }
     
@@ -65,3 +69,4 @@ final class WelcomeApp_Controller extends leaf_Controller {
 	}
 
 }
+

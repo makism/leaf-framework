@@ -32,4 +32,3 @@ class SampleModel_Model extends leaf_Model {
 
 }
 
-?>

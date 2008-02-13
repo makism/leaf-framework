@@ -9,7 +9,7 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version     $Id$
+ * @version     SVN: $Id$
  */
 
 
@@ -61,3 +61,4 @@ $database["profiles"]["sample"] = array (
     // Active Record
     "active_record_enabled" => false
 );
+

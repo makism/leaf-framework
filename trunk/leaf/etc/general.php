@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is part of the leaf framework and
  * is licensed under the New BSD license.
@@ -9,7 +9,7 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
- * @version		$Id$
+ * @version     SVN: $Id$
  */
 
 
@@ -112,3 +112,4 @@ $general['log_level'] = "None";
  * Default: FALSE
  */
 $general['enable_debug_stats'] = FALSE;
+

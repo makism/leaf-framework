@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -10,21 +10,83 @@
 
 
 /**
- * Provides access to all elements that compose the Uri.
- *
- * This means, that we have request and refer to the file that
- * the requested Controller is located in, the Action, the extra
- * segments and finally the query string.<br>
- * Also, this class implements some basic methods related with the
- * Uri handling, like redirecting and Uri-reconstruction.
+ * Provides access to all elements that compose the Uri, and generally the
+ * current request.
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @see         leaf_Router
+ * @author	    Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
+ * @todo
+ * <ol>
+ *  <li>Add support for Sessions.</li>
+ *  <li>Add support for Cookies.</li>
+ *  <li>Update documentation/comments.</li>
+ * </ol>
  */
 final class leaf_Request extends leaf_Common {
+
+    /**
+     *
+     *
+     * @var array
+     */
+    private $headers = NULL;
+
+    /**
+     *
+     *
+     * @var array
+     */
+    private $segments = NULL;
+    
+    /**
+     * 
+     * 
+     * @var array
+     */
+    private $parameters = NULL;
+
+    /**
+     *
+     *
+     * @var string
+     */
+    private $queryString = NULL;
+    
+    /**
+     * The current query string that found in the Uri.
+     *
+     * It is immutable, that means that it can not be modified.
+     *
+     * @var string
+     */
+    private $immutableQueryString = NULL;
+
+    /**
+     * Will hold the new query string that we will build.
+     *
+     * This string mutable.
+     *
+     * @var string
+     */
+    private $mutableQueryString = NULL;
+    
+    /**
+     * The query string found in the Uri.
+     *
+     * For more info take a look at the class leaf_Router.
+     *
+     * @var array
+     */
+    private $queryElems = NULL;
+
+    /**
+     * Will hold the elements that will make up the new mutable query string.
+     *
+     * @var array
+     */
+    private $mutableQueryElems = NULL;
 
     /**
      * The requested class name (Controller), suffixed with "_Controller".
@@ -61,13 +123,33 @@ final class leaf_Request extends leaf_Common {
 	public function __construct($controllerName)
 	{
         parent::__construct($controllerName);
-        $this->controller= $controllerName;
-        $this->controllerFile = $controllerName . "_Controller.php";
-        $this->action = $this->Dispatcher->dispatchObject->action;
+
+        $this->controller       = $controllerName;
+        $this->controllerFile   = $controllerName . "_Controller.php";
+        $this->action           = $this->Dispatcher->dispatchObject->action;
+        
+        // 
+        $this->segments = $this->Router->segments();
+        
+        // Fetch the Query String from the {@link leaf_Router router} object.
+        $this->queryElems = $this->Router->queryStringElements();
+
+        // Assign the Query String
+        $this->immutableQueryString = $this->Router->queryString();
+        
+        // 
+        if (!empty($_POST)) {
+            $this->parameters = $_POST;
+            unset($_POST);
+        }
+
+        // Gather the request headers.
+        if (function_exists('apache_request_headers'))
+            $this->headers = apache_request_headers();
 	}
 	
 	/**
-	 * Returnst the requested class name (Controller), suffixed with
+	 * Returns the requested class name (Controller), suffixed with
      * "_Controller".
      *
 	 * @return	string
@@ -107,9 +189,10 @@ final class leaf_Request extends leaf_Common {
     	return $this->action;
     }
 	
-###############################################################################
-################################################################ Extra Segments
-###############################################################################
+    
+    /**************************************************************************
+     * Segments                                                               *
+     **************************************************************************
 
     /**
      * Retrieves the requested (numeric) offset from the segments.
@@ -119,10 +202,11 @@ final class leaf_Request extends leaf_Common {
      */
 	public function getSegment($n)
 	{
-	    if (array_key_exists($n-1, $this->segments))
-	       return $this->segments[$n-1];
-	    else
-	       return NULL;
+	    if (!empty($this->segments))
+	       if (array_key_exists($n-1, $this->segments))
+    	       return $this->segments[$n-1];
+	   
+        return NULL;
 	}
     
     /**
@@ -143,7 +227,7 @@ final class leaf_Request extends leaf_Common {
 	public function getRawSegments()
 	{
 		$returnStr = NULL;
-		$total = $this->totalSegments();
+		$total = $this->getSegmentsSize();
 		
 		if ($total==0)
 			return NULL;
@@ -164,19 +248,46 @@ final class leaf_Request extends leaf_Common {
         return $this->segments;
     }
     
-###############################################################################
-################################################################## Query String
-###############################################################################
 
+    /**************************************************************************
+     * Get                                                                    *
+     **************************************************************************
+    
     /**
      * Returns the complete query string.
      * 
-     * @var array
+     * @return  string|NULL
      */
-    public function getQueryString()
+    public function getRawQueryString()
     {
-    	return $this->mutableQueryString;
+    	return $this->immutableQueryString;
     }
+    
+    /**
+     *
+     * 
+     * @return  string|NULL
+     */
+    public function getPreparedQueryString()
+    {
+        return $this->mutableQueryString;
+    }
+    
+    /**
+     * 
+     * 
+     * @return  void
+     */
+    public function prepareQueryString(array $set)
+    {
+        $this->mutableQueryElems = array_unique(
+            array_merge (
+                $set,
+                (array)$this->mutableQueryElems
+            )
+        );
+    }
+    
     
     /**
      * Retrieves the value for the requested key.
@@ -188,13 +299,13 @@ final class leaf_Request extends leaf_Common {
 	 *  <li>Possible method refactor.</li>
 	 * </ol>
      */
-    public function getQueryStringValue($offset)
+    public function getQueryString($offset)
     {
-        if ($this->queryElems!=NULL)
+        if (!empty($this->queryElems))
             if (array_key_exists($offset, $this->queryElems))
                 return $this->queryElems[$offset];
-            else
-                return NULL;
+
+        return NULL;
     }
 
     /**
@@ -207,9 +318,9 @@ final class leaf_Request extends leaf_Common {
     {
         if ($this->queryElems!=NULL)
             if (array_key_exists($key, $this->queryElems))
-                return true;
+                return TRUE;
 		
-		return false;
+		return FALSE;
     }
 	
 	/**
@@ -243,50 +354,186 @@ final class leaf_Request extends leaf_Common {
 	 * The result will be stored in the mutableQueryString.
 	 *
 	 * @return	void
-	 * @todo
-	 * <ol>
-	 *  <li>Implement.</li>
-	 * </ol>
 	 */
-	public function mergeQueryStrings()
+	public function mergeQueryStrings($replace=TRUE)
 	{
-	
+	    if ($replace==FALSE) {
+	        
+	    } else
+	        $this->mutableQueryElems = array_unique(
+	           array_merge(
+	               (array)$this->mutableQueryElems,
+	               (array)$this->queryElems
+	           )
+	        );
 	}
 	
 	/**
 	 * Append's a key with an optional value at the query string.
 	 *
-	 * @param	string	$key
-	 * @param	string	$value
-	 * @return	void
+	 * @param  string  $key
+	 * @param  string  $value
+	 * @param  boolean $replace
+	 * @return void
 	 */
-	public function appendQueryString($key, $value=NULL)
+	public function appendQueryString($key, $value=NULL, $replace=TRUE)
 	{
 		$value = (isset($value)) ? $value : NULL;
-		$this->mutableQueryElems[$key] = $value;
 		
+		if ($replace==FALSE)
+		  if (array_key_exists($key, $this->mutableQueryElems))
+		      return;
+
+        $this->mutableQueryElems[$key] = $value;
+		  
 		$this->updateQueryString();
 	}
+	
+	/**
+	 * Removes a key/value from the query string.
+	 * 
+	 * @return void
+	 */
+	public function removeQueryString($key)
+	{
+	    if (array_key_exists($key, $this->mutableQueryElems))
+	       unset($this->mutableQueryElems[$key]);
+	    
+	    $this->updateQueryString();
+	}
+	
+	
+    /**************************************************************************
+     * Post                                                                   *
+     **************************************************************************/
+
+    /**
+     * 
+     * 
+     * @return  array
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
     
-###############################################################################
-####################################################################### Headers
-###############################################################################
+    /**
+     * 
+     * 
+     * @return  string|NULL
+     */
+    public function getParameter($str)
+    {
+        if (array_key_exists($str, $this->parameters))
+            return $this->parameters[$str];
 
+        return NULL;
+    }
+    
+    /**
+     * 
+     * 
+     * @return  array
+     */
+    public function getParameterNames()
+    {
+        return array_keys($this->parameters);
+    }
+    
+    /**
+     * 
+     * 
+     * @return  array
+     */
+    public function getParameterValues()
+    {
+        return array_values($this->parameters);   
+    }
+    
+    /**
+     * 
+     * 
+     * @return  integer
+     */
+    public function getTotalParameters()
+    {
+        return sizeof($this->parameters);
+    }
+    
+    /**
+     * 
+     * 
+     * @return  boolean|NULL
+     */
+    public function hasPosted()
+    {
+        if ($this->getHeaders()!=NULL) {
+            $contentType = $this->getHeader("Content-Type");
+            
+            if ($contentType==NULL || strpos($contentType, "form")===FALSE)
+                return FALSE;
+            else
+                return TRUE;
+        }
+        
+        return NULL;
+    }
+    
+    
+    /**************************************************************************
+     * Headers                                                                *
+     **************************************************************************
 
-###############################################################################
-####################################################################### Cookies
-###############################################################################
+    /**
+     * Returns all the headers.
+     *
+     * @return  array|NULL
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
 
+    /**
+     * Returns the headers` names.
+     *
+     * @return array|NULL
+     */
+    public function getHeaderNames()
+    {
+        if (!empty($this->headers))
+            return array_keys($this->headers);
+        else
+            return NULL;
+    }
 
-###############################################################################
-########################################################################## Post
-###############################################################################
+    /**
+     * Checks if the requested header exists.
+     *
+     * @param   string  $header
+     * @return  boolean
+     */
+    private function getHeaderExists($header)
+    {
+        if (!empty($this->headers))
+            return array_key_exists($header, $this->headers);
+        else
+            return NULL;
+    }
 
-
-###############################################################################
-####################################################################### Session
-###############################################################################
-
-
+    /**
+     * Returns the body of a header.
+     *
+     * @param   string  $header
+     * @return  string|NULL
+     */
+    public function getHeader($header)
+    {
+        if ($this->getHeaderExists($header))
+            return $this->headers[$header];
+        else
+            return NULL;
+    }
 
 }
+

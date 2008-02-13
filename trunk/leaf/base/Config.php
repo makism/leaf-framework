@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -39,8 +39,8 @@
  *
  * @package     leaf
  * @subpackage  base
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @version	    SVN: $Id$
  * @todo
  * <ol>
  *  <li>Maybe we should unset the global variable $GLOBALS somewhere else.</li>
@@ -182,3 +182,4 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
     }
     
 }
+

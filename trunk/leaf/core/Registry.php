@@ -12,10 +12,10 @@
 /**
  *
  *
- * @package		leaf
+ * @package	    leaf
  * @subpackage	core
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
  * @see         leaf_Base
  */
 class leaf_Registry {
@@ -103,3 +103,4 @@ class leaf_Registry {
     }
     
 }
+
