@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -40,15 +40,15 @@ define('LEVEL_ERROR', 16);
  *
  * @package     leaf
  * @subpackage  core.log
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
- * @method		void log()
- *					 log(string message)
- *					 log(Exception e)
- *					 log(int level, string message)
- *					 log(int level, string message, string fileName)
- *					 log(int level, string message, string fileName, string className)
- *					 log(int level, Exception e)
+ * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
+ * @method      void log()
+ *		        log(string message)
+ *		        log(Exception e)
+ *	            log(int level, string message)
+ *		        log(int level, string message, string fileName)
+ *		        log(int level, string message, string fileName, string className)
+ *		        log(int level, Exception e)
  *	Handles to log a message.
  */
 final class leaf_Logger extends leaf_Base {
@@ -200,4 +200,3 @@ final class leaf_Logger extends leaf_Base {
 
 }
 
-?>

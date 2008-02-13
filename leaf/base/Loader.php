@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -16,10 +16,10 @@
  * (This class is far from being labeled as completed in many ways. This means
  * that many changes will occur, possibly <b>breaking</b> internal compatibility.)
  * 
- * @package		leaf
+ * @package	    leaf
  * @subpackage	base
- * @author		Avraam Marimpis <makism@users.sf.net>
- * @version		SVN: $Id$
+ * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @version 	SVN: $Id$
  */
 class leaf_Loader extends leaf_Base {
     
@@ -193,3 +193,4 @@ class leaf_Loader extends leaf_Base {
     }
 
 }
+

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
@@ -14,7 +14,7 @@
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@users.sf.net>
+ * @author	    Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  */
 abstract class leaf_Collection {
@@ -64,3 +64,4 @@ abstract class leaf_Collection {
     }
 
 }
+
