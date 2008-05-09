@@ -42,13 +42,13 @@ final class leaf_Response extends leaf_Common  {
     
     const BASE_KEY = "Reponse";
 
-    
+
     /**
      *
      *
-     * @var boolean
+     * @var array
      */
-    private static $OUTPUT_STATUS = NULL;
+    private $headersStack = array();
 
 	/**
      *
@@ -80,7 +80,7 @@ final class leaf_Response extends leaf_Common  {
      */
     public function ouputBufferStart()
     {
-        self::$OUTPUT_STATUS = leaf_OutputBuffer::OB_RUNNING;
+
     }
 
     /**
@@ -92,7 +92,7 @@ final class leaf_Response extends leaf_Common  {
      */
     public function outputBufferEnd($returnBuffer=FALSE)
     {
-        self::$OUTPUT_STATUS = leaf_OutputBuffer::OB_ENDED;
+
     }
     
     /**
@@ -142,6 +142,17 @@ final class leaf_Response extends leaf_Common  {
      *
      *
      *
+     *
+     */
+    public function addHeader($header, $value)
+    {
+        header($header . ":" . $value);
+    }
+
+    /**
+     *
+     *
+     *
      */
     public function addExpireHeader($when)
     {
@@ -180,9 +191,19 @@ final class leaf_Response extends leaf_Common  {
     /**
      *
      *
-     *
+     * @return  void
      */
     public function clearHeaders()
+    {
+
+    }
+
+    /**
+     *
+     *
+     * @return  void
+     */
+    public function sendHeaders()
     {
 
     }
@@ -213,7 +234,6 @@ final class leaf_Response extends leaf_Common  {
     {
     
     }
-    
     
     /**
      *

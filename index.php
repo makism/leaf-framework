@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
@@ -29,7 +29,7 @@ if (version_compare(phpversion(), '5.1', '<'))
  * http://www.php.net/manual/en/ref.errorfunc.html#e-notice
  * http://www.php.net/manual/en/ref.errorfunc.html#e-strict
  */
-error_reporting(E_ALL | E_NOTICE | E_STRICT);
+error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 
 /**
  * leaf`s Status and Version information.

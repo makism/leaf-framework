@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
 
@@ -39,8 +39,8 @@
  *
  * @package     leaf
  * @subpackage  base
- * @author	    Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
+ * @author      Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @version     SVN: $Id$
  * @todo
  * <ol>
  *  <li>Maybe we should unset the global variable $GLOBALS somewhere else.</li>
@@ -112,6 +112,35 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
             return $this->optionsTable[$key];
         else
             return NULL;
+    }
+
+    /**
+     *
+     *
+     * @param   string  $method
+     * @param   array   $args
+     * @return  array|string|NULL
+     */
+    public function __call($method, $args)
+    {
+        if (preg_match("@^fetch(?P<opts>[A-Z]{1}.+)@", $method, $hits)) {
+            if (!empty($hits) && isset($hits['opts'])) {
+                $array = strtolower($hits['opts']);
+
+                if (array_key_exists($array,$this->optionsTable)) {
+                    if (!empty($args)) {
+                        $param = $args[0];
+
+                        if (array_key_exists($param,$this->optionsTable[$array]))
+                            return $this->optionsTable[$array][$param];
+                    } else {
+                        return $this->fetchArray($array);
+                    }
+                }
+            }
+        }
+
+        return NULL;
     }
     
     /**

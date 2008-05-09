@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @package     leaf
@@ -19,54 +19,72 @@
 /**
  * Custom error handler.
  * 
- * @param	integer	$errno
- * @param	string	$errstr
- * @param	string	$errfile
- * @param	integer	$errline
- * @return	void
+ * @param   integer $errno
+ * @param   string  $errstr
+ * @param   string  $errfile
+ * @param   integer $errline
+ * @return  void
  */
 function errorHandler($errno, $errstr, $errfile, $errline)
 {
     static $errorTypes;
     
     $errorTypes = array (
-        2   => "Warning",
-        8   => "Notice",
-        256 => "User Error",
-        512 => "User Warning",
-        1024=> "User Notice",
-        4096=> "Recoverable Error"
+        2   => "Warning",               // E_WARNING
+        8   => "Notice",                // E_NOTICE
+        256 => "User Error",            // E_USER_ERROR
+        512 => "User Warning",          // E_USER_WARNING
+        1024=> "User Notice",           // E_USER_NOTICE
+        2048=> "Run-time notice",       // E_STRICT
+        4096=> "Recoverable Error"      // E_RECOVERABLE_ERROR
     );
     
     $dieStatus = ($errno==256) ? TRUE : FALSE;
-    
-	showHtmlMessage(
-    	$errorTypes[$errno],
-    	"<div class=\"topic\">Message:</div> <span id=\"msg\">"  . $errstr
-    	 . " ({$errno})</span><br/>\n".
-    	"<div class=\"topic\">In file:</div> <span id=\"file\">" . $errfile
-    	 . "</span><br/>\n"            .
-    	"<div class=\"topic\">On line:</div> <span id=\"line\">#". $errline
-    	 . "</span>\n",
-    	$dieStatus
-	);
 
-    return true;
+    $code = debug_parsefile($errfile, $errline);
+
+echo <<<ERROR_MSG
+    <br />
+    <br />
+    <div style="margin: 0px auto; width: 600px; overflow: hidden;">
+        <div style="font-size: 16px; background-color: #f7f7da; padding: 5px;">
+            <img src="/leaf/content/images/error.png" style="vertical-align: middle;"/>
+            $errorTypes[$errno]
+        </div>
+
+        <div style="margin: 5px 0px 0px 0px; border: 1px solid #f0f0f0; padding: 10px;">
+            <fieldset style="border: 0px;">
+                <legend><b>Message</b></legend>
+                <span style="font: Arial; font-size: 12px;">$errstr</span>
+            </fieldset>
+
+            <fieldset style="border: 0px;">
+                <legend><b>Code trace</b></legend>
+                <span style="font: Arial; font-size: 12px;">
+                <pre>$code</pre>
+
+                <span style="font-style: italic;">code snippet from file:</span><br />
+                <span style="font-size: 10px;">$errfile</span>
+                </span>
+            </fieldset>
+        </div>
+
+    </div>
+    <br />
+    <br />
+ERROR_MSG;
+
+    return TRUE;
 }
 
 /**
  * Custom exception handler.
  *
- * @param	object	Exception	$ex
- * @return	void
+ * @param   object  Exception   $ex
+ * @return  void
  */
 function exceptionHandler(Exception $ex)
 {
-	showHtmlMessage(
-    	"Exception",
-        $ex->getMessage(),
-    	true
-	);
 
 }
 

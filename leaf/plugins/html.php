@@ -14,18 +14,17 @@
  * @filesource
  */
 
- 
+
 /**
- * Converts a boolean value, to the text tha represents that value.
+ * Creates an image html tag for the specific file, with the any
+ * parameters passed.
  *
- * @param	string	$var
- * @return	string
+ * @param   string  $img
+ * @param   array   $params
+ * @returns string
  */
-function boolean2text($var)
+function img($img, array $params=NULL)
 {
-	if (is_bool($var))
-		return ($var) ? "true" : "false";
-	else
-		return $var;
+
 }
 
