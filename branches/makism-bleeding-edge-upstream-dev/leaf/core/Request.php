@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
 
@@ -27,50 +27,41 @@
 final class leaf_Request extends leaf_Common {
 
     /**
-     *
+     * The headers that Apache sent.
      *
      * @var array
      */
-    private $headers = NULL;
+    private static $headers = NULL;
 
     /**
-     *
+     * The extra segments found in the Uri. 
      *
      * @var array
      */
-    private $segments = NULL;
+    private static $segments = NULL;
     
     /**
-     * 
+     * The POST parameters.
      * 
      * @var array
      */
     private $parameters = NULL;
 
     /**
-     *
-     *
-     * @var string
-     */
-    private $queryString = NULL;
-    
-    /**
      * The current query string that found in the Uri.
      *
-     * It is immutable, that means that it can not be modified.
      *
      * @var string
      */
-    private $immutableQueryString = NULL;
+    private static $immutableQueryString = NULL;
 
     /**
      * Will hold the new query string that we will build.
      *
-     * This string mutable.
      *
      * @var string
      */
-    private $mutableQueryString = NULL;
+    private static $mutableQueryString = NULL;
     
     /**
      * The query string found in the Uri.
@@ -79,14 +70,14 @@ final class leaf_Request extends leaf_Common {
      *
      * @var array
      */
-    private $queryElems = NULL;
+    private static $queryElems = NULL;
 
     /**
      * Will hold the elements that will make up the new mutable query string.
      *
      * @var array
      */
-    private $mutableQueryElems = NULL;
+    private static $mutableQueryElems = NULL;
 
     /**
      * The requested class name (Controller), suffixed with "_Controller".
@@ -129,23 +120,23 @@ final class leaf_Request extends leaf_Common {
         $this->action           = $this->Dispatcher->dispatchObject->action;
         
         // 
-        $this->segments = $this->Router->segments();
+        self::$segments = $this->Router->segments();
         
         // Fetch the Query String from the {@link leaf_Router router} object.
-        $this->queryElems = $this->Router->queryStringElements();
+        self::$queryElems = $this->Router->queryStringElements();
 
         // Assign the Query String
-        $this->immutableQueryString = $this->Router->queryString();
+        self::$immutableQueryString = $this->Router->queryString();
         
         // 
         if (!empty($_POST)) {
             $this->parameters = $_POST;
-            unset($_POST);
+            //unset($_POST);
         }
 
         // Gather the request headers.
         if (function_exists('apache_request_headers'))
-            $this->headers = apache_request_headers();
+            self::$headers = apache_request_headers();
 	}
 	
 	/**
@@ -202,9 +193,9 @@ final class leaf_Request extends leaf_Common {
      */
 	public function getSegment($n)
 	{
-	    if (!empty($this->segments))
-	       if (array_key_exists($n-1, $this->segments))
-    	       return $this->segments[$n-1];
+	    if (!empty(self::$segments))
+	       if (array_key_exists($n-1, self::$segments))
+    	       return self::$segments[$n-1];
 	   
         return NULL;
 	}
@@ -233,7 +224,7 @@ final class leaf_Request extends leaf_Common {
 			return NULL;
 		
 		for ($i=0; $i<$total; $i++)
-			$returnStr .= $this->segments[$i] . "/";
+			$returnStr .= self::$segments[$i] . "/";
 		
 		return $returnStr;
 	}
@@ -245,7 +236,7 @@ final class leaf_Request extends leaf_Common {
      */
     public function getSegmentsAsArray()
     {
-        return $this->segments;
+        return self::$segments;
     }
     
 
@@ -260,7 +251,7 @@ final class leaf_Request extends leaf_Common {
      */
     public function getRawQueryString()
     {
-    	return $this->immutableQueryString;
+    	return self::$immutableQueryString;
     }
     
     /**
@@ -270,7 +261,7 @@ final class leaf_Request extends leaf_Common {
      */
     public function getPreparedQueryString()
     {
-        return $this->mutableQueryString;
+        return self::$mutableQueryString;
     }
     
     /**
@@ -280,10 +271,10 @@ final class leaf_Request extends leaf_Common {
      */
     public function prepareQueryString(array $set)
     {
-        $this->mutableQueryElems = array_unique(
+        self::$mutableQueryElems = array_unique(
             array_merge (
                 $set,
-                (array)$this->mutableQueryElems
+                (array)self::$mutableQueryElems
             )
         );
     }
@@ -301,9 +292,9 @@ final class leaf_Request extends leaf_Common {
      */
     public function getQueryString($offset)
     {
-        if (!empty($this->queryElems))
-            if (array_key_exists($offset, $this->queryElems))
-                return $this->queryElems[$offset];
+        if (!empty(self::$queryElems))
+            if (array_key_exists($offset, self::$queryElems))
+                return self::$queryElems[$offset];
 
         return NULL;
     }
@@ -316,8 +307,8 @@ final class leaf_Request extends leaf_Common {
      */
     public function queryStringKeyExists($key)
     {
-        if ($this->queryElems!=NULL)
-            if (array_key_exists($key, $this->queryElems))
+        if (self::$queryElems!=NULL)
+            if (array_key_exists($key, self::$queryElems))
                 return TRUE;
 		
 		return FALSE;
@@ -330,23 +321,23 @@ final class leaf_Request extends leaf_Common {
 	 */
 	private function updateQueryString()
 	{
-		$this->mutableQueryString = "?";
+        self::$mutableQueryString = "?";
 		
-		$total = sizeof($this->mutableQueryElems);
+		$total = sizeof(self::$mutableQueryElems);
 		
 		for ($i=0; $i<$total; $i++) {
-			list($Key, $Value) = each($this->mutableQueryElems);
+			list($Key, $Value) = each(self::$mutableQueryElems);
 			
-			$this->mutableQueryString .= $Key;
+            self::$mutableQueryString .= $Key;
 			
 			if ($Value!=NULL)
-				$this->mutableQueryString .= "=" . $Value;
+				self::$mutableQueryString .= "=" . $Value;
 			
 			if ($i<$total-1)
-				$this->mutableQueryString .= "&";
+				self::$mutableQueryString .= "&";
 		}
 		
-		reset($this->mutableQueryElems);
+		reset(self::$mutableQueryElems);
 	}
 	
 	/**
@@ -360,10 +351,10 @@ final class leaf_Request extends leaf_Common {
 	    if ($replace==FALSE) {
 	        
 	    } else
-	        $this->mutableQueryElems = array_unique(
+	        self::$mutableQueryElems = array_unique(
 	           array_merge(
-	               (array)$this->mutableQueryElems,
-	               (array)$this->queryElems
+	               (array)self::$mutableQueryElems,
+	               (array)self::$queryElems
 	           )
 	        );
 	}
@@ -381,10 +372,10 @@ final class leaf_Request extends leaf_Common {
 		$value = (isset($value)) ? $value : NULL;
 		
 		if ($replace==FALSE)
-		  if (array_key_exists($key, $this->mutableQueryElems))
+		  if (array_key_exists($key, self::$mutableQueryElems))
 		      return;
 
-        $this->mutableQueryElems[$key] = $value;
+        self::$mutableQueryElems[$key] = $value;
 		  
 		$this->updateQueryString();
 	}
@@ -397,7 +388,7 @@ final class leaf_Request extends leaf_Common {
 	public function removeQueryString($key)
 	{
 	    if (array_key_exists($key, $this->mutableQueryElems))
-	       unset($this->mutableQueryElems[$key]);
+	       unset(self::$mutableQueryElems[$key]);
 	    
 	    $this->updateQueryString();
 	}
@@ -491,7 +482,7 @@ final class leaf_Request extends leaf_Common {
      */
     public function getHeaders()
     {
-        return $this->headers;
+        return self::$headers;
     }
 
     /**
@@ -501,8 +492,8 @@ final class leaf_Request extends leaf_Common {
      */
     public function getHeaderNames()
     {
-        if (!empty($this->headers))
-            return array_keys($this->headers);
+        if (!empty(self::$headers))
+            return array_keys(self::$headers);
         else
             return NULL;
     }
@@ -515,8 +506,8 @@ final class leaf_Request extends leaf_Common {
      */
     private function getHeaderExists($header)
     {
-        if (!empty($this->headers))
-            return array_key_exists($header, $this->headers);
+        if (!empty(self::$headers))
+            return array_key_exists($header, self::$headers);
         else
             return NULL;
     }
@@ -530,7 +521,7 @@ final class leaf_Request extends leaf_Common {
     public function getHeader($header)
     {
         if ($this->getHeaderExists($header))
-            return $this->headers[$header];
+            return self::$headers[$header];
         else
             return NULL;
     }
