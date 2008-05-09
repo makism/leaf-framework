@@ -48,7 +48,7 @@ echo <<<ERROR_MSG
     <br />
     <div style="margin: 0px auto; width: 600px; overflow: hidden;">
         <div style="font-size: 16px; background-color: #f7f7da; padding: 5px;">
-            <img src="/leaf/content/images/error.png" style="vertical-align: middle;"/>
+            <img src="/leaf/content/leaf/error.png" style="vertical-align: middle;"/>
             $errorTypes[$errno]
         </div>
 
