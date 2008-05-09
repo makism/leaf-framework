@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @package     leaf
@@ -45,7 +45,7 @@ require_once LEAF_BASE  . 'front/helpers/Error.php';
 /**
  * Custom debug functions.
  */
-#require_once LEAF_BASE  . 'front/helpers/Debug.php';
+require_once LEAF_BASE  . 'front/helpers/Debug.php';
 
 
 /**
@@ -60,7 +60,7 @@ require_once LEAF_BASE  . 'base/helpers/Hooks.php';
 /*
  * Handle errors and exceptions.
  */
-#set_error_handler("errorHandler");
+set_error_handler("errorHandler");
 #set_exception_handler("exceptionHandler");
 
 
@@ -71,7 +71,6 @@ require_once LEAF_BASE  . 'base/helpers/Hooks.php';
 $Config = new leaf_Config();
 $Router = new leaf_Router();
 $Dispatcher = new leaf_Dispatcher();
-
 
 /*
  * Configure timezone.
@@ -84,13 +83,6 @@ date_default_timezone_set($timezoneSetting);
 
 
 /*
- * Run all hooks for level: Pre-Controller-Dispatch
- */
-if ($Config['allow_hooks'])
-    runHooks(HOOK_PRE_CONTROLLER_DISPATCH);
-
-
-/*
  * Dispatch main controller.
  */
 $Dispatcher->invoke(
@@ -100,22 +92,8 @@ $Dispatcher->invoke(
 
 
 /*
- * Run all hooks for level: Post-Controller-Dispatch
- */
-if ($Config['allow_hooks'])
-    runHooks(HOOK_POST_CONTROLLER_DISPATCH);
-
-
-/*
- * Run all hooks for level: Post-Front-Controller
- */
- if ($Config['allow_hooks'])
-    runHooks(HOOK_POST_FRONT_CONTROLLER);
-
-
-/*
  * General statistics like memory usage, parsing time and other.
  */
-if ($Config['enable_debug_stats'])
-    require_once LEAF_BASE . 'front/Debug.php';
+/*if ($Config['enable_debug_stats'])
+    require_once LEAF_BASE . 'front/Debug.php';*/
 

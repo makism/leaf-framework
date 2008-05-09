@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @package     leaf
@@ -22,16 +22,18 @@
  * We use the "magic" function __autoload in order
  * to have leaf`s classes loaded automatically.<br>
  * Also, {@link leaf_EndorsedManager Endorsed Manager} is
- * instantiated if needed.
+ * instantiated if needed.<br>
  *
- * @link	http://www.php.net/manual/en/language.oop5.autoload.html
+ * <b>EndorsedManager</b> is deactivated for the time being.
+ *
+ * @link    http://www.php.net/manual/en/language.oop5.autoload.html
  * @see     leaf_EndorsedManager
- * @param	string $className
- * @return	void
+ * @param   string $className
+ * @return  void
  */
 function __autoload($className)
 {
-	static $baseClasses;
+    static $baseClasses;
 #    static $hasInited;
 #    static $enableEndorsementManager;
 #    static $endorsementManager;
@@ -54,15 +56,15 @@ function __autoload($className)
 #        leaf_Registry::getInstance()->register(new leaf_EndorsementManager());
 #        $endorsementManager = leaf_Registry::getInstance()->EndorsementMan;
 #    }
-	
+    
     /*
      * Most of the leaf`s classes.
      */
     if ($baseClasses==NULL)
-    	$baseClasses = array (
-    	/** Base libraries             **/
+        $baseClasses = array (
+        /** Base libraries             **/
             'leaf_Base'      => 'base/Base.php',
-    		'leaf_Config'    => 'base/Config.php',
+            'leaf_Config'    => 'base/Config.php',
             'leaf_Dispatcher'=> 'base/Dispatcher.php',
             'leaf_Exception' => 'base/Exception.php',
             'leaf_Loader'    => 'base/Loader.php',
@@ -78,21 +80,21 @@ function __autoload($className)
             'leaf_Controller'=> 'core/Controller.php',
             'leaf_Model'     => 'core/Model.php',
             'leaf_View'      => 'core/View.php',
-            'leaf_Cookie'    => 'core/Cookie.php',
-            'leaf_Session'   => 'core/Session.php',
-	    'leaf_LocalLoader'=>'core/LocalLoader.php',
+            'leaf_Cookie'    => 'core/Cookie.php',                  // possible removal
+            'leaf_Session'   => 'core/Session.php',                 // possible removal
+        'leaf_LocalLoader'=>'core/LocalLoader.php',
         /** Collection libraries        **/
-            'leaf_Collection'=> 'core/Collection.php',
-            'leaf_HashMap'   => 'core/collections/HashMap.php',
-            'leaf_Enumeration'=>'core/collections/Enumeration.php',
-            'leaf_Iterator'  => 'core/collections/Iterator.php'
-    	);
+            'leaf_Collection'=> 'core/Collection.php',              // possible removal
+            'leaf_HashMap'   => 'core/collections/HashMap.php',     // possible removal
+            'leaf_Enumeration'=>'core/collections/Enumeration.php', // possible removal
+            'leaf_Iterator'  => 'core/collections/Iterator.php'     // possible removal
+        );
 
     /*
      * Check to dermine whether or not, the requested class
      * is part of leaf`s core.
      */
-  	if (array_key_exists($className, $baseClasses)) {
+    if (array_key_exists($className, $baseClasses)) {
 
         /*
          * We let the EndorsedManager to handle the external
@@ -106,7 +108,7 @@ function __autoload($className)
 #                            . 'core/'
 #                            . $baseClasses[$className];
 #        } else {
-          	require_once LEAF_BASE
+            require_once LEAF_BASE
                         . $baseClasses[$className];
 #        }
     }
@@ -119,4 +121,3 @@ function __autoload($className)
 #    if ($className=="leaf_Config")
 #        $hasInited = TRUE;
 }
-

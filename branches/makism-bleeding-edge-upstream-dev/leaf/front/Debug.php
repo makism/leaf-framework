@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @package     leaf
@@ -21,7 +21,7 @@
  * is tagged as "dev".
  * This is most surely that will change.
  */
-dependsOn('xdebug');
+/*dependsOn('xdebug');
 dependsOnFunc('memory_get_usage');
 
 leaf_Registry::getInstance()->Load->plugin("misc");
@@ -51,18 +51,18 @@ var leafDebug = new YAHOO.widget.TabView('leaf_debugDiv');
 };
 YAHOO.example.init();
 </script>
-DEBUG_STYLES;
+DEBUG_STYLES;*/
 
 /*
  * Start Main Div
  */
-echo
+/*echo
 	"<div style=\"width: 600px;\">" .
 	"<div id=\"leaf_debugDiv\" class=\"yui-navset yui-navset-left\">" .
 	"<ul class=\"yui-nav\">";
-
+*/
 // tabs
-echo
+/*echo
 	 "<li title=\"active\" class=\"selected\"><a href=\"#leaf_Debug_leaf_Statistics\"><em>leaf Statistics</em></a></li>" .
 	 "<li><a href=\"#leaf_Debug_Global_Settings\"><em>Global Settings</em></a></li>" .
 	 "<li><a href=\"#leaf_Degug_Registry\"><em>Registry</em></a></li>" . 
@@ -91,12 +91,12 @@ if ($reg->Load->libraryLoaded("Db")) {
 
 // tabs (end)
 echo "</ul>";
-
+*/
 
 /*
  * Data
  */
-echo
+/*echo
 	"<div class=\"yui-content\">";
 	
 	//
@@ -302,11 +302,10 @@ echo
 			" </pre>"
 			. "</div>";
 	}
-
+*/
 /*
 * End Main Div
 */
-echo
+/*echo
 	"</div>" .
-	"</div>";
-
+	"</div>";*/
