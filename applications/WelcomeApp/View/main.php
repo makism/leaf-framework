@@ -58,7 +58,7 @@
   <div id="Container">
    <div id="Title">Welcome to the leaf framework!</div>
    <div id="Description">
-    <img src="/leaf/content/images/leaf-logo.png" id="Logo" alt="leaf framework logo" />
+    <img src="/leaf/content/leaf/leaf-logo.png" id="Logo" alt="leaf framework logo" />
     <p>This means, that you have installed successfuly the framework and 
     you are now able to use it to it`s full extend!</p>
     <p>For starters, we recommend reading the Userguides, distributed 
