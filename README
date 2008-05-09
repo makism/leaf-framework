@@ -1,9 +1,0 @@
-
-leaf framework
-**************
-     * Supported PHP versions, 5.1 - or newer.
-     
-     * XDebug is needed (for the time being) when enabling "Debug Statistics".
-
-     * This is a testing release, which means that, the API is not final,
-       and maybe change (although it is very unlikely to happen).
