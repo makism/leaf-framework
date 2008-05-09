@@ -74,8 +74,8 @@ final class WelcomeApp_Controller extends leaf_Controller {
         //$result = $this->Dispatcher->invokeInBuffer("AnotherApp", "someAction", TRUE);
         #echo $result;
 
-        //$data['title']= $this->SampleModel->getPageTitle();
-        //$this->View->render("main", $data);
+        $data['title']= $this->SampleModel->getPageTitle();
+        $this->View->render("main", $data);
         
         /*var_dump ($Request->getSegmentsSize());
         var_dump ($Request->getSegment(2));
