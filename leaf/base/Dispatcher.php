@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
 
@@ -18,8 +18,8 @@
  *
  * @package	    leaf
  * @subpackage	base
- * @author	    Avraam Marimpis <makism@users.sf.net>
- * @version 	SVN: $Id$
+ * @author      Avraam Marimpis <makism@users.sf.net>
+ * @version     SVN: $Id$
  */
 final class leaf_Dispatcher extends leaf_Base {
 
@@ -66,7 +66,7 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   string  $Action
      * @return  void
      */
-	public function invoke($Controller=NULL, $Action=NULL)
+	public function invoke($Controller=NULL, $Action=NULL, $returnBuffer=FALSE)
 	{
         if ($Action!="init" && $Action!="destroy" && $Action!="handlePost") {
 
@@ -88,7 +88,8 @@ final class leaf_Dispatcher extends leaf_Base {
 
             // Check if the current controller if it`s not the main
             // controller and allows to be called from another one.
-            if ($this->applicationObject!=$ControllerObject->controller) {
+            if ($this->applicationObject!=$ControllerObject->controller &&
+                $this->Config['enable_controller_behavior']==TRUE) {
                 if (constant("{$ControllerObject->controller}::ALLOW_CALL")==FALSE) {
                     showHtmlMessage(
                         "Dispatcher Error.",
@@ -99,23 +100,64 @@ final class leaf_Dispatcher extends leaf_Base {
                 }
             }
 
-            // Init the Controller
-            $this->call($ControllerObject, "init");
-            
-            $ControllerObject->instance->Response->ouputBufferStart();
+            //
+            // Set the output handler and start buffering.
+            //
+                $ControllerObject->instance->Response->setOutputHandler(
+                    constant("{$ControllerObject->controller}::OUTPUT_HANDLER")
+                );
 
-            if ($ControllerObject->instance->Request->hasPosted()) {
-                $this->call($ControllerObject, "handlePost");
-            }
+            //
+            // Run "pre init controller" hooks.
+            //
+            if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
+                runControllerHooks($ControllerObject, HOOK_PRE_INIT_CONTROLLER);
+
+            //
+            // Init the Controller.
+            //
+                $this->call($ControllerObject, "init");
+
+            //
+            // Run "post init controller" hooks.
+            //
+                if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
+                    runControllerHooks($ControllerObject, HOOK_POST_INIT_CONTROLLER);
             
-            // Execute requested Action
-            $this->call($ControllerObject, $ControllerObject->action);
-            
-            $ControllerObject->instance->Response->outputBufferFlush();
-            
-            // Destroy the Controller
-            $this->call($ControllerObject, "destroy");
-            
+                if ($ControllerObject->instance->Request->hasPosted()) {
+                    $this->call($ControllerObject, "handlePost");
+                }
+
+            //
+            // Execute requested Action.
+            //
+                $this->call($ControllerObject, $ControllerObject->action);
+
+            //
+            // Run "pre destroy controller".
+            //
+                if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
+                    runControllerHooks($ControllerObject, HOOK_PRE_DESTROY_CONTROLLER);
+
+            //
+            // Destroy the Controller.
+            //
+                $this->call($ControllerObject, "destroy");
+
+            //
+            // Run "post destroy controller".
+            //
+                if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
+                   runControllerHooks($ControllerObject, HOOK_POST_DESTROY_CONTROLLER);
+
+            //
+            // Flush the ouput buffer.
+            //
+                if ($returnBuffer==TRUE)
+                    return $ControllerObject->instance->Response->getOutputBufferContents(TRUE);
+                else
+                    $ControllerObject->instance->Response->outputBufferFlush();
+
         } else {
             showHtmlMessage(
                 "Dispatcher Failure",
@@ -124,7 +166,19 @@ final class leaf_Dispatcher extends leaf_Base {
             );
         }
 	}
+
+    /**
+     *
+     *
+     *
+     * @return  string|NULL
+     */
+    public function invokeInBuffer($Controller, $Action)
+    {
+        return $this->invoke($Controller, $Action, TRUE);
+    }
 	
+
 	/**
 	 * Makes a call the specified action, to the passed object.
 	 * 
@@ -194,31 +248,55 @@ final class leaf_Dispatcher extends leaf_Base {
         if (strrpos($Controller, "_Controller")==FALSE)
             $Controller .= "_Controller";
         
+        // create a dummy object
         $dispatchObj = new StdClass();
         
         $dispatchObj->caller = NULL;
         
+        // 
         if ($traceDispatches==TRUE)
             if ($this->dispatchObject!=NULL)
                 $dispatchObj->caller = $this->dispatchObject;
         
+        // 
         $dispatchObj->controller = $Controller;
-        
+
+        // set the action
         $dispatchObj->action = (isset($Action)) ? $Action : "index";
         
+        // get the controller`s real name
         list($canonicalName, $suffix) = explode("_Controller", $dispatchObj->controller);
-        
         $dispatchObj->application = $canonicalName;
+
+        // array of hooks
+        $dispatchObj->hooks = NULL;
         
+        // spcify the full path where the controller is located
         $dispatchObj->target = LEAF_APPS
                             . $canonicalName
                             . '/'
                             . $Controller
                             . '.php';
 
+        // attach the hooks for the requested Controller
+        if ($this->Config['allow_hooks']===TRUE) {
+            $hooks = $this->Config->fetchHooks();
+            $addHooks = NULL;
+
+            foreach ($hooks as $RunLevel => $Hooks) 
+                foreach ($Hooks as $ControllerName => $HookName) 
+                    $addHooks[$RunLevel][] = $HookName;
+
+            if ($addHooks!=NULL) 
+                $dispatchObj->hooks = $addHooks;
+        }
+
+        // add controller to the dispatch stack
         array_push($this->dispatchObjects, $dispatchObj);
+
+        // set current object to dispatch
         $this->dispatchObject = $dispatchObj;
-        
+
         /*
          * Check if the Controller`s file, exists.
          */
@@ -239,17 +317,34 @@ final class leaf_Dispatcher extends leaf_Base {
          */
         require_once $dispatchObj->target;
 
-        /*
-         * Check if the requested Controller is enabled.
-         */
-        // IS_ENABLED
-        if (constant("{$dispatchObj->controller}::IS_ENABLED")==FALSE) {
-            $dispatchObj = NULL;
-            showHtmlMessage(
-                "Application Error",
-                "The requested Application is disabled, thus cannot be called.",
-                TRUE
-            );
+
+        if ($this->Config['enable_controller_behavior']==TRUE) {
+            /*
+             * Check if the requested Controller restricts
+             * access only to localhost.
+             */
+            if (constant("{$dispatchObj->controller}::RESTRICT_ACCESS")==TRUE) {
+                if ($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
+                    $dispatchObj = NULL;
+                    showHtmlMessage(
+                        "Dispatcher Failure",
+                        "The requested Application ({$canonicalName}) runs in restricted mode.",
+                        TRUE
+                    );
+                }
+            }
+
+            /*
+             * Check if the requested Controller is enabled.
+             */
+            if (constant("{$dispatchObj->controller}::IS_ENABLED")==FALSE) {
+                $dispatchObj = NULL;
+                showHtmlMessage(
+                    "Dispatcher Failure",
+                    "The requested Application ({$canonicalName}) is disabled.",
+                    TRUE
+                );
+           }
         }
         
         /*
@@ -267,7 +362,11 @@ final class leaf_Dispatcher extends leaf_Base {
             if ($fetch==TRUE)
                 return NULL;
             
-            showHtmlMessage("Dispatcher Failure", "Not a controller", TRUE);
+            showHtmlMessage(
+                "Dispatcher Failure",
+                "Not a controller",
+                TRUE
+            );
         }
         
         if ($fetch==TRUE)
@@ -283,7 +382,6 @@ final class leaf_Dispatcher extends leaf_Base {
      * @param   boolean $popFromStack
      * @return  boolean
      */
-	
     public function pretend($Controller, $Action=NULL, $popFromStack=FALSE)
     {
         $obj = $this->prepare($Controller, $Action, TRUE);

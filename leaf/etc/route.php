@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
@@ -21,6 +21,16 @@ $route = array();
  * Default application controller.
  */
 $route['default_route'] = "WelcomeApp";
+
+
+/*
+ * Character used to separate the "Object" from the "Method".
+ * Note: if set to ".", virtual file extension is automatically disabled
+ *
+ * Legal values (for security issues): "/", "."
+ * Default: "/"
+ */
+$route['method_separator'] = "/";
 
 
 /*

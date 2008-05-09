@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
@@ -22,7 +22,7 @@ $general = array();
  * 
  * "http://hideo", for example.
  */
-$general['hostname']  = "http://hostname";
+$general['hostname']  = "http://localhost";
 
 
 /*
@@ -53,6 +53,12 @@ $general['charset'] = "utf-8";
 
 
 /*
+ * Default timezone used.
+ */
+$general['timezone']= "Europe/Athens";
+
+
+/*
  * Sandbox
  * 
  * When enabled, any access beyond the directory in which
@@ -64,6 +70,30 @@ $general['charset'] = "utf-8";
  * Default: FALSE
  */
 $general['enable_sandbox'] = FALSE;
+
+
+/*
+ * The term "Controller behavior" describes a set of "switches"
+ * that can be set into your Controller, in order to gain "behavior".
+ * The switches that are set by default are:
+ *
+ * Allows or prohibits to other Controllers to invoke the Controller
+ * that defines uses "ALLOW_CALL" switch.
+ * Legal values: TRUE, FALSE
+ * > ALLOW_CALL = TRUE
+ *
+ * Enables of Disables the usage of the Controller.
+ * Legal values: TRUE, FALSE
+ * > IS_ENABLED = TRUE and
+ *
+ * Restricts the usage of the Controller, only from localhost.
+ * Legal values: TRUE, FALSE
+ * > RESTRICT_ACCESS = FALSE
+ *
+ * Legal values: TRUE, FALSE
+ * Default: TRUE
+ */
+$general['enable_controller_behavior'] = TRUE;
 
 
 /*
@@ -94,15 +124,6 @@ $general['allow_hooks'] = FALSE;
  * Default: "normal"
  */
 $general['output_handler'] = "normal";
-
-
-/*
- * Logging threshold. (not implemented)
- *
- * Legal values: "All", "Debug", "Warning", "Info", "None"
- * Default: "None"
- */
-$general['log_level'] = "None";
 
 
 /*

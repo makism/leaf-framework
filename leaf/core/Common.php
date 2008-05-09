@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
 
@@ -38,14 +38,14 @@ abstract class leaf_Common {
         $this->controllerRegistry = leaf_Registry::getInstance($regName);
     }
     
-   	/**
+    /**
      *
      * 
-	 * @param  string  $Id
-	 * @return object|NULL
-	 */
-	protected function __get($Id)
-	{
+     * @param  string  $Id
+     * @return object|NULL
+     */
+    protected function __get($Id)
+    {
         if ($this->controllerRegistry->registered($Id)) {
             return $this->controllerRegistry->$Id;
         } else if (leaf_Base::exists($Id)) {
@@ -54,7 +54,7 @@ abstract class leaf_Common {
             if ($this->controllerRegistry->Local->modelLoaded($Id))
                 return $this->controllerRegistry->Local->model($Id);
         }
-	}
+    }
     
     /**
      *
@@ -69,4 +69,5 @@ abstract class leaf_Common {
     }
 
 }
+
 

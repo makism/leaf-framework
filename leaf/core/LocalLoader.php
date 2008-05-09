@@ -4,19 +4,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
 
 
-/**
- *
- * 
- * @package 	leaf
- * @subpackage	base
- * @author  	Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
- */
 class leaf_LocalLoader extends leaf_Common {
 
     /**

@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
 
@@ -27,10 +27,6 @@ define('VIEW_EXPOSE', 2);
  * @subpackage	core
  * @author  	Avraam Marimpis <makism@users.sf.net>
  * @version	    SVN: $Id$
- * @todo
- * <ol>
- *  <li>Add support for Output Buffer.</li>
- * </ol>
  */
 final class leaf_View extends leaf_Common {
     
@@ -254,4 +250,5 @@ final class leaf_View extends leaf_Common {
     }
 
 }
+
 
