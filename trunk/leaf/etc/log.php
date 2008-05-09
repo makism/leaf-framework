@@ -13,20 +13,16 @@
  */
 
 
-global $endorsed;
-$endorsed = array();
+global $log;
+$log = array();
 
 
 /*
- * Array with the classes that will be endorsed.
- * Each array element, must be a string, that is
- * the classname.
+ * Logging threshold. (not implemented)
  *
- * Example:
- * $endorsed[] = "Locale";
- * $endorsed[] = "Logger";
- *
- * This will notify the EndorsementManager about
- * these two classes and take the measures required.
+ * Legal values: "All", "Debug", "Warning", "Info", "None"
+ * Default: "None"
  */
-$endorsed[] = "";
+$log['log_level'] = "None";
+
+

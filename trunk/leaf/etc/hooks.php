@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sf.net>
@@ -16,25 +16,26 @@
 global $hooks;
 $hooks = array (
 
-	/*
-     * These will be executed before (pre) and
-     * after (post) dispatching the requested
-     * controller.
+    /*
+     *
      */
-    "pre_controller_dispatch"   => array(
-		
-	),
-    "post_controller_dispatch"  => array(
-		"SampleHook"
-	),
+    "post_init_controller" => array(
+
+    ),
+
+    "pre_init_controller" => array(
+        
+    ),
 
     /*
-     * These hooks will be run, after the
-     * Front Controller has cesead execution.
+     *
      */
-    "post_front_controller"  => array(
-		"SampleHookConditional"
-	)
+    "post_destroy_controller" => array(
+        
+    ),
+
+    "pre_destroy_controller" => array(
+
+    )
 
 );
-

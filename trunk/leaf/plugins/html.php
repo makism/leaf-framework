@@ -6,19 +6,25 @@
  *
  * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
- */
- 
- 
-/**
- *
  *
  * @package     leaf
- * @subpackage  core.log.backend
- * @author	    Avraam Marimpis <makism@users.sf.net>
- * @version 	SVN: $Id$
+ * @subpackage  plugins
+ * @author      Avraam Marimpis <makism@users.sf.net>
+ * @version     SVN: $Id$
+ * @filesource
  */
-final class leaf_Logger_File extends leaf_Logger_Heap {
 
+
+/**
+ * Creates an image html tag for the specific file, with the any
+ * parameters passed.
+ *
+ * @param   string  $img
+ * @param   array   $params
+ * @returns string
+ */
+function img($img, array $params=NULL)
+{
 
 }
 

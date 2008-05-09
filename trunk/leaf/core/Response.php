@@ -4,7 +4,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @license     http://leaf-framework.sourceforge.net/licence/  New BSD License
+ * @license     http://leaf-framework.sourceforge.net/LICENSE/  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  */
 
@@ -18,15 +18,13 @@
  */
 class leaf_OutputBuffer {
 
-    const GZIP_HANDLER  = "gzip_handler";
-    
-    const TIDY_HANDLER  = "tidy_handler";
+    const TIDY_HANDLER  = "ob_tidyhandler";
 
-    const BZ2_HANDLER   = "bz2_handler";
+    const GZ_HANDLER    = "ob_gzhandler";
     
-    const OB_RUNNING = 1;
+    const OB_STARTED = 1;
     
-    const OB_ENDED = 0;
+    const OB_FLUSHED = 0;
     
 }
 
@@ -40,22 +38,26 @@ class leaf_OutputBuffer {
  */
 final class leaf_Response extends leaf_Common  {
     
-    const BASE_KEY = "Reponse";
-
-    
     /**
      *
      *
-     * @var boolean
+     * @var integer
      */
-    private static $OUTPUT_STATUS = NULL;
+    private $outputStatus = NULL;
 
-	/**
+    /**
      *
      *
      * @var string
      */
-	private $buffer = NULL;	
+    private $outputHandler = NULL;
+
+    /**
+     *
+     *
+     * @var string
+     */
+    private $internalBuffer = NULL;
 	
 	
 	/**
@@ -63,14 +65,51 @@ final class leaf_Response extends leaf_Common  {
 	 * 
 	 * @return	void
 	 */
-	public function __construct()
+	public function __construct($controllerName)
 	{
-        parent::__construct(self::BASE_KEY, $this);
+        parent::__construct($controllerName);
 	}
 
-###############################################################################
-################################################################# Output Buffer
-###############################################################################
+    /**
+     *
+     *
+     */
+    public function setOutputHandler($handler=NULL)
+    {
+        if ($handler!=NULL) {
+            $name = constant("leaf_OutputBuffer::" . strtoupper($handler) . "_HANDLER");
+            if (function_exists($name)) {
+
+                if ($handler=="tidy") {
+                    // Check if automatic html cleanup is enabled.
+                        if (ini_get("tidy.clean_output")==FALSE) {
+                            // log it
+                        }
+
+                } else if ($handler=="gz" || $handler=="gzip") {
+                    // Check if `zlib.output_compression` is enabled...
+                    // Err, we don`t want it to be :)
+                        if (ini_get("zlib.output_compression")==TRUE) {
+                            // sound an alarm!
+                        }
+                }
+
+                $this->outputHandler = $name;
+            }
+        }
+
+        $this->outputBufferStart($this->outputHandler);
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getOutputHandler()
+    {
+        return $this->outputHandler;
+    }
 
     /**
      * Start output buffering
@@ -78,9 +117,12 @@ final class leaf_Response extends leaf_Common  {
      *
      * @return  void
      */
-    public function ouputBufferStart()
+    public function outputBufferStart()
     {
-        self::$OUTPUT_STATUS = leaf_OutputBuffer::OB_RUNNING;
+        if ($this->outputStatus!=leaf_OutputBuffer::OB_STARTED) {
+            $this->outputStatus = leaf_OutputBuffer::OB_STARTED;
+            ob_start();
+        }
     }
 
     /**
@@ -90,41 +132,37 @@ final class leaf_Response extends leaf_Common  {
      * @param   boolean $returnBuffer
      * @return  void|string
      */
-    public function outputBufferEnd($returnBuffer=FALSE)
+    public function outputBufferFlush($returnBuffer=FALSE)
     {
-        self::$OUTPUT_STATUS = leaf_OutputBuffer::OB_ENDED;
-    }
-    
-    /**
-     *
-     *
-     *
-     */
-    public function outputBufferFlush()
-    {
-    
+        if ($this->outputStatus==leaf_OutputBuffer::OB_STARTED) {
+            if ($returnBuffer) {
+                return ob_get_clean();
+            }
+
+            ob_end_flush();
+
+            $this->outputStatus = leaf_OutputBuffer::OB_FLUSHED;
+        }
     }
 
     /**
      * Gets output buffer.
      *
      *
-     * @param   boolean $flush
+     * @param   boolean $endBuffer
      * @return  string
      */
-    public function getOutputBuffer($flush=FALSE)
+    public function getOutputBufferContents($endBuffer=FALSE)
     {
-        
-        $buffer = $this->buffer;
-        
-        $this->buffer = NULL;
-        
-        return $buffer;
+        if ($this->outputStatus!=leaf_OutputBuffer::OB_FLUSHED) {
+            $this->internalBuffer = ob_get_contents();
+            ob_clean();
+
+            return $this->internalBuffer;
+        } else {
+            return NULL;
+        }
     }
-    
-###############################################################################
-####################################################################### Headers
-###############################################################################
 
     /**
      *
@@ -186,11 +224,6 @@ final class leaf_Response extends leaf_Common  {
     {
 
     }
-    
-    
-###############################################################################
-######################################################################## Other
-###############################################################################
 
     /**
      *
