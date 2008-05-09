@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+ <head>
+  <title>leaf framework Εγχειρίδιο &raquo; Γενικά &amp; Αφηρημένα &raquo; Απαιτήσεις &amp; Εγκατάσταση</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="../../media/css/page.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="../../media/css/section.css" media="screen" />
+  <script src="../..media/js/helper.js" type="text/javascript"></script>
+  <style type="text/css">
+    img {
+        border: 0px;
+        vertical-align: middle;
+        behavior: url(../../iepngfix.htc);
+    }
+  </style>
+ </head>
+ <body>
+
+ <div id="quick-menu">
+  <img src="../../media/images/icons/16x16/internet-group-chat.png" alt="report" />
+  <a href="mailto:makism@venus.cs.teicrete.gr?Subject=[report] requirents and installation">αναφέρετε αυτή τη σελίδα</a>&nbsp;
+  <img src="../../media/images/icons/16x16/folder-saved-search.png" alt="apps office" />
+  <a href="../../documents_listing.html">λίστα κειμένων</a>&nbsp;
+  <img src="../../media/images/icons/16x16/go-home.png" alt="home" />
+  <a href="../../index.html">αρχική</a>
+ </div>
+
+ <div id="man-logo">
+    <img src="../../media/images/leaf-logo.png" />
+    <p id="man-title">leaf framework Εγχειρίδιο</p>
+ </div>
+
+ <div id="doc-root">
+    <img src="../../media/images/icons/32x32/start-here.png"/>
+    <a href="general_and_abstract.html">Γενικά &amp; Αφηρημένα</a> &raquo; Απαιτήσεις &amp; Εγκατάσταση
+ </div>
+
+ <div style="margin: 5px 50px 20px 50px;">
+ <table width="100%">
+  <tr>
+   <td colspan="3" style="background-color: #423121; border: 1px solid #5f5242; padding: 0px 10px 0px 10px;">
+    <p style="text-indent:  20px; font-size: 18px; color: #f0e68c;">Απαιτήσεις της PHP</p>
+    <p style="text-indent: 20px;">
+     <ul style="list-style: circle;">
+      <li>
+       <i style="/**color: #d68787; **/ font-size: 14px;">PHP 5.1 (ή νεότερη)</i>
+       <p>Το leaf framework είναι σχεδιασμένο να λειτουργεί με παραπάνω εκδόσεις, επειδή μερικά χαρακτηριστικά τα οποία
+στις προγενέστερες εκδόσεις χρειάζονταν επιπλέον εγκαταστάσεις και ρυθμίσεις, είναι πλέον εξ ορισμού ενεργοποιημένα.</p>
+      </li>
+      <li>
+       <i style="font-size: 14px;">Reflection extension (καθαρά προαιρετικό)</i>
+       <p>Το leaf frameowork θα χρησιμοποιήσει Reflection ώστε να ανακαλύψει δυναμικά πως είναι οι κλάσεις και οι μέθοδοι σας έχουν δηλωθεί.</p>
+      </li>
+      <li>
+       <i style="font-size: 14px;">XDebug (καθαρά προαιρετικό)</i>
+       <p>Προτείνετε η χρήση του XDebug όταν αναπτύσσετε εφαρμογές PHP.</p>
+      </li>
+     </ul>
+    </p>
+
+    <p style="text-indent:  20px; font-size: 18px; color: #f0e68c;">Απαιτήσεις του Apache</p>
+    <p style="text-indent: 20px;">
+     <ul style="list-style: circle;">
+      <li>
+       <i style="font-size: 14px;">Οποιαδήποτε έκδοση του εξυπηρετητή Apache απλά κάνει...</i>
+       <p>Αγαπάμε τον Apache. Σύντομα θα δοκιμάσουμε και τον lighttpd...</p>
+      </li>
+      <li>
+       <i style="font-size: 14px;">Ενεργοποιημένο mod_rewrite</i>
+       <p>mod_rewrite (για την ώρα...) αποτελεί την ραχοκοκαλιά του leaf framework :-). Αυτό γιατί, το mod_rewrite χρησιμοποιείται, για να ξεχωρίσει τον Controller και τα Actions που εκτελούνται, καθώς επίσης και τα επιπλέον στοιχεία που μπορούν να υπάρξουν στο Url. </p>
+      </li>
+      <li>
+       <i style="font-size: 14px;">Υποστήριξη για αρχεία παραμέτρων .htaccess</i>
+       <p>Επιβάλετε ώστε να ρυθμίσουμε τον mod_rewrite, εκτός και αν έχετε απευθείας πρόσβαση στα αρχεία παραμέτρων του Apache.</p>
+      </li>
+     </ul>
+    </p>
+  
+    <p style="text-indent:  20px; font-size: 18px; color: #f0e68c;">Εγκατάσταση</p>
+    <p style="text-indent: 20px;">
+     <ol>
+      <li>
+       <i style="font-size: 14px;">Αποκτήστε ένα αντίγραφο του leaf framework</i>
+       <p>Για την ώρα δεν υπάρχει κάποια επίσημη έκδοση, οπότε, ανατρέξτε στο <img src="../../media/images/icons/16x16/gnome-fs-bookmark.png"> <a href="http://leaf.teicrete.gr">http://leaf.teicrete.gr</a> και ακολουθείστε τις οδηγίες που σας παρέχονται ώστε κάνετε <img src="../../media/images/icons/16x16/gnome-fs-bookmark.png"> <a href="http://svnbook.red-bean.com/en/1.4/svn.tour.initial.html">checkout</a> τον κώδικα στον κατάλογο /home/leaf/public_html.</p>
+      </li>
+      <li>
+       <i style="font-size: 14px;">Ρύθμιση .htaccess <a name="set_htaccess"></a></i>
+       <p>Άς υποθέσουμε ότι είστε ο χρήστης "leaf" στο localhost και η προσωπική σας σελίδα είναι "http://localhost/~leaf".<br/>
+Τροποποιούμε το κρυφό αρχείο .htaccess ώστε η γραμμή που περιέχει το
+<div class="codeBlock">RewriteBase	/</div>
+
+να γίνει
+
+<div class="codeBlock">RewriteBase	/~leaf/</div>
+
+</p>
+      </li>
+      <li>
+       <i style="font-size: 14px;">Ρύθμιση general.php<a name="set_general"></a></i>
+       <p>Στο αρχείο leaf/etc/general.php, θα πρέπει να το αλλάξουμε ώστε οι μεταβλητές να γίνουν:<br />
+<div class="codeBlock">$general['hostname'] = "http://localhost"</div>
+και
+<div class="codeBlock">$general['base_dir' = "/~leaf/"</div>
+</p>
+      </li>
+     </ol>
+
+    </p>
+
+   </td>
+  </tr>
+  <tr>
+
+  <tr>
+   <td align="left" width="33%">&nbsp;
+    <img src="../../media/images/icons/22x22/go-previous.png" />
+    <a href="introduction.html">Εισαγωγή</a>
+   </td>
+   <td align="center" width="33%">
+    <a href="../../index.html">Αρχική</a> <img src="../../media/images/icons/22x22/go-home.png" />
+   </td>
+   <td align="right" width="33%">
+    <a href="license.html">Άδεια Χρήσης</a>
+    <img src="../../media/images/icons/22x22/go-next.png" />
+   </td>
+  </tr>
+
+  </tr>
+ </table>
+ </div>
+
+ <br />
+
+ <div style="margin: 5px 50px 20px 50px;">
+  Αναφορές και Εξωτερικοί σύνδεσμοι
+  <ul style="padding: 0px 0px 0px 10px;">
+   <li>
+    <img src="../../media/images/icons/16x16/gnome-fs-bookmark.png">
+    <a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">http://httpd.apache.org/docs/2.0/howto/htaccess.html</a>
+     <span style="font-style: italic;">Apache - Howto .htaccess</span>
+   </li>
+   <li>
+    <img src="../../media/images/icons/16x16/gnome-fs-bookmark.png">
+    <a href="http://httpd.apache.org/docs/2.0/misc/rewriteguide.html">http://httpd.apache.org/docs/2.0/misc/rewriteguide.html</a>
+     <span style="font-style: italic;">Apache - Οδγηγός για το mod_rewrite</span>
+   </li>
+   <li>
+    <img src="../../media/images/icons/16x16/gnome-fs-bookmark.png">
+    <a href="http://xdebug.org">http://xdebug.org</a>
+     <span style="font-style: italic;">η κεντρική σελίδα για το XDebug</span>
+   </li>
+   <li>
+    <img src="../../media/images/icons/16x16/gnome-fs-bookmark.png">
+    <a href="http://php.net/manual/en/language.oop5.reflection.php">http://php.net/manual/en/language.oop5.reflection.php</a>
+     <span style="font-style: italic;">το εγχειρίδιο της PHP5 για το "Relection"</span>
+   </li>
+   <li>
+    <img src="../../media/images/icons/16x16/gnome-fs-bookmark.png">
+    <a href="http://svnbook.red-bean.com/">http://svnbook.red-bean.com/</a>
+     <span style="font-style: italic;">το online εγχειρίδιο του Subversion</span>
+   </li>
+
+  </ul>
+ </div>
+
+
+ <div style="font-size: 10px; padding: 5px; text-align: right; color: #7b512c;">
+  revision $Revision: 51 $, τελευταία ενημέρωση $Date: 2008-04-04 20:43:38 +0300 (Παρ, 04 Απρ 2008) $
+ </div>
+
+ </body>
+</html>
+
+
