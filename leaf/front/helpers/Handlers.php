@@ -46,13 +46,13 @@ function errorHandler($errno, $errstr, $errfile, $errline)
 echo <<<ERROR_MSG
     <br />
     <br />
-    <div style="margin: 0px auto; width: 600px; overflow: hidden;">
+    <div style="margin: 0px auto; width: 600px; overflow: hidden; color: #000000;">
         <div style="font-size: 16px; background-color: #f7f7da; padding: 5px;">
             <img src="/leaf/content/leaf/error.png" style="vertical-align: middle;"/>
             $errorTypes[$errno]
         </div>
 
-        <div style="margin: 5px 0px 0px 0px; border: 1px solid #f0f0f0; padding: 10px;">
+        <div style="color: #ffffff; margin: 5px 0px 0px 0px; border: 1px solid #f0f0f0; padding: 10px;">
             <fieldset style="border: 0px;">
                 <legend><b>Message</b></legend>
                 <span style="font: Arial; font-size: 12px;">$errstr</span>
