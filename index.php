@@ -14,10 +14,10 @@
 
 
 /*
- * PHP version check (at least 5.1).
+ * PHP version check (at least 6.0).
  */
-if (version_compare(phpversion(), '5.1', '<'))
-	die('PHP versions older than 5.1 are not supported');
+if (version_compare(phpversion(), '6.0', '<'))
+	die('PHP versions older than 6.0 are not supported');
 
 /*
  * We set error reporting in such level in order

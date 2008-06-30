@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leafframework::Base;
+
 
 /**
  *
