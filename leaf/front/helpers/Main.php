@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -10,7 +9,7 @@
  *
  * @package     leaf
  * @subpackage  front.helpers
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  * @filesource
  */
@@ -26,10 +25,10 @@
  *
  * <b>EndorsedManager</b> is deactivated for the time being.
  *
- * @link    http://www.php.net/manual/en/language.oop5.autoload.html
+ * @link	http://www.php.net/manual/en/language.oop5.autoload.html
  * @see     leaf_EndorsedManager
- * @param   string $className
- * @return  void
+ * @param	string $className
+ * @return	void
  */
 function __autoload($className)
 {
@@ -67,11 +66,14 @@ function __autoload($className)
             'leaf_Config'    => 'base/Config.php',
             'leaf_Dispatcher'=> 'base/Dispatcher.php',
             'leaf_Exception' => 'base/Exception.php',
+            'leaf_Exception_Loggable' => 'base/Exception_Loggable.php',
             'leaf_Loader'    => 'base/Loader.php',
             'leaf_Locale'    => 'base/Locale.php',
             'leaf_Router'    => 'base/Router.php',
+            'leaf_Router_Static' => 'base/Router_Static.php',
             'leaf_Hook'      => 'base/Hook.php',
-            'leaf_Hook_Conditional'=> 'base/Hook_Conditional.php',            
+            'leaf_Hook_Conditional'=> 'base/Hook_Conditional.php',
+            'leaf_Extension'   => 'base/Extension.php',
         /** Core libraries              **/
             'leaf_Common'    => 'core/Common.php',
             'leaf_Registry'  => 'core/Registry.php',
@@ -80,14 +82,7 @@ function __autoload($className)
             'leaf_Controller'=> 'core/Controller.php',
             'leaf_Model'     => 'core/Model.php',
             'leaf_View'      => 'core/View.php',
-            'leaf_Cookie'    => 'core/Cookie.php',                  // possible removal
-            'leaf_Session'   => 'core/Session.php',                 // possible removal
-        'leaf_LocalLoader'=>'core/LocalLoader.php',
-        /** Collection libraries        **/
-            'leaf_Collection'=> 'core/Collection.php',              // possible removal
-            'leaf_HashMap'   => 'core/collections/HashMap.php',     // possible removal
-            'leaf_Enumeration'=>'core/collections/Enumeration.php', // possible removal
-            'leaf_Iterator'  => 'core/collections/Iterator.php'     // possible removal
+            'leaf_LocalLoader'=>'core/LocalLoader.php'
         );
 
     /*

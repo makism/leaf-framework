@@ -10,17 +10,21 @@
 
 
 /**
- *
+ * Allows the Core objects to communicate with each other.
+ * 
+ * This is accompliced by having every application store all Core objects,
+ * Models, Extensions etc to Registry that is associated with it.
  *
  * @package	    leaf
  * @subpackage	core
- * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	    SVN: $Id$
  */
 abstract class leaf_Common {
 
     /**
-     *
+     * An instance of leaf_Registry, that stores all the
+     * Core objects and Models for a specific application.
      *
      * @var object leaf_Registry
      */
@@ -28,7 +32,7 @@ abstract class leaf_Common {
 
 
     /**
-     *
+     * Creates a new Registry for the specified Controller.
      *
      * @param   string  $regName
      * @return  void
@@ -38,14 +42,14 @@ abstract class leaf_Common {
         $this->controllerRegistry = leaf_Registry::getInstance($regName);
     }
     
-    /**
-     *
+   	/**
+     * Fetches a Core object, a Base object or a Model. 
      * 
-     * @param  string  $Id
-     * @return object|NULL
-     */
-    protected function __get($Id)
-    {
+	 * @param  string  $Id
+	 * @return object|NULL
+	 */
+	protected function __get($Id)
+	{
         if ($this->controllerRegistry->registered($Id)) {
             return $this->controllerRegistry->$Id;
         } else if (leaf_Base::exists($Id)) {
@@ -54,13 +58,13 @@ abstract class leaf_Common {
             if ($this->controllerRegistry->Local->modelLoaded($Id))
                 return $this->controllerRegistry->Local->model($Id);
         }
-    }
+	}
     
     /**
-     *
+     * Stores an Object using the specified id.
      *
      * @param   string  $Id
-     * @param   mixed   $Obj
+     * @param   object  $Obj
      * @return  void
      */
     protected function __set($Id, $Obj)

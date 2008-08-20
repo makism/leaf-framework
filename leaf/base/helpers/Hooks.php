@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -10,37 +9,39 @@
  *
  * @package     leaf
  * @subpackage  base.helpers
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  * @filesource
  */
 
 
 /**
- *
+ * Pre init controller.
  */
 define('HOOK_PRE_INIT_CONTROLLER',  'pre_init_controller');
 
 /**
- *
+ * Post init controller.
  */
 define('HOOK_POST_INIT_CONTROLLER', 'post_init_controller');
 
 /**
- *
+ * Pre destroy controller.
  */
 define('HOOK_PRE_DESTROY_CONTROLLER',   'pre_destroy_controller');
 
 /**
- *
+ * Post destroy controller.
  */
 define('HOOK_POST_DESTROY_CONTROLLER',  'post_destroy_controller');
 
 
 /**
+ * Run the Hooks at the specified level
  *
- *
- *
+ * @param   object leaf_Controller  $Controller
+ * @param   string  $level
+ * @return  void
  */
 function runControllerHooks($Controller, $level)
 {

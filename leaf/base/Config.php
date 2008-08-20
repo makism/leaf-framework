@@ -27,9 +27,7 @@
  * The other paremeters, are accessed by using the method
  * getByHashKey(configFileName). This method returns an array with
  * all the related configuration parameters.<br>
- * Example:<br>
- * <code>
- * </code>
+
  *
  * This design was selected because the "general" properties are the
  * most commonly used, thus it is wise to provide a fast-access
@@ -39,15 +37,8 @@
  *
  * @package     leaf
  * @subpackage  base
- * @author      Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
- * @todo
- * <ol>
- *  <li>Maybe we should unset the global variable $GLOBALS somewhere else.</li>
- *  <li>Possible implementation of a subclass that will read seperate configuration
- *  files for each Controller, thus declaring different parameters and maybe unique
- *  for each Controller.</li>
- * </ol>
  */
 final class leaf_Config extends leaf_Base implements ArrayAccess {
 
@@ -70,30 +61,27 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
     private $optionsTable= array();
 
 	/**
-     * Encapsulates all the configuration files, and stores the
-     * paremeters in an array.
+     * Registers Config, and loads all the configuration settings in an internal array.
 	 *
 	 * @return void
 	 */
 	public function __construct()
 	{
-        //leaf_Base::storeBase(self::BASE_KEY, $this);
         parent::__construct(self::BASE_KEY, $this);
         
-        
 		require_once LEAF_BASE . 'etc/general.php';
+		require_once LEAF_BASE . 'etc/error.php';
 		require_once LEAF_BASE . 'etc/autoload.php';
 		require_once LEAF_BASE . 'etc/hooks.php';
         require_once LEAF_BASE . 'etc/endorsed.php';
-        require_once LEAF_BASE . 'etc/database.php';
         require_once LEAF_BASE . 'etc/route.php';
         
         $this->optionsTable['general'] = $general;
         $this->optionsTable['autoload']= $autoload;
         $this->optionsTable['endorsed']= $endorsed;
         $this->optionsTable['hooks']   = $hooks;
-        $this->optionsTable['database']= $database;
-        $this->optionsTable['route']  = $route;
+        $this->optionsTable['route']   = $route;
+        $this->optionsTable['error']   = $error;
         
         $this->options = $general;
 		
@@ -115,7 +103,19 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
     }
 
     /**
-     *
+     * Overload method, to provide fast access to a group of parameters.
+     * 
+     * This is accompliced, by defining virtual methods prefixed with
+     * "fetch" and followed by the name of group paramaters.
+     * Even an array offset (setting name) can be used, to return the specific
+     * one, otherwise the entire array will be returned.
+     * For example:<br>
+     * <code>
+     *  $conf = new leaf_Config();
+     *  $generalParamaters = $conf->fetchGeneral("locale");
+     * </code>
+     * In the above example, we request the value of the configuration
+     * option "locale" from the array of options "general".
      *
      * @param   string  $method
      * @param   array   $args
@@ -187,7 +187,7 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	 */
 	public function offsetSet($offset, $value)
 	{
-        $this->options[$offset] = $value;
+        //$this->options[$offset] = $value;
 	}
 
 	/**
@@ -204,7 +204,11 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	{
         unset($this->options[$offset]);
 	}
-    
+
+    /**
+     * 
+     * @return  string
+     */
     public function __toString()
     {
         return __CLASS__ . " (Provides read access to the config files)";
