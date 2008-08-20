@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -10,7 +9,7 @@
  *
  * @package     leaf
  * @subpackage  front
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  * @filesource
  */

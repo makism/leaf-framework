@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -10,7 +9,7 @@
  *
  * @package     leaf
  * @subpackage  front.helpers
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  * @filesource
  */
@@ -42,13 +41,15 @@ function showErrorPage404($str=NULL)
 function showHtmlMessage($title, $reason, $die=FALSE)
 {
 
+$errorMsg = leaf_Base::fetch("Locale")->getError('ErrorOccured');
+
 echo <<<ERROR_MSG
     <br />
     <br />
     <div style="margin: 0px auto; width: 600px; overflow: hidden;">
         <div style="font-size: 16px; background-color: #f7f7da; padding: 5px;">
             <img src="/leaf/content/leaf/error.png" style="vertical-align: middle;"/>
-            An error has occured
+            $errorMsg
         </div>
 
         <div style="margin: 5px 0px 0px 0px; border: 1px solid #f0f0f0; padding: 10px;">

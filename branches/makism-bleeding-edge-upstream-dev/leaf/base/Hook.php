@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -12,17 +11,19 @@
 
 /**
  * Base class for Hook objects.
+ * 
+ * Hooks, are either Objects or simple php files that can be executed
+ * in pre-defined sections within an application.
  *
  * @package 	leaf
  * @subpackage	base
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
 abstract class leaf_Hook extends leaf_Common {
     
-
 	/**
-     *
+     * Associate with a specific Controller.
      *
      * @return  void
      */
@@ -32,11 +33,16 @@ abstract class leaf_Hook extends leaf_Common {
 	}
 
 	/**
+	 * The code to execute.
 	 *
-	 *
+	 * @return void
 	 */
 	abstract public function run();
 
+	/**
+	 *
+	 * @return string
+	 */
     public function __toString()
     {
         return __CLASS__ . " ()";

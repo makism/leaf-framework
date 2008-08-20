@@ -9,7 +9,7 @@
  *
  * @package     leaf
  * @subpackage  base.helpers
- * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @author	    Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  * @filesource
  */
@@ -18,10 +18,25 @@
 /**
  * Loads a plugin.
  *
+ * @param   string  $plugin
  * @return  void
  */
 function use_plugin ($plugin)
 {
-    leaf_Registry::getInstance()->Load->plugin($plugin);
+	if (!empty($plugin)) {
+		leaf_Base::fetch('Loader')->plugin($plugin);
+	}
 }
 
+/**
+ * Loads an (orphan) extension.
+ *
+ * @param   string  $ext
+ * @return  object leaf_Extension|NULL
+ */
+function use_extension ($ext)
+{
+	if (!empty($ext)) {
+		return leaf_Base::fetch("Loader")->extension($ext, TRUE);
+	}
+}
