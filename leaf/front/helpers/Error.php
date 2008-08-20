@@ -42,13 +42,14 @@ function showHtmlMessage($title, $reason, $die=FALSE)
 {
 
 $errorMsg = leaf_Base::fetch("Locale")->getError('ErrorOccured');
+$image    = baseUrl() . "content/leaf/error.png";
 
 echo <<<ERROR_MSG
     <br />
     <br />
     <div style="margin: 0px auto; width: 600px; overflow: hidden;">
         <div style="font-size: 16px; background-color: #f7f7da; padding: 5px;">
-            <img src="/leaf/content/leaf/error.png" style="vertical-align: middle;"/>
+            <img src="$image" style="vertical-align: middle;"/>
             $errorMsg
         </div>
 
