@@ -28,7 +28,7 @@
             <pre><?php echo $code; ?></pre>
 
             <span style="font-style: italic;">
-				<?php leaf_Base::fetch("Locale")->getError('Snippet'); ?>:
+				<?php echo leaf_Base::fetch("Locale")->getError('Snippet'); ?>:
 			</span><br />
             <span style="font-size: 10px;"><?php echo $errfile; ?></span>
             </span>
