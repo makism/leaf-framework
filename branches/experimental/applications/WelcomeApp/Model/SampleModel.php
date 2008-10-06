@@ -2,25 +2,15 @@
 
 // *Always*, your Model must:
 // 1) extend "leaf_Model", and
-// 2) have a name ending the string "_Controller".
-//
-// If those two requirements, are not met,
-// your Controller will be ignored, and an error
-// will be raised.
-//
-// Also, you *must*, call the parent`s contructor,
-// in order to have your Model working properly.
+// 2) have a name ending the string "_Model".
+// 3) you have to provide an implmentation for
+//    the method "init"
 class SampleModel_Model extends leaf_Model {
     
     const BIND_NAME = "SampleModel";
     
 
     public function init()
-    {
-    
-    }
-    
-    public function destroy()
     {
     
     }

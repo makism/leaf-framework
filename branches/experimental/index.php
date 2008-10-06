@@ -1,23 +1,29 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
 
 
 /*
- * PHP version check (at least 6.0).
+ * PHP version check (at least 5.3).
  */
-if (version_compare(phpversion(), '6.0', '<'))
-	die('PHP versions older than 6.0 are not supported');
+if (version_compare(phpversion(), '5.3', '<'))
+	die('PHP versions older than 5.3 are not supported');
+	
+/*
+ * Clean up some global arrays =)
+ * 
+ * Don`t panic, they will become available as soon as the Router runs.
+ */
+$_GET = array();
 
 /*
  * We set error reporting in such level in order
@@ -35,7 +41,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
  * leaf`s Status and Version information.
  */
 define('LEAF_REL_STATUS', 'SVN');
-define('LEAF_REL_VERSION', '1.0');
+define('LEAF_REL_VERSION', '1.0-alpha');
 
 /**
  * Current directory where *this* file is located.
@@ -45,7 +51,12 @@ define('LEAF_WORKING_DIR', dirname(realpath(__FILE__)) . '/');
 /**
  * Subdirectory in which leaf`s files are located.
  */
-define('LEAF_BASE',	LEAF_WORKING_DIR . 'leaf/');	
+define('LEAF_BASE',	LEAF_WORKING_DIR . 'leaf/');
+
+/**
+ * Subdirectory in which error template files are located.
+ */
+define('LEAF_ERROR', LEAF_BASE . 'error/');
 
 /**
  * Subdirectory in which user`s applications are located.
@@ -67,3 +78,4 @@ define('LEAF_CONTENT', LEAF_WORKING_DIR . 'content/');
  * startup sequence.
  */
 require_once LEAF_BASE . 'front/Front_Controller.php';
+

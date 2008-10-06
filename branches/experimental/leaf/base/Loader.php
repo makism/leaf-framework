@@ -18,21 +18,13 @@
  * 
  * @package	    leaf
  * @subpackage	base
- * @author      Avraam Marimpis <makism@venus.cs.teicrete.gr>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
 class leaf_Loader extends leaf_Base {
     
     const BASE_KEY = "Loader";
-    
-    
-    /**
-     *
-     *
-     * @var object leaf_Loader
-     */
-    protected static $instance = NULL;
-     
+	
 
     /**
      * List of all the loaded plugins.
@@ -40,22 +32,6 @@ class leaf_Loader extends leaf_Base {
      * @var array 
      */
     private $plugins = array();
-    
-    /**
-     * List of all loaded libraries.
-     * 
-     * @var array
-     */
-    private $libraries = array();
-    
-    /**
-     * List of all currently supported libraries.
-     * 
-     * @var array 
-     */
-    private $allLibraries = array(
-        "Log"
-    );
     
     /**
      * List of all loaded extensions.
@@ -66,101 +42,191 @@ class leaf_Loader extends leaf_Base {
     
 
     /**
-     *
+     * Registers Loader.
      *
      * @return  void
      */
     public function __construct()
     {     
-        parent::__construct(self::BASE_KEY, self::$instance);
-        require_once LEAF_BASE . "base/helpers/Loader.php";      
-    }
-    
-    /**
-     *
-     *
-     * @return  object leaf_Loader
-     */
-    public static function getInstance()
-    {
-        if (self::$instance==NULL)
-            self::$instance = new leaf_Loader();
-    
-        return self::$instance;
-    }
-	
-    /**
-     * Loads a "Core Library" class.
-     * 
-     * Core libraries, are these libraries that although are not
-     * really needed to run the framework properly, they are bundled
-     * with it, since they very useful...<br>
-     * List of the libraries:
-     * <ul>
-     *  <li>Db (<i>Communicate with a database.</i>)</li>
-     *  <li>Cache (<i>Cache data for faster access.</i>)</li>
-     *  <li>Hash (<i>Create hashes for the specific input.</i>)</li>
-     *  <li>Log (<i>Log errors that the framework may produce, or your own messages.</i>)</li>
-     *  <li>Benchmark (<i>Benchmark specific parts of the internals, or your code.</i>)</li>
-     *  <li>Unit (<i>Perform simple Unit Tests on your classes.</i>)</li> 
-     * </ul>
-     * 
-     * @param   string  $libName
-     * @param   array   $settings
-     * @return  void
-     * @todo
-     * <ol>
-     *  <li>It is given a second thought the possibility that <b>all</b> these
-     *  libraries are moved outside the core package.</li>
-     * </ol>
-     */
-    public function library($libName, array $settings=NULL)
-    {        
-        // Check if the the requested library is either
-        // supported or already registered.
-        if (in_array($libName, $this->allLibraries) &&
-            $this->libraryLoaded($libName)==false) {
-        	$leafName= "leaf_" . $libName;
-        	$libFile = $libName . ".php";
-    
-            leaf_Registry::getInstance()->register(new $leafName($settings));
-            
-            $this->libraries[] = $libName;
-        }
-    }
-    
-    /**
-     * Checks if the specified library is loaded.
-     *
-     * @param   string  $libName
-     * @return  boolean
-     */
-    public function libraryLoaded($libName)
-    {
-        return in_array($libName, $this->libraries);
+        parent::__construct(self::BASE_KEY, $this);
+        require_once LEAF_BASE . "base/helpers/Loader.php";
+		
+		if ($this->Config['common_extensions_usage']==FALSE) {
+			$this->extensions = array (
+				"apps"	 => array(),
+				"orphans"=> array()
+			);
+		}
     }
     
     /**
      * Loads an "Extension" class.
+     * 
+     * The loading of the extension classes is affected by the configuration
+     * setting "common_extensions_usage" in the general.php settings.
+     * When set to TRUE, every extension loaded will be common among the
+     * running applications (also known as "orphan").
+     * When set to FALSE, evey extension loaded will be available to the
+     * application that has requested the specific extension.
+     * 
+     * An extension is considered to be orphan, when either the parameter
+     * "declareOrphan" is set to TRUE (no matter the value of the setting
+     * "common_extensions_usage"), or when loaded using the helper function
+     * "use_extension()". 
      *
-     * @param   string  $ext
-     * @param   string  $namespace
-     * @return  void
+     * @param   string		$ext
+     * @param   boolean     $declareOrphan
+     * @return  void|object
      */
-	public function extension($ext, $namespace=NULL)
+	public function extension($ext, $declareOrphan=FALSE)
 	{
+		// exploade the fully-qualified class name
+	    $fq = explode(".", $ext);
+		
+		// prepare the directory in which the class resides
+	    $classFile = LEAF_BASE . 'extensions/';
+		
+		// attach all the parts in the directory
+		for ($i=0; $i<sizeof($fq)-1; $i++) {
+			$classFile .= $fq[$i] . "/";
+		}
+		
+		// base directory
+		$classBase = (sizeof($fq)>=3) ? $classFile : NULL;
+		
+		// chop the classname
+		$className = $fq[sizeof($fq)-1];
+		
+		// finalize the class`s filename
+		$classFile .= $className . ".php";
+		
+		$readyToLoad = FALSE;
+		
+		/*
+		 * Orphan extensions handling.
+		 * 
+		 * This block, ensures that extensions can be loaded
+		 * even before a controller is running.
+		 */
+		if (
+			($this->Config['common_extensions_usage']==FALSE && $declareOrphan==TRUE) ||
+			($this->Config['common_extensions_usage']==TRUE && $declareOrphan==TRUE) ||
+			($this->Dispatcher==NULL || $this->Dispatcher->getCurrentController()==NULL)
+			)
+		{
+			if ($this->extensionLoaded($ext)==FALSE) {
+				$this->extensions['orphans'][] = $ext;
+				require_once $classFile;
+			    $instance = new $className($ext, $classBase);
+				
+				if ($instance  instanceof leaf_Extension) {
+					//if ($this->extensionDependancies($instance)) {
+					    $instance->parseConfig();
+					    $instance->init();
+						parent::__set($className, $instance);
+						return $instance;
+					//}
+				} else {
+					unset($instance);
+				}
+			} else {
+				return parent::__get($className);
+			}
+		}
+
+	    if ($this->extensionLoaded($ext)==FALSE) {
+			if (file_exists($classFile) && is_readable($classFile)) {
+				if ($this->Config['common_extensions_usage']==TRUE) {
+					$this->extensions[] = $ext;
+				} else {
+		            $this->extensions['apps'][
+						$this->Dispatcher->getCurrentController()
+					][] = $ext;
+				}
+				
+	            require_once $classFile;
+				
+				$readyToLoad = TRUE;
+			}
+	    } else {
+			if ($this->Config['common_extensions_usage']==TRUE) {
+				return parent::__get($className);
+			} else {
+				$readyToLoad = TRUE;
+			}
+		}
+		
+		if ($readyToLoad===TRUE) {
+		    $instance = new $className ($ext, $classBase);
+			
+			if ($instance instanceof leaf_Extension) {
+			    $instance->parseConfig();
+			    $instance->init();
+			} else {
+				//
+			}
+			
+			/*if ($fq[0]=="leaf") {
+				$className = @constant("{$className}::BIND_NAME");
+			}*/
+			
+			if ($this->Config['common_extensions_usage']==FALSE) {
+				// assign the library`s instance with the current
+				// running controller
+				leaf_Registry::getInstance(
+					$this->Dispatcher->getCurrentController()
+				)->register($className, $instance);
+			} else {
+				parent::__set($className, $instance);
+			}
+			
+			return $instance;
+		}
+	    
+	}
 	
+	/**
+	 * Overloaded method used to load extensions using
+	 * dynamic method naming.
+	 *
+	 * For example, using the "extension" method we would write:
+	 * <code>
+	 *  $this->Loader->extension("leaf.tmp.TestLib");
+	 * </code>
+	 * While, using the overloaded method, we can write:
+	 * <code>
+	 *  $this->Loader->extensionInTmpFromLeaf("TestLib");
+	 * </code>
+	 * Underneath, the "extension" method is called.
+	 *
+	 * @param   string $method
+	 * @param   array  $arguments
+	 * @return  void
+	 */
+	public function __call($method, $arguments)
+	{
+		$fq = NULL;
+		$matchOneLevel = "^extensionFrom(?P<dir>[a-z0-9]*)";
+		$matchTwoLevel = "^extensionIn(?P<subdir>[a-z0-9]*)From(?P<dir>[a-z0-9]*)";
+		
+		if ($matchTwo = preg_match("@" . $matchTwoLevel . "@i", $method, $hits)) {
+			$fq = strtolower("{$hits['dir']}.{$hits['subdir']}.") . $arguments[0];
+			
+		} else if ($matchOne = preg_match("@" . $matchOneLevel . "@i", $method, $hits)) {
+			$fq = strtolower($hits['dir']) . "." . $arguments[0];
+		}
+		
+		if ($fq!=NULL)
+			return $this->extension($fq);
+		else
+			throw new Exception("Error loading extension.", 1000);
 	}
 	
     /**
      * Loads a "Plugin" file.
      * 
      * "Plugin", is a common php script file that contains
-     * a number of functions.<br>
-     * It is most likely, that each plugin, will have a specific
-     * "topic", Url-manipulating for example.<br>
-     * Possible candidates as Plugins, are the todo-facade methods
-     * for class {@link leaf_Request}.
+     * a number of functions.
      * 
      * @param   string  $plugin
      * @return  void
@@ -186,10 +252,66 @@ class leaf_Loader extends leaf_Base {
 	{
 	    return in_array($plugin, $this->plugins);
 	}
+	
+    /**
+     * Checks if the specified extension is loaded.
+     * 
+     * This method, just like "extension()", is affected by the configuration
+     * setting "common_extensions_usage".
+     *
+     * @param   string  $fqExtName
+     * @return  boolean
+     */
+    public function extensionLoaded($fqExtName)
+    {
+		if ($this->Config['common_extensions_usage']==TRUE) {
+			return in_array($fqExtName, $this->extensions);
+		} else {
+			if (in_array($fqExtName, $this->extensions['orphans'])) {
+				return TRUE;
+			} else if (
+				$this->Dispatcher!=NULL && 
+				in_array (
+					$this->Dispatcher->getCurrentController(),
+					$this->extensions['apps']
+				)
+			) {
+		        return TRUE;
+			} else {
+				return FALSE;
+			}
+		}
+    }
+	
+	/**
+	 *
+	 *
+	 * @param	object leaf_Extension	$object
+	 * @return	boolean
+	 */
+/*	 
+	private function extensionDependancies($obj)
+	{
+		if ($obj->php_dependancies()==NULL)
+			return TRUE;
+		
+		foreach ($obj->php_dependancies() as $mod) {
+			if ($mod!="")
+				if (!extension_loaded($mod))
+					throw new leaf_Exception("PHP extension not loaded \"{$mod}\"", 6000);
+		}
+		
+		return TRUE;
+	}
+*/
     
+    /**
+     *
+     * @return string
+     */
     public function __toString()
     {
-        return __CLASS__ . " (Loads libraries and plugins)";
+        return __CLASS__ . " (Loads extensions and plugins)";
     }
 
 }

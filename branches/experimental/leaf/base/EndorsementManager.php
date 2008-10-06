@@ -18,7 +18,7 @@
  *
  * @package 	leaf
  * @subpackage	base
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
 final class leaf_EndorsementManager extends leaf_Base {
@@ -143,6 +143,10 @@ final class leaf_EndorsementManager extends leaf_Base {
         return $this->endorsed;
     }
 
+    /** 
+     *
+     * @return string
+     */
     public function __toString()
     {
         return __CLASS__ . " (Supports the endorsed mechanism)";
