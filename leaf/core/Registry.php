@@ -10,11 +10,13 @@
 
 
 /**
- *
+ * Holds up all the Core instances that are related with a specific application.
+ * 
+ * This class, implements the Multiton design pattern.
  *
  * @package	    leaf
  * @subpackage	core
- * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version 	SVN: $Id$
  * @see         leaf_Base
  */
@@ -28,7 +30,7 @@ class leaf_Registry {
 	private static $instances = NULL;
 
     /**
-     *
+     * The registered objects that holds the current Registry object.
      *
      * @var array
      */
@@ -36,7 +38,7 @@ class leaf_Registry {
     
     
     /**
-     *
+     * Prevents external instantiation. Used by the Singleton design pattern.
      *
      * @return  void
      */
@@ -46,17 +48,18 @@ class leaf_Registry {
     }
     
     /**
+     * Returns the Registry object that is associated with a specific
+     * application, or creates a new Registry.
      *
-     *
-     * @param   string  $key
-     * @return  object leaf_Registry
+     * @param   string  $key    The associated application name
+     * @return  object  leaf_Registry   Registry instance
      */
     public static function getInstance($Key)
     {    
         if (self::$instances==NULL)
             self::$instances = array();
      
-        $instance = NULL;
+        $instance = NULL;	
         
         if (isset(self::$instances[$Key]))
             $instance = self::$instances[$Key];
@@ -68,6 +71,16 @@ class leaf_Registry {
         
         return $instance;
     }
+	
+	/**
+	 * Returns all registered Controllers` names.
+	 * 
+	 * @return	array
+	 */
+	public static function getInstanceKeys()
+	{
+		return self::$instances;
+	}
 	
 	/**
 	 * Return the request object, by refering to it`s instance name.
@@ -93,7 +106,8 @@ class leaf_Registry {
     }
 
     /**
-     *
+     * Returns true if the requested object is available in the
+     * current Registry object.
      *
      * @return  boolean
      */

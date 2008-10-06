@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -10,14 +9,17 @@
  *
  * @package     leaf
  * @subpackage  front.helpers
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  * @filesource
  */
 
 
 /**
- *
+ * Returns the specified lines from a files.
+ * 
+ * This is used internally to present a code snippet that propably
+ * contains errors.
  *
  * @param   string  $filename
  * @param   integer $startline
@@ -34,6 +36,8 @@ function debug_parsefile($filename, $startline, $endline=-1)
 
     $beforeLines= 5;
     $afterLines = 5;
+    $afterStr = NULL;
+    $beforeStr= NULL;
 
     if ($total_lines-$startline>=5) {
         $afterLines = 5;

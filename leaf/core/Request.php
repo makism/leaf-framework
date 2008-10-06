@@ -15,14 +15,8 @@
  *
  * @package     leaf
  * @subpackage  core
- * @author	    Avraam Marimpis <makism@users.sf.net>
+ * @author	    Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
- * @todo
- * <ol>
- *  <li>Add support for Sessions.</li>
- *  <li>Add support for Cookies.</li>
- *  <li>Update documentation/comments.</li>
- * </ol>
  */
 final class leaf_Request extends leaf_Common {
 
@@ -39,45 +33,13 @@ final class leaf_Request extends leaf_Common {
      * @var array
      */
     private static $segments = NULL;
-    
-    /**
-     * The POST parameters.
-     * 
-     * @var array
-     */
-    private $parameters = NULL;
-
-    /**
-     * The current query string that found in the Uri.
-     *
-     *
-     * @var string
-     */
-    private static $immutableQueryString = NULL;
-
-    /**
-     * Will hold the new query string that we will build.
-     *
-     *
-     * @var string
-     */
-    private static $mutableQueryString = NULL;
-    
-    /**
-     * The query string found in the Uri.
-     *
-     * For more info take a look at the class leaf_Router.
-     *
-     * @var array
-     */
-    private static $queryElems = NULL;
-
-    /**
-     * Will hold the elements that will make up the new mutable query string.
-     *
-     * @var array
-     */
-    private static $mutableQueryElems = NULL;
+	
+	/**
+	 * The query string`s as an associative array.
+	 *
+	 * @var	array
+	 */
+	private static $queryString = NULL;
 
     /**
      * The requested class name (Controller), suffixed with "_Controller".
@@ -105,9 +67,9 @@ final class leaf_Request extends leaf_Common {
     
 
     /**
-     * Internally uses the class {@link leaf_Router} in order to export
-     * information like, the Controller name, the Controller`s name as 
-     * is <i>must</i> be, the Action, etc.
+     * Internally uses the class {@link leaf_Router} and {@link leaf_Dispatcher}
+     * in order to export information like, the Controller name,
+     * the Controller`s name, the Action, etc.
      *
      * @return  void
      */
@@ -117,23 +79,11 @@ final class leaf_Request extends leaf_Common {
 
         $this->controller       = $controllerName;
         $this->controllerFile   = $controllerName . "_Controller.php";
-        $this->action           = $this->Dispatcher->dispatchObject->action;
+        $this->action           = $this->Dispatcher->getCurrentAction();
         
-        // 
+        // Fetch the segments for the Router.
         self::$segments = $this->Router->segments();
-        
-        // Fetch the Query String from the {@link leaf_Router router} object.
-        self::$queryElems = $this->Router->queryStringElements();
-
-        // Assign the Query String
-        self::$immutableQueryString = $this->Router->queryString();
-        
-        // 
-        if (!empty($_POST)) {
-            $this->parameters = $_POST;
-            //unset($_POST);
-        }
-
+		
         // Gather the request headers.
         if (function_exists('apache_request_headers'))
             self::$headers = apache_request_headers();
@@ -161,7 +111,7 @@ final class leaf_Request extends leaf_Common {
     }
 
     /**
-     * Returns the current Application`s name.
+     * Returns the current (running) Application`s name.
      *
      * @return  string
      */
@@ -171,7 +121,7 @@ final class leaf_Request extends leaf_Common {
     }
     
     /**
-     * Returns the current Action's name.
+     * Returns the current (running) Action's name.
      *
      * @var string 
      */
@@ -179,11 +129,6 @@ final class leaf_Request extends leaf_Common {
     {
     	return $this->action;
     }
-	
-    
-    /**************************************************************************
-     * Segments                                                               *
-     **************************************************************************
 
     /**
      * Retrieves the requested (numeric) offset from the segments.
@@ -199,6 +144,46 @@ final class leaf_Request extends leaf_Common {
 	   
         return NULL;
 	}
+	
+	/**
+	 * Changes the value of a specific segment using an index, or appends a new
+	 * segment at the end.
+	 *
+	 *
+	 * @method	setSegment(string $value)
+	 * 			setSegment(int $n, string $value)
+	 * @return	void
+	 */
+	public function setSegment()
+	{
+		$args = func_get_args();
+		$total= func_num_args();
+		
+		if ($total==1) {
+			if (is_string($args[0]))
+				self::$segments[] = $args[0];
+		} else if ($total==2) {
+			$n		= $args[0];
+			$value	= $args[1];
+			if (array_key_exists($n-1, self::$segments))
+				self::$segments[$n-1] = $value;
+		}
+	}
+	
+	/**
+	 * Sets the new segments based on the array, or merges with the current segments.
+	 *
+	 * @param	array	$segm
+	 * @param	boolean	$merge
+	 * @return	void
+	 */
+	public function setSegments(array $segm, $merge=FALSE)
+	{
+		if ($merge==TRUE)
+			self::$segments = array_merge (self::$segments, $segm);
+		else 
+			self::$segments = $segm;
+	}
     
     /**
      * Returns the total number of segments.
@@ -207,7 +192,19 @@ final class leaf_Request extends leaf_Common {
      */
 	public function getSegmentsSize()
 	{
-	    return $this->Router->segmentsSize();
+	    return sizeof(self::$segments);
+	}
+	
+	/**
+	 * Removes the segment with the specified index number.
+	 *
+	 * @param	integer	$n
+	 * @return	void
+	 */
+	public function removeSegment($n)
+	{
+		if (array_key_exists($n-1, self::$segments))
+			unset (self::$segments[$n-1]);
 	}
 	
 	/**
@@ -223,236 +220,87 @@ final class leaf_Request extends leaf_Common {
 		if ($total==0)
 			return NULL;
 		
+		$returnStr = "/";
+		
 		for ($i=0; $i<$total; $i++)
-			$returnStr .= self::$segments[$i] . "/";
+		  $returnStr .= self::$segments[$i] . "/";
 		
 		return $returnStr;
 	}
 
     /**
-     * Returns the segments` array.
+     * Returns the segments as an array.
      *
-     * @return  array
+     * @return  array|NULL
      */
     public function getSegmentsAsArray()
     {
         return self::$segments;
     }
-    
-
-    /**************************************************************************
-     * Get                                                                    *
-     **************************************************************************
-    
-    /**
-     * Returns the complete query string.
-     * 
-     * @return  string|NULL
-     */
-    public function getRawQueryString()
-    {
-    	return self::$immutableQueryString;
-    }
-    
-    /**
-     *
-     * 
-     * @return  string|NULL
-     */
-    public function getPreparedQueryString()
-    {
-        return self::$mutableQueryString;
-    }
-    
-    /**
-     * 
-     * 
-     * @return  void
-     */
-    public function prepareQueryString(array $set)
-    {
-        self::$mutableQueryElems = array_unique(
-            array_merge (
-                $set,
-                (array)self::$mutableQueryElems
-            )
-        );
-    }
-    
-    
-    /**
-     * Retrieves the value for the requested key.
-     *
-     * @param   string  $offset
-     * @return  mixed
-	 * @todo
-	 * <ol>
-	 *  <li>Possible method refactor.</li>
-	 * </ol>
-     */
-    public function getQueryString($offset)
-    {
-        if (!empty(self::$queryElems))
-            if (array_key_exists($offset, self::$queryElems))
-                return self::$queryElems[$offset];
-
-        return NULL;
-    }
-
-    /**
-     * Checks if the specific key exists in the Query String.
-     *
-     * @param   string  $key
-     * @return  boolean
-     */
-    public function queryStringKeyExists($key)
-    {
-        if (self::$queryElems!=NULL)
-            if (array_key_exists($key, self::$queryElems))
-                return TRUE;
-		
-		return FALSE;
-    }
 	
 	/**
-	 * Recreates the query string based on the elements' array.
+	 * Sets the new query string based on an associative array.
 	 *
+	 * @param	array	$queryString
 	 * @return	void
 	 */
-	private function updateQueryString()
+	public function setQueryString(array $queryString)
 	{
-        self::$mutableQueryString = "?";
+		self::$queryString = $queryString;
+	}
+    
+	/**
+	 * Returns the current query string, with the "?".
+	 *
+	 * @param	array	$replace
+	 * @return	string
+	 */
+    public function getQueryString(array $replace=NULL)
+    {
+		if ($replace!=NULL)
+			foreach ($replace as $Key => $Value)
+				self::$queryString[$Key] = $Value;
 		
-		$total = sizeof(self::$mutableQueryElems);
-		
-		for ($i=0; $i<$total; $i++) {
-			list($Key, $Value) = each(self::$mutableQueryElems);
+		if (!empty(self::$queryString)) {
+			$str = "?";
 			
-            self::$mutableQueryString .= $Key;
+			for ($i=0; $i<sizeof(self::$queryString); $i++) {
+				list($key, $value) = each (self::$queryString);
+				
+				if ($value!="") {
+					$str .= $key . "=" . $value;
+				} else {
+					$str .= $key;
+				}
+				
+				if ($i<sizeof($_GET)-1)
+					$str .= "&";
+			}
 			
-			if ($Value!=NULL)
-				self::$mutableQueryString .= "=" . $Value;
-			
-			if ($i<$total-1)
-				self::$mutableQueryString .= "&";
+			if ($this->Config['enable_auto_xss']==TRUE)
+				return $this->Xss->filter($str);
+			else
+				return $str;
+		} else {
+			return NULL;
 		}
-		
-		reset(self::$mutableQueryElems);
-	}
+    }
 	
 	/**
-	 * Merges the immutableQueryString with the mutableQueryString.
-	 * The result will be stored in the mutableQueryString.
+	 * Appends a key/value to the current query string.
 	 *
+	 * @param	string	$key
+	 * @param	string	$value
 	 * @return	void
 	 */
-	public function mergeQueryStrings($replace=TRUE)
+	public function append($key, $value)
 	{
-	    if ($replace==FALSE) {
-	        
-	    } else
-	        self::$mutableQueryElems = array_unique(
-	           array_merge(
-	               (array)self::$mutableQueryElems,
-	               (array)self::$queryElems
-	           )
-	        );
+		self::$queryString[$key] = $this->Xss->filter($value);
 	}
-	
-	/**
-	 * Append's a key with an optional value at the query string.
-	 *
-	 * @param  string  $key
-	 * @param  string  $value
-	 * @param  boolean $replace
-	 * @return void
-	 */
-	public function appendQueryString($key, $value=NULL, $replace=TRUE)
-	{
-		$value = (isset($value)) ? $value : NULL;
-		
-		if ($replace==FALSE)
-		  if (array_key_exists($key, self::$mutableQueryElems))
-		      return;
-
-        self::$mutableQueryElems[$key] = $value;
-		  
-		$this->updateQueryString();
-	}
-	
-	/**
-	 * Removes a key/value from the query string.
-	 * 
-	 * @return void
-	 */
-	public function removeQueryString($key)
-	{
-	    if (array_key_exists($key, $this->mutableQueryElems))
-	       unset(self::$mutableQueryElems[$key]);
-	    
-	    $this->updateQueryString();
-	}
-	
-	
-    /**************************************************************************
-     * Post                                                                   *
-     **************************************************************************/
-
-    /**
-     * 
-     * 
-     * @return  array
-     */
-    public function getParameters()
-    {
-        return $this->parameters;
-    }
     
     /**
-     * 
-     * 
-     * @return  string|NULL
-     */
-    public function getParameter($str)
-    {
-        if (array_key_exists($str, $this->parameters))
-            return $this->parameters[$str];
-
-        return NULL;
-    }
-    
-    /**
-     * 
-     * 
-     * @return  array
-     */
-    public function getParameterNames()
-    {
-        return array_keys($this->parameters);
-    }
-    
-    /**
-     * 
-     * 
-     * @return  array
-     */
-    public function getParameterValues()
-    {
-        return array_values($this->parameters);   
-    }
-    
-    /**
-     * 
-     * 
-     * @return  integer
-     */
-    public function getTotalParameters()
-    {
-        return sizeof($this->parameters);
-    }
-    
-    /**
-     * 
+     * Checks if a form post event is triggered. If that is the case, the method
+     * "handlePost" of the specific Controller will be called.
      * 
      * @return  boolean|NULL
      */
@@ -469,11 +317,6 @@ final class leaf_Request extends leaf_Common {
         
         return NULL;
     }
-    
-    
-    /**************************************************************************
-     * Headers                                                                *
-     **************************************************************************
 
     /**
      * Returns all the headers.
@@ -504,7 +347,7 @@ final class leaf_Request extends leaf_Common {
      * @param   string  $header
      * @return  boolean
      */
-    private function getHeaderExists($header)
+    private function headerExists($header)
     {
         if (!empty(self::$headers))
             return array_key_exists($header, self::$headers);
@@ -513,14 +356,14 @@ final class leaf_Request extends leaf_Common {
     }
 
     /**
-     * Returns the body of a header.
+     * Returns the contents of a header.
      *
      * @param   string  $header
      * @return  string|NULL
      */
     public function getHeader($header)
     {
-        if ($this->getHeaderExists($header))
+        if ($this->headerExists($header))
             return self::$headers[$header];
         else
             return NULL;

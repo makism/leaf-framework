@@ -25,7 +25,7 @@ define('VIEW_EXPOSE', 2);
  *
  * @package	    leaf
  * @subpackage	core
- * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	    SVN: $Id$
  */
 final class leaf_View extends leaf_Common {
@@ -65,7 +65,7 @@ final class leaf_View extends leaf_Common {
 
     
     /**
-     * Instantiates the super class.
+     * Associates with the specified controller.
      *
      * @return  void
      */
@@ -90,39 +90,58 @@ final class leaf_View extends leaf_Common {
      * <code>
      *  echo $title;
      * </code>
+     * <br/>
+     * 
+     * The arguments that can be passed are:
+     * <ul>
+     *  <li>view file (string)</li>
+     *  <li>data (associative array)</li>
+     *  <li>VIEW_MERGE (constant)</li>
+     *  <li>VIEW_EXPOSE (constant)</li>
+     * </ul>
+     * You can use any combination of the above.
+     * 
+     * Let`s comment "VIEW_MERGE" and "VIEW_EXPOSE".
+     * "VIEW_MERGE" is meaningful only when you pass data. The data passed
+     * are stored internally in the View class. For example:
+     * <code>$this->View->render("viewFile", array("age"=>24,"name"=>"makism"), VIEW_MERGE);
+     * "VIEW_EXPOSE", when used, all internally stored data become visible
+     * to the view file.  For example:
+     * <code>$this->View->render("viewFile", VIEW_EXPOSE);
+     * Of course, you can even say this:
+     * <code>$this->View->render("viewFile", array("age"=>99,"name"=>"Neo"), VIEW_MERGE, VIEW_EXPOSE);
+     * 
+     * Got it?
+     * 
      *
-     * @param   string  $view
-     * @param   array   $data
-     * @param   integer $opts1
-     * @param   integer $opts2
-     * @param   integer $opts...
      * @return  void
-     * @todo
-     * <ol>
-     *  <li>Flush and terminate the Output Buffer after this method returns.</li>
-     *  <li>Maybe this method and "include", will be implemeneted inside
-     *  the overload method "__call".</li>
-     *  <li>Create some "sanity" checks to run against the view name
-     *  that is requested.</li>
-     * </ol>
      */
-    public function render($view, array $data=NULL)
+    public function render()
     {
-        // Number of the passed data variables.
-        $s = sizeof($data);
+		$view = func_get_arg(0);
+		
+		// data
+		$data = NULL;
         
         // View`s filename
         $name = NULL;
         
         // Application name.
         $app = NULL;
-        
+		
         // Total number of arguments passed to the function.
         $argsTotal = func_num_args();
         
-        if ($argsTotal>2)
+        if ($argsTotal>=2) {
             $args = func_get_args();
-        
+			
+			if (is_array($args[1]))
+				$data = $args[1];
+		}
+		
+		
+        // Number of the passed data variables.
+        $s = sizeof($data);
         
         // Check to determine whether the requested View file
         // is stored in external Application.
@@ -161,7 +180,7 @@ final class leaf_View extends leaf_Common {
             // Make all variables visible to the included View file.
             // It is possible to export only the current vars, ignoring
             // those at the View`s stack.
-            if ($argsTotal>2) {
+            if ($argsTotal>=2) {
                 if (in_array(VIEW_EXPOSE, $args) && !empty($this->allVariables)) {
                     foreach ($this->allVariables as $Idx => $Val) {
                     
@@ -196,10 +215,24 @@ final class leaf_View extends leaf_Common {
             // Clear the local variables.
             unset($data, $app, $idx, $name, $s);
             
-            
             require_once $this->currViewFile;
         }
         
+    }
+    
+    /**
+     * 
+     * 
+     * @return  void
+     */
+    public function template()
+    {
+        //will require a simple cache extension or something ;-)
+        $args = func_get_args();
+        ob_start();
+        call_user_func_array(array($this, "render"), $args);
+        $data = ob_get_clean();
+        var_dump ($data);
     }
     
     /**

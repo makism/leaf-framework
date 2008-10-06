@@ -10,13 +10,14 @@
 
  
 /**
- *
+ * Attempt to emulate an enumeration.
+ * 
  * @package     leaf
  * @subpackage  core
- * @author	Avraam Marimpis <makism@users.sf.net>
+ * @author	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	SVN: $Id$
  */
-class leaf_OutputBuffer {
+final class leaf_OutputBuffer {
 
     const TIDY_HANDLER  = "ob_tidyhandler";
 
@@ -29,39 +30,48 @@ class leaf_OutputBuffer {
 }
 
 /**
- *
+ * Handles the responses. Such as, what output buffer strategy will be used,
+ * or sending headers etc.
+ * 
  *
  * @package     leaf
  * @subpackage  core
- * @author		Avraam Marimpis <makism@users.sf.net>
+ * @author		Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  */
 final class leaf_Response extends leaf_Common  {
     
     /**
-     *
+     * Keep track of the ouput buffer.
      *
      * @var integer
      */
     private $outputStatus = NULL;
 
     /**
-     *
+     * The output buffer handler that is to be used.
      *
      * @var string
      */
     private $outputHandler = NULL;
 
     /**
-     *
+     * Internal buffer (populated by the output buffer).
      *
      * @var string
      */
     private $internalBuffer = NULL;
+    
+    /**
+     * Http headers that are to be sent.
+     * 
+     * @var array
+     */
+    private $headers = NULL;
 	
 	
 	/**
-	 * 
+	 * Associates with the specified controller.
 	 * 
 	 * @return	void
 	 */
@@ -71,8 +81,10 @@ final class leaf_Response extends leaf_Common  {
 	}
 
     /**
+     * Setups the output buffer handler.
      *
-     *
+     * @param   string $handler
+     * @return  void
      */
     public function setOutputHandler($handler=NULL)
     {
@@ -102,9 +114,9 @@ final class leaf_Response extends leaf_Common  {
     }
 
     /**
+     * Returns the output buffer handler that is currently in use.
      *
-     *
-     *
+     * @return string|null
      */
     public function getOutputHandler()
     {
@@ -113,7 +125,6 @@ final class leaf_Response extends leaf_Common  {
 
     /**
      * Start output buffering
-     *
      *
      * @return  void
      */
@@ -127,7 +138,6 @@ final class leaf_Response extends leaf_Common  {
 
     /**
      * End output buffering
-     *
      *
      * @param   boolean $returnBuffer
      * @return  void|string
@@ -146,8 +156,7 @@ final class leaf_Response extends leaf_Common  {
     }
 
     /**
-     * Gets output buffer.
-     *
+     * Return the contents of the output buffer.
      *
      * @param   boolean $endBuffer
      * @return  string
@@ -171,92 +180,146 @@ final class leaf_Response extends leaf_Common  {
      * @param   string  $value
      * @return  void
      */
-    public function addRawHeader($header)
+/*    public function addRawHeader($header)
     {
-        header($header);
-    }
+
+    }*/
 
     /**
      *
      *
      *
      */
-    public function addExpireHeader($when)
+/*    public function addExpireHeader($when)
     {
 
-    }
+    }*/
 
     /**
      *
      *
      *
      */
-    public function addCacheHeader($date)
+/*    public function addCacheHeader($date)
     {
 
-    }
+    }*/
 
     /**
      *
      *
      *
      */
-    public function addContentTypeHeader($content, $enc)
+/*    public function addContentTypeHeader($content, $enc)
     {
 
-    }
+        header("");
+    }*/
 
     /**
      *
      *
      */
-    public function addXHeader($name, $value)
+/*    public function addXHeader($name, $value)
     {
 
-    }
+        header("");
+    }*/
 
     /**
      *
      *
      *
      */
-    public function clearHeaders()
+/*    public function clearHeaders()
     {
 
-    }
+    }*/
 
     /**
+     * Forwards all POST and GET data to the specified Controller/Action.
      *
-     *
-     * @param   string  $target
+     * @param   mixed  $target
      * @return  void
      */
-    public function sendForward($target)
+    public function forward($target)
     {
-    
+        $req = "?";
+        foreach ($_POST as $key => $value) {
+            $req .= $key;
+            
+            if ($value!=NULL)
+                $req .= "=" . $value;
+
+            if (next($_POST)!==FALSE)
+                $req .= "&";
+        }
+        
+        $headers = "POST {$req} HTTP/1.0\r\n";
+        $headers.= "Content-type: application/x-www-form-urlencoded\r\n";
+        $headers.= "Content-length: " . strlen($req) . "\r\n\r\n";
+        
+        if (is_array($target))
+            $url = call_user_func_array("currentUrl", array($target, APPEND_SEGMENTS, APPEND_QUERY_STRING));
+        else
+            $url = currentUrl($target, APPEND_SEGMENTS, APPEND_QUERY_STRING);
+
+        if (!empty($_POST)) {
+            header($headers);
+        }
+        
+        header("Location: " . $url);
     }
     
     /**
+     * Redirects the the specified Controller/Action.
      *
-     *
-     * @param   string  $target
+     * @param   mixed  $target
      * @return  void
      */
-    public function sendRedirect($target)
+    public function redirect($target)
     {
-    
+        if (is_array($target))
+            $url = call_user_func_array("currentUrl", array($target));
+        else
+            $url = currentUrl($target);
+        var_dump ($url);
+        header("Location: " . $url);
     }
     
-    
     /**
-     *
-     *
-     * @param   string  $target
+     * Sends an http error using a specific code, like 404.
+     * 
+     * The template as well as the messages can be easily modified.
+     * 
+     * @param   integer $code   An http error code
      * @return  void
      */
-    public function sendError($target)
+    public function sendHttpError($code)
     {
+        static $errorCodes;
+        
+        if ($errorCodes==NULL) {
+            $errorCodes = $this->Config->fetchError();
+        }
+        
+        if ($code>=100 && $code <=500) {
+            throw new leaf_Exception($errorCodes[$code], $code);
+        }
+    }
     
+    /**
+     * Raises a user error.
+     * 
+     * In reality, an exception is thrown, but the error code
+     * indicates that is a general user error.
+     *
+     * @param   string  $message
+     * @return  void
+     */
+    public function sendError($message)
+    {
+        throw new leaf_Exception($message, 0);
     }    
 
 }
