@@ -62,7 +62,7 @@ abstract class leaf_Base {
      * @param   object  $Obj
      * @return  void
      */
-	protected function __set($Id, $Obj)
+	public function __set($Id, $Obj)
 	{
 		if (array_key_exists($Id, self::$BaseObjects)==FALSE)
 			self::$BaseObjects[$Id] = $Obj;

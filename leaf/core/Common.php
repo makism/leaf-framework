@@ -48,7 +48,7 @@ abstract class leaf_Common {
 	 * @param  string  $Id
 	 * @return object|NULL
 	 */
-	protected function __get($Id)
+	public function __get($Id)
 	{
         if ($this->controllerRegistry->registered($Id)) {
             return $this->controllerRegistry->$Id;
@@ -67,7 +67,7 @@ abstract class leaf_Common {
      * @param   object  $Obj
      * @return  void
      */
-    protected function __set($Id, $Obj)
+    public function __set($Id, $Obj)
     {
         $this->controllerRegistry->register($Id, $Obj);
     }
