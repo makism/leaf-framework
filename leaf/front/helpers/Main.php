@@ -33,29 +33,7 @@
 function __autoload($className)
 {
     static $baseClasses;
-#    static $hasInited;
-#    static $enableEndorsementManager;
-#    static $endorsementManager;
 
-    /*
-     * Determine if EndorsedManager is enabled.
-     */
-#    if ($hasInited) {
-#        if (leaf_Registry::getInstance()->config['allow_endorsed']) 
-#            $enableEndorsementManager = TRUE;
-#        $hasInited=NULL;
-#    }
-
-    /*
-     * If, EndorsedManager has been enabled, we
-     * instantiate it.
-     */
-#    if ($endorsementManager==NULL && $enableEndorsementManager==TRUE) {
-#        require_once LEAF_BASE . "base/EndorsementManager.php";
-#        leaf_Registry::getInstance()->register(new leaf_EndorsementManager());
-#        $endorsementManager = leaf_Registry::getInstance()->EndorsementMan;
-#    }
-    
     /*
      * Most of the leaf`s classes.
      */
@@ -90,29 +68,6 @@ function __autoload($className)
      * is part of leaf`s core.
      */
     if (array_key_exists($className, $baseClasses)) {
-
-        /*
-         * We let the EndorsedManager to handle the external
-         * classes that will overlap the internal ones.
-         */
-#        if ($enableEndorsementManager) {
-#            if ($endorsementManager->isEndorsed($className))
-#                $endorsementManager->loadEndorsedClass($className);
-#            else
-#                require_once LEAF_BASE
-#                            . 'core/'
-#                            . $baseClasses[$className];
-#        } else {
-            require_once LEAF_BASE
-                        . $baseClasses[$className];
-#        }
+        require_once LEAF_BASE . $baseClasses[$className];
     }
-    
-    /*
-     * If the class {@link leaf_Config} has been called,
-     * we can access the configuration parameters and
-     * determine if EndorsedManager is enabled.
-     */
-#    if ($className=="leaf_Config")
-#        $hasInited = TRUE;
 }
