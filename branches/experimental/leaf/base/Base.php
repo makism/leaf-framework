@@ -41,7 +41,8 @@ abstract class leaf_Base {
      */
     public function __construct($Id, $Obj)
     {
-        $this->__set($Id, $Obj);   
+        if (array_key_exists($Id, self::$BaseObjects)==FALSE)
+            self::$BaseObjects[$Id] = $Obj; 
     }
 
     /**
@@ -64,8 +65,7 @@ abstract class leaf_Base {
      */
 	public function __set($Id, $Obj)
 	{
-		if (array_key_exists($Id, self::$BaseObjects)==FALSE)
-			self::$BaseObjects[$Id] = $Obj;
+	    return;
 	}
     
     /**
