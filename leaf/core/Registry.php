@@ -94,6 +94,18 @@ class leaf_Registry {
 	}
 	
 	/**
+	 * 
+	 * 
+	 * @param string   $Id
+	 * @param object   $Obj
+	 * @return void
+	 */
+	public function __set($Id, $Obj)
+	{
+	    return;    
+	}
+	
+	/**
 	 * Registers the requested instance using the designated key.
 	 *
 	 * @param	string	$Id
