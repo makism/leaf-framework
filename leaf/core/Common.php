@@ -29,6 +29,25 @@ abstract class leaf_Common {
      * @var object leaf_Registry
      */
     private $controllerRegistry = NULL;
+    
+    /**
+     * 
+     * 
+     * @var array
+     */
+    private $allowedAccessors = array (
+        "leaf_Dispatcher", "leaf_Router", "leaf_LocalLoader", "leaf_Request",
+        "leaf_Model", "leaf_Controller", "leaf_View"
+    );
+    
+    
+    /**
+     * 
+     * 
+     *
+     * @var array
+     */
+    private $allowedSettors = NULL;
 
 
     /**
@@ -40,6 +59,8 @@ abstract class leaf_Common {
     public function __construct($regName)
     {
         $this->controllerRegistry = leaf_Registry::getInstance($regName);
+        array_push($this->allowedAccessors, $regName . "_Controller");
+        $this->allowedSettors = &$this->allowedAccessors;
     }
     
    	/**
@@ -50,14 +71,16 @@ abstract class leaf_Common {
 	 */
 	public function __get($Id)
 	{
-        if ($this->controllerRegistry->registered($Id)) {
-            return $this->controllerRegistry->$Id;
-        } else if (leaf_Base::exists($Id)) {
-            return leaf_Base::fetch($Id);
-        } else {
-            if ($this->controllerRegistry->Local->modelLoaded($Id))
-                return $this->controllerRegistry->Local->model($Id);
-        }
+	    if (in_array(get_called_class(), $this->allowedAccessors)) {
+            if ($this->controllerRegistry->registered($Id)) {
+                return $this->controllerRegistry->$Id;
+            } else if (leaf_Base::exists($Id)) {
+                return leaf_Base::fetch($Id);
+            } else {
+                if ($this->controllerRegistry->Local->modelLoaded($Id))
+                    return $this->controllerRegistry->Local->model($Id);
+            }
+	    }
 	}
     
     /**
@@ -69,7 +92,9 @@ abstract class leaf_Common {
      */
     public function __set($Id, $Obj)
     {
-        $this->controllerRegistry->register($Id, $Obj);
+        if (in_array(get_called_class(), $this->allowedSettors)) {
+            $this->controllerRegistry->register($Id, $Obj);
+        }
     }
 
 }
