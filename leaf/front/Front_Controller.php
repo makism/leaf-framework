@@ -14,6 +14,8 @@
  * @filesource
  */
 
+use leaf::Base as Base;
+
 
 /**
  * Helper functions needed to start-up the framework
@@ -32,7 +34,7 @@ require_once LEAF_BASE  . 'front/helpers/Dependancies.php';
 /**
  * Custom error and exception handling functions.
  */
-require_once LEAF_BASE  . 'front/helpers/Handlers.php';
+#require_once LEAF_BASE  . 'front/helpers/Handlers.php';
 
 
 /**
@@ -59,67 +61,73 @@ require_once LEAF_BASE  . 'base/helpers/Hooks.php';
 /*
  * Handle errors and exceptions.
  */
-set_error_handler("errorHandler");
-set_exception_handler("exceptionHandler");
+#set_error_handler("errorHandler");
+#set_exception_handler("exceptionHandler");
 
 
 /*
  * Register the "base" classes that are needed
  * for leaf to work properly.
  */
-$Config = new leaf_Config();
-$Locale = new leaf_Locale();
+$Config = new Base::Config();
+$Locale = new Base::Locale();
+
 
 /*
  * Configure locale.
  */
-setlocale(LC_ALL, $Locale->getGeneral('locale'));
+#setlocale(LC_ALL, $Locale->getGeneral('locale'));
 
 /*
  * Configure timezone.
  */
-date_default_timezone_set($Locale->getGeneral('timezone'));
+#date_default_timezone_set($Locale->getGeneral('timezone'));
 
 
 /*
  * Register the "base" classes that are needed
  * for leaf to work properly.
  */
-$Router = new leaf_Router();
-$Loader = new leaf_Loader();
+#if ($Config->fetchRoute("use_static_routing")==TRUE) {
+#    $Router = new leaf_Router_Static();
+#} else {
+    $Router = new Base::Router();
+#}
+
+#$Loader = new leaf_Loader();
 
 
 /*
  * Load any extensions and/or plugins
  * that are registered for autoloading.
  */
-foreach ($Config->fetchAutoload() as $Section => $Registered) {
-	if (is_array($Registered)) {
-		foreach ($Registered as $moduleToLoad) {
-			$moduleToLoad = trim($moduleToLoad);
-			if ($Section=="extensions") {
-				use_extension($moduleToLoad);
-			} else if ($Section=="plugins") {
-				use_plugin ($moduleToLoad);
-			}
-		}
-	}
-}
+#foreach ($Config->fetchAutoload() as $Section => $Registered) {
+#	if (is_array($Registered)) {
+#		foreach ($Registered as $moduleToLoad) {
+#			$moduleToLoad = trim($moduleToLoad);
+#			if ($Section=="extensions") {
+#				use_extension($moduleToLoad);
+#			} else if ($Section=="plugins") {
+#				use_plugin ($moduleToLoad);
+#			}
+#		}
+#	}
+#}
 
 
 /*
  * Filter all input data
  */
-if ($Config['enable_auto_xss']==TRUE) {
-	$xss = $Loader->extension("leaf.Xss");
-	$xss->filter($_GET, $_POST, $_COOKIE);
-}
+#if ($Config['enable_auto_xss']==TRUE) {
+#	$xss = $Loader->extension("leaf.Xss");
+#	$xss->filter($_GET, $_POST, $_COOKIE);
+#}
 
 
 /*
  * Continue loading base classes....
  */
-$Dispatcher = new leaf_Dispatcher();
+$Dispatcher = new Base::Dispatcher();
 
 
 /*
