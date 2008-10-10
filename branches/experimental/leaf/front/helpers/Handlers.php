@@ -14,6 +14,8 @@
  * @filesource
  */
 
+namespace leaf::Front::Helpers;
+
 
 /**
  * Custom error handler.

@@ -9,7 +9,6 @@
  */
 
 namespace leaf::Base;
-use leaf::Base::Base;
 
 
 /**
@@ -25,9 +24,6 @@ use leaf::Base::Base;
  * @version     SVN: $Id$
  */
 class Router extends Base {
-
-    const BASE_KEY = "Router";
-
     
 	/**
 	 * The current requested Uri string.
@@ -80,7 +76,7 @@ class Router extends Base {
 	 */
     public function __construct()
     {
-        parent::__construct(self::BASE_KEY, $this);
+        parent::__construct("Router", $this);
         
         $this->requestUri = $_SERVER['REQUEST_URI'];
         

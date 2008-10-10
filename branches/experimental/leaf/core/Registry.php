@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
 
 /**
  * Holds up all the Core instances that are related with a specific application.
@@ -20,7 +22,7 @@
  * @version 	SVN: $Id$
  * @see         leaf_Base
  */
-class leaf_Registry {
+class Registry {
 
 	/**
      * All currently registered classes.
@@ -65,7 +67,7 @@ class leaf_Registry {
             $instance = self::$instances[$Key];
         
         if ($instance==NULL) {
-            $instance = new leaf_Registry();
+            $instance = new Registry();
             self::$instances[$Key] = $instance;
         }
         

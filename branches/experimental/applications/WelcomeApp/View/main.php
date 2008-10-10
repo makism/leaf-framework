@@ -1,8 +1,8 @@
 <html>
  <head>
   <title><?php echo $title; ?></title>
-   <link rel="shortcut icon" href="<?php echo baseDir(); ?>favicon.ico" type="image/x-icon" />
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-7" /> 
+   <link rel="shortcut icon" href="<?php echo leaf::Core::Helpers::baseDir(); ?>favicon.ico" type="image/x-icon" />
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
   <style type="text/css">
 	* {
 		font-family: Tahoma, sans-serif;
@@ -64,28 +64,25 @@
  
   <div id="Container">
     <div id="Title">
-        <img src="<?php echo baseDir(); ?>content/leaf/leaf-logo_resized.jpg" alt="leaf logo"/>
-        Καλώς ήρθατε στο leaf framework!
+        <img src="<?php echo leaf::Core::Helpers::baseDir(); ?>content/leaf/leaf-logo_resized.jpg" alt="leaf logo"/>
+        ΞΞ±Ξ»ΟΟ Ξ®ΟΞΈΞ±ΟΞ΅ ΟΟΞΏ leaf framework!
     </div>
     <br />
     <div id="Intro">
-		<p>Συγχαρητήρια.</p>
+		<p>Ξ£ΟΞ³ΟΞ±ΟΞ·ΟΞ®ΟΞΉΞ±.</p>
 
-		<p>Για να βλέπεται αυτή τη σελίδα, σημαίνει πώς η εγκατάσταση του leaf
-		είναι σωστά ρυθμισμένη και το σύστημα σας συναντά όλες τις απαιτήσεις.</p>
+		<p>ΞΞΉΞ± Ξ½Ξ± Ξ²Ξ»Ξ­ΟΞ΅ΟΞ±ΞΉ Ξ±ΟΟΞ® ΟΞ· ΟΞ΅Ξ»Ξ―Ξ΄Ξ±, ΟΞ·ΞΌΞ±Ξ―Ξ½Ξ΅ΞΉ ΟΟΟ Ξ· Ξ΅Ξ³ΞΊΞ±ΟΞ¬ΟΟΞ±ΟΞ· ΟΞΏΟ leaf
+		Ξ΅Ξ―Ξ½Ξ±ΞΉ ΟΟΟΟΞ¬ ΟΟΞΈΞΌΞΉΟΞΌΞ­Ξ½Ξ· ΞΊΞ±ΞΉ ΟΞΏ ΟΟΟΟΞ·ΞΌΞ± ΟΞ±Ο ΟΟΞ½Ξ±Ξ½ΟΞ¬ ΟΞ»Ξ΅Ο ΟΞΉΟ Ξ±ΟΞ±ΞΉΟΞ®ΟΞ΅ΞΉΟ.</p>
 
-		<p>Για αρχή, σας συμβουλεύουμε να ρίξετε μια γρήγορη ματιά στις δοκιμαστικές
-		εφαρμογές που υπάρχουν στον υποκατάλογο <cite>applications</cite> και επιπλέον,
-		συμβουλευτείτε το <cite>εχγειρίδιο χρήσης</cite> ή και το <cite>api doc</cite>.</p>
+		<p>ΞΞΉΞ± Ξ±ΟΟΞ®, ΟΞ±Ο ΟΟΞΌΞ²ΞΏΟΞ»Ξ΅ΟΞΏΟΞΌΞ΅ Ξ½Ξ± ΟΞ―ΞΎΞ΅ΟΞ΅ ΞΌΞΉΞ± Ξ³ΟΞ®Ξ³ΞΏΟΞ· ΞΌΞ±ΟΞΉΞ¬ ΟΟΞΉΟ Ξ΄ΞΏΞΊΞΉΞΌΞ±ΟΟΞΉΞΊΞ­Ο
+		Ξ΅ΟΞ±ΟΞΌΞΏΞ³Ξ­Ο ΟΞΏΟ ΟΟΞ¬ΟΟΞΏΟΞ½ ΟΟΞΏΞ½ ΟΟΞΏΞΊΞ±ΟΞ¬Ξ»ΞΏΞ³ΞΏ<cite>applications</cite>
+		ΞΊΞ±ΞΉ Ξ΅ΟΞΉΟΞ»Ξ­ΞΏΞ½, ΟΟΞΌΞ²ΞΏΟΞ»Ξ΅ΟΟΞ΅Ξ―ΟΞ΅ ΟΞΏ <cite>Ξ΅ΟΞ³Ξ΅ΞΉΟΞ―Ξ΄ΞΉΞΏ ΟΟΞ®ΟΞ·Ο</cite> Ξ® ΞΊΞ±ΞΉ ΟΞΏ <cite>api doc</cite>.</p>
 
-		<p>Μην ξεχνάτε να επισκέπτεστε συχνά το
-		<a href="http://sourceforge.net/projects/leaf-framework">sourceforge.net/projects/leaf-framework</a>
-		για νέα και ενημερώσεις.</p>
+		<p>ΞΞ·Ξ½ ΞΎΞ΅ΟΞ½Ξ¬ΟΞ΅ Ξ½Ξ± Ξ΅ΟΞΉΟΞΊΞ­ΟΟΞ΅ΟΟΞ΅ ΟΟΟΞ½Ξ¬ ΟΞΏ sourceforge.net/projects/leaf-framework
+		Ξ³ΞΉΞ± Ξ½Ξ­Ξ± ΞΊΞ±ΞΉ Ξ΅Ξ½Ξ·ΞΌΞ΅ΟΟΟΞ΅ΞΉΟ.</p>
         
         <br />
-        <p id="thankyou">
-            Σας ευχαριστούμε για το ενδιαφέρον σας :-)
-        </p>
+        <p id="thankyou">Ξ£Ξ±Ο Ξ΅ΟΟΞ±ΟΞΉΟΟΞΏΟΞΌΞ΅ Ξ³ΞΉΞ± ΟΞΏ Ξ΅Ξ½Ξ΄ΞΉΞ±ΟΞ­ΟΞΏΞ½ ΟΞ±Ο :-)</p>
     </div>
   </div>
 

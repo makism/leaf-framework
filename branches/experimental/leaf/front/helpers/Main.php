@@ -14,6 +14,8 @@
  * @filesource
  */
 
+namespace leaf::Front::Helpers;
+
 
 /**
  * Includes all necesarry files related to leaf`s classes.
@@ -32,13 +34,16 @@
  */
 function __autoload($className)
 {   
+/*
     var_dump ($className);
     echo "<br/>";
-    
+*/
     if (strpos($className, "::")) {
         $className = substr($className, strrpos($className, "::")+2);
+/*
         var_dump ($className);
         echo "<br/>";
+*/
     }
     
     static $baseClasses;
@@ -52,24 +57,24 @@ function __autoload($className)
             'Base'      => 'base/Base.php',
             'Config'    => 'base/Config.php',
             'Dispatcher'=> 'base/Dispatcher.php',
-            'leaf_Exception' => 'base/Exception.php',
-            'leaf_Exception_Loggable' => 'base/Exception_Loggable.php',
-            'leaf_Loader'    => 'base/Loader.php',
+            'Exception' => 'base/Exception.php',
+            'Exception_Loggable' => 'base/Exception_Loggable.php',
+            'Loader'    => 'base/Loader.php',
             'Locale'    => 'base/Locale.php',
             'Router'    => 'base/Router.php',
-            'leaf_Router_Static' => 'base/Router_Static.php',
-            'leaf_Hook'      => 'base/Hook.php',
-            'leaf_Hook_Conditional'=> 'base/Hook_Conditional.php',
-            'leaf_Extension'   => 'base/Extension.php',
+            'Router_Static' => 'base/Router_Static.php',
+            'Hook'      => 'base/Hook.php',
+            'Hook_Conditional'=> 'base/Hook_Conditional.php',
+            'Extension'   => 'base/Extension.php',
         /** Core libraries              **/
-            'leaf_Common'    => 'core/Common.php',
-            'leaf_Registry'  => 'core/Registry.php',
-            'leaf_Request'   => 'core/Request.php',
-            'leaf_Response'  => 'core/Response.php',
-            'leaf_Controller'=> 'core/Controller.php',
-            'leaf_Model'     => 'core/Model.php',
-            'leaf_View'      => 'core/View.php',
-            'leaf_LocalLoader'=>'core/LocalLoader.php'
+            'Common'    => 'core/Common.php',
+            'Registry'  => 'core/Registry.php',
+            'Request'   => 'core/Request.php',
+            'Response'  => 'core/Response.php',
+            'Controller'=> 'core/Controller.php',
+            'Model'     => 'core/Model.php',
+            'View'      => 'core/View.php',
+            'LocalLoader'=>'core/LocalLoader.php'
         );
 
     /*

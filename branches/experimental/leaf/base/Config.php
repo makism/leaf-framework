@@ -9,7 +9,6 @@
  */
 
 namespace leaf::Base;
-use leaf::Base::Base;
 
 
 /**
@@ -44,9 +43,7 @@ use leaf::Base::Base;
  * @version     SVN: $Id$
  */
 final class Config extends Base implements ArrayAccess {
-
-    const BASE_KEY = "Config";
-
+    
     
 	/**
      * All configuration parameters will be stored in this array.
@@ -70,7 +67,7 @@ final class Config extends Base implements ArrayAccess {
 	 */
 	public function __construct()
 	{
-        parent::__construct(self::BASE_KEY, $this);
+        parent::__construct("Config", $this);
         
 		require_once LEAF_BASE . 'etc/general.php';
 		require_once LEAF_BASE . 'etc/error.php';

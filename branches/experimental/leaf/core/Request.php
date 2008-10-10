@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
 
 /**
  * Provides access to all elements that compose the Uri, and generally the
@@ -18,7 +20,7 @@
  * @author	    Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-final class leaf_Request extends leaf_Common {
+final class Request extends Common {
 
     /**
      * The headers that Apache sent.

@@ -8,6 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
 
 /**
  * Custom exception class.
@@ -25,7 +26,7 @@
  * @version     SVN: $Id$
  * @link	    http://php.net/manual/en/language.exceptions.html
  */
-final class leaf_Exception extends Exception {
+final class Exception extends Exception {
     
     /**
      * 

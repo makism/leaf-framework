@@ -14,6 +14,8 @@
  * @filesource
  */
 
+namespace leaf::Base::Helpers;
+
 
 /**
  * Returns this locale`s name.

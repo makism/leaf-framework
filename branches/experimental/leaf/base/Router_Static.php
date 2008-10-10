@@ -8,6 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
 
 /**
  * Processes and filters the current Uri in a static-like way.
@@ -25,7 +26,7 @@
  *  <li>Implement.</li>
  * </ul>
  */
-final class leaf_Router_Static extends leaf_Router {
+final class Router_Static extends Router {
 
     const BASE_KEY = "Router_Static";
     

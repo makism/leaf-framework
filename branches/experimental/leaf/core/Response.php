@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
  
 /**
  * Attempt to emulate an enumeration.
@@ -17,7 +19,7 @@
  * @author	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	SVN: $Id$
  */
-final class leaf_OutputBuffer {
+final class OutputBuffer {
 
     const TIDY_HANDLER  = "ob_tidyhandler";
 
@@ -39,7 +41,7 @@ final class leaf_OutputBuffer {
  * @author		Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  */
-final class leaf_Response extends leaf_Common  {
+final class Response extends Common  {
     
     /**
      * Keep track of the ouput buffer.
@@ -130,8 +132,8 @@ final class leaf_Response extends leaf_Common  {
      */
     public function outputBufferStart()
     {
-        if ($this->outputStatus!=leaf_OutputBuffer::OB_STARTED) {
-            $this->outputStatus = leaf_OutputBuffer::OB_STARTED;
+        if ($this->outputStatus!=OutputBuffer::OB_STARTED) {
+            $this->outputStatus = OutputBuffer::OB_STARTED;
             ob_start();
         }
     }
@@ -144,14 +146,14 @@ final class leaf_Response extends leaf_Common  {
      */
     public function outputBufferFlush($returnBuffer=FALSE)
     {
-        if ($this->outputStatus==leaf_OutputBuffer::OB_STARTED) {
+        if ($this->outputStatus==OutputBuffer::OB_STARTED) {
             if ($returnBuffer) {
                 return ob_get_clean();
             }
 
             ob_end_flush();
 
-            $this->outputStatus = leaf_OutputBuffer::OB_FLUSHED;
+            $this->outputStatus = OutputBuffer::OB_FLUSHED;
         }
     }
 
@@ -163,7 +165,7 @@ final class leaf_Response extends leaf_Common  {
      */
     public function getOutputBufferContents($endBuffer=FALSE)
     {
-        if ($this->outputStatus!=leaf_OutputBuffer::OB_FLUSHED) {
+        if ($this->outputStatus!=OutputBuffer::OB_FLUSHED) {
             $this->internalBuffer = ob_get_contents();
             ob_clean();
 

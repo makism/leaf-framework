@@ -13,7 +13,10 @@
  * @version     SVN: $Id$
  * @filesource
  */
- 
+
+namespace leaf::Core::Helpers;
+use leaf::Base as Base;
+use leaf::Core as Core;
 
 /**
  *
@@ -31,7 +34,7 @@ define('APPEND_QUERY_STRING', 2);
  * @return	string
  */
 function baseDir() {
-    $Config = leaf_Base::fetch("Config");
+    $Config = Base::Base::fetch("Config");
     return $Config['base_dir'];
 }
 
@@ -42,7 +45,7 @@ function baseDir() {
  * @return	string
  */
 function baseUrl() {
-    $Config = leaf_Base::fetch("Config");
+    $Config = Base::Base::fetch("Config");
     return $Config['base_url'];
 }
 
@@ -94,9 +97,9 @@ function currentUrl() {
 	$args	= func_get_args();
 	$total	= func_num_args();
 	
-	$dsp	= leaf_Base::fetch("Dispatcher");
+	$dsp	= Base::Base::fetch("Dispatcher");
 	$app	= $dsp->getCurrentController();
-	$reg	= leaf_Registry::getInstance($app);
+	$reg	= Core::Registry::getInstance($app);
 	
 	$controller = NULL;
 	$action		= NULL;
@@ -113,7 +116,7 @@ function currentUrl() {
 		}
 		
 		if (is_string ($arg) && $action==NULL) {
-			$controller = leaf_Base::fetch('Dispatcher')->getCurrentController();
+			$controller = Base::Base::fetch('Dispatcher')->getCurrentController();
 			$action = $arg;
 			continue;
 		}
@@ -151,8 +154,8 @@ function currentUrl() {
 	if ($action==NULL)
 		$action		= $dsp->getCurrentAction();
 	
-	if (leaf_Base::fetch('Config')->fetchRoute('url_suffix')!=NULL)
-		$action .= "." . leaf_Base::fetch('Config')->fetchRoute('url_suffix');
+	if (Base::Base::fetch('Config')->fetchRoute('url_suffix')!=NULL)
+		$action .= "." . Base::Base::fetch('Config')->fetchRoute('url_suffix');
 	
 	return baseUrl() . $controller . "/" . $action . $segments . $queryString;
 }

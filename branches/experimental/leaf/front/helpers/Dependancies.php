@@ -20,6 +20,8 @@
  * </ol>
  */
 
+namespace leaf::Front::Helpers;
+
 
 /**
  * Handles dependacies on PHP extensions.

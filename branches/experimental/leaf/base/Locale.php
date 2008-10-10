@@ -9,7 +9,6 @@
  */
 
 namespace leaf::Base;
-use leaf::Base::Base;
 
 
 /**
@@ -23,8 +22,6 @@ use leaf::Base::Base;
  * @version	    SVN: $Id$
  */
 final class Locale extends Base {
-	
-	const BASE_KEY = "Locale";
 
 	/**
 	 * The current locale`s name.
@@ -48,7 +45,7 @@ final class Locale extends Base {
 	 */
 	public function __construct()
 	{
-		parent::__construct(self::BASE_KEY, $this);
+		parent::__construct("Locale", $this);
 		require_once LEAF_BASE . "base/helpers/Locale.php";
 		
 		$this->locale = $this->Config['locale'];
@@ -121,14 +118,10 @@ final class Locale extends Base {
 		
 		return NULL;
 	}
-
-	/**
-	 *
-	 * @return string
-	 */
+	
 	public function __toString()
 	{
-		return __CLASS__ . " (Supports your localization needs)";
+	    
 	}
 
 }

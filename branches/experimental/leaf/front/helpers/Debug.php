@@ -14,6 +14,8 @@
  * @filesource
  */
 
+namespace leaf::Front::Helpers;
+
 
 /**
  * Returns the specified lines from a files.

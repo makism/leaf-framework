@@ -8,6 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
 
 /**
  * Base class for Hook objects.
@@ -20,7 +21,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-abstract class leaf_Hook extends leaf_Common {
+abstract class Hook extends Common {
     
 	/**
      * Associate with a specific Controller.

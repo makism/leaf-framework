@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
 
 /**
  * Provides a common base layout for all Models.
@@ -22,7 +24,7 @@
  *  to specific resources?</li>
  * </ol>
  */
-abstract class leaf_Model extends leaf_Common {
+abstract class Model extends Common {
 
     /**
      * Associates this model with the specified controller.

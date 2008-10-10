@@ -8,6 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
 
 /**
  * Provides a common behaviour for all extensions.
@@ -17,7 +18,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-abstract class leaf_Extension extends leaf_Base {    
+abstract class Extension extends Base {    
     
     /**
      * An optional configuration file that is to be loaded.

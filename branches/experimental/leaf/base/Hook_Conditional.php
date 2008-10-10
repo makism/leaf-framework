@@ -8,6 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
 
 /**
  * Base class for Hook objects, based on a conditional event.
@@ -22,7 +23,7 @@
  * @author      Avraam Marimpis <makism@users.sf.net>
  * @version     SVN: $Id$
  */
-abstract class leaf_Hook_Conditional extends leaf_Hook {
+abstract class Hook_Conditional extends Hook {
 
     /**
      * Decides the execution of the Hook. 
