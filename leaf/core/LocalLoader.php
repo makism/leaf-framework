@@ -9,10 +9,18 @@
  */
 
 
+/**
+ * Stores all instantiated Models.
+ * 
+ * @package 	leaf
+ * @subpackage	base
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
+ * @version     SVN: $Id$
+ */
 class leaf_LocalLoader extends leaf_Common {
 
     /**
-     *
+     * This array holds all the instantiated Models.
      *
      * @var array
      */
@@ -20,7 +28,7 @@ class leaf_LocalLoader extends leaf_Common {
     
     
     /**
-     *
+     * Associate with the specified controller.
      *
      * @return  void
      */
@@ -96,6 +104,9 @@ class leaf_LocalLoader extends leaf_Common {
     			$instance = new $modelClass (
                     $this->Request->getControllerName()
                 );
+				
+				// execute init code
+				$instance->init();
     			
     			// bind name
     			$bindName = @constant("{$modelClass}::BIND_NAME");

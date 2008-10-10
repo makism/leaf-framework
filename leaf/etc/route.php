@@ -1,14 +1,13 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
  *
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
 
@@ -17,6 +16,14 @@ global $route;
 $route = array();
 
 
+/*
+ *
+ *
+ * Legal values: TRUE, FALSE
+ * Default: FALSE
+ */
+$route['use_static_routing'] = FALSE;
+ 
 /*
  * Default application controller.
  */
@@ -31,6 +38,15 @@ $route['default_route'] = "WelcomeApp";
  * Default: "/"
  */
 $route['method_separator'] = "/";
+
+
+/*
+ *
+ *
+ * Legal values: TRUE, FALSE
+ * Default: FALSE
+ */
+$route['bind_segments_to_methods'] = TRUE;
 
 
 /*
