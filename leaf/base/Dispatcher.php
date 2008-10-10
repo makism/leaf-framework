@@ -8,6 +8,9 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
+use leaf::Base::Base;
+
 
 /**
  * Dispatches the specific Controller/Action.
@@ -22,7 +25,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-final class leaf_Dispatcher extends leaf_Base {
+final class Dispatcher extends Base {
 
     const BASE_KEY = "Dispatcher";
 

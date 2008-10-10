@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
+
 
 /**
  * Allows internal classes to communicate with each other.
@@ -21,7 +23,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-abstract class leaf_Base {
+abstract class Base {
 
     /**
      * Stores all the (internal) instances.

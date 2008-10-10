@@ -8,6 +8,9 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
+use leaf::Base::Base;
+
 
 /**
  * Processes and filters the current Uri.
@@ -21,7 +24,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-class leaf_Router extends leaf_Base {
+class Router extends Base {
 
     const BASE_KEY = "Router";
 
