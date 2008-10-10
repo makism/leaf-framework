@@ -31,7 +31,16 @@
  * @return	void
  */
 function __autoload($className)
-{
+{   
+    var_dump ($className);
+    echo "<br/>";
+    
+    if (strpos($className, "::")) {
+        $className = substr($className, strrpos($className, "::")+2);
+        var_dump ($className);
+        echo "<br/>";
+    }
+    
     static $baseClasses;
 
     /*
@@ -40,14 +49,14 @@ function __autoload($className)
     if ($baseClasses==NULL)
         $baseClasses = array (
         /** Base libraries             **/
-            'leaf_Base'      => 'base/Base.php',
-            'leaf_Config'    => 'base/Config.php',
-            'leaf_Dispatcher'=> 'base/Dispatcher.php',
+            'Base'      => 'base/Base.php',
+            'Config'    => 'base/Config.php',
+            'Dispatcher'=> 'base/Dispatcher.php',
             'leaf_Exception' => 'base/Exception.php',
             'leaf_Exception_Loggable' => 'base/Exception_Loggable.php',
             'leaf_Loader'    => 'base/Loader.php',
-            'leaf_Locale'    => 'base/Locale.php',
-            'leaf_Router'    => 'base/Router.php',
+            'Locale'    => 'base/Locale.php',
+            'Router'    => 'base/Router.php',
             'leaf_Router_Static' => 'base/Router_Static.php',
             'leaf_Hook'      => 'base/Hook.php',
             'leaf_Hook_Conditional'=> 'base/Hook_Conditional.php',
