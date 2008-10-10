@@ -8,6 +8,9 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+use leaf::Base;
+
 
 /**
  * Allows the Core objects to communicate with each other.
@@ -20,7 +23,7 @@
  * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	    SVN: $Id$
  */
-abstract class leaf_Common {
+abstract class Common {
 
     /**
      * An instance of leaf_Registry, that stores all the
@@ -36,8 +39,8 @@ abstract class leaf_Common {
      * @var array
      */
     private $allowedAccessors = array (
-        "leaf_Dispatcher", "leaf_Router", "leaf_LocalLoader", "leaf_Request",
-        "leaf_Model", "leaf_Controller", "leaf_View"
+        "Dispatcher", "Router", "LocalLoader", "Request",
+        "Model", "Controller", "View"
     );
     
     
@@ -58,7 +61,7 @@ abstract class leaf_Common {
      */
     public function __construct($regName)
     {
-        $this->controllerRegistry = leaf_Registry::getInstance($regName);
+        $this->controllerRegistry = Registry::getInstance($regName);
         array_push($this->allowedAccessors, $regName . "_Controller");
         $this->allowedSettors = &$this->allowedAccessors;
     }
@@ -71,16 +74,16 @@ abstract class leaf_Common {
 	 */
 	public function __get($Id)
 	{
-	    if (in_array(get_called_class(), $this->allowedAccessors)) {
+	   # if (in_array(get_called_class(), $this->allowedAccessors)) {
             if ($this->controllerRegistry->registered($Id)) {
                 return $this->controllerRegistry->$Id;
-            } else if (leaf_Base::exists($Id)) {
-                return leaf_Base::fetch($Id);
+            } else if (leaf::Base::Base::exists($Id)) {
+                return leaf::Base::Base::fetch($Id);
             } else {
                 if ($this->controllerRegistry->Local->modelLoaded($Id))
                     return $this->controllerRegistry->Local->model($Id);
             }
-	    }
+	   # }
 	}
     
     /**
@@ -92,9 +95,9 @@ abstract class leaf_Common {
      */
     public function __set($Id, $Obj)
     {
-        if (in_array(get_called_class(), $this->allowedSettors)) {
+       # if (in_array(get_called_class(), $this->allowedSettors)) {
             $this->controllerRegistry->register($Id, $Obj);
-        }
+       # }
     }
 
 }

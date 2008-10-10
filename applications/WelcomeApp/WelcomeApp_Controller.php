@@ -18,13 +18,16 @@
 // whole application will not work as expected,
 // or not work at all...
 
+use leaf::Core::Controller;
+
+
 // Method execution sequence:
 // 1) __construct (provided by the parent class)
 // 2) init
 // 3) user-defined method or, index
 // 4) destroy
 // 5) __destruct  (provided by the parent class)
-final class WelcomeApp_Controller extends leaf_Controller {
+final class WelcomeApp_Controller extends Controller {
 
     // Prohibit other Controllers, to call this one.
     const ALLOW_CALL = FALSE;

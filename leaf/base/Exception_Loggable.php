@@ -8,6 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
 
 /**
  * Custom exception class with logging support.
@@ -17,7 +18,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-final class leaf_Exception_Loggable extends leaf_Exception {
+final class Exception_Loggable extends Exception {
     
     /**
      * 

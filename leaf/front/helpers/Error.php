@@ -14,6 +14,10 @@
  * @filesource
  */
 
+namespace leaf::Front::Helpers;
+use leaf::Base as Base;
+use leaf::Core::Helpers as cHelpers;
+
 
 /**
  * Presents a "Page Not Found" message.
@@ -41,8 +45,8 @@ function showErrorPage404($str=NULL)
 function showHtmlMessage($title, $reason, $die=FALSE)
 {
 
-$errorMsg = leaf_Base::fetch("Locale")->getError('ErrorOccured');
-$image    = baseUrl() . "content/leaf/error.png";
+$errorMsg = Base::Base::fetch("Locale")->getError('ErrorOccured');
+$image    = cHelpers::baseUrl() . "content/leaf/error.png";
 
 echo <<<ERROR_MSG
     <br />

@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
 
 /**
  * Stores all instantiated Models.
@@ -17,7 +19,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-class leaf_LocalLoader extends leaf_Common {
+class LocalLoader extends Common {
 
     /**
      * This array holds all the instantiated Models.
@@ -122,7 +124,7 @@ class leaf_LocalLoader extends leaf_Common {
     			    return NULL;
     			}
                 
-    			if ($instance instanceof leaf_Model)
+    			if ($instance instanceof Model)
     			    $this->models[$bindName] = $instance;
     		}
             

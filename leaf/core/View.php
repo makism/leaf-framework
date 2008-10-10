@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
 
 /**
  * Represents the request for variable merging.
@@ -28,7 +30,7 @@ define('VIEW_EXPOSE', 2);
  * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	    SVN: $Id$
  */
-final class leaf_View extends leaf_Common {
+final class View extends Common {
     
     /**
      * Default option parameters for all View files.

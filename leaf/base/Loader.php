@@ -21,9 +21,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-class leaf_Loader extends leaf_Base {
-    
-    const BASE_KEY = "Loader";
+class Loader extends Base {
 	
 
     /**
@@ -48,7 +46,7 @@ class leaf_Loader extends leaf_Base {
      */
     public function __construct()
     {     
-        parent::__construct(self::BASE_KEY, $this);
+        parent::__construct("Loader", $this);
         require_once LEAF_BASE . "base/helpers/Loader.php";
 		
 		if ($this->Config['common_extensions_usage']==FALSE) {

@@ -14,7 +14,10 @@
  * @filesource
  */
 
+
 use leaf::Base as Base;
+use leaf::Front::Helpers;
+
 
 
 /**
@@ -22,6 +25,7 @@ use leaf::Base as Base;
  * and to load its classes.
  */
 require_once LEAF_BASE  . 'front/helpers/Main.php';
+spl_autoload_register('leaf::Front::Helpers::__autoload');
 
 
 /**

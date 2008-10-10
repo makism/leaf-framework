@@ -14,6 +14,8 @@
  * @filesource
  */
 
+namespace leaf::Base::Helpers;
+
 
 /**
  * Pre init controller.

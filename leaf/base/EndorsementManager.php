@@ -8,6 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
+
 
 /**
  * Handles the requests, to overlap the internal implementations of specific
@@ -21,9 +23,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-final class leaf_EndorsementManager extends leaf_Base {
-
-    const BASE_KEY = "EndorsementManager";
+final class EndorsementManager extends Base {
 
     
     /**
@@ -65,7 +65,7 @@ final class leaf_EndorsementManager extends leaf_Base {
      */
     public function __construct()
     {
-        parent::__construct(self::BASE_KEY, $this);
+        parent::__construct("EndorsementManager", $this);
         
         dependsOn('reflection');
         
