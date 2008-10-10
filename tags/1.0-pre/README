@@ -1,0 +1,8 @@
+
+leaf framework
+**************
+     * Supported PHP versions, 5.1 - or newer.
+     
+     * This is a testing release, which means that, the API is not final,
+       maybe change (although it is very unlikely to happen) and code
+       clean ups will take place before merging to the TRUNK.
