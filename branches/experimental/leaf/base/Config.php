@@ -8,6 +8,9 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
+use leaf::Base::Base;
+
 
 /**
  * Provides access to the configuration files.
@@ -40,7 +43,7 @@
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-final class leaf_Config extends leaf_Base implements ArrayAccess {
+final class Config extends Base implements ArrayAccess {
 
     const BASE_KEY = "Config";
 

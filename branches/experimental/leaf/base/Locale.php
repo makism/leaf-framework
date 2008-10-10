@@ -8,6 +8,10 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
+use leaf::Base::Base;
+
+
 /**
  * Provides a simple method to handle multiple locales. Only one can be used at a time.
  * 
@@ -18,7 +22,7 @@
  * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	    SVN: $Id$
  */
-final class leaf_Locale extends leaf_Base {
+final class Locale extends Base {
 	
 	const BASE_KEY = "Locale";
 
