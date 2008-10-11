@@ -14,7 +14,7 @@
  * @filesource
  */
 
-namespace leaf::Core::Helpers;
+#namespace leaf::Core::Helpers;
 use leaf::Base as Base;
 use leaf::Core as Core;
 
