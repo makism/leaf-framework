@@ -1,7 +1,7 @@
 <html>
  <head>
   <title><?php echo $title; ?></title>
-   <link rel="shortcut icon" href="<?php echo leaf::Core::Helpers::baseDir(); ?>favicon.ico" type="image/x-icon" />
+   <link rel="shortcut icon" href="<?php echo baseDir(); ?>favicon.ico" type="image/x-icon" />
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
   <style type="text/css">
 	* {
@@ -64,7 +64,7 @@
  
   <div id="Container">
     <div id="Title">
-        <img src="<?php echo leaf::Core::Helpers::baseDir(); ?>content/leaf/leaf-logo_resized.jpg" alt="leaf logo"/>
+        <img src="<?php echo baseDir(); ?>content/leaf/leaf-logo_resized.jpg" alt="leaf logo"/>
         Καλώς ήρθατε στο leaf framework!
     </div>
     <br />
