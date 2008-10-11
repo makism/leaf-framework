@@ -65,7 +65,6 @@ function __autoload($className)
             'Router_Static' => 'base/Router_Static.php',
             'Hook'      => 'base/Hook.php',
             'Hook_Conditional'=> 'base/Hook_Conditional.php',
-            'Extension'   => 'base/Extension.php',
         /** Core libraries              **/
             'Common'    => 'core/Common.php',
             'Registry'  => 'core/Registry.php',
