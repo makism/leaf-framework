@@ -1,0 +1,11 @@
+
+leaf framework
+**************
+     * Supported PHP versions, 5.3 - or newer.
+     
+     * This is a exprerimental release, which means that, the API is not final,
+       maybe change (although it is very unlikely to happen) and code
+       clean ups will take place before merging to the TRUNK.
+     
+     * Also, this branch, serves as a port for PHP 5.3 for testing new features.
+
