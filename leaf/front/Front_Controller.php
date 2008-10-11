@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -10,10 +9,15 @@
  *
  * @package     leaf
  * @subpackage  front
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  * @filesource
  */
+
+
+use leaf::Base as Base;
+use leaf::Front::Helpers;
+
 
 
 /**
@@ -21,6 +25,7 @@
  * and to load its classes.
  */
 require_once LEAF_BASE  . 'front/helpers/Main.php';
+spl_autoload_register('leaf::Front::Helpers::__autoload');
 
 
 /**
@@ -33,7 +38,7 @@ require_once LEAF_BASE  . 'front/helpers/Dependancies.php';
 /**
  * Custom error and exception handling functions.
  */
-require_once LEAF_BASE  . 'front/helpers/Handlers.php';
+#require_once LEAF_BASE  . 'front/helpers/Handlers.php';
 
 
 /**
@@ -60,7 +65,7 @@ require_once LEAF_BASE  . 'base/helpers/Hooks.php';
 /*
  * Handle errors and exceptions.
  */
-set_error_handler("errorHandler");
+#set_error_handler("errorHandler");
 #set_exception_handler("exceptionHandler");
 
 
@@ -68,18 +73,71 @@ set_error_handler("errorHandler");
  * Register the "base" classes that are needed
  * for leaf to work properly.
  */
-$Config = new leaf_Config();
-$Router = new leaf_Router();
-$Dispatcher = new leaf_Dispatcher();
+$Config = new Base::Config();
+$Locale = new Base::Locale();
+
+
+/*
+ * Configure locale.
+ */
+#setlocale(LC_ALL, $Locale->getGeneral('locale'));
 
 /*
  * Configure timezone.
  */
-$timezoneSetting = (empty($Config['timezone']))
-                    ? @date_default_timezone_get()
-                    : $Config['timezone'];
+#date_default_timezone_set($Locale->getGeneral('timezone'));
 
-date_default_timezone_set($timezoneSetting);
+
+/*
+ * Register the "base" classes that are needed
+ * for leaf to work properly.
+ */
+#if ($Config->fetchRoute("use_static_routing")==TRUE) {
+#    $Router = new leaf_Router_Static();
+#} else {
+    $Router = new Base::Router();
+#}
+
+#$Loader = new leaf_Loader();
+
+
+/*
+ * Load any extensions and/or plugins
+ * that are registered for autoloading.
+ */
+#foreach ($Config->fetchAutoload() as $Section => $Registered) {
+#	if (is_array($Registered)) {
+#		foreach ($Registered as $moduleToLoad) {
+#			$moduleToLoad = trim($moduleToLoad);
+#			if ($Section=="extensions") {
+#				use_extension($moduleToLoad);
+#			} else if ($Section=="plugins") {
+#				use_plugin ($moduleToLoad);
+#			}
+#		}
+#	}
+#}
+
+
+/*
+ * Filter all input data
+ */
+#if ($Config['enable_auto_xss']==TRUE) {
+#	$xss = $Loader->extension("leaf.Xss");
+#	$xss->filter($_GET, $_POST, $_COOKIE);
+#}
+
+
+/*
+ * Continue loading base classes....
+ */
+$Dispatcher = new Base::Dispatcher();
+
+
+/*
+ * Extra-helper functions, for your convenience :-)
+ */
+require_once LEAF_BASE . "core/helpers/Request.php";
 
 
 /*
@@ -96,4 +154,3 @@ $Dispatcher->invoke(
  */
 /*if ($Config['enable_debug_stats'])
     require_once LEAF_BASE . 'front/Debug.php';*/
-

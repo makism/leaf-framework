@@ -1,7 +1,6 @@
 <?php
 /**
- * This source file is part of the leaf framework and
- * is licensed under the New BSD license.
+ * This source file is licensed under the New BSD license.
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
@@ -10,10 +9,12 @@
  *
  * @package     leaf
  * @subpackage  front.helpers
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version		SVN: $Id$
  * @filesource
  */
+
+namespace leaf::Front::Helpers;
 
 
 /**
@@ -28,51 +29,29 @@
 function errorHandler($errno, $errstr, $errfile, $errline)
 {
     static $errorTypes;
+	static $showSource;
     
-    $errorTypes = array (
-        2   => "Warning",               // E_WARNING
-        8   => "Notice",                // E_NOTICE
-        256 => "User Error",            // E_USER_ERROR
-        512 => "User Warning",          // E_USER_WARNING
-        1024=> "User Notice",           // E_USER_NOTICE
-        2048=> "Run-time notice",       // E_STRICT
-        4096=> "Recoverable Error"      // E_RECOVERABLE_ERROR
-    );
+	if ($errorTypes==NULL) {
+	    $errorTypes = array (
+	        2   => "Warning",               // E_WARNING
+	        8   => "Notice",                // E_NOTICE
+	        256 => "User Error",            // E_USER_ERROR
+	        512 => "User Warning",          // E_USER_WARNING
+	        1024=> "User Notice",           // E_USER_NOTICE
+	        2048=> "Run-time notice",       // E_STRICT
+	        4096=> "Recoverable Error"      // E_RECOVERABLE_ERROR
+	    );
+	}
     
     $dieStatus = ($errno==256) ? TRUE : FALSE;
 
-    $code = debug_parsefile($errfile, $errline);
-
-echo <<<ERROR_MSG
-    <br />
-    <br />
-    <div style="margin: 0px auto; width: 600px; overflow: hidden;">
-        <div style="font-size: 16px; background-color: #f7f7da; padding: 5px;">
-            <img src="/leaf/content/images/error.png" style="vertical-align: middle;"/>
-            $errorTypes[$errno]
-        </div>
-
-        <div style="margin: 5px 0px 0px 0px; border: 1px solid #f0f0f0; padding: 10px;">
-            <fieldset style="border: 0px;">
-                <legend><b>Message</b></legend>
-                <span style="font: Arial; font-size: 12px;">$errstr</span>
-            </fieldset>
-
-            <fieldset style="border: 0px;">
-                <legend><b>Code trace</b></legend>
-                <span style="font: Arial; font-size: 12px;">
-                <pre>$code</pre>
-
-                <span style="font-style: italic;">code snippet from file:</span><br />
-                <span style="font-size: 10px;">$errfile</span>
-                </span>
-            </fieldset>
-        </div>
-
-    </div>
-    <br />
-    <br />
-ERROR_MSG;
+	if ($showSourceCode==NULL)
+		$showSourceCode = leaf_Base::fetch('Config')->offsetGet('show_code');
+	
+	if ($showSourceCode==TRUE)
+		$code = debug_parsefile($errfile, $errline);
+    
+    require LEAF_ERROR . "php_error.php";
 
     return TRUE;
 }
@@ -85,6 +64,39 @@ ERROR_MSG;
  */
 function exceptionHandler(Exception $ex)
 {
+	static $showSourceCode;
+	
+    $code = $ex->getCode();
+
+    // User error
+    if ($code==0) {
+        $message = $ex->getMessage();
+        
+        require LEAF_ERROR . 'generic_error.php';
+    
+    // Http error
+    } else if ($code>=100 && $code<=500) {
+        $http_code = $code;
+        $http_error= $ex->getMessage();
+        
+        require LEAF_ERROR . "http_error.php";
+        
+    // Leaf error
+    } else {
+        $error_code     = $code;
+        $error_message  = $ex->getMessage();
+        $error_file     = $ex->getFile();
+        $error_line     = $ex->getLine();
+        $error_trace    = $ex->getTraceAsString();
+		
+		if ($showSourceCode==NULL)
+			$showSourceCode = leaf_Base::fetch('Config')->offsetGet('show_code');
+		
+		if ($showSourceCode==TRUE)
+			$error_scode    = $ex->getSourceCode();
+        
+        require LEAF_ERROR . "leaf_error.php";
+    }
 
 }
 

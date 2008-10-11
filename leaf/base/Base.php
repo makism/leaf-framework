@@ -8,19 +8,25 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Base;
+
 
 /**
- *
+ * Allows internal classes to communicate with each other.
+ * 
+ * Every instance of the internal classes is stored within leaf_Base.
+ * Thus, each class that inherits from leaf_Base, automatically has
+ * access to all the other objects. 
  *
  * @package     leaf
  * @subpackage  base
- * @author      Avraam Marimpis <makism@users.sf.net>
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
  * @version     SVN: $Id$
  */
-abstract class leaf_Base {
+abstract class Base {
 
     /**
-     *
+     * Stores all the (internal) instances.
      *
      * @var array
      */
@@ -28,19 +34,21 @@ abstract class leaf_Base {
 
     
     /**
-     *
+     * When a class that inherits leaf_Base, is constructed, it is
+     * automatically stored within leaf_Base.
      *
      * @param   string  $Id
      * @param   object  $Obj
      * @return  void
      */
-    protected function __construct($Id, $Obj)
+    public function __construct($Id, $Obj)
     {
-        $this->__set($Id, $Obj);   
+        if (array_key_exists($Id, self::$BaseObjects)==FALSE)
+            self::$BaseObjects[$Id] = $Obj; 
     }
 
     /**
-     *
+     * Returns a stored object.
      *
      * @param   string  $Id
      * @return  object|NULL
@@ -51,22 +59,24 @@ abstract class leaf_Base {
 	}
     
     /**
-     *
+     * Stores an object.
      *
      * @param   string  $Id
      * @param   object  $Obj
      * @return  void
      */
-	private function __set($Id, $Obj)
+	public function __set($Id, $Obj)
 	{
-		if (array_key_exists($Id, self::$BaseObjects)==FALSE)
-			self::$BaseObjects[$Id] = $Obj;
+	    return;
 	}
     
     /**
+     * Returns an object.
+     * 
+     * This is the static version of magic method "__get"
      *
-     *
-     * @return object|NULL
+     * @param   string  $Id   
+     * @return  object|NULL
      */
     public static function fetch($Id)
     {
@@ -77,7 +87,7 @@ abstract class leaf_Base {
     }
     
     /**
-     *
+     *  Checks is the requested object exists.
      *
      * @param   string  $Id
      * @return  boolean
@@ -88,7 +98,7 @@ abstract class leaf_Base {
     }
     
     /**
-     *
+     * Prevents object-cloning.
      *
      * @return  void
      */
@@ -98,7 +108,7 @@ abstract class leaf_Base {
     }
     
     /**
-     *
+     * Returns a short description about the class.
      *
      * @return  string
      */

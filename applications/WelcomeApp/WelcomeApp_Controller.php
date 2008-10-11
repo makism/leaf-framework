@@ -18,21 +18,32 @@
 // whole application will not work as expected,
 // or not work at all...
 
-// Method execution summary:
+use leaf::Core::Controller;
+
+
+// Method execution sequence:
 // 1) __construct (provided by the parent class)
 // 2) init
 // 3) user-defined method or, index
 // 4) destroy
 // 5) __destruct  (provided by the parent class)
-final class WelcomeApp_Controller extends leaf_Controller {
+final class WelcomeApp_Controller extends Controller {
 
+    // Prohibit other Controllers, to call this one.
     const ALLOW_CALL = FALSE;
 
-    const RESTRICT_ACCESS = TRUE;
+    // Allow access to this application, from any IP.
+    const RESTRICT_ACCESS = FALSE;
 
+    // Enable this application.
     const IS_ENABLED = TRUE;
 
-    const ALLOW_HOOKS = FALSE;
+    // Disable hooks for this application.
+    #const ALLOW_HOOKS = TRUE;
+    
+    // Set the output buffer handler.
+    #const OUTPUT_HANDLER = "gz";
+    
     
     /*
      * This method is called after the default class
@@ -57,59 +68,20 @@ final class WelcomeApp_Controller extends leaf_Controller {
     /*
      * This is the default method that all Controllers,
      * must implement.
+     * 
      * You can optionally support the method with two
      * arguments. Then, two objects ($this->Request and
      * $this->Response) will be passed by reference to
      * the method`s scope.
-     *
      * That is why there are no abstract declarations
      * of the methods "init", "destroy" and "index"
      * in the parent class.
      */
-	public function index($Request, $Response)
-	{
-        //echo __METHOD__ . "<br>\n";
-#        var_dump ($Response);
-#        var_dump ($Request);
-        //$result = $this->Dispatcher->invokeInBuffer("AnotherApp", "someAction", TRUE);
-        #echo $result;
-
-        //$data['title']= $this->SampleModel->getPageTitle();
-        //$this->View->render("main", $data);
-        
-        /*var_dump ($Request->getSegmentsSize());
-        var_dump ($Request->getSegment(2));
-        var_dump ($Request->getRawSegments());*/
-        #var_dump ($Request->getSegmentsAsArray());
-
-
-        /*echo "<hr/>";
-        echo "getPreparedQueryString(): ";
-        var_dump ($Request->getPreparedQueryString());
-
-        echo "getRawQueryString(): ";
-        var_dump ($Request->getRawQueryString());
-        echo "<hr/>";
-
-        echo "getQueryString(): ";
-        var_dump ($Request->getQueryString("var1"));
-
-        echo "queryStringKeyExists(): ";
-        var_dump ($Request->queryStringKeyExists("var2"));
-
-        echo "queryStringKeyExists(): ";
-        var_dump ($Request->queryStringKeyExists("var3526"));
-
-        echo "<br />";*/
-        /*$Request->mergeQueryStrings();
-
-
-        $Request->appendQueryString("var1", "val5");
-        var_dump ($Request->getPreparedQueryString());
-        echo "<hr/>";
-
-        $this->Dispatcher->invoke("AnotherApp", "someAction");*/
-	}
+     public function index()
+     {
+        $data['title']= $this->SampleModel->getPageTitle();
+        $this->View->render("main", $data);
+     }
 
 }
 
