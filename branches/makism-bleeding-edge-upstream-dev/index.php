@@ -17,13 +17,7 @@
  */
 if (version_compare(phpversion(), '5.1', '<'))
 	die('PHP versions older than 5.1 are not supported');
-	
-/*
- * Clean up some global arrays =)
- * 
- * Don`t panic, they will become available as soon as the Router runs.
- */
-$_GET = array();
+
 
 /*
  * We set error reporting in such level in order
