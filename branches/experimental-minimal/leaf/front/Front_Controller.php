@@ -92,11 +92,14 @@ $Locale = new Base::Locale();
  * Register the "base" classes that are needed
  * for leaf to work properly.
  */
-#if ($Config->fetchRoute("use_static_routing")==TRUE) {
-#    $Router = new leaf_Router_Static();
-#} else {
+if ($Config->fetchRoute("use_static_routing")==TRUE) {
+    $Router = new Base::Router_Static();
+} else {
+    # Don`t panic, they will become available as soon as the Router runs.
+    $_GET = array();
+    # Now... :-)~
     $Router = new Base::Router();
-#}
+}
 
 #$Loader = new leaf_Loader();
 
