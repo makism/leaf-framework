@@ -83,6 +83,22 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
         $this->optionsTable['route']   = $route;
         $this->optionsTable['error']   = $error;
         
+        if ($this->optionsTable['route']['use_static_routing']==TRUE) {
+            require_once LEAF_BASE . 'etc/route_static.php';
+            unset ($this->optionsTable['route']);
+            
+            $route_static['use_static_routing'] = TRUE;
+            $route_static['method_separator'] = "/";
+            $route_static['bind_segments_to_methods'] = TRUE;
+            $route_static['allow_query_strings'] = TRUE;
+            $route_static['url_suffix']= "";
+            $route_static['allow_query_string_chars'] = "a-z0-9-_";
+            $route_static['allow_uri_chars'] = "a-z0-9-/_:+~%*";
+            $route_static['trace_dispatches'] = FALSE;
+            
+            $this->optionsTable['route'] = $route_static;            
+        }       
+        
         $this->options = $general;
 		
     	unset($GLOBALS);
@@ -188,6 +204,7 @@ final class leaf_Config extends leaf_Base implements ArrayAccess {
 	public function offsetSet($offset, $value)
 	{
         //$this->options[$offset] = $value;
+        return;
 	}
 
 	/**
