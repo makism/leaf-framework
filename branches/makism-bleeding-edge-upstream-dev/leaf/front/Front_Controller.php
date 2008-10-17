@@ -70,10 +70,12 @@ set_exception_handler("exceptionHandler");
 $Config = new leaf_Config();
 $Locale = new leaf_Locale();
 
+
 /*
  * Configure locale.
  */
 setlocale(LC_ALL, $Locale->getGeneral('locale'));
+
 
 /*
  * Configure timezone.
@@ -85,7 +87,15 @@ date_default_timezone_set($Locale->getGeneral('timezone'));
  * Register the "base" classes that are needed
  * for leaf to work properly.
  */
-$Router = new leaf_Router();
+if ($Config->fetchRoute("use_static_routing")==TRUE) {
+    $Router = new leaf_Router_Static();
+} else {
+    # Don`t panic, they will become available as soon as the Router runs.
+    $_GET = array();
+    # Now... :-)~
+    $Router = new leaf_Router();
+}
+
 $Loader = new leaf_Loader();
 
 
