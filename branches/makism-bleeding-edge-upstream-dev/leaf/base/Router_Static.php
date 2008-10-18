@@ -24,16 +24,57 @@
 final class leaf_Router_Static extends leaf_Base {
 
     const BASE_KEY = "Router";
+
     
+    /**
+     * The current requested Uri string.
+     *
+     * @var string
+     */
+    private $requestUri = NULL;
     
-    private $routeOptions = NULL;
-    
-    private $segments = NULL;
-    
+    /**
+     * The requested class name (Controller).
+     *
+     * @var string
+     */
     private $requestClass = NULL;
     
-    private $requestMethod = NULL;
+    /**
+     * The requested method name (Action).
+     *
+     * @var string
+     */
+    private $requestMethod= NULL;
     
+    /**
+     * The extra segments found in the Uri.
+     *
+     * Whatever follows after the method name,
+     * and is separated by "/", is considered
+     * to be a segment.<br>
+     * Example:<br>
+     * <i>http://localhost/Blog/view/2007/xx/xx/aTitle/</i><br>
+     * The array $segments, will be populated by the strings:<br>
+     * "2007", "xx", "xx", "aTitle"
+     *
+     * @var array
+     */
+    private $segments = NULL;
+
+    /**
+     * The configuration options related with the Router.
+     *
+     * @var array
+     */
+    private $routeOptions = NULL;
+    
+
+    /**
+     * Registers Router, and begins a series of checks in the Uri to discover the Controller etc.
+     * 
+     * @return  void
+     */
     public function __construct()
     {
         parent::__construct(self::BASE_KEY, $this);
@@ -97,16 +138,36 @@ final class leaf_Router_Static extends leaf_Base {
         }
     }
     
+    /**
+     * Returns an array with the extra segments that compose this Uri.
+     *
+     * @see     leaf_Request
+     * @return  array|NULL
+     */
     public function segments()
     {
         return $this->segments;
     }
-    
+
+    /**
+     * Returns the class name (Controller) that is requested (extracted from the Uri).
+     * 
+     * Do not mix with the current Controller that <b>is being executed</b>.
+     *
+     * @return  string
+     */
     public function getClassName()
     {
         return $this->requestClass;
     }
-    
+
+    /**
+     * Returns the method name (Action) that is requested (extracted from the Uri).
+     * 
+     * Do not mix with the current Action that <b>is being executed</b>.
+     *
+     * @return  string
+     */
     public function getMethodName()
     {
         return $this->requestMethod;        
