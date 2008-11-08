@@ -6,19 +6,14 @@
  *
  * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
- */
- 
- 
-/**
  *
- *
- * @package     leaf
- * @subpackage  core.log.backend
- * @author	    Avraam Marimpis <makism@users.sf.net>
- * @version 	SVN: $Id$
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
+ * @version     $Id$
  */
-final class leaf_Logger_File extends leaf_Logger_Heap {
+global $route_static;
 
-
-}
+/*
+ * Default application controller.
+ */
+$route_static['default_route'] = "WelcomeApp";
 

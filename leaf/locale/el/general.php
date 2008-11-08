@@ -8,33 +8,24 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
- * @version     SVN: $Id$
+ * @version     $Id$
  */
 
 
-global $hooks;
-$hooks = array (
+/*
+ * Default encoding used when necesery.
+ */
+$general['charset'] = "ISO-8859-7";
 
-    /*
-     * Init
-     */
-    "post_init_controller" => array(
-		
-    ),
+/*
+ * Locale used.
+ */
+$general['locale'] = "greek";
 
-    "pre_init_controller" => array(
-#	"WelcomeApp" => "testHook"
-    ),
-
-    /*
-     * Destroy
-     */
-    "post_destroy_controller" => array(
-        
-    ),
-
-    "pre_destroy_controller" => array(
-
-    )
-
-);
+/*
+ * Default timezone used.
+ * 
+ * Legal values: check the "Appendix J" in PHP`s manual.
+ * Default: "Europe/Athens"
+ */
+$general['timezone']= "Europe/Athens";

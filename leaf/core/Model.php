@@ -8,23 +8,27 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
 
 /**
  * Provides a common base layout for all Models.
  *
  * @package 	leaf
  * @subpackage	core
- * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version	    SVN: $Id$
  * @todo
  * <ol>
- *  <li>For security issues, restrict it's access to specific resources.</li>
+ *  <li>For security issues, we should restrict it's access
+ *  to specific resources?</li>
  * </ol>
  */
-abstract class leaf_Model extends leaf_Common {
+abstract class Model extends Common {
 
     /**
-     *
+     * Associates this model with the specified controller.
+     * 
      * @return  void
      */
     public function __construct($controllerName)
@@ -44,7 +48,6 @@ abstract class leaf_Model extends leaf_Common {
     
     /**
      *
-     *
      * @return  void
      */
     private function __clone()
@@ -53,7 +56,6 @@ abstract class leaf_Model extends leaf_Common {
     }
     
     /**
-     *
      *
      * @return  string
      */

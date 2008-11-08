@@ -6,23 +6,10 @@
  *
  * @license     http://leaf-framework.sourceforge.net/LICENSE  New BSD License
  * @link        http://leaf-framework.sourceforge.net
+ *
+ * @author      Avraam Marimpis <makism@users.sourceforge.net>
+ * @version     $Id$
  */
-
  
-/**
- *
- *
- * @package	    leaf
- * @subpackage	core
- * @author  	Avraam Marimpis <makism@users.sf.net>
- * @version	    SVN: $Id$
- */
-final class leaf_Cookie {
 
-    public function __construct()
-    {
-    
-    }
-
-}
-
+$messages = array();

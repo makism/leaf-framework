@@ -8,17 +8,21 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
+namespace leaf::Core;
+
 
 /**
- *
+ * Holds up all the Core instances that are related with a specific application.
+ * 
+ * This class, implements the Multiton design pattern.
  *
  * @package	    leaf
  * @subpackage	core
- * @author  	Avraam Marimpis <makism@users.sf.net>
+ * @author  	Avraam Marimpis <makism@users.sourceforge.net>
  * @version 	SVN: $Id$
  * @see         leaf_Base
  */
-class leaf_Registry {
+class Registry {
 
 	/**
      * All currently registered classes.
@@ -28,7 +32,7 @@ class leaf_Registry {
 	private static $instances = NULL;
 
     /**
-     *
+     * The registered objects that holds the current Registry object.
      *
      * @var array
      */
@@ -36,7 +40,7 @@ class leaf_Registry {
     
     
     /**
-     *
+     * Prevents external instantiation. Used by the Singleton design pattern.
      *
      * @return  void
      */
@@ -46,28 +50,39 @@ class leaf_Registry {
     }
     
     /**
+     * Returns the Registry object that is associated with a specific
+     * application, or creates a new Registry.
      *
-     *
-     * @param   string  $key
-     * @return  object leaf_Registry
+     * @param   string  $key    The associated application name
+     * @return  object  leaf_Registry   Registry instance
      */
     public static function getInstance($Key)
     {    
         if (self::$instances==NULL)
             self::$instances = array();
      
-        $instance = NULL;
+        $instance = NULL;	
         
         if (isset(self::$instances[$Key]))
             $instance = self::$instances[$Key];
         
         if ($instance==NULL) {
-            $instance = new leaf_Registry();
+            $instance = new Registry();
             self::$instances[$Key] = $instance;
         }
         
         return $instance;
     }
+	
+	/**
+	 * Returns all registered Controllers` names.
+	 * 
+	 * @return	array
+	 */
+	public static function getInstanceKeys()
+	{
+		return self::$instances;
+	}
 	
 	/**
 	 * Return the request object, by refering to it`s instance name.
@@ -78,6 +93,18 @@ class leaf_Registry {
 	public function __get($Id)
 	{
         return $this->registry[$Id];
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param string   $Id
+	 * @param object   $Obj
+	 * @return void
+	 */
+	public function __set($Id, $Obj)
+	{
+	    return;    
 	}
 	
 	/**
@@ -93,7 +120,8 @@ class leaf_Registry {
     }
 
     /**
-     *
+     * Returns true if the requested object is available in the
+     * current Registry object.
      *
      * @return  boolean
      */

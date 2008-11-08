@@ -8,33 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  *
  * @author      Avraam Marimpis <makism@users.sourceforge.net>
- * @version     SVN: $Id$
+ * @version     $Id$
  */
+ 
 
-
-global $hooks;
-$hooks = array (
-
-    /*
-     * Init
-     */
-    "post_init_controller" => array(
-		
-    ),
-
-    "pre_init_controller" => array(
-#	"WelcomeApp" => "testHook"
-    ),
-
-    /*
-     * Destroy
-     */
-    "post_destroy_controller" => array(
-        
-    ),
-
-    "pre_destroy_controller" => array(
-
-    )
-
-);
+$scaffolding[''] = "";
