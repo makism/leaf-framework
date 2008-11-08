@@ -8,7 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-namespace leaf::Core;
+namespace leaf\Core;
 
 
 /**
@@ -82,10 +82,10 @@ abstract class Controller extends Common {
     {
         parent::__construct($controllerName);
         
-        $this->__set("Request", new leaf::Core::Request($controllerName));
-        $this->__set("Local",new leaf::Core::LocalLoader($controllerName));
-        $this->__set("Response", new leaf::Core::Response($controllerName));   
-        $this->__set("View", new leaf::Core::View($controllerName));
+        $this->__set("Request", new leaf\Core\Request($controllerName));
+        $this->__set("Local",new leaf\Core\LocalLoader($controllerName));
+        $this->__set("Response", new leaf\Core\Response($controllerName));   
+        $this->__set("View", new leaf\Core\View($controllerName));
 
         $this->controllerName = $controllerName;
 	}

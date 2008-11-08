@@ -15,8 +15,8 @@
  */
 
 
-use leaf::Base as Base;
-use leaf::Front::Helpers;
+use leaf\Base as Base;
+use leaf\Front\Helpers;
 
 
 
@@ -73,8 +73,8 @@ require_once LEAF_BASE  . 'base/helpers/Hooks.php';
  * Register the "base" classes that are needed
  * for leaf to work properly.
  */
-$Config = new Base::Config();
-$Locale = new Base::Locale();
+$Config = new Base\Config();
+$Locale = new Base\Locale();
 
 
 /*
@@ -93,12 +93,12 @@ $Locale = new Base::Locale();
  * for leaf to work properly.
  */
 if ($Config->fetchRoute("use_static_routing")==TRUE) {
-    $Router = new Base::Router_Static();
+    $Router = new Base\Router_Static();
 } else {
     # Don`t panic, they will become available as soon as the Router runs.
     $_GET = array();
     # Now... :-)~
-    $Router = new Base::Router();
+    $Router = new Base\Router();
 }
 
 #$Loader = new leaf_Loader();
@@ -134,7 +134,7 @@ if ($Config->fetchRoute("use_static_routing")==TRUE) {
 /*
  * Continue loading base classes....
  */
-$Dispatcher = new Base::Dispatcher();
+$Dispatcher = new Base\Dispatcher();
 
 
 /*

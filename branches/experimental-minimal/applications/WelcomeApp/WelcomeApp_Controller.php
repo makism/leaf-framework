@@ -18,7 +18,7 @@
 // whole application will not work as expected,
 // or not work at all...
 
-use leaf::Core::Controller;
+use leaf\Core\Controller;
 
 
 // Method execution sequence:

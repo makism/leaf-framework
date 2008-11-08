@@ -8,7 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-namespace leaf::Base;
+namespace leaf\Base;
 
 /**
  * Processes and filters the current Uri in a static-like way.

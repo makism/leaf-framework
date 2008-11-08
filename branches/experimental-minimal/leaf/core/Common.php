@@ -8,8 +8,8 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-namespace leaf::Core;
-use leaf::Base;
+namespace leaf\Core;
+use leaf\Base;
 
 
 /**
@@ -77,8 +77,8 @@ abstract class Common {
 	   # if (in_array(get_called_class(), $this->allowedAccessors)) {
             if ($this->controllerRegistry->registered($Id)) {
                 return $this->controllerRegistry->$Id;
-            } else if (leaf::Base::Base::exists($Id)) {
-                return leaf::Base::Base::fetch($Id);
+            } else if (leaf\Base\Base::exists($Id)) {
+                return leaf\Base\Base::fetch($Id);
             } else {
                 if ($this->controllerRegistry->Local->modelLoaded($Id))
                     return $this->controllerRegistry->Local->model($Id);

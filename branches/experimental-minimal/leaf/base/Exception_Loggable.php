@@ -8,7 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-namespace leaf::Base;
+namespace leaf\Base;
 
 /**
  * Custom exception class with logging support.

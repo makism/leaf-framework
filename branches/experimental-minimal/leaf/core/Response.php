@@ -8,7 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-namespace leaf::Core;
+namespace leaf\Core;
 
  
 /**
