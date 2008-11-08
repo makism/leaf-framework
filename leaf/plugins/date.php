@@ -14,6 +14,8 @@
  * @filesource
  */
 
+use leaf::Base;
+
  
 /**
  * @param	integer	$from
@@ -30,7 +32,7 @@ function period ($from, $to=NULL)
 	static $l;
 	
 	if ($l==NULL)
-		$l = leaf_Base::fetch("Locale");
+		$l = Base::fetch("Locale");
 	
 	if ($to==NULL)
 		$to = time();

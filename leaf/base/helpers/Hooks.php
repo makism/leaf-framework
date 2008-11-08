@@ -14,7 +14,7 @@
  * @filesource
  */
 
-namespace leaf::Base::Helpers;
+namespace leaf\Base\Helpers;
 
 
 /**

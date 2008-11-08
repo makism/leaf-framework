@@ -8,7 +8,7 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-namespace leaf::Base;
+namespace leaf\Base;
 
 /**
  * Base class for Hook objects, based on a conditional event.

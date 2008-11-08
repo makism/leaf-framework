@@ -1,6 +1,6 @@
 <?php
 
-use leaf::Core::Model;
+use leaf\Core\Model;
 
 // *Always*, your Model must:
 // 1) extend "leaf_Model", and

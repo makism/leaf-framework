@@ -14,7 +14,7 @@
  * @filesource
  */
 
-namespace leaf::Front::Helpers;
+namespace leaf\Front\Helpers;
 
 
 /**
@@ -38,8 +38,8 @@ function __autoload($className)
     var_dump ($className);
     echo "<br/>";
 */
-    if (strpos($className, "::")) {
-        $className = substr($className, strrpos($className, "::")+2);
+    if (strpos($className, "\\")) {
+        $className = substr($className, strrpos($className, "\\")+1);
 /*
         var_dump ($className);
         echo "<br/>";

@@ -1,6 +1,6 @@
 <?php
 
-namespace leaf::Base;
+namespace leaf\Base;
 
 
 class DependacyManager {

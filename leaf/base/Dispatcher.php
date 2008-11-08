@@ -8,9 +8,9 @@
  * @link        http://leaf-framework.sourceforge.net
  */
 
-namespace leaf::Base;
-use leaf::Base::Helpers as baseHelpers;
-use leaf::Front::Helpers as fronHelpers;
+namespace leaf\Base;
+use leaf\Base\Helpers as baseHelpers;
+use leaf\Front\Helpers as fronHelpers;
 
 
 /**
@@ -90,7 +90,7 @@ final class Dispatcher extends Base {
                 $this->prepare($Controller, $Action);
             
             if ($Controller==NULL && empty($this->dispatchObjects))
-                leaf::Front::Helpers::showHtmlMessage(
+                leaf\Front\Helpers\showHtmlMessage(
                     $this->Locale->getError('Dispatcher', 'Error'),
                     $this->Locale->getError('Dispatcher', 'EmptyStack'),
                     TRUE
@@ -108,7 +108,7 @@ final class Dispatcher extends Base {
             if ($this->applicationObject!=$ControllerObject->controller &&
                 $this->Config['enable_controller_behavior']==TRUE) {
                 if (constant("{$ControllerObject->controller}::ALLOW_CALL")==FALSE) {
-                    leaf::Front::Helpers::showHtmlMessage(
+                    leaf\Front\Helpers\showHtmlMessage(
                         $this->Locale->getError('Dispatcher', 'Error'),
 						sprintf(
 							$this->Locale->getError('Dispatcher', 'CannotInvoke'),
@@ -132,7 +132,7 @@ final class Dispatcher extends Base {
             // Run "pre init controller" hooks.
             //
             if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
-                leaf::Base::Helpers::runControllerHooks($ControllerObject, HOOK_PRE_INIT_CONTROLLER);
+                leaf\Base\Helpers\runControllerHooks($ControllerObject, HOOK_PRE_INIT_CONTROLLER);
 
             //
             // Init the Controller.
@@ -143,7 +143,7 @@ final class Dispatcher extends Base {
             // Run "post init controller" hooks.
             //
                 if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
-                    leaf::Base::Helpers::runControllerHooks($ControllerObject, HOOK_POST_INIT_CONTROLLER);
+                    leaf\Base\Helpers\runControllerHooks($ControllerObject, HOOK_POST_INIT_CONTROLLER);
 					
                 if ($ControllerObject->instance->Request->hasPosted()) {
 					if (method_exists($ControllerObject->instance, "handlePost")) {
@@ -160,7 +160,7 @@ final class Dispatcher extends Base {
             // Run "pre destroy controller".
             //
                 if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
-                    leaf::Base::Helpers::runControllerHooks($ControllerObject, HOOK_PRE_DESTROY_CONTROLLER);
+                    leaf\Base\Helpers\runControllerHooks($ControllerObject, HOOK_PRE_DESTROY_CONTROLLER);
 
             //
             // Destroy the Controller.
@@ -171,7 +171,7 @@ final class Dispatcher extends Base {
             // Run "post destroy controller".
             //
                 if (constant("{$ControllerObject->controller}::ALLOW_HOOKS")==TRUE)
-                   leaf::Base::Helpers::runControllerHooks($ControllerObject, HOOK_POST_DESTROY_CONTROLLER);
+                   leaf\Base\Helpers\runControllerHooks($ControllerObject, HOOK_POST_DESTROY_CONTROLLER);
 
             //
             // Flush the ouput buffer.
@@ -185,7 +185,7 @@ final class Dispatcher extends Base {
 			$this->dispatchId = sizeof ($this->dispatchObjects)-1;
 		
         } else {
-            leaf::Front::Helpers::showHtmlMessage(
+            leaf\Front\Helpers\showHtmlMessage(
                 $this->Locale->getError('Dispatcher', 'Error'),
                 sprintf($this->Locale->getError('Dispatcher', 'MethodCall'),$Action),
                 TRUE
@@ -275,7 +275,7 @@ final class Dispatcher extends Base {
             );
             
         } else {
-            leaf::Front::Helpers::showHtmlMessage(
+            leaf\Front\Helpers\showHtmlMessage(
                 $this->Locale->getError('Dispatcher', 'Error'),
 				sprintf($this->Locale->getError('Dispatcher', 'ActionNotDefined'), $Action),
                 TRUE
@@ -355,7 +355,7 @@ final class Dispatcher extends Base {
             if ($fetch==TRUE)
                 return NULL;
             
-            leaf::Front::Helpers::showHtmlMessage(
+            leaf\Front\Helpers\showHtmlMessage(
                 $this->Locale->getError('Dispatcher', 'Error'),
 				sprintf(
 					$this->Locale->getError('Dispatcher', 'ControllerNotFound'),
@@ -375,7 +375,7 @@ final class Dispatcher extends Base {
             if (constant("{$dispatchObj->controller}::RESTRICT_ACCESS")==TRUE) {
                 if ($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
                     $dispatchObj = NULL;
-                    leaf::Front::Helpers::showHtmlMessage(
+                    leaf\Front\Helpers\showHtmlMessage(
                         $this->Locale->getError('Dispatcher', 'Error'),
 						sprintf(
 							$this->Locale->getError('Dispatcher', 'RestrictMode'),
@@ -389,7 +389,7 @@ final class Dispatcher extends Base {
             // Check if the requested Controller is enabled.
             if (constant("{$dispatchObj->controller}::IS_ENABLED")==FALSE) {
                 $dispatchObj = NULL;
-                leaf::Front::Helpers::showHtmlMessage(
+                leaf\Front\Helpers\showHtmlMessage(
                     $this->Locale->getError('Dispatcher', 'Error'),
 					sprintf(
 						$this->Locale->getError('Dispatcher', 'AppDisable'),
@@ -411,7 +411,7 @@ final class Dispatcher extends Base {
             if ($fetch==TRUE)
                 return NULL;
             
-            leaf::Front::Helpers::showHtmlMessage(
+            leaf\Front\Helpers\showHtmlMessage(
                 $this->Locale->getError('Dispatcher', 'Error'),
                 $this->Locale->getError('Dispatcher', 'NotAController'),
                 TRUE
