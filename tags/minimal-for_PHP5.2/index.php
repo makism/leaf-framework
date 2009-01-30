@@ -23,7 +23,7 @@ if (version_compare(phpversion(), '5.2', '<'))
  * 
  * Don`t panic, they will become available as soon as the Router runs.
  */
-$_GET = array();
+#$_GET = array();
 
 /*
  * We set error reporting in such level in order
