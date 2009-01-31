@@ -154,7 +154,7 @@ function currentUrl() {
 	if (leaf_Base::fetch('Config')->fetchRoute('url_suffix')!=NULL)
 		$action .= "." . leaf_Base::fetch('Config')->fetchRoute('url_suffix');
 	
-	return baseUrl() . $controller . "/" . $action . $segments . $queryString;
+	return baseUrl() . $controller . leaf_Base::fetch('Config')->fetchRoute('method_separator') . $action . $segments . $queryString;
 }
 
 
