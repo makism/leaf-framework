@@ -286,6 +286,17 @@ final class leaf_Response extends leaf_Common  {
         var_dump ($url);
         header("Location: " . $url);
     }
+  
+    /**
+     * Redirects the the specified Url.
+     *
+     * @param   string  $target
+     * @return  void
+     */
+    public function redirectUrl($target)
+    {
+        header("Location: " . $target);
+    }
     
     /**
      * Sends an http error using a specific code, like 404.
